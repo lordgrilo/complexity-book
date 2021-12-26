@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Introduction to NetworkX &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="2. Basic network import and representation" href="../1-intro/nb02_data_import_and_networks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :))
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NetworkX Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/2-networkx/nb03_NetworkX_visualization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F2-networkx/nb03_NetworkX_visualization.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/2-networkx/nb03_NetworkX_visualization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#networkx-preliminaries">
+   3.1. NetworkX preliminaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyze-the-cithepth-network-with-networkx">
+     3.1.1. Analyze the citHepTh network with NetworkX
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#we-want-to-count-how-many-nodes-have-a-given-degree-in">
+       3.1.1.1. We want to count how many nodes have a given degree-in
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#export-to-gml-be-careful-this-is-a-large-network">
+       3.1.1.2. Export to gml (be careful this is a large network!)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-a-network-with-networkx">
+   3.2. Visualizing a network with NetworkX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-a-spatial-network-with-networkx">
+   3.3. Visualizing a spatial network with NetworkX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization-with-networkx">
+   3.4. Data visualization with NetworkX
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-networkx">
+<h1><span class="section-number">3. </span>Introduction to NetworkX<a class="headerlink" href="#introduction-to-networkx" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>We will use the Python library <a class="reference external" href="https://networkx.github.io/index.html">NetworkX</a>. It is well documented and several <a class="reference external" href="https://networkx.github.io/documentation/networkx-2.0/auto_examples/index.html">examples</a> are available.</p>
+<p>It is not the only Python library available for network analysis. Another very good one is <a class="reference external" href="https://graph-tool.skewed.de/">graph-tool</a>.
+Also the <a class="reference external" href="http://snap.stanford.edu/data/index.html">SNAP library</a> provides an excellent tool to analyze very large networks.</p>
+<div class="section" id="networkx-preliminaries">
+<h2><span class="section-number">3.1. </span>NetworkX preliminaries<a class="headerlink" href="#networkx-preliminaries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We import the plotting library seaborn which integrates very well with matplotlib.
+More documentation is available here: <a class="reference external" href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">watermark</span>
+<span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -n -v -m -iv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matplotlib.pylab 1.18.1
+networkx         2.4
+re               2.2.1
+logging          0.5.1.2
+numpy            1.18.1
+watermark        2.0.2
+matplotlib       3.1.3
+seaborn          0.10.0
+Fri May 07 2021 
+
+CPython 3.7.1
+IPython 7.22.0
+
+compiler   : Clang 4.0.1 (tags/RELEASE_401/final)
+system     : Darwin
+release    : 19.6.0
+machine    : x86_64
+processor  : i386
+CPU cores  : 8
+interpreter: 64bit
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Generate an empty UNDIRECTED graph with NetworkX</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add nodes from a list of names</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;Luca&#39;</span><span class="p">,</span><span class="s1">&#39;Andrea&#39;</span><span class="p">,</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span><span class="s1">&#39;Carlo&#39;</span><span class="p">,</span><span class="s1">&#39;Veronica&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NodeView((&#39;Luca&#39;, &#39;Andrea&#39;, &#39;Sara&#39;, &#39;Carlo&#39;, &#39;Veronica&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add another node</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;Giovanni&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The nodes of G are: &quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The nodes of G are:  [&#39;Luca&#39;, &#39;Andrea&#39;, &#39;Sara&#39;, &#39;Carlo&#39;, &#39;Veronica&#39;, &#39;Giovanni&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far we have nodes in the networks but no edges.
+Let’s add edges from a list of tuples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s1">&#39;Luca&#39;</span><span class="p">,</span><span class="s1">&#39;Sara&#39;</span><span class="p">),(</span><span class="s1">&#39;Andrea&#39;</span><span class="p">,</span><span class="s1">&#39;Luca&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Carlo&#39;</span><span class="p">,</span><span class="s1">&#39;Veronica&#39;</span><span class="p">),(</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span><span class="s1">&#39;Veronica&#39;</span><span class="p">),(</span><span class="s1">&#39;Giovanni&#39;</span><span class="p">,</span><span class="s1">&#39;Andrea&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We add another edge and ‘Lucia’ is a new node.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;Veronica&#39;</span><span class="p">,</span><span class="s1">&#39;Lucia&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The nodes of G are : &quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The links of G are : &quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The nodes of G are :  [&#39;Luca&#39;, &#39;Andrea&#39;, &#39;Sara&#39;, &#39;Carlo&#39;, &#39;Veronica&#39;, &#39;Giovanni&#39;, &#39;Lucia&#39;]
+---
+The links of G are :  [(&#39;Luca&#39;, &#39;Sara&#39;), (&#39;Luca&#39;, &#39;Andrea&#39;), (&#39;Andrea&#39;, &#39;Giovanni&#39;), (&#39;Sara&#39;, &#39;Veronica&#39;), (&#39;Carlo&#39;, &#39;Veronica&#39;), (&#39;Veronica&#39;, &#39;Lucia&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to add the property ‘age’ to each node. By default, each node is assigned to an empty dictionary to store metadata.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;Lucia&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;L&#39;</span><span class="p">:</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">24</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">28</span>
+
+<span class="c1">#show the nodes with their age</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Luca&#39;, {&#39;age&#39;: 24}), (&#39;Andrea&#39;, {&#39;age&#39;: 28}), (&#39;Sara&#39;, {&#39;age&#39;: 28}), (&#39;Carlo&#39;, {&#39;age&#39;: 28}), (&#39;Veronica&#39;, {&#39;age&#39;: 28}), (&#39;Giovanni&#39;, {&#39;age&#39;: 28}), (&#39;Lucia&#39;, {&#39;age&#39;: 24})]
+</pre></div>
+</div>
+</div>
+</div>
+<p>How to remove a node?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="s1">&#39;Luca&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Andrea&#39;, {&#39;age&#39;: 28}), (&#39;Sara&#39;, {&#39;age&#39;: 28}), (&#39;Carlo&#39;, {&#39;age&#39;: 28}), (&#39;Veronica&#39;, {&#39;age&#39;: 28}), (&#39;Giovanni&#39;, {&#39;age&#39;: 28}), (&#39;Lucia&#39;, {&#39;age&#39;: 24})]
+---
+[(&#39;Andrea&#39;, &#39;Giovanni&#39;), (&#39;Sara&#39;, &#39;Veronica&#39;), (&#39;Carlo&#39;, &#39;Veronica&#39;), (&#39;Veronica&#39;, &#39;Lucia&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we remove an edge, we do not remove the nodes!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="s1">&#39;Giovanni&#39;</span><span class="p">,</span> <span class="s1">&#39;Andrea&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Andrea&#39;, &#39;Sara&#39;, &#39;Carlo&#39;, &#39;Veronica&#39;, &#39;Giovanni&#39;, &#39;Lucia&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Degree is easily accessible</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="s1">&#39;Veronica&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DegreeView({&#39;Andrea&#39;: 0, &#39;Sara&#39;: 1, &#39;Carlo&#39;: 1, &#39;Veronica&#39;: 3, &#39;Giovanni&#39;: 0, &#39;Lucia&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Andrea 0
+Sara 1
+Carlo 1
+Veronica 3
+Giovanni 0
+Lucia 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="analyze-the-cithepth-network-with-networkx">
+<h3><span class="section-number">3.1.1. </span>Analyze the citHepTh network with NetworkX<a class="headerlink" href="#analyze-the-cithepth-network-with-networkx" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>We analyze the citation dataset (citHepTh) available on the <a class="reference external" href="http://snap.stanford.edu/data/index.html">Stanford Large Network Data Colletion</a>.</p>
+<p>Keep in mind that the network is directed!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;./../network_data/cit-HepTh.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1">#reading all the file lines</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="c1">#remove &quot;\n&quot; characters (.strip()) and split the line at blank spaces (split.())</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;#&#39;</span><span class="p">:</span>
+        <span class="c1">#the first lines are comments</span>
+        <span class="n">origin</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">dest</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">H</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span><span class="n">dest</span><span class="p">)</span>
+    
+<span class="c1">#chiudo il file</span>
+<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">),</span> <span class="s2">&quot;nodes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The network has 27770 nodes
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">edges</span><span class="p">()),</span> <span class="s2">&quot;edges&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The network has 352807 edges
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="we-want-to-count-how-many-nodes-have-a-given-degree-in">
+<h4><span class="section-number">3.1.1.1. </span>We want to count how many nodes have a given degree-in<a class="headerlink" href="#we-want-to-count-how-many-nodes-have-a-given-degree-in" title="Permalink to this headline">¶</a></h4>
+<p>The Counter module is a dictionary subclass that allows quick item counting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indeg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">in_degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span> 
+
+<span class="n">degin_distri</span><span class="o">=</span><span class="n">Counter</span><span class="p">(</span><span class="n">indeg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">degin_distri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({0: 4590, 1: 3787, 2: 2700, 3: 1992, 4: 1643, 5: 1327, 6: 1134, 7: 903, 8: 823, 9: 692, 10: 591, 11: 527, 12: 484, 13: 447, 14: 409, 15: 322, 16: 293, 18: 278, 17: 274, 19: 249, 20: 223, 22: 185, 21: 185, 24: 161, 23: 161, 28: 137, 25: 136, 26: 128, 30: 127, 27: 126, 29: 120, 32: 100, 33: 88, 31: 88, 35: 87, 37: 82, 38: 74, 41: 72, 43: 69, 39: 67, 34: 67, 36: 66, 45: 56, 42: 53, 40: 52, 46: 52, 44: 50, 49: 48, 47: 44, 56: 36, 50: 34, 54: 33, 51: 33, 52: 32, 53: 31, 59: 29, 57: 29, 48: 29, 55: 28, 62: 28, 58: 27, 64: 26, 60: 25, 61: 25, 68: 24, 79: 24, 63: 23, 65: 23, 67: 23, 70: 22, 71: 21, 66: 21, 69: 19, 75: 19, 76: 18, 73: 17, 94: 17, 77: 15, 82: 15, 89: 14, 85: 14, 87: 13, 74: 13, 81: 12, 84: 11, 95: 10, 88: 10, 96: 10, 72: 10, 97: 10, 106: 10, 92: 9, 80: 9, 102: 9, 101: 9, 113: 9, 99: 9, 118: 8, 114: 8, 107: 8, 105: 8, 78: 8, 83: 8, 109: 8, 91: 7, 86: 7, 100: 7, 90: 6, 148: 6, 104: 6, 124: 6, 142: 6, 144: 6, 136: 6, 133: 6, 172: 6, 116: 6, 108: 6, 93: 6, 115: 5, 126: 5, 110: 5, 129: 5, 111: 5, 151: 5, 159: 5, 121: 5, 125: 5, 119: 5, 205: 4, 139: 4, 150: 4, 155: 4, 103: 4, 223: 4, 141: 4, 98: 4, 154: 4, 123: 4, 131: 4, 157: 4, 149: 4, 301: 3, 186: 3, 145: 3, 158: 3, 229: 3, 138: 3, 232: 3, 122: 3, 201: 3, 137: 3, 112: 3, 204: 3, 134: 3, 196: 3, 164: 3, 190: 3, 146: 3, 153: 3, 117: 3, 192: 2, 327: 2, 329: 2, 194: 2, 127: 2, 328: 2, 167: 2, 171: 2, 282: 2, 257: 2, 191: 2, 174: 2, 228: 2, 176: 2, 325: 2, 788: 2, 380: 2, 169: 2, 120: 2, 178: 2, 156: 2, 230: 2, 173: 2, 152: 2, 208: 2, 233: 2, 177: 2, 188: 2, 197: 2, 222: 2, 220: 2, 162: 2, 143: 2, 193: 2, 179: 2, 242: 2, 140: 1, 421: 1, 1299: 1, 1006: 1, 1114: 1, 337: 1, 189: 1, 160: 1, 175: 1, 520: 1, 252: 1, 274: 1, 467: 1, 424: 1, 344: 1, 219: 1, 199: 1, 240: 1, 290: 1, 748: 1, 426: 1, 411: 1, 385: 1, 314: 1, 268: 1, 304: 1, 373: 1, 775: 1, 388: 1, 1155: 1, 273: 1, 185: 1, 651: 1, 406: 1, 494: 1, 132: 1, 333: 1, 383: 1, 217: 1, 225: 1, 438: 1, 701: 1, 1199: 1, 456: 1, 235: 1, 297: 1, 214: 1, 2414: 1, 1144: 1, 168: 1, 1032: 1, 135: 1, 211: 1, 1641: 1, 1775: 1, 248: 1, 315: 1, 295: 1, 475: 1, 308: 1, 130: 1, 807: 1, 213: 1, 251: 1, 187: 1, 244: 1, 427: 1, 184: 1, 181: 1, 265: 1, 347: 1, 247: 1, 264: 1, 165: 1, 180: 1, 183: 1, 224: 1, 340: 1, 341: 1, 198: 1, 147: 1, 331: 1, 182: 1, 212: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">degin_distri</span><span class="p">):</span>   
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">degin_distri</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$k_</span><span class="si">{in}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k_</span><span class="si">{in}</span><span class="s1">)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mf">0.00001</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 10000, 1e-05, 1.0]
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_40_1.png" src="../_images/nb03_NetworkX_visualization_40_1.png" />
+</div>
+</div>
+<p>Let’s plot the degree out distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outdeg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">out_degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="n">degout_distri</span><span class="o">=</span><span class="n">Counter</span><span class="p">(</span><span class="n">outdeg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">degout_distri</span><span class="p">):</span>   
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">degout_distri</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$k_</span><span class="si">{out}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k_</span><span class="si">{out}</span><span class="s1">)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mf">0.00001</span><span class="p">,</span><span class="mf">1.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 10000, 1e-05, 1.0]
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_43_1.png" src="../_images/nb03_NetworkX_visualization_43_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="export-to-gml-be-careful-this-is-a-large-network">
+<h4><span class="section-number">3.1.1.2. </span>Export to gml (be careful this is a large network!)<a class="headerlink" href="#export-to-gml-be-careful-this-is-a-large-network" title="Permalink to this headline">¶</a></h4>
+<p>The file in gml format can be visualized using the software tool Gephi (<a class="reference external" href="http://gephi.org">http://gephi.org</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#nx.write_gml(H,&#39;./../network_data/citHepTh.gml&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-a-network-with-networkx">
+<h2><span class="section-number">3.2. </span>Visualizing a network with NetworkX<a class="headerlink" href="#visualizing-a-network-with-networkx" title="Permalink to this headline">¶</a></h2>
+<p>NetworkX combined with matplotlib can be used to visualize complex networks.</p>
+<p>It provides a good range of functionalities to obtain some basic and more refined visualization. More details are available in the <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/drawing.html">documentation</a>.</p>
+<p>Notice, as stated in the documentation</p>
+<blockquote>
+<div><p>NetworkX provides basic functionality for visualizing graphs, but its main goal is to enable graph analysis rather than perform graph visualization.
+In the future, graph visualization functionality may be removed from NetworkX or only available as an add-on package.</p>
+</div></blockquote>
+<p>We generate a random Erdos-Rényi network and visualize it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">prob</span><span class="o">=</span><span class="mf">0.08</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0979065943394404,
+ 0.7145947735429827,
+ -0.7012022684282954,
+ 0.5983766743471334)
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_53_1.png" src="../_images/nb03_NetworkX_visualization_53_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb03_NetworkX_visualization_54_0.png" src="../_images/nb03_NetworkX_visualization_54_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_random</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb03_NetworkX_visualization_55_0.png" src="../_images/nb03_NetworkX_visualization_55_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_spring</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb03_NetworkX_visualization_56_0.png" src="../_images/nb03_NetworkX_visualization_56_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
+<span class="n">pos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: array([0.37942129, 0.28304952]),
+ 1: array([-0.44700471,  0.41788761]),
+ 2: array([-0.06732744, -0.30276195]),
+ 3: array([0.13217226, 0.32299984]),
+ 4: array([-0.25473303, -0.2631521 ]),
+ 5: array([-0.46654189, -0.36425312]),
+ 6: array([ 0.52076711, -0.25888203]),
+ 7: array([-0.10169037,  0.28683354]),
+ 8: array([ 0.32460348, -0.16617263]),
+ 9: array([-0.13377692, -0.10093614]),
+ 10: array([-0.29045794, -0.00743258]),
+ 11: array([-0.15871388,  0.05489997]),
+ 12: array([ 0.32752776, -0.0060868 ]),
+ 13: array([ 0.2782337 , -0.49841573]),
+ 14: array([-0.08440765, -0.12176876]),
+ 15: array([0.37447509, 0.1598635 ]),
+ 16: array([-0.25929442,  0.65906093]),
+ 17: array([ 0.53078223, -0.45976758]),
+ 18: array([0.03829901, 0.07279817]),
+ 19: array([-0.41710226, -1.        ]),
+ 20: array([ 0.18569378, -0.054091  ]),
+ 21: array([-0.23465488, -0.10988178]),
+ 22: array([0.43221773, 0.14350444]),
+ 23: array([0.07677019, 0.3032829 ]),
+ 24: array([ 0.09408941, -0.458318  ]),
+ 25: array([-0.00975995, -0.08087172]),
+ 26: array([ 0.01178755, -0.18052263]),
+ 27: array([-0.40078303, -0.0758588 ]),
+ 28: array([-0.08178522,  0.31427541]),
+ 29: array([-0.06045512, -0.01044037]),
+ 30: array([0.24778907, 0.32026257]),
+ 31: array([ 0.23147063, -0.14266737]),
+ 32: array([-0.08544542, -0.2364354 ]),
+ 33: array([-0.27934687,  0.10534627]),
+ 34: array([-0.53291835,  0.13533282]),
+ 35: array([ 0.20938456, -0.37348974]),
+ 36: array([0.20157067, 0.15796213]),
+ 37: array([ 0.14287746, -0.00442057]),
+ 38: array([-0.02353545, -0.36738098]),
+ 39: array([0.69446493, 0.06227716]),
+ 40: array([0.00289978, 0.03335147]),
+ 41: array([-0.25490282, -0.05725431]),
+ 42: array([-0.21905197,  0.09951082]),
+ 43: array([ 0.10454097, -0.14820775]),
+ 44: array([-0.19312632, -0.04634397]),
+ 45: array([0.22888052, 0.42902126]),
+ 46: array([-0.12208792, -0.02667136]),
+ 47: array([-0.33250268,  0.01917675]),
+ 48: array([-0.19133828,  0.17209652]),
+ 49: array([-0.03913497, -0.04255662]),
+ 50: array([-0.2382381 , -0.58898092]),
+ 51: array([-0.1513733 ,  0.35597492]),
+ 52: array([0.18362245, 0.02184863]),
+ 53: array([ 0.2083875 , -0.23810075]),
+ 54: array([-0.23542421,  0.22773553]),
+ 55: array([0.3445182 , 0.26307289]),
+ 56: array([-0.41299309, -0.14796537]),
+ 57: array([-0.11651103,  0.08764898]),
+ 58: array([0.19940968, 0.05702209]),
+ 59: array([0.23460693, 0.16420917]),
+ 60: array([0.04676662, 0.16545305]),
+ 61: array([-0.12994767, -0.33503335]),
+ 62: array([ 0.18562937, -0.25146871]),
+ 63: array([-0.36142603, -0.35821894]),
+ 64: array([-0.288221  , -0.18495871]),
+ 65: array([0.07104916, 0.0282136 ]),
+ 66: array([ 0.05224455, -0.27604162]),
+ 67: array([ 0.02009742, -0.05164366]),
+ 68: array([ 0.07206082, -0.05713123]),
+ 69: array([0.38366876, 0.01731021]),
+ 70: array([ 0.07429801, -0.24258617]),
+ 71: array([ 0.1307614 , -0.05108442]),
+ 72: array([-0.15791336,  0.20865311]),
+ 73: array([0.10264477, 0.19259053]),
+ 74: array([-0.07512313,  0.18377697]),
+ 75: array([0.10832022, 0.2820979 ]),
+ 76: array([-0.19228533, -0.34551574]),
+ 77: array([-0.4608997 , -0.12526674]),
+ 78: array([-0.03243949,  0.48101761]),
+ 79: array([ 0.26271411, -0.09650711]),
+ 80: array([-0.18478495, -0.09700181]),
+ 81: array([ 0.27109218, -0.32361057]),
+ 82: array([-0.26206575,  0.16729256]),
+ 83: array([-0.14049052, -0.18519615]),
+ 84: array([0.31663441, 0.43703278]),
+ 85: array([0.02318078, 0.10877661]),
+ 86: array([ 0.30556591, -0.2145761 ]),
+ 87: array([0.06493119, 0.47360797]),
+ 88: array([0.63766171, 0.01245679]),
+ 89: array([-0.36397885, -0.11017129]),
+ 90: array([-0.40933854,  0.14914497]),
+ 91: array([-0.00967571, -0.14340667]),
+ 92: array([0.12663566, 0.22520047]),
+ 93: array([-0.19179084,  0.46242766]),
+ 94: array([-0.00796908,  0.32564204]),
+ 95: array([-0.17011243,  0.13145337]),
+ 96: array([-0.04602396,  0.08389722]),
+ 97: array([-0.17731385,  0.25495709]),
+ 98: array([0.00832766, 0.22839494]),
+ 99: array([0.35267102, 0.03980452])}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can draw the network nodes only, and assign a specific location to each node.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.6156277420495655,
+ 0.7771743207598066,
+ -1.1121604278814385,
+ 0.7712213621579386)
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_59_1.png" src="../_images/nb03_NetworkX_visualization_59_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">s</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span>
+            <span class="n">pos</span><span class="p">,</span>
+            <span class="n">node_size</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+            <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">ER</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">BuGn</span>
+            <span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1">#show the colorbar on the right side</span>
+<span class="n">cbar</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb03_NetworkX_visualization_60_0.png" src="../_images/nb03_NetworkX_visualization_60_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-a-spatial-network-with-networkx">
+<h2><span class="section-number">3.3. </span>Visualizing a spatial network with NetworkX<a class="headerlink" href="#visualizing-a-spatial-network-with-networkx" title="Permalink to this headline">¶</a></h2>
+<p>We analyze the US airport network of year 2010.
+The network is available from the <a class="reference external" href="https://toreopsahl.com/datasets/#usairports">network repository of Tore Opshal</a>.</p>
+<p>Weights represent the total number of passengers who traveled on that connection in a year.</p>
+<p>Airport coordinates have been added by myself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_path</span><span class="o">=</span><span class="s1">&#39;./../network_data/USairport_2010.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_path</span><span class="o">=</span><span class="s1">&#39;./../network_data/USairport_2010_codes.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">airport_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>405
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is the network fully connected?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first connected component in the list is always the largest</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+<span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1182, 1347}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We define three dictionaries associated to the network to store additional node’s features: IATA code, aiport name, geographic coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="o">=</span><span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We extract nodes features from a file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">finfo</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">finfo</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">finfo</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">node</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+<span class="n">finfo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Draw the network</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">node_size</span><span class="o">=</span><span class="mi">20</span>
+            <span class="p">)</span>
+
+<span class="c1">#nx.draw_networkx_edges(G,pos=G.pos)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-127.0525636795403, -65.23493632045967, 23.337955614957576, 50.01204438504242)
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_76_1.png" src="../_images/nb03_NetworkX_visualization_76_1.png" />
+</div>
+</div>
+<p>We would like to draw the edges but there are too many of them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8251
+</pre></div>
+</div>
+</div>
+</div>
+<p>We select only the strongest connections as a subgraph of G by setting a threshold on the annual passengers volume.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_threshold</span><span class="o">=</span><span class="mi">300000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="n">H</span><span class="o">.</span><span class="n">pos</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">H</span><span class="o">.</span><span class="n">code</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">H</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="p">{}</span>
+
+<span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">airport_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">node1</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">node2</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="n">weight</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">weight</span><span class="o">&gt;</span><span class="n">weight_threshold</span><span class="p">:</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span><span class="n">node2</span><span class="p">)</span>
+        
+        <span class="n">H</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span>
+        
+        <span class="n">H</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span>
+        
+        <span class="n">H</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node1</span><span class="p">]</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node2</span><span class="p">]</span>
+        
+<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>205
+</pre></div>
+</div>
+</div>
+</div>
+<p>We draw the network and color code the nodes by their degree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">s</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">],</span>
+            <span class="n">node_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">YlOrRd</span>
+            <span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">H</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span>
+            <span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">H</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">H</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="n">H</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+            <span class="p">)</span>
+
+<span class="n">cbar</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$log(k)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-127.05322413269565, -65.2342758673043, 23.336684461326623, 50.01331553867337)
+</pre></div>
+</div>
+<img alt="../_images/nb03_NetworkX_visualization_84_1.png" src="../_images/nb03_NetworkX_visualization_84_1.png" />
+</div>
+</div>
+<p>What is the node with the largest degree?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(389, 192)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">389</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Denver&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-visualization-with-networkx">
+<h2><span class="section-number">3.4. </span>Data visualization with NetworkX<a class="headerlink" href="#data-visualization-with-networkx" title="Permalink to this headline">¶</a></h2>
+<p>The easy interface of NetworkX and matplotlib to draw georeferenced data can be used to visualize all type of data points with geo-coordinates.</p>
+<p>A nice example comes from the electoral results of the municipality of Turin available at <a class="reference external" href="http://aperto.comune.torino.it/?q=taxonomy/term/111">the Open Data repository AperTO</a>.</p>
+<p>Electoral data can be geo-referenced through the <a class="reference external" href="http://aperto.comune.torino.it/?q=node/504">dataset containing every street number of the city with its coordinates</a>.</p>
+<p>Based on this idea, we created a Web-interface to explore electoral data of the city of Torino: <a class="reference external" href="http://datainterfaces.org/projects/ilcoloreditorino/">Il colore di Torino</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./2-networkx"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../1-intro/nb02_data_import_and_networks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Basic network import and representation</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By G. Petri, M. Tizzoni<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
