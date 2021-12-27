@@ -1,27 +1,5 @@
-# Welcome to your Jupyter Book
+# Coursebook for "Complessita' nei Sistemi Sociali"
 
-This is a small sample book to give you a feel for how book content is
-structured.
+**Laurea Magistrale in Fisica Dei Sistemi Complessi A.A. 2021/22**
 
-:::{note}
-Here is a note!
-:::
-
-And here is a code block:
-
-```
-e = mc^2
-```
-
-Check out the content pages bundled with this sample book to see more.
-
-
-## create a subsection in the intro and see what happens 
-sdofnasdonovnovnsva
-
-advnakjsnvckasdj na
-
-
-adncadjsncadsncas
-
-### let's see what happens if we go even deeper
+**Lecturers: Michele Tizzoni, Giovanni Petri**
