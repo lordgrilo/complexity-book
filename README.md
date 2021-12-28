@@ -1,5 +1,7 @@
 
-# Instructions for updating the Complexity coursebook. 
+# Source material for the course of "Complessita' nei sistemi sociali"
+
+## Instructions for updating the coursebook. 
 
 - add additional notebooks/markdown files to directories separated by topic
 - add the corresponding files to the `_toc.yml` file to add them to the overall table of content of the book. 
