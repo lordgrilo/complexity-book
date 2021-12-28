@@ -18,3 +18,8 @@ parts:
     - file: 2-networkx/nb03_NetworkX_visualization
     - file: 2-networkx/nb04_powerlaw_fitting
     - file: 2-networkx/nb05_network_analysis
+- caption: Spreading models
+  chapters:
+    - file: 3-epidemic-spreading/nb06_epidemic_processes
+    - file: 3-epidemic-spreading/nb07_epidemics_on_networks
+    - file: 3-epidemic-spreading/nb08_temporal_networks
