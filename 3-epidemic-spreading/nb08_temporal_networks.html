@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Epidemics on temporal networks &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="7. Epidemics on networks" href="nb07_epidemics_on_networks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NetworkX Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">
+   4. How to fit a power law distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb05_network_analysis.html">
+   5. Basics of network analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Spreading models
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb06_epidemic_processes.html">
+   6. Epidemic modeling, deterministic and stochastic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb07_epidemics_on_networks.html">
+   7. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Epidemics on temporal networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/3-epidemic-spreading/nb08_temporal_networks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F3-epidemic-spreading/nb08_temporal_networks.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/master?urlpath=tree/docs/3-epidemic-spreading/nb08_temporal_networks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulations-on-the-time-aggregated-graph">
+   8.1. Simulations on the time-aggregated graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulations-on-the-full-dynamic-network">
+   8.2. Simulations on the full dynamic network
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="epidemics-on-temporal-networks">
+<h1><span class="section-number">8. </span>Epidemics on temporal networks<a class="headerlink" href="#epidemics-on-temporal-networks" title="Permalink to this headline">¶</a></h1>
+<p><strong>The temporal dynamics of networks affect dynamical processes defined one them</strong></p>
+<p>In 2001, Liljeros and collaborators found that the network of human sexual contacts is “scale-free” concluding that STI can be hard to eradicate because of such property.</p>
+<p>See: <a class="reference external" href="https://www.nature.com/nature/journal/v411/n6840/full/411907a0.html">https://www.nature.com/nature/journal/v411/n6840/full/411907a0.html</a></p>
+<p>However, their conclusions were only partially true because the network of human sexual contacts is a <em>dynamical network</em> and temporal fluctuations are very important when considering a dynamical processes that take place on top of it.</p>
+<p>In 2011, Rocha and collaborators published a temporal dataset of sexual contacts in Brazil: <a class="reference external" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1001109">http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1001109</a>.
+We use this dataset to simulate an epidemic process (SI) and compare results between the static aggregated network and the dynamic network.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;./../network_data/Dataset_sexual_network.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edgelist</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">finput</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">finput</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    
+    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;#&#39;</span><span class="p">:</span><span class="c1">#not a comment</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+        
+        <span class="n">day</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">edge</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                
+        <span class="n">edgelist</span><span class="p">[</span><span class="n">day</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        
+<span class="n">finput</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first create the aggregated network</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_agg</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="o">=</span><span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">daystart</span><span class="o">=</span><span class="mi">800</span><span class="c1">#we skip the transient</span>
+<span class="n">dayend</span><span class="o">=</span><span class="mi">1800</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">edgelist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">d</span><span class="o">&gt;=</span><span class="n">daystart</span> <span class="ow">and</span> <span class="n">d</span><span class="o">&lt;=</span><span class="n">dayend</span><span class="p">:</span>
+        <span class="n">links</span><span class="o">=</span><span class="n">edgelist</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+        <span class="n">G_agg</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="c1">#we add the link to the graph</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The aggregated network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G_agg</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span><span class="s2">&quot;nodes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The aggregated network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G_agg</span><span class="o">.</span><span class="n">edges</span><span class="p">()),</span><span class="s2">&quot;links&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The aggregated network has 11306 nodes
+The aggregated network has 23345 links
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G_agg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G_agg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>337
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G_agg</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10566
+3
+2
+2
+2
+2
+2
+2
+2
+3
+2
+4
+2
+2
+3
+2
+3
+2
+3
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+4
+2
+2
+6
+2
+4
+2
+4
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+3
+2
+2
+2
+2
+2
+3
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+5
+2
+2
+3
+2
+2
+2
+2
+2
+3
+2
+2
+2
+8
+2
+5
+2
+3
+3
+2
+2
+2
+2
+4
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+5
+3
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+4
+2
+2
+2
+2
+2
+4
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="simulations-on-the-time-aggregated-graph">
+<h2><span class="section-number">8.1. </span>Simulations on the time-aggregated graph<a class="headerlink" href="#simulations-on-the-time-aggregated-graph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#let&#39;s choose a random seed</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">seed_links</span><span class="o">=</span><span class="n">edgelist</span><span class="p">[</span><span class="n">daystart</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seed_links</span><span class="p">))</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed_links</span><span class="p">)</span>
+<span class="n">seed</span><span class="o">=</span><span class="n">seed_links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The degree of the seed is&quot;</span><span class="p">,</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+The degree of the seed is 54
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
+        <span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="c1">#infected</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+        <span class="c1">#susceptible</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Itime_agg</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1">#there are 1000 days of network activity but the network does not change!</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="c1">#the probability of infection is 1!!</span>
+                
+    <span class="c1">#ciclo per aggiornare l&#39;elenco dei nodi infetti</span>
+    <span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">G_agg</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+ 
+    <span class="n">Itime_agg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final size of the epidemic is&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">G_agg</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The final size of the epidemic is 0.9345480275959668
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Infected individuals&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Itime_agg</span><span class="p">)),</span><span class="n">Itime_agg</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10600</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 20, -1, 10600]
+</pre></div>
+</div>
+<img alt="../_images/nb08_temporal_networks_22_1.png" src="../_images/nb08_temporal_networks_22_1.png" />
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="simulations-on-the-full-dynamic-network">
+<h2><span class="section-number">8.2. </span>Simulations on the full dynamic network<a class="headerlink" href="#simulations-on-the-full-dynamic-network" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_dyn</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="o">=</span><span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed_links</span><span class="o">=</span><span class="n">edgelist</span><span class="p">[</span><span class="n">daystart</span><span class="p">]</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed_links</span><span class="p">)</span>
+<span class="n">seed</span><span class="o">=</span><span class="n">seed_links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1941
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="n">G_dyn</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">seed_links</span><span class="p">)</span><span class="c1">#we consider only the links that are active on day 0</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
+        <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="c1">#infected</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+        <span class="c1">#susceptible</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Itime_dyn</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">daystart</span><span class="p">,</span><span class="n">dayend</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="n">links</span><span class="o">=</span><span class="n">edgelist</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="c1">#these are the links active on day t</span>
+    
+    <span class="k">if</span> <span class="n">t</span><span class="o">==</span><span class="n">daystart</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temporal network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G_dyn</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span><span class="s2">&quot;nodes on day&quot;</span><span class="p">,</span> <span class="n">daystart</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temporal network has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G_dyn</span><span class="o">.</span><span class="n">edges</span><span class="p">()),</span><span class="s2">&quot;edges on day&quot;</span><span class="p">,</span> <span class="n">daystart</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The degree of the seed is&quot;</span><span class="p">,</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_dyn</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">:</span>
+                <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="mi">0</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">:</span>
+                <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="mi">0</span>
+
+    
+    <span class="c1">#ciclo sui nodi infetti per la trasmissione</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+                
+    <span class="c1">#ciclo per aggiornare l&#39;elenco dei nodi infetti</span>
+    <span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">G_dyn</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="n">Itime_dyn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">))</span>
+
+    <span class="c1">#stampo il numero di nodi infetti a ogni time-step</span>
+    <span class="n">G_dyn</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final size of the epidemic is&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">G_dyn</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temporal network has 22 nodes on day 800
+The temporal network has 12 edges on day 800
+The degree of the seed is 1
+The final size of the epidemic is 0.7293472492481868
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;infected individuals&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Itime_agg</span><span class="p">)),</span><span class="n">Itime_agg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;static&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Itime_dyn</span><span class="p">)),</span><span class="n">Itime_dyn</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1">#plt.axis([0,365,-1,10600])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff6e52939b0&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb08_temporal_networks_29_1.png" src="../_images/nb08_temporal_networks_29_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./3-epidemic-spreading"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb07_epidemics_on_networks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Epidemics on networks</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By G. Petri, M. Tizzoni<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
