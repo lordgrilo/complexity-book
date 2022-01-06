@@ -324,7 +324,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
@@ -348,9 +349,9 @@
 <p>We set the parameters of the model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span>
-<span class="n">R0</span><span class="o">=</span><span class="mf">3.0</span>
-<span class="n">beta1</span><span class="o">=</span><span class="n">R0</span><span class="o">*</span><span class="n">mu</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">R0</span> <span class="o">*</span> <span class="n">mu</span>
 </pre></div>
 </div>
 </div>
@@ -369,7 +370,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average infectious period is &quot;</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="n">mu</span><span class="p">,</span> <span class="s2">&quot; days&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average infectious period is &quot;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">mu</span><span class="p">,</span> <span class="s2">&quot; days&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -382,32 +383,32 @@
 <p>The time step of integration is 1 day.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">100000</span>
-<span class="n">I</span><span class="o">=</span><span class="mi">100</span>
-<span class="n">S</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="n">I</span>
-<span class="n">R</span><span class="o">=</span><span class="mi">0</span>
-    
-<span class="n">St</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">It</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">Rt</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">I</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">I</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">deltaSt</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">deltaIt</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">St</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">It</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Rt</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">deltaSt</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">deltaIt</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">St</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 <span class="n">It</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 <span class="n">Rt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 
-<span class="k">while</span> <span class="n">I</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">:</span>
-    
-    <span class="n">deltaSI</span><span class="o">=</span><span class="n">beta1</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="o">/</span><span class="n">N</span>
-    
-    <span class="n">deltaIR</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">I</span>
-    
-    <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="o">-</span><span class="n">deltaSI</span>
-    <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="o">+</span><span class="n">deltaSI</span><span class="o">-</span><span class="n">deltaIR</span>
-    <span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="o">+</span><span class="n">deltaIR</span>
-    
+<span class="k">while</span> <span class="n">I</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">:</span>
+
+    <span class="n">deltaSI</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span> <span class="o">/</span> <span class="n">N</span>
+
+    <span class="n">deltaIR</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">I</span>
+
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">-</span> <span class="n">deltaSI</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">deltaSI</span> <span class="o">-</span> <span class="n">deltaIR</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">deltaIR</span>
+
     <span class="n">deltaSt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deltaSI</span><span class="p">)</span>
     <span class="n">deltaIt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deltaIR</span><span class="p">)</span>
     <span class="n">St</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
@@ -419,7 +420,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is &quot;</span><span class="p">,</span> <span class="n">Rt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is &quot;</span><span class="p">,</span> <span class="n">Rt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -432,27 +433,27 @@
 <p>We plot the time varying curves of S, I and R</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">St</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">St</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">It</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Rt</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Rt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">St</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">St</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">It</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Rt</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Rt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
 
-<span class="c1">#plt.yscale(&#39;log&#39;)</span>
-<span class="c1">#plt.xscale(&#39;log&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)])</span>
+<span class="c1"># plt.yscale(&#39;log&#39;)</span>
+<span class="c1"># plt.xscale(&#39;log&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;individuals&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f993e0c8c50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x159525790&gt;
 </pre></div>
 </div>
 <img alt="../_images/nb06_epidemic_processes_13_1.png" src="../_images/nb06_epidemic_processes_13_1.png" />
@@ -460,21 +461,21 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltaSt</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">deltaSt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;new I&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;new R&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="c1">#plt.plot(range(0, len(Rt)),np.array(Rt), label=&#39;R&#39;, color=&#39;b&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltaSt</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">deltaSt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;new I&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;new R&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="c1"># plt.plot(range(0, len(Rt)),np.array(Rt), label=&#39;R&#39;, color=&#39;b&#39;)</span>
 
-<span class="c1">#plt.yscale(&#39;log&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">)])</span>
+<span class="c1"># plt.yscale(&#39;log&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltaIt</span><span class="p">)])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;individuals&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -505,59 +506,61 @@ Since the simulations are stochastic, we need to run several realizations of the
 <p>We use the same model’s parameters: <span class="math notranslate nohighlight">\(R_0=3.0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span>
-<span class="n">R0</span><span class="o">=</span><span class="mf">3.0</span>
-<span class="n">beta1</span><span class="o">=</span><span class="n">R0</span><span class="o">*</span><span class="n">mu</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">R0</span> <span class="o">*</span> <span class="n">mu</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_I</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#here we store the number of I at each time step, for each run</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_I</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span>
+    <span class="nb">list</span>
+<span class="p">)</span>  <span class="c1"># here we store the number of I at each time step, for each run</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_R</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_R</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">nrun</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">nrun</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="n">Irun</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Irun</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nrun</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrun</span><span class="p">):</span>
 
-    <span class="c1">#for each run r, we set the initial conditions  </span>
-    <span class="n">N</span><span class="o">=</span><span class="mi">100000</span>
-    <span class="n">I</span><span class="o">=</span><span class="mi">100</span>
-    <span class="n">S</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="n">I</span>
-    <span class="n">R</span><span class="o">=</span><span class="mi">0</span>
-    
-    <span class="n">list_I</span><span class="o">=</span><span class="p">[]</span>
+    <span class="c1"># for each run r, we set the initial conditions</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">I</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">list_I</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">list_I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 
-    <span class="n">t</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-    
-    <span class="k">while</span> <span class="n">I</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        
-        <span class="n">p</span><span class="o">=</span><span class="n">beta1</span><span class="o">*</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">deltaSI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-        
-        <span class="n">deltaIR</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">mu</span><span class="p">)</span>
-        
-        <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="o">-</span><span class="n">deltaSI</span>
-        <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="o">+</span><span class="n">deltaSI</span><span class="o">-</span><span class="n">deltaIR</span>
-        <span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="o">+</span><span class="n">deltaIR</span>
-        
-        <span class="n">t</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">I</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="n">p</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">*</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+        <span class="n">deltaSI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+        <span class="n">deltaIR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+
+        <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">-</span> <span class="n">deltaSI</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">deltaSI</span> <span class="o">-</span> <span class="n">deltaIR</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">deltaIR</span>
+
+        <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">list_I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-        
+
         <span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-    
-    <span class="n">final_R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="n">final_R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">Irun</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_I</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average final attack rate is &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">final_R</span><span class="p">)))</span>
@@ -572,8 +575,8 @@ Since the simulations are stochastic, we need to run several realizations of the
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">a</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">final_R</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">final_R</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -583,18 +586,17 @@ Since the simulations are stochastic, we need to run several realizations of the
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prevalence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;prevalence&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">Irun</span><span class="p">:</span> 
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">Irun</span><span class="p">:</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span><span class="n">r</span><span class="p">)</span>
-    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -605,30 +607,23 @@ Since the simulations are stochastic, we need to run several realizations of the
 <p>Too many lines are messy… let’s draw a boxplot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_array</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dict_I</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dict_I</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prevalence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;prevalence&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">full_array</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">full_array</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
 
-<span class="c1">#plt.xlim([15, 25])</span>
-<span class="c1">#plt.show()</span>
+<span class="c1"># plt.xlim([15, 25])</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -639,31 +634,31 @@ Since the simulations are stochastic, we need to run several realizations of the
 <p>Let’s compare the result with the deterministic simulation by computing the average prevalence of the stochastic version.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_average</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dict_I</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_average</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dict_I</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Prevalence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Prevalence&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">full_array</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">full_array</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)),</span><span class="n">It</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">full_average</span><span class="p">)),</span><span class="n">full_average</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">It</span><span class="p">)),</span> <span class="n">It</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_average</span><span class="p">)),</span> <span class="n">full_average</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
 
-<span class="c1">#plt.xlim([5,30])</span>
-<span class="c1">#plt.show()</span>
+<span class="c1"># plt.xlim([5,30])</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -677,50 +672,52 @@ Since the simulations are stochastic, we need to run several realizations of the
 Let’s change the initial number of infected individuals to 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span>
-<span class="n">R0</span><span class="o">=</span><span class="mf">3.0</span>
-<span class="n">beta1</span><span class="o">=</span><span class="n">R0</span><span class="o">*</span><span class="n">mu</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">R0</span> <span class="o">*</span> <span class="n">mu</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_I</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="c1">#here we store the number of I at each time step, for each run</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_I</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span>
+    <span class="nb">list</span>
+<span class="p">)</span>  <span class="c1"># here we store the number of I at each time step, for each run</span>
 
-<span class="n">final_R</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">final_R</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">nrun</span><span class="o">=</span><span class="mi">1000</span>
-<span class="n">Irun</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nrun</span><span class="p">):</span>
+<span class="n">nrun</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">Irun</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrun</span><span class="p">):</span>
 
-    <span class="c1">#for each run r, we set the initial conditions  </span>
-    <span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
-    <span class="n">I</span><span class="o">=</span><span class="mi">1</span>  
-    <span class="n">S</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="n">I</span>
-    <span class="n">R</span><span class="o">=</span><span class="mi">0</span>
-    
-    <span class="n">list_I</span><span class="o">=</span><span class="p">[]</span>
+    <span class="c1"># for each run r, we set the initial conditions</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">I</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">t</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">list_I</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">I</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        
-        <span class="n">p</span><span class="o">=</span><span class="n">beta1</span><span class="o">*</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">deltaSI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-        
-        <span class="n">deltaIR</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">mu</span><span class="p">)</span>
-        
-        <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="o">-</span><span class="n">deltaSI</span>
-        <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="o">+</span><span class="n">deltaSI</span><span class="o">-</span><span class="n">deltaIR</span>
-        <span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="o">+</span><span class="n">deltaIR</span>
-        
-        <span class="n">t</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">while</span> <span class="n">I</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="n">p</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">*</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+        <span class="n">deltaSI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+        <span class="n">deltaIR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+
+        <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">-</span> <span class="n">deltaSI</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">deltaSI</span> <span class="o">-</span> <span class="n">deltaIR</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">deltaIR</span>
+
+        <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">list_I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-        
+
         <span class="n">dict_I</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-    
-    <span class="n">final_R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="n">final_R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">Irun</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_I</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average final attack rate is &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">final_R</span><span class="p">)))</span>
@@ -736,17 +733,16 @@ Let’s change the initial number of infected individuals to 1.</p>
 <p><strong>With only 1 infected as a seed, we see more fluctuations, as expected.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prevalence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;prevalence&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">Irun</span><span class="p">:</span> 
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">Irun</span><span class="p">:</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span><span class="n">r</span><span class="p">)</span>
-    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -758,10 +754,10 @@ Let’s change the initial number of infected individuals to 1.</p>
 The initial seed individual recovers before infecting someone else.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">no_outbreak</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">no_outbreak</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">final_R</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">r</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">:</span>
-        <span class="n">no_outbreak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="mi">10000</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mf">0.8</span><span class="p">:</span>
+        <span class="n">no_outbreak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="mi">10000</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">no_outbreak</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -774,8 +770,8 @@ The initial seed individual recovers before infecting someone else.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">no_outbreak</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">no_outbreak</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -785,10 +781,10 @@ The initial seed individual recovers before infecting someone else.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">final_R</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;final size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;runs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;final size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;runs&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 </pre></div>
@@ -819,7 +815,7 @@ The initial seed individual recovers before infecting someone else.</p>
 $p_{outb}=1-(\frac{1}{R_0})^{I_0}$
 </center><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_outbreak</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">R0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_outbreak</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">R0</span>
 </pre></div>
 </div>
 </div>
@@ -839,28 +835,28 @@ $p_{outb}=1-(\frac{1}{R_0})^{I_0}$
 <p>Of course, such fluctuations do not affect the deterministic model, where the outcome is fixed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
-<span class="n">I</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">S</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="n">I</span>
-<span class="n">R</span><span class="o">=</span><span class="mi">0</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">I</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">I</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">St</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">It</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">Rt</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">St</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">It</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Rt</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">St</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 <span class="n">It</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 <span class="n">Rt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 
-<span class="k">while</span> <span class="n">I</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">:</span>
-    <span class="n">deltaSI</span><span class="o">=</span><span class="n">beta1</span><span class="o">*</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">deltaIR</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">I</span>
-    
-    <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="o">-</span><span class="n">deltaSI</span>
-    <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="o">+</span><span class="n">deltaSI</span><span class="o">-</span><span class="n">deltaIR</span>
-    <span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="o">+</span><span class="n">deltaIR</span>
-    
+<span class="k">while</span> <span class="n">I</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="n">deltaSI</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">*</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">deltaIR</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">I</span>
+
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">-</span> <span class="n">deltaSI</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">deltaSI</span> <span class="o">-</span> <span class="n">deltaIR</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">deltaIR</span>
+
     <span class="n">St</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
     <span class="n">It</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
     <span class="n">Rt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
@@ -870,7 +866,7 @@ $p_{outb}=1-(\frac{1}{R_0})^{I_0}$
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is &quot;</span><span class="p">,</span> <span class="n">Rt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is &quot;</span><span class="p">,</span> <span class="n">Rt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -887,81 +883,81 @@ $p_{outb}=1-(\frac{1}{R_0})^{I_0}$
 <h2><span class="section-number">6.3. </span>Stochastic SIR on the US airport network<a class="headerlink" href="#stochastic-sir-on-the-us-airport-network" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_path</span><span class="o">=</span><span class="s1">&#39;./../network_data/USairport_2010.txt&#39;</span>
-<span class="n">meta_path</span><span class="o">=</span><span class="s1">&#39;./../network_data/USairport_2010_codes.txt&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_path</span> <span class="o">=</span> <span class="s2">&quot;./../network_data/USairport_2010.txt&quot;</span>
+<span class="n">meta_path</span> <span class="o">=</span> <span class="s2">&quot;./../network_data/USairport_2010_codes.txt&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">airport_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">airport_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+    <span class="n">s</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="o">=</span><span class="p">{}</span>
-<span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="p">{}</span>
-<span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="o">=</span><span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">G</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">G</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="n">lons</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">lats</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">lons</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lats</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">finfo</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">finfo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
 <span class="n">finfo</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">finfo</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">node</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    
-    <span class="n">lon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-    <span class="n">lat</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-    
-    <span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">]</span>
-    
+    <span class="n">s</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">]</span>
+
     <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
     <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
-<span class="n">finfo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+<span class="n">finfo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#disease parameters</span>
-<span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span><span class="c1">#infectious period</span>
-<span class="n">lambd</span><span class="o">=</span><span class="mf">0.01</span><span class="c1">#probability of infection given a contact</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># disease parameters</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>  <span class="c1"># infectious period</span>
+<span class="n">lambd</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># probability of infection given a contact</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we need to store the disease status of each node</span>
-<span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="o">=</span><span class="p">{}</span> <span class="c1">#S=0, I=1, R=-1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we need to store the disease status of each node</span>
+<span class="n">G</span><span class="o">.</span><span class="n">disease_status</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># S=0, I=1, R=-1</span>
 
-<span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span><span class="c1">#list of infected nodes</span>
+<span class="n">infected_nodes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list of infected nodes</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#let&#39;s choose a seed</span>
-<span class="n">node_list</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s choose a seed</span>
+<span class="n">node_list</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">deg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
+<span class="n">deg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
     <span class="n">node_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">seed</span><span class="o">=</span><span class="n">node_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="n">node_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The seed is&quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">seed</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The degree of the seed is&quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
@@ -977,48 +973,47 @@ The degree of the seed is 192
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#initialize the network</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the network</span>
 <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-        <span class="c1">#infected</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># infected</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
-        <span class="c1">#susceptible</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># susceptible</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I_net</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I_net</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-    
-    <span class="c1">#transmission</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+    <span class="c1"># transmission</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">lambd</span><span class="p">:</span>
-                    <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-                
-    
-    <span class="c1">#recovery</span>
+            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">lambd</span><span class="p">:</span>
+                    <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># recovery</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">mu</span><span class="p">:</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span>
-    
-    <span class="c1">#update of disease status</span>
-    <span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">mu</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># update of disease status</span>
+    <span class="n">infected_nodes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
- 
-    <span class="c1">#store output</span>
+
+    <span class="c1"># store output</span>
     <span class="n">I_net</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1026,15 +1021,15 @@ The degree of the seed is 192
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prevalence&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;prevalence&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">I_net</span><span class="p">)),</span><span class="n">I_net</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">I_net</span><span class="p">)),</span> <span class="n">I_net</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1047,14 +1042,13 @@ The degree of the seed is 192
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recovered</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recovered</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">recovered</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">recovered</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total number of infected nodes is&quot;</span><span class="p">,</span> <span class="n">recovered</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is&quot;</span><span class="p">,</span> <span class="n">recovered</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
-        
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final attack rate is&quot;</span><span class="p">,</span> <span class="n">recovered</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -1079,7 +1073,7 @@ The final attack rate is 0.4839506172839506
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape_path</span><span class="o">=</span><span class="s1">&#39;./../shapefiles/USA_shape.shp&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape_path</span> <span class="o">=</span> <span class="s2">&quot;./../shapefiles/USA_shape.shp&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1099,34 +1093,34 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we need to store the disease status of each node</span>
-<span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="o">=</span><span class="p">{}</span> <span class="c1">#S=0, I=1, R=-1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we need to store the disease status of each node</span>
+<span class="n">G</span><span class="o">.</span><span class="n">disease_status</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># S=0, I=1, R=-1</span>
 
-<span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span><span class="c1">#list of infected nodes</span>
+<span class="n">infected_nodes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list of infected nodes</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#initialize the network</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the network</span>
 <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-        <span class="c1">#infected</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># infected</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
-        <span class="c1">#susceptible</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># susceptible</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span><span class="c1">#color code on disease status</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">node_color</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span>  <span class="c1"># color code on disease status</span>
 </pre></div>
 </div>
 </div>
@@ -1141,7 +1135,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1267,7 +1261,9 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont</span><span class="o">=</span><span class="n">usa</span><span class="p">[(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="s1">&#39;Alaska&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span><span class="s1">&#39;Hawaii&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="s1">&#39;Puerto Rico&#39;</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont</span> <span class="o">=</span> <span class="n">usa</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="s2">&quot;Alaska&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="s2">&quot;Hawaii&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">NAME</span> <span class="o">!=</span> <span class="s2">&quot;Puerto Rico&quot;</span><span class="p">)</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1387,7 +1383,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1412,7 +1408,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont_alb</span> <span class="o">=</span> <span class="n">usa_cont</span><span class="o">.</span><span class="n">to_crs</span><span class="p">({</span><span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="s1">&#39;esri:102003&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usa_cont_alb</span> <span class="o">=</span> <span class="n">usa_cont</span><span class="o">.</span><span class="n">to_crs</span><span class="p">({</span><span class="s2">&quot;init&quot;</span><span class="p">:</span> <span class="s2">&quot;esri:102003&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1532,7 +1528,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1549,7 +1545,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">meta_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1683,7 +1679,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">lat</span><span class="p">)]</span>
-<span class="n">crs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="s1">&#39;epsg:4326&#39;</span><span class="p">}</span>
+<span class="n">crs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;init&quot;</span><span class="p">:</span> <span class="s2">&quot;epsg:4326&quot;</span><span class="p">}</span>
 <span class="n">geo_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geo</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1703,7 +1699,7 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1716,29 +1712,37 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">geo_df</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span> <span class="c1"># EPSG:4326 in your case</span>
-<span class="n">destination</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;esri:102003&#39;</span><span class="p">)</span> <span class="c1"># your new proj</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">geo_df</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>  <span class="c1"># EPSG:4326 in your case</span>
+<span class="n">destination</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;esri:102003&quot;</span><span class="p">)</span>  <span class="c1"># your new proj</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="o">=</span><span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
-    
-    <span class="n">long</span><span class="p">,</span><span class="n">lat</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">original</span><span class="p">,</span><span class="n">destination</span><span class="p">,</span><span class="n">long</span><span class="p">,</span><span class="n">lat</span><span class="p">)</span>
-    
-    <span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">long</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">,</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">,</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1751,33 +1755,41 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">15</span><span class="p">:</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">infected_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">lambd</span><span class="p">:</span>
-                    <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-                
+            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">lambd</span><span class="p">:</span>
+                    <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">infected_nodes</span><span class="p">:</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">mu</span><span class="p">:</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span>
-    
-    <span class="n">infected_nodes</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">mu</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">infected_nodes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">infected_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
-    <span class="n">t</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span><span class="c1">#color code on disease status</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1">#plt.savefig(&#39;./spreading_SIR_snapshot_time_&#39;+str(t)+&#39;.png&#39;)</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">node_color</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">disease_status</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span>  <span class="c1"># color code on disease status</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">usa_cont_alb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">pos_new</span><span class="p">,</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># plt.savefig(&#39;./spreading_SIR_snapshot_time_&#39;+str(t)+&#39;.png&#39;)</span>
 </pre></div>
 </div>
 </div>
