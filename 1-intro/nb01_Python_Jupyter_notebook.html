@@ -116,6 +116,18 @@
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NetworkX Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -310,7 +322,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://imgs.xkcd.com/comics/python.png&#39;</span><span class="p">)</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://imgs.xkcd.com/comics/python.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -340,8 +353,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>README.md                            nb01_Python_Jupyter_notebook.ipynb
-data.csv                             nb02_data_import_and_networks.ipynb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data.csv                             nb02_data_import_and_networks.ipynb
+nb01_Python_Jupyter_notebook.ipynb
 </pre></div>
 </div>
 </div>
@@ -416,34 +429,31 @@ data.csv                             nb02_data_import_and_networks.ipynb
 NAME
     math
 
-MODULE REFERENCE
-    https://docs.python.org/3.7/library/math
-    
-    The following documentation is automatically generated from the Python
-    source files.  It may be incomplete, incorrect or include features that
-    are considered implementation detail and may vary between Python
-    implementations.  When in doubt, consult the module reference at the
-    location listed above.
-
 DESCRIPTION
-    This module is always available.  It provides access to the
-    mathematical functions defined by the C standard.
+    This module provides access to the mathematical functions
+    defined by the C standard.
 
 FUNCTIONS
     acos(x, /)
         Return the arc cosine (measured in radians) of x.
+        
+        The result is between 0 and pi.
     
     acosh(x, /)
         Return the inverse hyperbolic cosine of x.
     
     asin(x, /)
         Return the arc sine (measured in radians) of x.
+        
+        The result is between -pi/2 and pi/2.
     
     asinh(x, /)
         Return the inverse hyperbolic sine of x.
     
     atan(x, /)
         Return the arc tangent (measured in radians) of x.
+        
+        The result is between -pi/2 and pi/2.
     
     atan2(y, x, /)
         Return the arc tangent (measured in radians) of y/x.
@@ -457,6 +467,19 @@ FUNCTIONS
         Return the ceiling of x as an Integral.
         
         This is the smallest integer &gt;= x.
+    
+    comb(n, k, /)
+        Number of ways to choose k items from n items without repetition and without order.
+        
+        Evaluates to n! / (k! * (n - k)!) when k &lt;= n and evaluates
+        to zero when k &gt; n.
+        
+        Also called the binomial coefficient because it is equivalent
+        to the coefficient of k-th term in polynomial expansion of the
+        expression (1 + x)**n.
+        
+        Raises TypeError if either of the arguments are not integers.
+        Raises ValueError if either of the arguments are negative.
     
     copysign(x, y, /)
         Return a float with the magnitude (absolute value) of x but the sign of y.
@@ -472,6 +495,15 @@ FUNCTIONS
     
     degrees(x, /)
         Convert angle x from radians to degrees.
+    
+    dist(p, q, /)
+        Return the Euclidean distance between two points p and q.
+        
+        The points should be specified as sequences (or iterables) of
+        coordinates.  Both inputs must have the same dimension.
+        
+        Roughly equivalent to:
+            sqrt(sum((px - qx) ** 2.0 for px, qx in zip(p, q)))
     
     erf(x, /)
         Error function at x.
@@ -519,11 +551,24 @@ FUNCTIONS
     gamma(x, /)
         Gamma function at x.
     
-    gcd(x, y, /)
-        greatest common divisor of x and y
+    gcd(*integers)
+        Greatest Common Divisor.
     
-    hypot(x, y, /)
-        Return the Euclidean distance, sqrt(x*x + y*y).
+    hypot(...)
+        hypot(*coordinates) -&gt; value
+        
+        Multidimensional Euclidean distance from the origin to a point.
+        
+        Roughly equivalent to:
+            sqrt(sum(x**2 for x in coordinates))
+        
+        For a two dimensional point (x, y), gives the hypotenuse
+        using the Pythagorean theorem:  sqrt(x*x + y*y).
+        
+        For example, the hypotenuse of a 3/4/5 right triangle is:
+        
+            &gt;&gt;&gt; hypot(3.0, 4.0)
+            5.0
     
     isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
         Determine whether two floating point numbers are close in value.
@@ -552,6 +597,12 @@ FUNCTIONS
     
     isnan(x, /)
         Return True if x is a NaN (not a number), and False otherwise.
+    
+    isqrt(n, /)
+        Return the integer part of the square root of the input.
+    
+    lcm(*integers)
+        Least Common Multiple.
     
     ldexp(x, i, /)
         Return x * (2**i).
@@ -583,8 +634,32 @@ FUNCTIONS
         
         Both results carry the sign of x and are floats.
     
+    nextafter(x, y, /)
+        Return the next floating-point value after x towards y.
+    
+    perm(n, k=None, /)
+        Number of ways to choose k items from n items without repetition and with order.
+        
+        Evaluates to n! / (n - k)! when k &lt;= n and evaluates
+        to zero when k &gt; n.
+        
+        If k is not specified or is None, then k defaults to n
+        and the function returns n!.
+        
+        Raises TypeError if either of the arguments are not integers.
+        Raises ValueError if either of the arguments are negative.
+    
     pow(x, y, /)
         Return x**y (x to the power of y).
+    
+    prod(iterable, /, *, start=1)
+        Calculate the product of all the elements in the input iterable.
+        
+        The default start value for the product is 1.
+        
+        When the iterable is empty, return the start value.  This function is
+        intended specifically for use with numeric values and may reject
+        non-numeric types.
     
     radians(x, /)
         Convert angle x from degrees to radians.
@@ -615,6 +690,9 @@ FUNCTIONS
         Truncates the Real x to the nearest Integral toward 0.
         
         Uses the __trunc__ magic method.
+    
+    ulp(x, /)
+        Return the value of the least significant bit of the float x.
 
 DATA
     e = 2.718281828459045
@@ -624,7 +702,7 @@ DATA
     tau = 6.283185307179586
 
 FILE
-    /Users/Michele/anaconda3/lib/python3.7/lib-dynload/math.cpython-37m-darwin.so
+    /usr/local/Cellar/python@3.9/3.9.12/Frameworks/Python.framework/Versions/3.9/lib/python3.9/lib-dynload/math.cpython-39-darwin.so
 </pre></div>
 </div>
 </div>
@@ -657,141 +735,13 @@ FILE
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Type:</span>        module
-<span class=" -Color -Color-Red">String form:</span> &lt;module &#39;numpy.random&#39; from &#39;/Users/Michele/anaconda3/lib/python3.7/site-packages/numpy/random/__init__.py&#39;&gt;
-<span class=" -Color -Color-Red">File:</span>        ~/anaconda3/lib/python3.7/site-packages/numpy/random/__init__.py
-<span class=" -Color -Color-Red">Docstring:</span>  
-========================
-Random Number Generation
-========================
-
-Use ``default_rng()`` to create a `Generator` and call its methods.
-
-=============== =========================================================
-Generator
---------------- ---------------------------------------------------------
-Generator       Class implementing all of the random number distributions
-default_rng     Default constructor for ``Generator``
-=============== =========================================================
-
-============================================= ===
-BitGenerator Streams that work with Generator
---------------------------------------------- ---
-MT19937
-PCG64
-Philox
-SFC64
-============================================= ===
-
-============================================= ===
-Getting entropy to initialize a BitGenerator
---------------------------------------------- ---
-SeedSequence
-============================================= ===
-
-
-Legacy
-------
-
-For backwards compatibility with previous versions of numpy before 1.17, the
-various aliases to the global `RandomState` methods are left alone and do not
-use the new `Generator` API.
-
-==================== =========================================================
-Utility functions
--------------------- ---------------------------------------------------------
-random               Uniformly distributed floats over ``[0, 1)``
-bytes                Uniformly distributed random bytes.
-permutation          Randomly permute a sequence / generate a random sequence.
-shuffle              Randomly permute a sequence in place.
-choice               Random sample from 1-D array.
-==================== =========================================================
-
-==================== =========================================================
-Compatibility
-functions - removed
-in the new API
--------------------- ---------------------------------------------------------
-rand                 Uniformly distributed values.
-randn                Normally distributed values.
-ranf                 Uniformly distributed floating point numbers.
-random_integers      Uniformly distributed integers in a given range.
-                     (deprecated, use ``integers(..., closed=True)`` instead)
-random_sample        Alias for `random_sample`
-randint              Uniformly distributed integers in a given range
-seed                 Seed the legacy random number generator.
-==================== =========================================================
-
-==================== =========================================================
-Univariate
-distributions
--------------------- ---------------------------------------------------------
-beta                 Beta distribution over ``[0, 1]``.
-binomial             Binomial distribution.
-chisquare            :math:`\chi^2` distribution.
-exponential          Exponential distribution.
-f                    F (Fisher-Snedecor) distribution.
-gamma                Gamma distribution.
-geometric            Geometric distribution.
-gumbel               Gumbel distribution.
-hypergeometric       Hypergeometric distribution.
-laplace              Laplace distribution.
-logistic             Logistic distribution.
-lognormal            Log-normal distribution.
-logseries            Logarithmic series distribution.
-negative_binomial    Negative binomial distribution.
-noncentral_chisquare Non-central chi-square distribution.
-noncentral_f         Non-central F distribution.
-normal               Normal / Gaussian distribution.
-pareto               Pareto distribution.
-poisson              Poisson distribution.
-power                Power distribution.
-rayleigh             Rayleigh distribution.
-triangular           Triangular distribution.
-uniform              Uniform distribution.
-vonmises             Von Mises circular distribution.
-wald                 Wald (inverse Gaussian) distribution.
-weibull              Weibull distribution.
-zipf                 Zipf&#39;s distribution over ranked data.
-==================== =========================================================
-
-==================== ==========================================================
-Multivariate
-distributions
--------------------- ----------------------------------------------------------
-dirichlet            Multivariate generalization of Beta distribution.
-multinomial          Multivariate generalization of the binomial distribution.
-multivariate_normal  Multivariate generalization of the normal distribution.
-==================== ==========================================================
-
-==================== =========================================================
-Standard
-distributions
--------------------- ---------------------------------------------------------
-standard_cauchy      Standard Cauchy-Lorentz distribution.
-standard_exponential Standard exponential distribution.
-standard_gamma       Standard Gamma distribution.
-standard_normal      Standard normal distribution.
-standard_t           Standard Student&#39;s t-distribution.
-==================== =========================================================
-
-==================== =========================================================
-Internal functions
--------------------- ---------------------------------------------------------
-get_state            Get tuple representing internal state of generator.
-set_state            Set state of generator.
-==================== =========================================================
-</pre></div>
-</div>
-</div>
 </div>
 <p>Exceptions are formatted nicely:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -817,7 +767,7 @@ set_state            Set state of generator.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mf">1.2</span>
-<span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;my string&#39;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;my string&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -862,47 +812,6 @@ set_state            Set state of generator.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load</span><span class="o">?</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
-Load code into the current frontend.
-
-Usage:
-  %load [options] source
-
-  where source can be a filename, URL, input history range, macro, or
-  element in the user namespace
-
-Options:
-
-  -r &lt;lines&gt;: Specify lines or ranges of lines to load from the source.
-  Ranges could be specified as x-y (x..y) or in python-style x:y 
-  (x..(y-1)). Both limits x and y can be left blank (meaning the 
-  beginning and end of the file, respectively).
-
-  -s &lt;symbols&gt;: Specify function or classes to load from python source. 
-
-  -y : Don&#39;t ask confirmation for loading source above 200 000 characters.
-
-  -n : Include the user&#39;s namespace when searching for source code.
-
-This magic command can either take a local filename, a URL, an history
-range (see %history) or a macro as argument, it will prompt for
-confirmation before loading source with more than 200 000 characters, unless
--y flag is passed or if the frontend does not support raw_input::
-
-%load myscript.py
-%load 7-27
-%load myMacro
-%load http://www.example.com/myscript.py
-%load -r 5-10 myscript.py
-%load -r 10-20,30,40: foo.py
-%load -s MyClass,wonder_function myscript.py
-%load -n MyClass
-%load -n my_module.wonder_function
-<span class=" -Color -Color-Red">File:</span>      ~/anaconda3/lib/python3.7/site-packages/IPython/core/magics/code.py
 </pre></div>
 </div>
 </div>
@@ -963,7 +872,7 @@ confirmation before loading source with more than 200 000 characters, unless
 <p><strong>Lists</strong> are very similar to strings, except that each element can be of any type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
@@ -1007,7 +916,7 @@ confirmation before loading source with more than 200 000 characters, unless
 <span class="n">stop</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">step</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">l</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1060,7 +969,7 @@ confirmation before loading source with more than 200 000 characters, unless
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">26</span><span class="o">-</span><span class="mi">9734</span><span class="n">b1daa940</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="mi">9734</span><span class="n">b1daa940</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
@@ -1086,9 +995,7 @@ confirmation before loading source with more than 200 000 characters, unless
 <p><strong>Dictionaries</strong> are also like lists, except that each element is a key-value pair. The syntax for dictionaries is <code class="docutils literal notranslate"><span class="pre">{key1</span> <span class="pre">:</span> <span class="pre">value1,</span> <span class="pre">...}</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;parameter1&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-          <span class="s2">&quot;parameter2&quot;</span> <span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
-          <span class="s2">&quot;parameter3&quot;</span> <span class="p">:</span> <span class="mf">3.0</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;parameter1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;parameter2&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;parameter3&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">}</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
@@ -1116,7 +1023,7 @@ confirmation before loading source with more than 200 000 characters, unless
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;parameter1&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1128,14 +1035,14 @@ confirmation before loading source with more than 200 000 characters, unless
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;parameter1&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">4.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;parameter4&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">6.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter4&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.0</span>
 </pre></div>
 </div>
 </div>
@@ -1260,7 +1167,8 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://python.org/images/python-logo.gif&#39;</span><span class="p">)</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://python.org/images/python-logo.gif&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1271,7 +1179,8 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
-<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;26wgEsg9Mcc&#39;</span><span class="p">)</span>
+
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;26wgEsg9Mcc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1291,7 +1200,8 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
-<span class="n">IFrame</span><span class="p">(</span><span class="s1">&#39;http://en.m.wikipedia.org/wiki/Main_Page&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;http://en.m.wikipedia.org/wiki/Main_Page&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1313,7 +1223,8 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
-<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx&#39;</span><span class="p">)</span>
+
+<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1325,12 +1236,15 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
-<span class="n">Latex</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;\begin</span><span class="si">{eqnarray}</span><span class="s2"></span>
-<span class="s2">\nabla \times \vec{\mathbf</span><span class="si">{B}</span><span class="s2">} -\, \frac1c\, \frac{\partial\vec{\mathbf</span><span class="si">{E}</span><span class="s2">}}{\partial t} &amp; = \frac{4\pi}</span><span class="si">{c}</span><span class="s2">\vec{\mathbf</span><span class="si">{j}</span><span class="s2">} \\</span>
-<span class="s2">\nabla \cdot \vec{\mathbf</span><span class="si">{E}</span><span class="s2">} &amp; = 4 \pi \rho \\</span>
-<span class="s2">\nabla \times \vec{\mathbf</span><span class="si">{E}</span><span class="s2">}\, +\, \frac1c\, \frac{\partial\vec{\mathbf</span><span class="si">{B}</span><span class="s2">}}{\partial t} &amp; = \vec{\mathbf</span><span class="si">{0}</span><span class="s2">} \\</span>
-<span class="s2">\nabla \cdot \vec{\mathbf</span><span class="si">{B}</span><span class="s2">} &amp; = 0 </span>
-<span class="s2">\end</span><span class="si">{eqnarray}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;\begin{eqnarray}</span>
+<span class="sd">\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} \\</span>
+<span class="sd">\nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\</span>
+<span class="sd">\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\</span>
+<span class="sd">\nabla \cdot \vec{\mathbf{B}} &amp; = 0 </span>
+<span class="sd">\end{eqnarray}&quot;&quot;&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1378,7 +1292,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1502,7 +1416,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Diff&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;High&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Low&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Diff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;High&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Low&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1636,9 +1550,9 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/IPython/core/magics/pylab.py:160: UserWarning: pylab import has clobbered these variables: [&#39;pi&#39;, &#39;cos&#39;, &#39;step&#39;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/IPython/core/magics/pylab.py:159: UserWarning: pylab import has clobbered these variables: [&#39;pi&#39;, &#39;step&#39;, &#39;cos&#39;]
 `%matplotlib` prevents importing * from pylab and numpy
-  &quot;\n`%matplotlib` prevents importing * from pylab and numpy&quot;
+  warn(&quot;pylab import has clobbered these variables: %s&quot;  % clobbered +
 </pre></div>
 </div>
 </div>
@@ -1650,7 +1564,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fabaa310f60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
 <img alt="../_images/nb01_Python_Jupyter_notebook_90_1.png" src="../_images/nb01_Python_Jupyter_notebook_90_1.png" />
@@ -1659,7 +1573,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -1680,10 +1594,10 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$y = x^2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$y = x^2$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1713,7 +1627,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fabab24e710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
 <img alt="../_images/nb01_Python_Jupyter_notebook_98_1.png" src="../_images/nb01_Python_Jupyter_notebook_98_1.png" />
@@ -1726,7 +1640,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fabab2efc50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
 <img alt="../_images/nb01_Python_Jupyter_notebook_99_1.png" src="../_images/nb01_Python_Jupyter_notebook_99_1.png" />
@@ -1739,10 +1653,14 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fabab46b780&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/seaborn/distributions.py:1659: FutureWarning: The `bw` parameter is deprecated in favor of `bw_method` and `bw_adjust`. Using 10 for `bw_method`, but please see the docs for the new parameters and update your code.
+  warnings.warn(msg, FutureWarning)
 </pre></div>
 </div>
-<img alt="../_images/nb01_Python_Jupyter_notebook_100_1.png" src="../_images/nb01_Python_Jupyter_notebook_100_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb01_Python_Jupyter_notebook_100_2.png" src="../_images/nb01_Python_Jupyter_notebook_100_2.png" />
 </div>
 </div>
 </div>
