@@ -54,6 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Degree assortativity of a network" href="nb06_assortativity_and_resilience.html" />
     <link rel="prev" title="4. How to fit a power law distribution" href="nb04_powerlaw_fitting.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -134,6 +135,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    5. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb06_assortativity_and_resilience.html">
+   6. Degree assortativity of a network
   </a>
  </li>
 </ul>
@@ -300,43 +306,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#closeness-centrality">
    5.5. Closeness Centrality
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#degree-assortativity-of-a-network">
-   5.6. Degree assortativity of a network
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulating-random-and-targeted-attacks-to-a-network">
-   5.7. Simulating random and targeted attacks to a network
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#robustness-of-the-us-airport-network">
-   5.8. Robustness of the US airport network
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#random-attack">
-     5.8.1. Random attack
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#betweenness-based-attack">
-     5.8.2. Betweenness based attack
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degree-based-attack">
-     5.8.3. Degree based attack
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#robustness-of-the-erdos-renyi-random-network">
-   5.9. Robustness of the Erdos-Renyi random network
   </a>
  </li>
 </ul>
@@ -2316,411 +2285,6 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
 </div>
 </div>
 </div>
-<div class="section" id="degree-assortativity-of-a-network">
-<h2><span class="section-number">5.6. </span>Degree assortativity of a network<a class="headerlink" href="#degree-assortativity-of-a-network" title="Permalink to this headline">¶</a></h2>
-<p>Assortativity can be measured in different ways. A simple approach is measuring the average nearest neighbor degree to assess the level of degree-assortativity.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[]</span>
-
-<span class="n">avg_knn</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    
-    <span class="n">k</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    
-    <span class="c1">#nn=len(G.neighbors(n))</span>
-    <span class="n">total</span><span class="o">=</span><span class="mi">0</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">total</span><span class="o">+=</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-    
-    <span class="n">avg_knn</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">total</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
-    
-    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">total</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$k_i$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$k_</span><span class="si">{nn}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb05_network_analysis_78_0.png" src="../_images/nb05_network_analysis_78_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">avg_knn</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-    <span class="n">knn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">avg_knn</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-    <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">knn</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">avg_knn</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">z</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$k_i$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$k_</span><span class="si">{nn}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb05_network_analysis_80_0.png" src="../_images/nb05_network_analysis_80_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">degree_assortativity_coefficient</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.20512067898648875
-</pre></div>
-</div>
-</div>
-</div>
-<p>The degree assortativity coefficient of a ER graph is zero. The ER graph has no correlations.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ERr</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">degree_assortativity_coefficient</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ERr</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0022017300364285384
-</pre></div>
-</div>
-</div>
-</div>
-<p>NetworkX offers a number of functions to compute the same quantity.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_avg2</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">average_degree_connectivity</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">knn_avg2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{75: 77.99882352941177, 31: 58.04037897586284, 43: 69.43556771545828, 2: 23.927865037812683, 90: 77.11203703703704, 42: 60.331389698736636, 118: 78.43502824858757, 30: 57.107625272331155, 113: 80.56814159292036, 3: 28.27523510971787, 28: 58.709793351302785, 8: 39.26327433628319, 158: 86.37341772151899, 13: 44.994888023369036, 77: 73.6357733175915, 36: 62.516007532956685, 257: 86.91439688715953, 12: 42.094705443698736, 134: 89.48258706467662, 55: 78.45880077369439, 171: 82.84210526315789, 86: 81.7296511627907, 15: 48.993356242840775, 274: 96.15328467153284, 47: 67.27006769825918, 91: 80.11648351648351, 22: 49.707849419303166, 150: 90.85555555555555, 14: 44.20594010800196, 6: 35.63912864775997, 52: 71.10063224446786, 67: 75.60914179104478, 108: 87.86516203703704, 27: 60.657407407407405, 142: 87.4906103286385, 62: 64.69180470793374, 7: 37.66788247213779, 61: 76.44262295081967, 49: 68.4408811143505, 132: 81.35950413223141, 41: 67.15829746532759, 5: 33.02613981762918, 32: 61.44760338345865, 20: 46.04779411764706, 50: 65.12612903225806, 56: 74.32245879120879, 18: 50.58738425925926, 44: 67.23400673400674, 81: 81.11552028218695, 9: 39.82104805392477, 84: 76.93650793650794, 123: 86.35040650406503, 120: 94.29166666666667, 82: 70.11293743372217, 59: 80.08916728076639, 10: 40.97029288702929, 109: 80.96238532110091, 21: 52.61680378957866, 72: 76.99714052287581, 33: 62.90030303030303, 103: 76.49393203883496, 93: 81.32453567937439, 19: 47.950607287449394, 60: 74.33186274509804, 48: 63.18070652173913, 222: 101.52477477477477, 40: 62.843686868686866, 154: 103.51298701298701, 66: 70.86293164200141, 220: 106.10909090909091, 24: 50.449945887445885, 152: 91.66973684210527, 323: 97.31424148606811, 115: 81.92028985507247, 34: 62.29171668667467, 271: 96.6309963099631, 53: 73.98842767295598, 4: 28.074249605055293, 336: 98.73214285714286, 297: 89.98653198653199, 1: 26.308352849336455, 89: 69.29775280898876, 25: 54.5074358974359, 175: 98.65904761904761, 162: 88.1358024691358, 16: 46.23848684210526, 99: 72.37373737373737, 46: 69.40893719806763, 73: 73.25939019001326, 68: 76.09684361549498, 39: 64.08641975308642, 292: 91.95547945205479, 138: 73.68478260869566, 26: 55.29113601630158, 63: 79.52910052910053, 169: 93.17455621301775, 333: 105.03603603603604, 143: 82.3076923076923, 100: 79.43166666666667, 29: 53.666815942678014, 11: 43.09002861545235, 88: 74.02093301435407, 128: 73.29427083333333, 178: 74.9119850187266, 57: 81.13241436925648, 156: 97.37606837606837, 76: 87.00952813067151, 105: 84.74502164502165, 58: 76.20862068965518, 136: 75.375, 104: 76.21016483516483, 85: 68.66252100840336, 97: 79.32371134020619, 45: 64.81346153846154, 111: 84.53153153153153, 38: 68.21468144044321, 185: 84.52162162162162, 362: 67.93646408839778, 174: 101.43218390804597, 17: 47.41758682995383, 51: 62.1376858435682, 121: 105.99380165289256, 117: 93.53525641025641, 54: 69.85, 74: 72.97406866325785, 65: 70.1940170940171, 80: 83.67164634146341, 112: 88.08516483516483, 369: 90.9810298102981, 188: 96.26595744680851, 166: 87.96626506024096, 64: 81.19609375, 71: 71.77288732394366, 427: 80.43091334894613, 98: 79.70222634508349, 420: 94.3, 213: 94.11854460093896, 163: 93.4877300613497, 107: 83.84687275341481, 102: 90.34531590413944, 173: 93.39306358381504, 139: 81.76169064748201, 95: 77.54331983805668, 23: 50.715701734624915, 70: 73.13809523809523, 281: 77.79715302491103, 504: 85.43253968253968, 126: 87.87301587301587, 149: 85.1241610738255, 140: 93.74642857142857, 153: 79.52178649237473, 96: 75.64518229166667, 133: 95.18233082706767, 83: 86.41949616648412, 35: 60.71684088269454, 155: 81.51935483870967, 144: 99.8013888888889, 92: 86.64208074534162, 122: 81.81762295081967, 229: 93.7292576419214, 87: 76.35249042145594, 151: 72.03311258278146, 125: 88.24177777777778, 141: 96.60141843971631, 235: 99.10212765957446, 135: 86.92407407407407, 69: 73.65309898242369, 37: 64.36090636090636, 129: 83.13510520487264, 110: 85.44415584415584, 79: 79.24367088607595, 78: 79.1693657219973, 119: 63.44897959183673, 147: 64.16780045351474, 114: 87.43771929824561, 116: 81.01970443349754, 157: 87.2823779193206, 176: 84.30113636363636, 124: 85.1568100358423, 269: 88.635687732342, 189: 83.88888888888889, 214: 91.26168224299066, 202: 79.53960396039604, 350: 90.66571428571429, 224: 81.52901785714286, 106: 87.84551886792453, 258: 82.6046511627907, 148: 105.83671171171171, 200: 96.535, 165: 69.9030303030303, 180: 76.67222222222222, 131: 79.16603053435115, 145: 92.95517241379311, 230: 79.82608695652173, 161: 66.29606625258799, 137: 91.67591240875912, 385: 94.33766233766234, 195: 98.8974358974359, 159: 95.35849056603773, 196: 72.54336734693878, 211: 100.37440758293839, 236: 76.05932203389831, 330: 73.30909090909091, 168: 88.16666666666667, 94: 81.00911854103343, 146: 84.51712328767124, 127: 65.42913385826772, 192: 85.25868055555556, 252: 87.78571428571429, 212: 92.3254716981132, 233: 96.50214592274678, 194: 82.03865979381443, 101: 77.85258525852585, 130: 78.21846153846154, 208: 92.1875, 172: 89.63953488372093, 190: 94.71578947368421, 197: 96.2741116751269, 351: 100.97150997150997, 387: 104.0, 181: 108.2707182320442, 329: 93.57142857142857, 313: 90.72843450479233, 249: 98.39759036144578, 418: 90.69377990430623, 270: 108.4962962962963, 219: 93.46575342465754, 256: 105.453125, 182: 121.41208791208791, 193: 90.60621761658031, 210: 71.16666666666667, 216: 102.31944444444444, 254: 62.42125984251968, 234: 89.0982905982906}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_avg3</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">k_nearest_neighbors</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">knn_avg3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{75: 77.99882352941177, 31: 58.04037897586284, 43: 69.43556771545828, 2: 23.927865037812683, 90: 77.11203703703704, 42: 60.331389698736636, 118: 78.43502824858757, 30: 57.107625272331155, 113: 80.56814159292036, 3: 28.27523510971787, 28: 58.709793351302785, 8: 39.26327433628319, 158: 86.37341772151899, 13: 44.994888023369036, 77: 73.6357733175915, 36: 62.516007532956685, 257: 86.91439688715953, 12: 42.094705443698736, 134: 89.48258706467662, 55: 78.45880077369439, 171: 82.84210526315789, 86: 81.7296511627907, 15: 48.993356242840775, 274: 96.15328467153284, 47: 67.27006769825918, 91: 80.11648351648351, 22: 49.707849419303166, 150: 90.85555555555555, 14: 44.20594010800196, 6: 35.63912864775997, 52: 71.10063224446786, 67: 75.60914179104478, 108: 87.86516203703704, 27: 60.657407407407405, 142: 87.4906103286385, 62: 64.69180470793374, 7: 37.66788247213779, 61: 76.44262295081967, 49: 68.4408811143505, 132: 81.35950413223141, 41: 67.15829746532759, 5: 33.02613981762918, 32: 61.44760338345865, 20: 46.04779411764706, 50: 65.12612903225806, 56: 74.32245879120879, 18: 50.58738425925926, 44: 67.23400673400674, 81: 81.11552028218695, 9: 39.82104805392477, 84: 76.93650793650794, 123: 86.35040650406503, 120: 94.29166666666667, 82: 70.11293743372217, 59: 80.08916728076639, 10: 40.97029288702929, 109: 80.96238532110091, 21: 52.61680378957866, 72: 76.99714052287581, 33: 62.90030303030303, 103: 76.49393203883496, 93: 81.32453567937439, 19: 47.950607287449394, 60: 74.33186274509804, 48: 63.18070652173913, 222: 101.52477477477477, 40: 62.843686868686866, 154: 103.51298701298701, 66: 70.86293164200141, 220: 106.10909090909091, 24: 50.449945887445885, 152: 91.66973684210527, 323: 97.31424148606811, 115: 81.92028985507247, 34: 62.29171668667467, 271: 96.6309963099631, 53: 73.98842767295598, 4: 28.074249605055293, 336: 98.73214285714286, 297: 89.98653198653199, 1: 26.308352849336455, 89: 69.29775280898876, 25: 54.5074358974359, 175: 98.65904761904761, 162: 88.1358024691358, 16: 46.23848684210526, 99: 72.37373737373737, 46: 69.40893719806763, 73: 73.25939019001326, 68: 76.09684361549498, 39: 64.08641975308642, 292: 91.95547945205479, 138: 73.68478260869566, 26: 55.29113601630158, 63: 79.52910052910053, 169: 93.17455621301775, 333: 105.03603603603604, 143: 82.3076923076923, 100: 79.43166666666667, 29: 53.666815942678014, 11: 43.09002861545235, 88: 74.02093301435407, 128: 73.29427083333333, 178: 74.9119850187266, 57: 81.13241436925648, 156: 97.37606837606837, 76: 87.00952813067151, 105: 84.74502164502165, 58: 76.20862068965518, 136: 75.375, 104: 76.21016483516483, 85: 68.66252100840336, 97: 79.32371134020619, 45: 64.81346153846154, 111: 84.53153153153153, 38: 68.21468144044321, 185: 84.52162162162162, 362: 67.93646408839778, 174: 101.43218390804597, 17: 47.41758682995383, 51: 62.1376858435682, 121: 105.99380165289256, 117: 93.53525641025641, 54: 69.85, 74: 72.97406866325785, 65: 70.1940170940171, 80: 83.67164634146341, 112: 88.08516483516483, 369: 90.9810298102981, 188: 96.26595744680851, 166: 87.96626506024096, 64: 81.19609375, 71: 71.77288732394366, 427: 80.43091334894613, 98: 79.70222634508349, 420: 94.3, 213: 94.11854460093896, 163: 93.4877300613497, 107: 83.84687275341481, 102: 90.34531590413944, 173: 93.39306358381504, 139: 81.76169064748201, 95: 77.54331983805668, 23: 50.715701734624915, 70: 73.13809523809523, 281: 77.79715302491103, 504: 85.43253968253968, 126: 87.87301587301587, 149: 85.1241610738255, 140: 93.74642857142857, 153: 79.52178649237473, 96: 75.64518229166667, 133: 95.18233082706767, 83: 86.41949616648412, 35: 60.71684088269454, 155: 81.51935483870967, 144: 99.8013888888889, 92: 86.64208074534162, 122: 81.81762295081967, 229: 93.7292576419214, 87: 76.35249042145594, 151: 72.03311258278146, 125: 88.24177777777778, 141: 96.60141843971631, 235: 99.10212765957446, 135: 86.92407407407407, 69: 73.65309898242369, 37: 64.36090636090636, 129: 83.13510520487264, 110: 85.44415584415584, 79: 79.24367088607595, 78: 79.1693657219973, 119: 63.44897959183673, 147: 64.16780045351474, 114: 87.43771929824561, 116: 81.01970443349754, 157: 87.2823779193206, 176: 84.30113636363636, 124: 85.1568100358423, 269: 88.635687732342, 189: 83.88888888888889, 214: 91.26168224299066, 202: 79.53960396039604, 350: 90.66571428571429, 224: 81.52901785714286, 106: 87.84551886792453, 258: 82.6046511627907, 148: 105.83671171171171, 200: 96.535, 165: 69.9030303030303, 180: 76.67222222222222, 131: 79.16603053435115, 145: 92.95517241379311, 230: 79.82608695652173, 161: 66.29606625258799, 137: 91.67591240875912, 385: 94.33766233766234, 195: 98.8974358974359, 159: 95.35849056603773, 196: 72.54336734693878, 211: 100.37440758293839, 236: 76.05932203389831, 330: 73.30909090909091, 168: 88.16666666666667, 94: 81.00911854103343, 146: 84.51712328767124, 127: 65.42913385826772, 192: 85.25868055555556, 252: 87.78571428571429, 212: 92.3254716981132, 233: 96.50214592274678, 194: 82.03865979381443, 101: 77.85258525852585, 130: 78.21846153846154, 208: 92.1875, 172: 89.63953488372093, 190: 94.71578947368421, 197: 96.2741116751269, 351: 100.97150997150997, 387: 104.0, 181: 108.2707182320442, 329: 93.57142857142857, 313: 90.72843450479233, 249: 98.39759036144578, 418: 90.69377990430623, 270: 108.4962962962963, 219: 93.46575342465754, 256: 105.453125, 182: 121.41208791208791, 193: 90.60621761658031, 210: 71.16666666666667, 216: 102.31944444444444, 254: 62.42125984251968, 234: 89.0982905982906}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">degree_pearson_correlation_coefficient</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.20512067898648859
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="section" id="simulating-random-and-targeted-attacks-to-a-network">
-<h2><span class="section-number">5.7. </span>Simulating random and targeted attacks to a network<a class="headerlink" href="#simulating-random-and-targeted-attacks-to-a-network" title="Permalink to this headline">¶</a></h2>
-<p>Resilience is the ability to provide and maintain an acceptable level of service in the face of faults and challenges to normal operation. Threats and challenges for services can range from simple misconfiguration over large scale natural disasters to targeted attacks.</p>
-<p>We define a function that performs a random or targeted attack to a network according to a given strategy (random, degree based, betweenness based, etc. )</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">net_attack</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">ranked_nodes</span><span class="p">):</span>
-    
-    <span class="n">fraction_removed</span><span class="o">=</span><span class="p">[]</span><span class="c1">#here we store the tuples: (%removed nodes, size of gcc)</span>
-    
-    <span class="n">graph1</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">nnodes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ranked_nodes</span><span class="p">)</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">0</span>    
-    
-    <span class="n">gcc</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">graph1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-    
-    <span class="n">gcc_size</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gcc</span><span class="p">))</span><span class="o">/</span><span class="n">nnodes</span>
-    
-    <span class="n">fraction_removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">nnodes</span><span class="p">,</span> <span class="n">gcc_size</span><span class="p">)</span> <span class="p">)</span>
-    
-    <span class="k">while</span> <span class="n">gcc_size</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">:</span>
-        
-        <span class="c1">#we start from the end of the list!</span>
-        <span class="n">graph1</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="n">ranked_nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
-
-        <span class="n">gcc</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">graph1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">gcc_size</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gcc</span><span class="p">))</span><span class="o">/</span><span class="n">nnodes</span>
-        <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
-        <span class="n">fraction_removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">nnodes</span><span class="p">,</span> <span class="n">gcc_size</span><span class="p">)</span> <span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">fraction_removed</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="robustness-of-the-us-airport-network">
-<h2><span class="section-number">5.8. </span>Robustness of the US airport network<a class="headerlink" href="#robustness-of-the-us-airport-network" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="random-attack">
-<h3><span class="section-number">5.8.1. </span>Random attack<a class="headerlink" href="#random-attack" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath_air</span><span class="o">=</span><span class="s1">&#39;./../network_data/USairport_2010.txt&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath_air</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_nodes</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resilience_random</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">airport_nodes</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="betweenness-based-attack">
-<h3><span class="section-number">5.8.2. </span>Betweenness based attack<a class="headerlink" href="#betweenness-based-attack" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_nodes_betw</span><span class="o">=</span><span class="p">[]</span>
-
-<span class="n">betw</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">betw</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
-    <span class="n">airport_nodes_betw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-
-<span class="n">resilience_betw</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">airport_nodes_betw</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="degree-based-attack">
-<h3><span class="section-number">5.8.3. </span>Degree based attack<a class="headerlink" href="#degree-based-attack" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_nodes_degree</span><span class="o">=</span><span class="p">[]</span>
-
-<span class="n">deg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">deg</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
-    <span class="n">airport_nodes_degree</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-
-<span class="n">resilience_deg</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">airport_nodes_degree</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s compare the results.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_random</span><span class="p">]</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_random</span><span class="p">]</span>
-
-<span class="n">x1</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_deg</span><span class="p">]</span>
-<span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_deg</span><span class="p">]</span>
-
-<span class="n">x2</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_betw</span><span class="p">]</span>
-<span class="n">y2</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_betw</span><span class="p">]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;random attack&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;degree based&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;betw based&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$f_</span><span class="si">{c}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$LCC$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ba45987b8&gt;
-</pre></div>
-</div>
-<img alt="../_images/nb05_network_analysis_107_1.png" src="../_images/nb05_network_analysis_107_1.png" />
-</div>
-</div>
-<p>Real networks such as the air transport network are vulnerable to targeted attacks.</p>
-</div>
-</div>
-<div class="section" id="robustness-of-the-erdos-renyi-random-network">
-<h2><span class="section-number">5.9. </span>Robustness of the Erdos-Renyi random network<a class="headerlink" href="#robustness-of-the-erdos-renyi-random-network" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mf">0.012</span><span class="p">)</span>
-<span class="n">ER_nodes</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">ER</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we rank the nodes by degree</span>
-<span class="n">ER_nodes_deg</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ER</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER_betw</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">ER</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ER_nodes_betw</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ER_betw</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resilience_random</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span> <span class="n">ER_nodes</span><span class="p">)</span>
-<span class="n">resilience_deg</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span> <span class="n">ER_nodes_deg</span><span class="p">)</span>
-<span class="n">resilience_betw</span><span class="o">=</span><span class="n">net_attack</span><span class="p">(</span><span class="n">ER</span><span class="p">,</span> <span class="n">ER_nodes_betw</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_random</span><span class="p">]</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_random</span><span class="p">]</span>
-
-<span class="n">x1</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_deg</span><span class="p">]</span>
-<span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_deg</span><span class="p">]</span>
-
-<span class="n">x2</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_betw</span><span class="p">]</span>
-<span class="n">y2</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">resilience_betw</span><span class="p">]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;random attack&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;degree based&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;betw based&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$f_</span><span class="si">{c}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$LCC$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8ba05ee588&gt;
-</pre></div>
-</div>
-<img alt="../_images/nb05_network_analysis_115_1.png" src="../_images/nb05_network_analysis_115_1.png" />
-</div>
-</div>
-<p>Random networks such as the E-R network are not vulnerable to targeted attacks.</p>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -2732,16 +2296,16 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "pyenv3.8"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "pyenv3.8",
             path: "./2-networkx"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'pyenv3.8'</script>
 
               </div>
               
@@ -2754,6 +2318,13 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">4. </span>How to fit a power law distribution</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="nb06_assortativity_and_resilience.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Degree assortativity of a network</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
         
