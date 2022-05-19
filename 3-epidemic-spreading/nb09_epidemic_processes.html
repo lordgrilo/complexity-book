@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Epidemic modeling, deterministic and stochastic models &#8212; Complexity in social systems</title>
+    <title>12. Epidemic modeling, deterministic and stochastic models &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Epidemics on networks" href="nb10_epidemics_on_networks.html" />
-    <link rel="prev" title="7. Network robustness" href="../2-networkx/nb07_network_robustness.html" />
+    <link rel="next" title="14. Epidemics on networks" href="nb10_epidemics_on_networks.html" />
+    <link rel="prev" title="8. Random walks" href="../2-networkx/nb08_random_walks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -156,14 +156,34 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
+   8. Random walks
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Epidemic modeling, deterministic and stochastic models
+   12. Epidemic modeling, deterministic and stochastic models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb10_epidemics_on_networks.html">
-   10. Epidemics on networks
+   14. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb12_Higher_order_naming_game.html">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb13_Simplagion_on_RSC_model.html">
+   17. Simplagion Model
   </a>
  </li>
 </ul>
@@ -275,22 +295,22 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   8. Epidemic modeling, deterministic and stochastic models
+   12. Epidemic modeling, deterministic and stochastic models
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-deterministic-sir-model">
-     8.1. The deterministic SIR model
+     12.1. The deterministic SIR model
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-stochastic-sir">
-     8.2. The stochastic SIR
+     12.2. The stochastic SIR
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#dependence-on-the-initial-conditions">
-       8.2.1. Dependence on the initial conditions
+       12.2.1. Dependence on the initial conditions
       </a>
      </li>
     </ul>
@@ -299,17 +319,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemics-on-networks">
-   9. Epidemics on networks
+   13. Epidemics on networks
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#stochastic-sir-on-the-us-airport-network">
-     9.1. Stochastic SIR on the US airport network
+     13.1. Stochastic SIR on the US airport network
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#visualize-the-infection-spread-on-the-network">
-     9.2. Visualize the infection spread on the network
+     13.2. Visualize the infection spread on the network
     </a>
    </li>
   </ul>
@@ -336,22 +356,22 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   8. Epidemic modeling, deterministic and stochastic models
+   12. Epidemic modeling, deterministic and stochastic models
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-deterministic-sir-model">
-     8.1. The deterministic SIR model
+     12.1. The deterministic SIR model
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-stochastic-sir">
-     8.2. The stochastic SIR
+     12.2. The stochastic SIR
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#dependence-on-the-initial-conditions">
-       8.2.1. Dependence on the initial conditions
+       12.2.1. Dependence on the initial conditions
       </a>
      </li>
     </ul>
@@ -360,17 +380,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemics-on-networks">
-   9. Epidemics on networks
+   13. Epidemics on networks
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#stochastic-sir-on-the-us-airport-network">
-     9.1. Stochastic SIR on the US airport network
+     13.1. Stochastic SIR on the US airport network
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#visualize-the-infection-spread-on-the-network">
-     9.2. Visualize the infection spread on the network
+     13.2. Visualize the infection spread on the network
     </a>
    </li>
   </ul>
@@ -385,7 +405,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="epidemic-modeling-deterministic-and-stochastic-models">
-<h1><span class="section-number">8. </span>Epidemic modeling, deterministic and stochastic models<a class="headerlink" href="#epidemic-modeling-deterministic-and-stochastic-models" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models<a class="headerlink" href="#epidemic-modeling-deterministic-and-stochastic-models" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -412,7 +432,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="the-deterministic-sir-model">
-<h2><span class="section-number">8.1. </span>The deterministic SIR model<a class="headerlink" href="#the-deterministic-sir-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.1. </span>The deterministic SIR model<a class="headerlink" href="#the-deterministic-sir-model" title="Permalink to this headline">¶</a></h2>
 <p>As a first step, we solve the differential equations of an SIR model with the Euler method.</p>
 <p>We set the parameters of the model</p>
 <div class="cell docutils container">
@@ -556,7 +576,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="the-stochastic-sir">
-<h2><span class="section-number">8.2. </span>The stochastic SIR<a class="headerlink" href="#the-stochastic-sir" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.2. </span>The stochastic SIR<a class="headerlink" href="#the-stochastic-sir" title="Permalink to this headline">¶</a></h2>
 <p>We simulate a discrete and stochastic SIR model by randomly extracting the transition elements at each time step.
 Since the simulations are stochastic, we need to run several realizations of the model and then extract their statistical averages.</p>
 <p>We use the same model’s parameters: <span class="math notranslate nohighlight">\(R_0=3.0\)</span></p>
@@ -727,7 +747,7 @@ Since the simulations are stochastic, we need to run several realizations of the
 </div>
 </div>
 <div class="section" id="dependence-on-the-initial-conditions">
-<h3><span class="section-number">8.2.1. </span>Dependence on the initial conditions<a class="headerlink" href="#dependence-on-the-initial-conditions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.2.1. </span>Dependence on the initial conditions<a class="headerlink" href="#dependence-on-the-initial-conditions" title="Permalink to this headline">¶</a></h3>
 <p>The results of the stochastic version of the model depend on the initial conditions.
 Let’s change the initial number of infected individuals to 1.</p>
 <div class="cell docutils container">
@@ -941,9 +961,9 @@ $p_{outb}=1-(\frac{1}{R_0})^{I_0}$
 </div>
 <hr class="docutils" />
 <div class="tex2jax_ignore mathjax_ignore section" id="epidemics-on-networks">
-<h1><span class="section-number">9. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">13. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stochastic-sir-on-the-us-airport-network">
-<h2><span class="section-number">9.1. </span>Stochastic SIR on the US airport network<a class="headerlink" href="#stochastic-sir-on-the-us-airport-network" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.1. </span>Stochastic SIR on the US airport network<a class="headerlink" href="#stochastic-sir-on-the-us-airport-network" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airport_path</span> <span class="o">=</span> <span class="s2">&quot;./../datasets/USairport_2010.txt&quot;</span>
@@ -1135,7 +1155,7 @@ The final attack rate is 0.5308641975308642
 </div>
 </div>
 <div class="section" id="visualize-the-infection-spread-on-the-network">
-<h2><span class="section-number">9.2. </span>Visualize the infection spread on the network<a class="headerlink" href="#visualize-the-infection-spread-on-the-network" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.2. </span>Visualize the infection spread on the network<a class="headerlink" href="#visualize-the-infection-spread-on-the-network" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -2027,17 +2047,17 @@ USA_shape.cpg  USA_shape.prj  USA_shape.shp  <span class=" -Color -Color-Red">st
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../2-networkx/nb07_network_robustness.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../2-networkx/nb08_random_walks.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Network robustness</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Random walks</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nb10_epidemics_on_networks.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Epidemics on networks</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Epidemics on networks</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -37,21 +37,26 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Epidemic modeling, deterministic and stochastic models" href="../3-epidemic-spreading/nb09_epidemic_processes.html" />
     <link rel="prev" title="7. Network robustness" href="nb07_network_robustness.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -115,10 +120,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  NetworkX Basics
+  Network analysis
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nb03_NetworkX_visualization.html">
    3. Introduction to NetworkX
@@ -144,9 +149,41 @@
    7. Network robustness
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamical processes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    8. Random walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb09_epidemic_processes.html">
+   12. Epidemic modeling, deterministic and stochastic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb10_epidemics_on_networks.html">
+   14. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb12_Higher_order_naming_game.html">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb13_Simplagion_on_RSC_model.html">
+   17. Simplagion Model
   </a>
  </li>
 </ul>
@@ -195,7 +232,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -249,7 +286,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -262,13 +299,18 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction-of-pagerank">
+     8.1. prediction of pagerank
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#er-graph">
-     8.1. ER graph
+     8.2. ER graph
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#real-world-graph">
-     8.2. real world graph
+     8.3. real world graph
     </a>
    </li>
   </ul>
@@ -332,7 +374,98 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Random walks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   8. Random walks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction-of-pagerank">
+     8.1. prediction of pagerank
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#er-graph">
+     8.2. ER graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#real-world-graph">
+     8.3. real world graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explicit-walks">
+   9. Explicit walks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-walks-on-er-graph">
+     9.1. Example of walks on ER graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#return-times">
+   10. Return times
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#return-times-on-er-graph">
+     10.1. Return times on ER graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns-times-on-scale-free-graph">
+     10.2. returns times on scale-free graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#return-times-on-ws-graph">
+     10.3. Return times on WS graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-coverage">
+   11. Graph Coverage
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     11.1. ER graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ws-model">
+     11.2. WS model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="random-walks">
@@ -370,9 +503,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># random_node is the start node selected randomly</span>
 <span class="n">random_node</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">())])</span>
+
 <span class="n">dict_counter</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># initialise the value for all nodes as 0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()):</span>
     <span class="n">dict_counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
 <span class="c1"># increment by traversing through all neighbors nodes</span>
 <span class="n">dict_counter</span><span class="p">[</span><span class="n">random_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">dict_counter</span><span class="p">[</span><span class="n">random_node</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
 
@@ -411,16 +546,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(7, 0.049212258583150245),
- (5, 0.07370537666938684),
- (2, 0.07591396972473242),
- (6, 0.09890773049319411),
- (4, 0.0992171783574147),
- (8, 0.10063067709790519),
- (3, 0.11410333978136096),
- (0, 0.12074197671109117),
- (9, 0.12427897630548267),
- (1, 0.14328851627628164)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(9, 0.04333861279724398),
+ (1, 0.0702697202807392),
+ (5, 0.08321855212539782),
+ (2, 0.09691963234696936),
+ (8, 0.10813920075113743),
+ (4, 0.11065195201382218),
+ (0, 0.11255917470257852),
+ (6, 0.11303707436422232),
+ (7, 0.12909758902018287),
+ (3, 0.13276849159770635)]
 </pre></div>
 </div>
 </div>
@@ -432,16 +567,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(7, 391),
- (5, 695),
- (2, 740),
- (8, 947),
- (6, 993),
- (4, 1044),
- (3, 1142),
- (0, 1234),
- (9, 1305),
- (1, 1510)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(9, 333),
+ (1, 661),
+ (5, 783),
+ (2, 950),
+ (8, 1122),
+ (6, 1134),
+ (0, 1138),
+ (4, 1159),
+ (7, 1345),
+ (3, 1376)]
 </pre></div>
 </div>
 </div>
@@ -455,19 +590,32 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SpearmanrResult(correlation=0.8545454545454544, pvalue=0.0016368033159867143)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SpearmanrResult(correlation=0.9515151515151514, pvalue=2.279854920641689e-05)
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="prediction-of-pagerank">
+<h2><span class="section-number">8.1. </span>prediction of pagerank<a class="headerlink" href="#prediction-of-pagerank" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predicted_rank</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.85</span><span class="p">):</span>
+    <span class="n">av</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span> <span class="o">/</span> <span class="n">N</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span> <span class="o">/</span> <span class="n">av</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="er-graph">
-<h2><span class="section-number">8.1. </span>ER graph<a class="headerlink" href="#er-graph" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.2. </span>ER graph<a class="headerlink" href="#er-graph" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="mf">0.85</span>
-<span class="n">pr</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank_alg</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span>
 
 <span class="n">in_degrees</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">in_degree</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pr</span><span class="p">]</span>
 <span class="n">out_degrees</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="o">.</span><span class="n">out_degree</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pr</span><span class="p">]</span>
@@ -482,15 +630,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e0a8d30&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1299e1bb0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_9_1.png" src="../_images/nb08_random_walks_9_1.png" />
+<img alt="../_images/nb08_random_walks_11_1.png" src="../_images/nb08_random_walks_11_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="real-world-graph">
-<h2><span class="section-number">8.2. </span>real world graph<a class="headerlink" href="#real-world-graph" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.3. </span>real world graph<a class="headerlink" href="#real-world-graph" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filepath  = &quot;./../datasets/USairport_2010.txt&quot;</span>
@@ -1544,16 +1692,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predicted_rank</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.85</span><span class="p">):</span>
-    <span class="n">av</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">q</span> <span class="o">/</span> <span class="n">N</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">)</span> <span class="o">/</span> <span class="n">av</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">,</span> <span class="n">ranks</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">c</span><span class="o">=</span><span class="n">out_degrees</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
@@ -1564,10 +1702,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x13b9a6eb0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x129aa8b80&gt;]
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_16_1.png" src="../_images/nb08_random_walks_16_1.png" />
+<img alt="../_images/nb08_random_walks_18_1.png" src="../_images/nb08_random_walks_18_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1587,10 +1725,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1352e9040&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1296e2190&gt;]
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_17_1.png" src="../_images/nb08_random_walks_17_1.png" />
+<img alt="../_images/nb08_random_walks_19_1.png" src="../_images/nb08_random_walks_19_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1610,10 +1748,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x151890c10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x129cc8070&gt;
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_18_1.png" src="../_images/nb08_random_walks_18_1.png" />
+<img alt="../_images/nb08_random_walks_20_1.png" src="../_images/nb08_random_walks_20_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -1626,8 +1764,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Code imported from https://github.com/kerighan/graph-walker</span>
 
-<span class="c1"># !pip install pybind11</span>
-<span class="c1"># !pip install graph-walker</span>
+<span class="o">!</span>pip install pybind11
+<span class="o">!</span>pip install graph-walker
 </pre></div>
 </div>
 </div>
@@ -1636,8 +1774,7 @@
 <h2><span class="section-number">9.1. </span>Example of walks on ER graph<a class="headerlink" href="#example-of-walks-on-er-graph" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">walker</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">walker</span>
 
 <span class="c1"># create a random graph</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1649,16 +1786,32 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.33s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+  A = nx.adjacency_matrix(G).astype(np.float32)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   0, 4035, 2484, ..., 3682, 3286,  767],
-       [   1,  654, 4823, ..., 1327, 1430,  231],
-       [   2,  662, 4496, ..., 3677, 4030,  503],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.70s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   0, 4087, 1295, ..., 3774, 1044, 2049],
+       [   1, 2678, 4709, ..., 1313, 4554, 3188],
+       [   2,  849, 4456, ..., 3542,  315, 2412],
        ...,
-       [4997, 3051, 1446, ..., 2218, 2162, 4205],
-       [4998, 2709, 4612, ..., 2530, 3309, 2835],
-       [4999, 4383, 4372, ..., 3666, 2997,  335]], dtype=uint32)
+       [4997,  492, 3839, ..., 1666, 3719, 3015],
+       [4998, 2239, 3284, ..., 1116, 3287, 2147],
+       [4999, 1463, 1750, ..., 1026, 2126, 2195]], dtype=uint32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(250000, 25)
 </pre></div>
 </div>
 </div>
@@ -1671,7 +1824,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=1.31s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.70s
 </pre></div>
 </div>
 </div>
@@ -1684,7 +1837,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.28s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.61s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 25)
 </pre></div>
 </div>
 </div>
@@ -1697,7 +1862,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=2.67s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=2.51s
 </pre></div>
 </div>
 </div>
@@ -1709,13 +1874,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   0,  197,   71, ..., 1692,  528, 3447],
-       [   1,  254, 4907, ..., 3725, 1702,  447],
-       [   2, 1369, 3601, ..., 3281, 3332, 3270],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   0, 4706, 1241, ..., 3031, 4909, 4553],
+       [   1, 3290, 1440, ..., 2140,  350,  599],
+       [   2, 1287, 1855, ..., 1161, 2383, 4447],
        ...,
-       [4997,  850,  830, ..., 2792,  254, 4670],
-       [4998, 3120, 2002, ...,  628, 3524, 4727],
-       [4999,  257, 4119, ..., 3642, 2421, 4495]], dtype=uint32)
+       [4997, 2354, 1807, ..., 1826, 2404,  430],
+       [4998, 1150, 4269, ...,  501, 1600, 4182],
+       [4999, 3047, 1438, ..., 1966,  503, 3457]], dtype=uint32)
 </pre></div>
 </div>
 </div>
@@ -1748,7 +1913,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{24, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 76, 78}
 </pre></div>
 </div>
 </div>
@@ -1761,7 +1926,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>324
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>336
 </pre></div>
 </div>
 </div>
@@ -1773,7 +1938,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.32s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.98s
 </pre></div>
 </div>
 </div>
@@ -1787,7 +1952,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 16200/16200 [00:00&lt;00:00, 160142.65it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 16800/16800 [00:00&lt;00:00, 113744.94it/s]
 </pre></div>
 </div>
 </div>
@@ -1800,10 +1965,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.82327160493827
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.81858222724838
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_35_1.png" src="../_images/nb08_random_walks_35_1.png" />
+<img alt="../_images/nb08_random_walks_39_1.png" src="../_images/nb08_random_walks_39_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1814,7 +1979,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>337
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>344
 </pre></div>
 </div>
 </div>
@@ -1829,10 +1994,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 16850/16850 [00:00&lt;00:00, 172138.87it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 17200/17200 [00:00&lt;00:00, 150171.06it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.30s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.68s
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1848,10 +2013,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.692873672343204
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.630777280390674
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_38_1.png" src="../_images/nb08_random_walks_38_1.png" />
+<img alt="../_images/nb08_random_walks_42_1.png" src="../_images/nb08_random_walks_42_1.png" />
 </div>
 </div>
 </div>
@@ -1878,7 +2043,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 35, 134, 38, 43, 44, 45, 51, 67, 88, 90, 100, 106, 113}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 36, 39, 41, 42, 43, 44, 45, 47, 48, 53, 55, 56, 57, 59, 64, 70, 71, 83, 102, 107, 125}
 </pre></div>
 </div>
 </div>
@@ -1891,7 +2056,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8764
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8813
 </pre></div>
 </div>
 </div>
@@ -1906,13 +2071,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 5402/262920 [00:00&lt;00:09, 27094.84it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 2382/264390 [00:00&lt;00:11, 23817.13it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.66s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.68s
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 262920/262920 [00:10&lt;00:00, 26023.82it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 264390/264390 [00:11&lt;00:00, 23532.23it/s]
 </pre></div>
 </div>
 </div>
@@ -1925,10 +2090,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104.60263909479816
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>112.85651811218686
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_44_1.png" src="../_images/nb08_random_walks_44_1.png" />
+<img alt="../_images/nb08_random_walks_48_1.png" src="../_images/nb08_random_walks_48_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1939,7 +2104,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -1954,10 +2119,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 120/120 [00:00&lt;00:00, 3231.28it/s]
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.05s
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 180/180 [00:00&lt;00:00, 5200.80it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1970,15 +2138,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77.71057884231537
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>84.15789473684211
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_47_1.png" src="../_images/nb08_random_walks_47_1.png" />
+<img alt="../_images/nb08_random_walks_51_1.png" src="../_images/nb08_random_walks_51_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="return-times-on-ws-graph">
 <h2><span class="section-number">10.3. </span>Return times on WS graph<a class="headerlink" href="#return-times-on-ws-graph" title="Permalink to this headline">¶</a></h2>
+<p>Theory predicts</p>
+<div class="math notranslate nohighlight">
+\[p_0(t) \sim t^{-D/2} \quad t\ll t_1\]</div>
+<div class="math notranslate nohighlight">
+\[p_0(t) \sim e^{-(p^2t)^{1/3}} \quad t_1\ll t\]</div>
+<p>with <span class="math notranslate nohighlight">\(t_1 \sim 1/p^2\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is the shortcut probability</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_exp</span> <span class="o">=</span> <span class="mi">6</span>
@@ -1995,11 +2169,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
-  A = nx.adjacency_matrix(G).astype(np.float32)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=17.24s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=16.56s
 </pre></div>
 </div>
 </div>
@@ -2013,7 +2183,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [01:31&lt;00:00,  1.09it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [01:47&lt;00:00,  1.08s/it]
 </pre></div>
 </div>
 </div>
@@ -2027,10 +2197,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>305279.009832273
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>309826.9273809524
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_51_1.png" src="../_images/nb08_random_walks_51_1.png" />
+<img alt="../_images/nb08_random_walks_55_1.png" src="../_images/nb08_random_walks_55_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2062,10 +2232,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x1a07427f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x142170fd0&gt;
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_52_1.png" src="../_images/nb08_random_walks_52_1.png" />
+<img alt="../_images/nb08_random_walks_56_1.png" src="../_images/nb08_random_walks_56_1.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -2101,7 +2271,7 @@
   A = nx.adjacency_matrix(G).astype(np.float32)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=8.60s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=11.76s
 </pre></div>
 </div>
 </div>
@@ -2125,10 +2295,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12e6a7730&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x13e707370&gt;]
 </pre></div>
 </div>
-<img alt="../_images/nb08_random_walks_59_1.png" src="../_images/nb08_random_walks_59_1.png" />
+<img alt="../_images/nb08_random_walks_63_1.png" src="../_images/nb08_random_walks_63_1.png" />
 </div>
 </div>
 </div>
@@ -2152,47 +2322,11 @@
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">covs</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="mi">4</span><span class="p">:],</span> <span class="s2">&quot;o--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">n_exp</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="mi">4</span><span class="p">:],</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">n_exp</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/4 [00:00&lt;?, ?it/s]/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
-  A = nx.adjacency_matrix(G).astype(np.float32)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=6.15s
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 1/4 [00:18&lt;00:55, 18.52s/it]/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
-  A = nx.adjacency_matrix(G).astype(np.float32)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=10.60s
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 2/4 [00:43&lt;00:44, 22.29s/it]/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
-  A = nx.adjacency_matrix(G).astype(np.float32)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=6.73s
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 3/4 [01:03&lt;00:21, 21.25s/it]/Users/lordgrilo/Environments/pyenv3.8/lib/python3.8/site-packages/walker/preprocessing.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
-  A = nx.adjacency_matrix(G).astype(np.float32)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=17.48s
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4/4 [01:42&lt;00:00, 25.53s/it]
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x18a119640&gt;
-</pre></div>
-</div>
-<img alt="../_images/nb08_random_walks_61_10.png" src="../_images/nb08_random_walks_61_10.png" />
 </div>
 </div>
 </div>
@@ -2220,8 +2354,8 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nb07_network_robustness.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -2230,20 +2364,25 @@
             <p class="prev-next-title"><span class="section-number">7. </span>Network robustness</p>
         </div>
     </a>
+    <a class='right-next' id="next-link" href="../3-epidemic-spreading/nb09_epidemic_processes.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By G. Petri, M. Tizzoni<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By G. Petri, M. Tizzoni<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 

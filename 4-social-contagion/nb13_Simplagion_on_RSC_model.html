@@ -1,0 +1,1898 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>17. Simplagion Model &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="16. Higher-order Naming Game" href="nb12_Higher_order_naming_game.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Network analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">
+   4. How to fit a power law distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb05_network_analysis.html">
+   5. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb06_network_assortativity.html">
+   6. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb07_network_robustness.html">
+   7. Network robustness
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamical processes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
+   8. Random walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb09_epidemic_processes.html">
+   12. Epidemic modeling, deterministic and stochastic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb10_epidemics_on_networks.html">
+   14. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb12_Higher_order_naming_game.html">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   17. Simplagion Model
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/4-social-contagion/nb13_Simplagion_on_RSC_model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F4-social-contagion/nb13_Simplagion_on_RSC_model.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/4-social-contagion/nb13_Simplagion_on_RSC_model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-simulation">
+   17.1. Single simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bulk-simulation">
+   17.2. Bulk Simulation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting">
+     17.2.1. Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simplagion Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-simulation">
+   17.1. Single simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bulk-simulation">
+   17.2. Bulk Simulation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting">
+     17.2.1. Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="simplagion-model">
+<h1><span class="section-number">17. </span>Simplagion Model<a class="headerlink" href="#simplagion-model" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="kn">from</span> <span class="nn">utils_simplagion_on_RSC</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="single-simulation">
+<h2><span class="section-number">17.1. </span>Single simulation<a class="headerlink" href="#single-simulation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">it_num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">k1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">k2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span>  <span class="n">get_p1_and_p2</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> 
+<span class="n">lambda1s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>     
+<span class="n">lambdaD_target</span> <span class="o">=</span> <span class="mf">2.5</span>
+
+<span class="n">I_percentage</span><span class="p">,</span> <span class="n">t_max</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.05</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">it_num</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">lambda1s</span><span class="p">,</span> <span class="n">lambdaD_target</span><span class="p">,</span> <span class="n">I_percentage</span><span class="p">,</span> <span class="n">t_max</span><span class="p">,</span> <span class="n">mu</span><span class="p">]</span>
+<span class="n">rhos</span><span class="p">,</span> <span class="n">real_k</span><span class="p">,</span> <span class="n">real_kD</span>  <span class="o">=</span> <span class="n">run_one_simulation</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It 1 initialized
+It 1, created SC with k1=20.3 and k2=6.2
+It 1, simulation has finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda1s</span><span class="p">,</span> <span class="n">rhos</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12a8d6970&gt;]
+</pre></div>
+</div>
+<img alt="../_images/nb13_Simplagion_on_RSC_model_4_1.png" src="../_images/nb13_Simplagion_on_RSC_model_4_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="bulk-simulation">
+<h2><span class="section-number">17.2. </span>Bulk Simulation<a class="headerlink" href="#bulk-simulation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Simplicial complex parameters</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>                   
+<span class="n">k1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">k2</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">get_p1_and_p2</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1">#Infection parameters</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">lambda1s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>     
+<span class="n">lambdaD_target_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
+<span class="n">I_percentage_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">40</span><span class="p">]</span> <span class="c1">#initial conditions (% of infected)</span>
+
+<span class="c1">#Simulation Parameters</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mi">6000</span>                 
+<span class="n">n_simulations</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">n_processes</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">out_dir</span> <span class="o">=</span> <span class="s1">&#39;simplagion-results/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir ./simplagion-results/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iteration_numbers</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">lambdaD_target</span><span class="p">,</span> <span class="n">I_percentage</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lambdaD_target_list</span><span class="p">,</span> <span class="n">I_percentage_list</span><span class="p">))):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambdaD&#39;</span><span class="p">,</span> <span class="n">lambdaD_target</span><span class="p">,</span> <span class="s1">&#39;seed&#39;</span><span class="p">,</span> <span class="n">I_percentage</span><span class="p">)</span>
+
+    <span class="c1">################################ Preparing arguments for the parallel processing</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">it_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">):</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">it_num</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">lambda1s</span><span class="p">,</span> <span class="n">lambdaD_target</span><span class="p">,</span> <span class="n">I_percentage</span><span class="p">,</span> <span class="n">t_max</span><span class="p">,</span> <span class="n">mu</span><span class="p">])</span>
+
+    <span class="c1">################################ Running in parallel</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">n_processes</span><span class="p">)</span>                         
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">run_one_simulation</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    
+    <span class="c1">################################ Saving</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;result_RSC_&#39;</span><span class="o">+</span><span class="s1">&#39;N&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_k&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_kD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_mu&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_lD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lambdaD_target</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_seed&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">I_percentage</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.p&#39;</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c26fe5640d8c432d88941fe4b39255f3", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambdaD 0 seed 1
+lambdaD 0.8 seed 1
+It 16 initialized
+not connected, but GC has order 1999 ans size 8077
+It 16, created SC with k1=19.7 and k2=5.9
+It 16, simulation has finished
+It 17 initialized
+not connected, but GC has order 1999 ans size 8059
+It 17, created SC with k1=20.2 and k2=6.1
+It 17, simulation has finished
+It 18 initialized
+It 18, created SC with k1=20.2 and k2=6.1
+It 18, simulation has finished
+It 19 initialized
+not connected, but GC has order 1998 ans size 8152
+It 19, created SC with k1=20.1 and k2=6.0
+It 19, simulation has finished
+It 32 initialized
+not connected, but GC has order 1999 ans size 8074
+It 32, created SC with k1=20.0 and k2=6.0
+It 32, simulation has finished
+It 33 initialized
+not connected, but GC has order 1999 ans size 8215
+It 33, created SC with k1=20.1 and k2=6.0
+It 33, simulation has finished
+It 34 initialized
+It 34, created SC with k1=20.1 and k2=6.1
+It 34, simulation has finished
+It 35 initialized
+It 35, created SC with k1=20.2 and k2=6.1
+It 35, simulation has finished
+It 64 initialized
+It 64, created SC with k1=19.9 and k2=5.9
+It 64, simulation has finished
+It 65 initialized
+It 65, created SC with k1=20.1 and k2=6.0
+It 65, simulation has finished
+It 66 initialized
+not connected, but GC has order 1999 ans size 7971
+It 66, created SC with k1=20.2 and k2=6.2
+It 66, simulation has finished
+It 67 initialized
+not connected, but GC has order 1999 ans size 7967
+It 67, created SC with k1=20.0 and k2=6.0
+It 67, simulation has finished
+It 96 initialized
+not connected, but GC has order 1999 ans size 8066
+It 96, created SC with k1=19.8 and k2=5.9
+It 96, simulation has finished
+It 97 initialized
+It 97, created SC with k1=19.9 and k2=6.0
+It 97, simulation has finished
+It 98 initialized
+It 98, created SC with k1=20.2 and k2=6.1
+It 98, simulation has finished
+It 99 initialized
+It 99, created SC with k1=19.9 and k2=5.9
+It 99, simulation has finished
+It 0 initialized
+It 0, created SC with k1=20.0 and k2=6.0
+It 0, simulation has finished
+It 1 initialized
+It 1, created SC with k1=20.2 and k2=6.1
+It 1, simulation has finished
+It 2 initialized
+not connected, but GC has order 1999 ans size 7928
+It 2, created SC with k1=20.0 and k2=6.1
+It 2, simulation has finished
+It 3 initialized
+not connected, but GC has order 1999 ans size 8000
+It 3, created SC with k1=19.8 and k2=5.9
+It 3, simulation has finished
+It 44 initialized
+not connected, but GC has order 1999 ans size 8247
+It 44, created SC with k1=19.9 and k2=5.9
+It 44, simulation has finished
+It 45 initialized
+not connected, but GC has order 1998 ans size 7958
+It 45, created SC with k1=20.0 and k2=6.0
+It 45, simulation has finished
+It 46 initialized
+It 46, created SC with k1=20.1 and k2=6.1
+It 46, simulation has finished
+It 47 initialized
+It 47, created SC with k1=19.8 and k2=5.9
+It 47, simulation has finished
+It 72 initialized
+It 72, created SC with k1=19.7 and k2=5.8
+It 72, simulation has finished
+It 73 initialized
+not connected, but GC has order 1999 ans size 7977
+It 73, created SC with k1=19.7 and k2=5.9
+It 73, simulation has finished
+It 74 initialized
+It 74, created SC with k1=20.1 and k2=6.0
+It 74, simulation has finished
+It 75 initialized
+not connected, but GC has order 1996 ans size 8006
+It 75, created SC with k1=20.2 and k2=6.1
+It 75, simulation has finished
+It 100 initialized
+It 100, created SC with k1=20.0 and k2=6.0
+It 100, simulation has finished
+It 101 initialized
+not connected, but GC has order 1998 ans size 8015
+It 101, created SC with k1=19.9 and k2=6.0
+It 101, simulation has finished
+It 102 initialized
+not connected, but GC has order 1999 ans size 8003
+It 102, created SC with k1=19.6 and k2=5.8
+It 102, simulation has finished
+It 103 initialized
+It 103, created SC with k1=19.6 and k2=5.9
+It 103, simulation has finished
+It 4 initialized
+not connected, but GC has order 1999 ans size 8103
+It 4, created SC with k1=20.2 and k2=6.1
+It 4, simulation has finished
+It 5 initialized
+It 5, created SC with k1=19.7 and k2=6.0
+It 5, simulation has finished
+It 6 initialized
+not connected, but GC has order 1997 ans size 8041
+It 6, created SC with k1=19.5 and k2=5.8
+It 6, simulation has finished
+It 7 initialized
+not connected, but GC has order 1999 ans size 8089
+It 7, created SC with k1=20.0 and k2=6.0
+It 7, simulation has finished
+It 36 initialized
+not connected, but GC has order 1999 ans size 8120
+It 36, created SC with k1=20.0 and k2=6.0
+It 36, simulation has finished
+It 37 initialized
+not connected, but GC has order 1999 ans size 7919
+It 37, created SC with k1=20.0 and k2=6.1
+It 37, simulation has finished
+It 38 initialized
+not connected, but GC has order 1999 ans size 8110
+It 38, created SC with k1=20.2 and k2=6.1
+It 38, simulation has finished
+It 39 initialized
+not connected, but GC has order 1998 ans size 7988
+It 39, created SC with k1=20.6 and k2=6.4
+It 39, simulation has finished
+It 68 initialized
+It 68, created SC with k1=19.9 and k2=6.1
+It 68, simulation has finished
+It 69 initialized
+It 69, created SC with k1=20.4 and k2=6.2
+It 69, simulation has finished
+It 70 initialized
+It 70, created SC with k1=20.0 and k2=6.1
+It 70, simulation has finished
+It 71 initialized
+not connected, but GC has order 1998 ans size 8143
+It 71, created SC with k1=19.7 and k2=5.8
+It 71, simulation has finished
+It 104 initialized
+It 104, created SC with k1=20.1 and k2=6.1
+It 104, simulation has finished
+It 105 initialized
+not connected, but GC has order 1999 ans size 8151
+It 105, created SC with k1=20.2 and k2=6.1
+It 105, simulation has finished
+It 106 initialized
+It 106, created SC with k1=19.8 and k2=5.9
+It 106, simulation has finished
+It 107 initialized
+not connected, but GC has order 1999 ans size 7990
+It 107, created SC with k1=19.7 and k2=5.9
+It 107, simulation has finished
+It 24 initialized
+not connected, but GC has order 1999 ans size 8047
+It 24, created SC with k1=20.2 and k2=6.1
+It 24, simulation has finished
+It 25 initialized
+It 25, created SC with k1=20.0 and k2=6.1
+It 25, simulation has finished
+It 26 initialized
+It 26, created SC with k1=20.0 and k2=6.0
+It 26, simulation has finished
+It 27 initialized
+not connected, but GC has order 1998 ans size 7973
+It 27, created SC with k1=19.7 and k2=5.9
+It 27, simulation has finished
+It 60 initialized
+It 60, created SC with k1=20.0 and k2=5.9
+It 60, simulation has finished
+It 61 initialized
+It 61, created SC with k1=20.7 and k2=6.3
+It 61, simulation has finished
+It 62 initialized
+not connected, but GC has order 1999 ans size 8109
+It 62, created SC with k1=19.9 and k2=5.9
+It 62, simulation has finished
+It 63 initialized
+not connected, but GC has order 1999 ans size 7921
+It 63, created SC with k1=19.8 and k2=6.0
+It 63, simulation has finished
+It 92 initialized
+not connected, but GC has order 1999 ans size 7986
+It 92, created SC with k1=20.0 and k2=6.0
+It 92, simulation has finished
+It 93 initialized
+It 93, created SC with k1=19.9 and k2=5.9
+It 93, simulation has finished
+It 94 initialized
+It 94, created SC with k1=20.0 and k2=5.9
+It 94, simulation has finished
+It 95 initialized
+It 95, created SC with k1=20.0 and k2=5.9
+It 95, simulation has finished
+It 20 initialized
+It 20, created SC with k1=19.7 and k2=6.0
+It 20, simulation has finished
+It 21 initialized
+It 21, created SC with k1=20.0 and k2=6.0
+It 21, simulation has finished
+It 22 initialized
+not connected, but GC has order 1999 ans size 7970
+It 22, created SC with k1=20.0 and k2=6.1
+It 22, simulation has finished
+It 23 initialized
+It 23, created SC with k1=19.7 and k2=6.0
+It 23, simulation has finished
+It 40 initialized
+not connected, but GC has order 1998 ans size 8038
+It 40, created SC with k1=19.9 and k2=5.9
+It 40, simulation has finished
+It 41 initialized
+It 41, created SC with k1=20.1 and k2=6.0
+It 41, simulation has finished
+It 42 initialized
+It 42, created SC with k1=19.8 and k2=5.9
+It 42, simulation has finished
+It 43 initialized
+It 43, created SC with k1=20.0 and k2=6.1
+It 43, simulation has finished
+It 80 initialized
+not connected, but GC has order 1999 ans size 8065
+It 80, created SC with k1=19.9 and k2=6.0
+It 80, simulation has finished
+It 81 initialized
+It 81, created SC with k1=20.1 and k2=6.0
+It 81, simulation has finished
+It 82 initialized
+It 82, created SC with k1=20.6 and k2=6.2
+It 82, simulation has finished
+It 83 initialized
+It 83, created SC with k1=20.1 and k2=6.0
+It 83, simulation has finished
+It 112 initialized
+It 112, created SC with k1=20.1 and k2=6.0
+It 112, simulation has finished
+It 113 initialized
+not connected, but GC has order 1998 ans size 8029
+It 113, created SC with k1=20.0 and k2=6.0
+It 113, simulation has finished
+It 114 initialized
+not connected, but GC has order 1998 ans size 7970
+It 114, created SC with k1=19.8 and k2=5.9
+It 114, simulation has finished
+It 115 initialized
+not connected, but GC has order 1999 ans size 8075
+It 115, created SC with k1=19.9 and k2=6.0
+It 115, simulation has finished
+It 28 initialized
+It 28, created SC with k1=20.0 and k2=6.1
+It 28, simulation has finished
+It 29 initialized
+It 29, created SC with k1=19.7 and k2=5.9
+It 29, simulation has finished
+It 30 initialized
+It 30, created SC with k1=19.8 and k2=6.0
+It 30, simulation has finished
+It 31 initialized
+It 31, created SC with k1=19.8 and k2=5.9
+It 31, simulation has finished
+It 48 initialized
+It 48, created SC with k1=19.8 and k2=6.0
+It 48, simulation has finished
+It 49 initialized
+It 49, created SC with k1=19.8 and k2=5.9
+It 49, simulation has finished
+It 50 initialized
+It 50, created SC with k1=20.0 and k2=6.0
+It 50, simulation has finished
+It 51 initialized
+It 51, created SC with k1=20.0 and k2=6.1
+It 51, simulation has finished
+It 84 initialized
+It 84, created SC with k1=20.2 and k2=6.1
+It 84, simulation has finished
+It 85 initialized
+not connected, but GC has order 1998 ans size 7897
+It 85, created SC with k1=19.8 and k2=6.0
+It 85, simulation has finished
+It 86 initialized
+not connected, but GC has order 1997 ans size 7996
+It 86, created SC with k1=19.9 and k2=6.0
+It 86, simulation has finished
+It 87 initialized
+It 87, created SC with k1=19.5 and k2=5.9
+It 87, simulation has finished
+It 108 initialized
+It 108, created SC with k1=19.9 and k2=6.0
+It 108, simulation has finished
+It 109 initialized
+not connected, but GC has order 1999 ans size 8022
+It 109, created SC with k1=19.9 and k2=6.0
+It 109, simulation has finished
+It 110 initialized
+It 110, created SC with k1=19.9 and k2=6.0
+It 110, simulation has finished
+It 111 initialized
+not connected, but GC has order 1998 ans size 8051
+It 111, created SC with k1=20.1 and k2=6.0
+It 111, simulation has finished
+It 8 initialized
+not connected, but GC has order 1999 ans size 8017
+It 8, created SC with k1=19.9 and k2=6.0
+It 8, simulation has finished
+It 9 initialized
+not connected, but GC has order 1998 ans size 7958
+It 9, created SC with k1=19.9 and k2=6.0
+It 9, simulation has finished
+It 10 initialized
+not connected, but GC has order 1999 ans size 8111
+It 10, created SC with k1=20.2 and k2=6.1
+It 10, simulation has finished
+It 11 initialized
+not connected, but GC has order 1998 ans size 7917
+It 11, created SC with k1=19.8 and k2=6.0
+It 11, simulation has finished
+It 52 initialized
+It 52, created SC with k1=19.8 and k2=6.0
+It 52, simulation has finished
+It 53 initialized
+It 53, created SC with k1=20.4 and k2=6.2
+It 53, simulation has finished
+It 54 initialized
+It 54, created SC with k1=19.8 and k2=6.0
+It 54, simulation has finished
+It 55 initialized
+It 55, created SC with k1=20.2 and k2=6.1
+It 55, simulation has finished
+It 76 initialized
+It 76, created SC with k1=19.7 and k2=5.9
+It 76, simulation has finished
+It 77 initialized
+not connected, but GC has order 1998 ans size 8026
+It 77, created SC with k1=19.8 and k2=5.9
+It 77, simulation has finished
+It 78 initialized
+not connected, but GC has order 1999 ans size 7994
+It 78, created SC with k1=19.9 and k2=6.0
+It 78, simulation has finished
+It 79 initialized
+It 79, created SC with k1=20.1 and k2=6.1
+It 79, simulation has finished
+It 116 initialized
+not connected, but GC has order 1998 ans size 7929
+It 116, created SC with k1=19.7 and k2=5.9
+It 116, simulation has finished
+It 117 initialized
+not connected, but GC has order 1999 ans size 8273
+It 117, created SC with k1=20.1 and k2=6.0
+It 117, simulation has finished
+It 118 initialized
+It 118, created SC with k1=19.9 and k2=6.0
+It 118, simulation has finished
+It 119 initialized
+It 119, created SC with k1=20.0 and k2=6.0
+It 119, simulation has finished
+It 12 initialized
+It 12, created SC with k1=20.2 and k2=6.1
+It 12, simulation has finished
+It 13 initialized
+It 13, created SC with k1=19.7 and k2=5.9
+It 13, simulation has finished
+It 14 initialized
+not connected, but GC has order 1999 ans size 7999
+It 14, created SC with k1=19.6 and k2=5.8
+It 14, simulation has finished
+It 15 initialized
+It 15, created SC with k1=19.9 and k2=5.9
+It 15, simulation has finished
+It 56 initialized
+not connected, but GC has order 1998 ans size 8111
+It 56, created SC with k1=19.9 and k2=5.9
+It 56, simulation has finished
+It 57 initialized
+not connected, but GC has order 1997 ans size 8030
+It 57, created SC with k1=19.6 and k2=5.8
+It 57, simulation has finished
+It 58 initialized
+not connected, but GC has order 1999 ans size 8136
+It 58, created SC with k1=20.1 and k2=6.0
+It 58, simulation has finished
+It 59 initialized
+It 59, created SC with k1=19.8 and k2=5.9
+It 59, simulation has finished
+It 88 initialized
+not connected, but GC has order 1999 ans size 8065
+It 88, created SC with k1=20.2 and k2=6.1
+It 88, simulation has finished
+It 89 initialized
+not connected, but GC has order 1999 ans size 8004
+It 89, created SC with k1=20.1 and k2=6.1
+It 89, simulation has finished
+It 90 initialized
+It 90, created SC with k1=20.3 and k2=6.1
+It 90, simulation has finished
+It 91 initialized
+not connected, but GC has order 1998 ans size 8091
+It 91, created SC with k1=19.9 and k2=6.0
+It 91, simulation has finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambdaD 2.5 seed 1
+It 12 initialized
+not connected, but GC has order 1997 ans size 8132
+It 12, created SC with k1=20.0 and k2=6.0
+It 12, simulation has finished
+It 13 initialized
+not connected, but GC has order 1998 ans size 8021
+It 13, created SC with k1=20.0 and k2=6.0
+It 13, simulation has finished
+It 14 initialized
+It 14, created SC with k1=20.1 and k2=6.0
+It 14, simulation has finished
+It 15 initialized
+It 15, created SC with k1=20.1 and k2=6.1
+It 15, simulation has finished
+It 60 initialized
+not connected, but GC has order 1999 ans size 7977
+It 60, created SC with k1=19.8 and k2=6.0
+It 60, simulation has finished
+It 61 initialized
+It 61, created SC with k1=20.0 and k2=6.0
+It 61, simulation has finished
+It 62 initialized
+It 62, created SC with k1=20.0 and k2=5.9
+It 62, simulation has finished
+It 63 initialized
+not connected, but GC has order 1999 ans size 8037
+It 63, created SC with k1=20.1 and k2=6.1
+It 63, simulation has finished
+It 92 initialized
+It 92, created SC with k1=20.1 and k2=6.1
+It 92, simulation has finished
+It 93 initialized
+not connected, but GC has order 1999 ans size 8009
+It 93, created SC with k1=19.9 and k2=6.0
+It 93, simulation has finished
+It 94 initialized
+not connected, but GC has order 1999 ans size 8093
+It 94, created SC with k1=20.1 and k2=6.1
+It 94, simulation has finished
+It 95 initialized
+It 95, created SC with k1=20.5 and k2=6.2
+It 95, simulation has finished
+It 0 initialized
+It 0, created SC with k1=19.9 and k2=6.0
+It 0, simulation has finished
+It 1 initialized
+not connected, but GC has order 1999 ans size 7928
+It 1, created SC with k1=19.6 and k2=5.9
+It 1, simulation has finished
+It 2 initialized
+It 2, created SC with k1=19.7 and k2=6.0
+It 2, simulation has finished
+It 3 initialized
+It 3, created SC with k1=20.2 and k2=6.2
+It 3, simulation has finished
+It 56 initialized
+not connected, but GC has order 1999 ans size 8108
+It 56, created SC with k1=19.9 and k2=5.9
+It 56, simulation has finished
+It 57 initialized
+It 57, created SC with k1=20.0 and k2=6.0
+It 57, simulation has finished
+It 58 initialized
+not connected, but GC has order 1998 ans size 7920
+It 58, created SC with k1=20.0 and k2=6.1
+It 58, simulation has finished
+It 59 initialized
+It 59, created SC with k1=20.5 and k2=6.3
+It 59, simulation has finished
+It 88 initialized
+not connected, but GC has order 1999 ans size 8053
+It 88, created SC with k1=19.6 and k2=5.8
+It 88, simulation has finished
+It 89 initialized
+not connected, but GC has order 1999 ans size 8126
+It 89, created SC with k1=20.1 and k2=6.0
+It 89, simulation has finished
+It 90 initialized
+not connected, but GC has order 1998 ans size 8099
+It 90, created SC with k1=20.0 and k2=6.0
+It 90, simulation has finished
+It 91 initialized
+It 91, created SC with k1=20.4 and k2=6.2
+It 91, simulation has finished
+It 24 initialized
+not connected, but GC has order 1998 ans size 7951
+It 24, created SC with k1=20.0 and k2=6.1
+It 24, simulation has finished
+It 25 initialized
+It 25, created SC with k1=20.5 and k2=6.2
+It 25, simulation has finished
+It 26 initialized
+It 26, created SC with k1=20.2 and k2=6.1
+It 26, simulation has finished
+It 27 initialized
+not connected, but GC has order 1999 ans size 8000
+It 27, created SC with k1=19.7 and k2=5.9
+It 27, simulation has finished
+It 36 initialized
+not connected, but GC has order 1999 ans size 8150
+It 36, created SC with k1=19.9 and k2=5.9
+It 36, simulation has finished
+It 37 initialized
+not connected, but GC has order 1999 ans size 7995
+It 37, created SC with k1=19.6 and k2=5.8
+It 37, simulation has finished
+It 38 initialized
+not connected, but GC has order 1999 ans size 8100
+It 38, created SC with k1=19.8 and k2=5.9
+It 38, simulation has finished
+It 39 initialized
+not connected, but GC has order 1999 ans size 7964
+It 39, created SC with k1=20.0 and k2=6.0
+It 39, simulation has finished
+It 68 initialized
+not connected, but GC has order 1999 ans size 8138
+It 68, created SC with k1=20.0 and k2=6.0
+It 68, simulation has finished
+It 69 initialized
+It 69, created SC with k1=20.0 and k2=6.0
+It 69, simulation has finished
+It 70 initialized
+not connected, but GC has order 1999 ans size 8102
+It 70, created SC with k1=20.0 and k2=6.0
+It 70, simulation has finished
+It 71 initialized
+It 71, created SC with k1=19.9 and k2=6.0
+It 71, simulation has finished
+It 104 initialized
+It 104, created SC with k1=19.9 and k2=6.0
+It 104, simulation has finished
+It 105 initialized
+It 105, created SC with k1=19.8 and k2=6.0
+It 105, simulation has finished
+It 106 initialized
+not connected, but GC has order 1999 ans size 8094
+It 106, created SC with k1=20.0 and k2=6.0
+It 106, simulation has finished
+It 107 initialized
+It 107, created SC with k1=19.4 and k2=5.7
+It 107, simulation has finished
+It 28 initialized
+not connected, but GC has order 1999 ans size 8022
+It 28, created SC with k1=19.7 and k2=5.9
+It 28, simulation has finished
+It 29 initialized
+not connected, but GC has order 1998 ans size 8008
+It 29, created SC with k1=19.7 and k2=5.9
+It 29, simulation has finished
+It 30 initialized
+It 30, created SC with k1=19.9 and k2=5.9
+It 30, simulation has finished
+It 31 initialized
+not connected, but GC has order 1998 ans size 7913
+It 31, created SC with k1=19.6 and k2=5.9
+It 31, simulation has finished
+It 32 initialized
+not connected, but GC has order 1999 ans size 8143
+It 32, created SC with k1=19.8 and k2=5.9
+It 32, simulation has finished
+It 33 initialized
+not connected, but GC has order 1999 ans size 7930
+It 33, created SC with k1=20.0 and k2=6.1
+It 33, simulation has finished
+It 34 initialized
+It 34, created SC with k1=20.0 and k2=6.0
+It 34, simulation has finished
+It 35 initialized
+It 35, created SC with k1=19.7 and k2=5.8
+It 35, simulation has finished
+It 64 initialized
+not connected, but GC has order 1997 ans size 8035
+It 64, created SC with k1=19.9 and k2=5.9
+It 64, simulation has finished
+It 65 initialized
+not connected, but GC has order 1999 ans size 7988
+It 65, created SC with k1=19.9 and k2=6.0
+It 65, simulation has finished
+It 66 initialized
+not connected, but GC has order 1999 ans size 8038
+It 66, created SC with k1=19.8 and k2=5.9
+It 66, simulation has finished
+It 67 initialized
+It 67, created SC with k1=19.6 and k2=5.8
+It 67, simulation has finished
+It 96 initialized
+not connected, but GC has order 1999 ans size 8069
+It 96, created SC with k1=19.8 and k2=5.9
+It 96, simulation has finished
+It 97 initialized
+It 97, created SC with k1=19.9 and k2=5.9
+It 97, simulation has finished
+It 98 initialized
+not connected, but GC has order 1999 ans size 8073
+It 98, created SC with k1=20.1 and k2=6.1
+It 98, simulation has finished
+It 99 initialized
+not connected, but GC has order 1999 ans size 8103
+It 99, created SC with k1=20.1 and k2=6.1
+It 99, simulation has finished
+It 8 initialized
+It 8, created SC with k1=19.9 and k2=6.0
+It 8, simulation has finished
+It 9 initialized
+It 9, created SC with k1=19.7 and k2=5.9
+It 9, simulation has finished
+It 10 initialized
+It 10, created SC with k1=19.6 and k2=5.9
+It 10, simulation has finished
+It 11 initialized
+It 11, created SC with k1=19.9 and k2=6.0
+It 11, simulation has finished
+It 44 initialized
+It 44, created SC with k1=19.8 and k2=5.9
+It 44, simulation has finished
+It 45 initialized
+not connected, but GC has order 1997 ans size 8054
+It 45, created SC with k1=20.0 and k2=6.0
+It 45, simulation has finished
+It 46 initialized
+It 46, created SC with k1=19.7 and k2=5.9
+It 46, simulation has finished
+It 47 initialized
+It 47, created SC with k1=20.2 and k2=6.1
+It 47, simulation has finished
+It 72 initialized
+not connected, but GC has order 1999 ans size 8044
+It 72, created SC with k1=20.2 and k2=6.1
+It 72, simulation has finished
+It 73 initialized
+It 73, created SC with k1=20.1 and k2=6.1
+It 73, simulation has finished
+It 74 initialized
+not connected, but GC has order 1999 ans size 8061
+It 74, created SC with k1=19.9 and k2=6.0
+It 74, simulation has finished
+It 75 initialized
+It 75, created SC with k1=19.7 and k2=6.0
+It 75, simulation has finished
+It 100 initialized
+It 100, created SC with k1=19.9 and k2=6.0
+It 100, simulation has finished
+It 101 initialized
+It 101, created SC with k1=19.9 and k2=6.0
+It 101, simulation has finished
+It 102 initialized
+not connected, but GC has order 1999 ans size 7948
+It 102, created SC with k1=19.8 and k2=5.9
+It 102, simulation has finished
+It 103 initialized
+not connected, but GC has order 1999 ans size 8100
+It 103, created SC with k1=19.8 and k2=5.9
+It 103, simulation has finished
+It 16 initialized
+It 16, created SC with k1=20.0 and k2=6.0
+It 16, simulation has finished
+It 17 initialized
+It 17, created SC with k1=20.1 and k2=6.1
+It 17, simulation has finished
+It 18 initialized
+not connected, but GC has order 1998 ans size 8069
+It 18, created SC with k1=20.0 and k2=6.0
+It 18, simulation has finished
+It 19 initialized
+not connected, but GC has order 1999 ans size 8042
+It 19, created SC with k1=20.0 and k2=6.0
+It 19, simulation has finished
+It 48 initialized
+not connected, but GC has order 1999 ans size 8038
+It 48, created SC with k1=20.1 and k2=6.1
+It 48, simulation has finished
+It 49 initialized
+It 49, created SC with k1=19.9 and k2=6.0
+It 49, simulation has finished
+It 50 initialized
+not connected, but GC has order 1998 ans size 7951
+It 50, created SC with k1=19.8 and k2=6.0
+It 50, simulation has finished
+It 51 initialized
+It 51, created SC with k1=20.0 and k2=6.0
+It 51, simulation has finished
+It 80 initialized
+not connected, but GC has order 1999 ans size 7927
+It 80, created SC with k1=20.4 and k2=6.3
+It 80, simulation has finished
+It 81 initialized
+It 81, created SC with k1=19.9 and k2=5.9
+It 81, simulation has finished
+It 82 initialized
+not connected, but GC has order 1998 ans size 8068
+It 82, created SC with k1=19.7 and k2=5.8
+It 82, simulation has finished
+It 83 initialized
+not connected, but GC has order 1999 ans size 7919
+It 83, created SC with k1=20.0 and k2=6.1
+It 83, simulation has finished
+It 108 initialized
+not connected, but GC has order 1999 ans size 7941
+It 108, created SC with k1=20.0 and k2=6.0
+It 108, simulation has finished
+It 109 initialized
+not connected, but GC has order 1999 ans size 7930
+It 109, created SC with k1=20.1 and k2=6.1
+It 109, simulation has finished
+It 110 initialized
+It 110, created SC with k1=20.1 and k2=6.1
+It 110, simulation has finished
+It 111 initialized
+It 111, created SC with k1=19.8 and k2=5.9
+It 111, simulation has finished
+It 20 initialized
+It 20, created SC with k1=20.2 and k2=6.1
+It 20, simulation has finished
+It 21 initialized
+not connected, but GC has order 1998 ans size 8007
+It 21, created SC with k1=19.9 and k2=6.0
+It 21, simulation has finished
+It 22 initialized
+It 22, created SC with k1=20.2 and k2=6.1
+It 22, simulation has finished
+It 23 initialized
+not connected, but GC has order 1998 ans size 8026
+It 23, created SC with k1=19.8 and k2=5.9
+It 23, simulation has finished
+It 52 initialized
+not connected, but GC has order 1997 ans size 8015
+It 52, created SC with k1=19.4 and k2=5.7
+It 52, simulation has finished
+It 53 initialized
+not connected, but GC has order 1999 ans size 8029
+It 53, created SC with k1=19.5 and k2=5.8
+It 53, simulation has finished
+It 54 initialized
+not connected, but GC has order 1999 ans size 7935
+It 54, created SC with k1=19.9 and k2=6.0
+It 54, simulation has finished
+It 55 initialized
+It 55, created SC with k1=20.0 and k2=6.1
+It 55, simulation has finished
+It 76 initialized
+It 76, created SC with k1=20.0 and k2=6.1
+It 76, simulation has finished
+It 77 initialized
+It 77, created SC with k1=20.0 and k2=6.0
+It 77, simulation has finished
+It 78 initialized
+It 78, created SC with k1=20.4 and k2=6.2
+It 78, simulation has finished
+It 79 initialized
+It 79, created SC with k1=19.9 and k2=6.0
+It 79, simulation has finished
+It 112 initialized
+It 112, created SC with k1=19.9 and k2=6.0
+It 112, simulation has finished
+It 113 initialized
+It 113, created SC with k1=20.2 and k2=6.1
+It 113, simulation has finished
+It 114 initialized
+not connected, but GC has order 1997 ans size 7905
+It 114, created SC with k1=20.0 and k2=6.1
+It 114, simulation has finished
+It 115 initialized
+not connected, but GC has order 1999 ans size 7988
+It 115, created SC with k1=20.0 and k2=6.1
+It 115, simulation has finished
+It 4 initialized
+It 4, created SC with k1=20.0 and k2=6.1
+It 4, simulation has finished
+It 5 initialized
+not connected, but GC has order 1999 ans size 8106
+It 5, created SC with k1=20.0 and k2=6.0
+It 5, simulation has finished
+It 6 initialized
+not connected, but GC has order 1997 ans size 7943
+It 6, created SC with k1=19.6 and k2=5.9
+It 6, simulation has finished
+It 7 initialized
+not connected, but GC has order 1999 ans size 7947
+It 7, created SC with k1=19.5 and k2=5.8
+It 7, simulation has finished
+It 40 initialized
+It 40, created SC with k1=20.0 and k2=6.0
+It 40, simulation has finished
+It 41 initialized
+not connected, but GC has order 1999 ans size 8085
+It 41, created SC with k1=20.0 and k2=6.0
+It 41, simulation has finished
+It 42 initialized
+It 42, created SC with k1=20.0 and k2=6.0
+It 42, simulation has finished
+It 43 initialized
+not connected, but GC has order 1997 ans size 8164
+It 43, created SC with k1=20.1 and k2=6.0
+It 43, simulation has finished
+It 84 initialized
+not connected, but GC has order 1999 ans size 8236
+It 84, created SC with k1=20.1 and k2=6.0
+It 84, simulation has finished
+It 85 initialized
+It 85, created SC with k1=19.8 and k2=5.9
+It 85, simulation has finished
+It 86 initialized
+not connected, but GC has order 1999 ans size 8084
+It 86, created SC with k1=20.1 and k2=6.1
+It 86, simulation has finished
+It 87 initialized
+not connected, but GC has order 1999 ans size 7883
+It 87, created SC with k1=19.7 and k2=6.0
+It 87, simulation has finished
+It 116 initialized
+It 116, created SC with k1=19.9 and k2=5.9
+It 116, simulation has finished
+It 117 initialized
+It 117, created SC with k1=20.1 and k2=6.0
+It 117, simulation has finished
+It 118 initialized
+It 118, created SC with k1=20.3 and k2=6.1
+It 118, simulation has finished
+It 119 initialized
+It 119, created SC with k1=20.1 and k2=6.1
+It 119, simulation has finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambdaD 2.5 seed 40
+It 24 initialized
+It 24, created SC with k1=20.4 and k2=6.1
+It 24, simulation has finished
+It 25 initialized
+not connected, but GC has order 1999 ans size 8049
+It 25, created SC with k1=19.7 and k2=5.9
+It 25, simulation has finished
+It 26 initialized
+It 26, created SC with k1=20.1 and k2=6.0
+It 26, simulation has finished
+It 27 initialized
+It 27, created SC with k1=20.0 and k2=6.0
+It 27, simulation has finished
+It 56 initialized
+not connected, but GC has order 1999 ans size 8006
+It 56, created SC with k1=19.9 and k2=6.0
+It 56, simulation has finished
+It 57 initialized
+It 57, created SC with k1=20.1 and k2=6.1
+It 57, simulation has finished
+It 58 initialized
+It 58, created SC with k1=19.9 and k2=5.9
+It 58, simulation has finished
+It 59 initialized
+not connected, but GC has order 1999 ans size 7872
+It 59, created SC with k1=19.7 and k2=6.0
+It 59, simulation has finished
+It 84 initialized
+not connected, but GC has order 1999 ans size 8128
+It 84, created SC with k1=19.9 and k2=5.9
+It 84, simulation has finished
+It 85 initialized
+not connected, but GC has order 1999 ans size 8045
+It 85, created SC with k1=20.2 and k2=6.1
+It 85, simulation has finished
+It 86 initialized
+not connected, but GC has order 1999 ans size 8005
+It 86, created SC with k1=19.9 and k2=6.0
+It 86, simulation has finished
+It 87 initialized
+It 87, created SC with k1=20.1 and k2=6.1
+It 87, simulation has finished
+It 28 initialized
+It 28, created SC with k1=20.1 and k2=6.1
+It 28, simulation has finished
+It 29 initialized
+It 29, created SC with k1=19.8 and k2=6.1
+It 29, simulation has finished
+It 30 initialized
+It 30, created SC with k1=20.2 and k2=6.0
+It 30, simulation has finished
+It 31 initialized
+not connected, but GC has order 1998 ans size 8011
+It 31, created SC with k1=19.8 and k2=5.9
+It 31, simulation has finished
+It 60 initialized
+not connected, but GC has order 1999 ans size 8013
+It 60, created SC with k1=20.2 and k2=6.1
+It 60, simulation has finished
+It 61 initialized
+It 61, created SC with k1=20.0 and k2=6.0
+It 61, simulation has finished
+It 62 initialized
+It 62, created SC with k1=19.9 and k2=6.0
+It 62, simulation has finished
+It 63 initialized
+It 63, created SC with k1=19.7 and k2=5.9
+It 63, simulation has finished
+It 92 initialized
+not connected, but GC has order 1997 ans size 8183
+It 92, created SC with k1=19.9 and k2=5.9
+It 92, simulation has finished
+It 93 initialized
+It 93, created SC with k1=20.0 and k2=6.0
+It 93, simulation has finished
+It 94 initialized
+It 94, created SC with k1=20.2 and k2=6.1
+It 94, simulation has finished
+It 95 initialized
+It 95, created SC with k1=20.2 and k2=6.1
+It 95, simulation has finished
+It 20 initialized
+not connected, but GC has order 1998 ans size 8143
+It 20, created SC with k1=19.9 and k2=5.9
+It 20, simulation has finished
+It 21 initialized
+It 21, created SC with k1=19.9 and k2=6.0
+It 21, simulation has finished
+It 22 initialized
+not connected, but GC has order 1999 ans size 7938
+It 22, created SC with k1=19.6 and k2=5.8
+It 22, simulation has finished
+It 23 initialized
+It 23, created SC with k1=19.7 and k2=5.9
+It 23, simulation has finished
+It 40 initialized
+It 40, created SC with k1=20.1 and k2=6.1
+It 40, simulation has finished
+It 41 initialized
+It 41, created SC with k1=20.1 and k2=6.1
+It 41, simulation has finished
+It 42 initialized
+It 42, created SC with k1=19.6 and k2=5.8
+It 42, simulation has finished
+It 43 initialized
+not connected, but GC has order 1997 ans size 8145
+It 43, created SC with k1=20.1 and k2=6.0
+It 43, simulation has finished
+It 64 initialized
+not connected, but GC has order 1999 ans size 8127
+It 64, created SC with k1=20.0 and k2=6.0
+It 64, simulation has finished
+It 65 initialized
+not connected, but GC has order 1999 ans size 8017
+It 65, created SC with k1=20.4 and k2=6.2
+It 65, simulation has finished
+It 66 initialized
+It 66, created SC with k1=19.9 and k2=6.0
+It 66, simulation has finished
+It 67 initialized
+not connected, but GC has order 1999 ans size 8012
+It 67, created SC with k1=19.8 and k2=6.0
+It 67, simulation has finished
+It 96 initialized
+It 96, created SC with k1=20.0 and k2=6.0
+It 96, simulation has finished
+It 97 initialized
+It 97, created SC with k1=19.8 and k2=6.0
+It 97, simulation has finished
+It 98 initialized
+not connected, but GC has order 1999 ans size 8126
+It 98, created SC with k1=20.1 and k2=6.0
+It 98, simulation has finished
+It 99 initialized
+It 99, created SC with k1=20.0 and k2=6.0
+It 99, simulation has finished
+It 0 initialized
+not connected, but GC has order 1998 ans size 8134
+It 0, created SC with k1=19.5 and k2=5.7
+It 0, simulation has finished
+It 1 initialized
+It 1, created SC with k1=19.9 and k2=6.0
+It 1, simulation has finished
+It 2 initialized
+not connected, but GC has order 1999 ans size 8042
+It 2, created SC with k1=20.0 and k2=6.0
+It 2, simulation has finished
+It 3 initialized
+not connected, but GC has order 1999 ans size 7953
+It 3, created SC with k1=19.7 and k2=5.9
+It 3, simulation has finished
+It 44 initialized
+not connected, but GC has order 1999 ans size 8193
+It 44, created SC with k1=20.0 and k2=5.9
+It 44, simulation has finished
+It 45 initialized
+It 45, created SC with k1=20.0 and k2=6.0
+It 45, simulation has finished
+It 46 initialized
+It 46, created SC with k1=19.9 and k2=6.0
+It 46, simulation has finished
+It 47 initialized
+It 47, created SC with k1=20.2 and k2=6.1
+It 47, simulation has finished
+It 76 initialized
+not connected, but GC has order 1999 ans size 7956
+It 76, created SC with k1=19.7 and k2=5.9
+It 76, simulation has finished
+It 77 initialized
+not connected, but GC has order 1999 ans size 8163
+It 77, created SC with k1=20.0 and k2=6.0
+It 77, simulation has finished
+It 78 initialized
+It 78, created SC with k1=20.1 and k2=6.1
+It 78, simulation has finished
+It 79 initialized
+not connected, but GC has order 1999 ans size 8093
+It 79, created SC with k1=19.8 and k2=5.9
+It 79, simulation has finished
+It 100 initialized
+It 100, created SC with k1=20.3 and k2=6.1
+It 100, simulation has finished
+It 101 initialized
+not connected, but GC has order 1999 ans size 8087
+It 101, created SC with k1=20.1 and k2=6.1
+It 101, simulation has finished
+It 102 initialized
+not connected, but GC has order 1999 ans size 7893
+It 102, created SC with k1=19.8 and k2=6.0
+It 102, simulation has finished
+It 103 initialized
+It 103, created SC with k1=19.8 and k2=5.9
+It 103, simulation has finished
+It 12 initialized
+not connected, but GC has order 1999 ans size 8131
+It 12, created SC with k1=20.1 and k2=6.0
+It 12, simulation has finished
+It 13 initialized
+It 13, created SC with k1=19.7 and k2=5.9
+It 13, simulation has finished
+It 14 initialized
+It 14, created SC with k1=20.1 and k2=6.1
+It 14, simulation has finished
+It 15 initialized
+not connected, but GC has order 1999 ans size 8128
+It 15, created SC with k1=20.2 and k2=6.1
+It 15, simulation has finished
+It 36 initialized
+not connected, but GC has order 1999 ans size 8018
+It 36, created SC with k1=19.7 and k2=5.9
+It 36, simulation has finished
+It 37 initialized
+It 37, created SC with k1=19.8 and k2=5.8
+It 37, simulation has finished
+It 38 initialized
+It 38, created SC with k1=19.6 and k2=5.9
+It 38, simulation has finished
+It 39 initialized
+not connected, but GC has order 1998 ans size 7971
+It 39, created SC with k1=19.9 and k2=6.0
+It 39, simulation has finished
+It 72 initialized
+It 72, created SC with k1=19.9 and k2=5.9
+It 72, simulation has finished
+It 73 initialized
+It 73, created SC with k1=19.9 and k2=6.0
+It 73, simulation has finished
+It 74 initialized
+not connected, but GC has order 1999 ans size 8112
+It 74, created SC with k1=20.5 and k2=6.2
+It 74, simulation has finished
+It 75 initialized
+It 75, created SC with k1=20.1 and k2=6.1
+It 75, simulation has finished
+It 108 initialized
+It 108, created SC with k1=19.8 and k2=5.9
+It 108, simulation has finished
+It 109 initialized
+It 109, created SC with k1=19.8 and k2=5.9
+It 109, simulation has finished
+It 110 initialized
+It 110, created SC with k1=20.2 and k2=6.1
+It 110, simulation has finished
+It 111 initialized
+not connected, but GC has order 1999 ans size 7900
+It 111, created SC with k1=20.0 and k2=6.1
+It 111, simulation has finished
+It 8 initialized
+not connected, but GC has order 1999 ans size 8148
+It 8, created SC with k1=20.1 and k2=6.0
+It 8, simulation has finished
+It 9 initialized
+not connected, but GC has order 1998 ans size 8185
+It 9, created SC with k1=20.0 and k2=5.9
+It 9, simulation has finished
+It 10 initialized
+It 10, created SC with k1=20.0 and k2=6.0
+It 10, simulation has finished
+It 11 initialized
+It 11, created SC with k1=20.0 and k2=6.1
+It 11, simulation has finished
+It 32 initialized
+It 32, created SC with k1=19.9 and k2=6.0
+It 32, simulation has finished
+It 33 initialized
+It 33, created SC with k1=19.8 and k2=5.9
+It 33, simulation has finished
+It 34 initialized
+not connected, but GC has order 1999 ans size 8278
+It 34, created SC with k1=20.1 and k2=6.0
+It 34, simulation has finished
+It 35 initialized
+It 35, created SC with k1=20.1 and k2=6.1
+It 35, simulation has finished
+It 68 initialized
+It 68, created SC with k1=20.2 and k2=6.1
+It 68, simulation has finished
+It 69 initialized
+It 69, created SC with k1=20.1 and k2=6.0
+It 69, simulation has finished
+It 70 initialized
+not connected, but GC has order 1998 ans size 8091
+It 70, created SC with k1=20.1 and k2=6.0
+It 70, simulation has finished
+It 71 initialized
+not connected, but GC has order 1999 ans size 8011
+It 71, created SC with k1=19.9 and k2=6.0
+It 71, simulation has finished
+It 104 initialized
+not connected, but GC has order 1999 ans size 8099
+It 104, created SC with k1=20.1 and k2=6.0
+It 104, simulation has finished
+It 105 initialized
+It 105, created SC with k1=20.3 and k2=6.1
+It 105, simulation has finished
+It 106 initialized
+not connected, but GC has order 1999 ans size 8088
+It 106, created SC with k1=19.9 and k2=5.9
+It 106, simulation has finished
+It 107 initialized
+not connected, but GC has order 1999 ans size 8083
+It 107, created SC with k1=20.1 and k2=6.1
+It 107, simulation has finished
+It 16 initialized
+not connected, but GC has order 1999 ans size 8074
+It 16, created SC with k1=19.5 and k2=5.8
+It 16, simulation has finished
+It 17 initialized
+not connected, but GC has order 1999 ans size 8225
+It 17, created SC with k1=20.2 and k2=6.0
+It 17, simulation has finished
+It 18 initialized
+not connected, but GC has order 1998 ans size 8145
+It 18, created SC with k1=19.9 and k2=5.9
+It 18, simulation has finished
+It 19 initialized
+not connected, but GC has order 1999 ans size 8112
+It 19, created SC with k1=19.8 and k2=5.9
+It 19, simulation has finished
+It 48 initialized
+It 48, created SC with k1=20.3 and k2=6.2
+It 48, simulation has finished
+It 49 initialized
+It 49, created SC with k1=20.5 and k2=6.2
+It 49, simulation has finished
+It 50 initialized
+It 50, created SC with k1=20.1 and k2=6.1
+It 50, simulation has finished
+It 51 initialized
+It 51, created SC with k1=19.9 and k2=6.0
+It 51, simulation has finished
+It 88 initialized
+not connected, but GC has order 1999 ans size 8048
+It 88, created SC with k1=19.9 and k2=6.0
+It 88, simulation has finished
+It 89 initialized
+not connected, but GC has order 1999 ans size 8002
+It 89, created SC with k1=20.2 and k2=6.2
+It 89, simulation has finished
+It 90 initialized
+not connected, but GC has order 1997 ans size 7897
+It 90, created SC with k1=20.1 and k2=6.1
+It 90, simulation has finished
+It 91 initialized
+not connected, but GC has order 1999 ans size 8016
+It 91, created SC with k1=20.4 and k2=6.3
+It 91, simulation has finished
+It 116 initialized
+It 116, created SC with k1=19.6 and k2=5.9
+It 116, simulation has finished
+It 117 initialized
+not connected, but GC has order 1999 ans size 7986
+It 117, created SC with k1=20.4 and k2=6.2
+It 117, simulation has finished
+It 118 initialized
+not connected, but GC has order 1999 ans size 8041
+It 118, created SC with k1=19.8 and k2=5.9
+It 118, simulation has finished
+It 119 initialized
+not connected, but GC has order 1998 ans size 8069
+It 119, created SC with k1=19.7 and k2=5.9
+It 119, simulation has finished
+It 4 initialized
+It 4, created SC with k1=20.2 and k2=6.1
+It 4, simulation has finished
+It 5 initialized
+not connected, but GC has order 1997 ans size 8147
+It 5, created SC with k1=20.1 and k2=6.0
+It 5, simulation has finished
+It 6 initialized
+It 6, created SC with k1=20.4 and k2=6.2
+It 6, simulation has finished
+It 7 initialized
+It 7, created SC with k1=20.0 and k2=6.0
+It 7, simulation has finished
+It 52 initialized
+not connected, but GC has order 1999 ans size 8082
+It 52, created SC with k1=20.1 and k2=6.1
+It 52, simulation has finished
+It 53 initialized
+not connected, but GC has order 1999 ans size 8091
+It 53, created SC with k1=19.8 and k2=5.9
+It 53, simulation has finished
+It 54 initialized
+not connected, but GC has order 1999 ans size 8057
+It 54, created SC with k1=19.9 and k2=6.0
+It 54, simulation has finished
+It 55 initialized
+not connected, but GC has order 1998 ans size 8020
+It 55, created SC with k1=19.9 and k2=6.0
+It 55, simulation has finished
+It 80 initialized
+It 80, created SC with k1=19.8 and k2=6.0
+It 80, simulation has finished
+It 81 initialized
+not connected, but GC has order 1999 ans size 8010
+It 81, created SC with k1=20.2 and k2=6.1
+It 81, simulation has finished
+It 82 initialized
+not connected, but GC has order 1999 ans size 8057
+It 82, created SC with k1=20.0 and k2=6.0
+It 82, simulation has finished
+It 83 initialized
+not connected, but GC has order 1999 ans size 8038
+It 83, created SC with k1=19.7 and k2=5.9
+It 83, simulation has finished
+It 112 initialized
+not connected, but GC has order 1997 ans size 8198
+It 112, created SC with k1=20.4 and k2=6.1
+It 112, simulation has finished
+It 113 initialized
+not connected, but GC has order 1999 ans size 8037
+It 113, created SC with k1=19.9 and k2=6.0
+It 113, simulation has finished
+It 114 initialized
+not connected, but GC has order 1997 ans size 7934
+It 114, created SC with k1=19.9 and k2=6.0
+It 114, simulation has finished
+It 115 initialized
+It 115, created SC with k1=19.6 and k2=5.8
+It 115, simulation has finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting">
+<h3><span class="section-number">17.2.1. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>     
+<span class="n">k1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">k2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">cut</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">lambda1s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>     
+<span class="n">lambdaD_target_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">I_percentage_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#initial conditions (% of infected)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">out_dir</span> <span class="o">=</span> <span class="s1">&#39;simplagion-results/&#39;</span>
+
+<span class="c1">############################# Preparing MF</span>
+<span class="n">MF_x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">MF_y_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">lambdaD_target</span><span class="p">,</span> <span class="n">I_percentage</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lambdaD_target_list</span><span class="p">,</span> <span class="n">I_percentage_list</span><span class="p">)):</span>
+    
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;result_RSC_&#39;</span><span class="o">+</span><span class="s1">&#39;N&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_k&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_kD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_mu&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_lD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lambdaD_target</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_seed&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">I_percentage</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.p&#39;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">))</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">avg_k</span><span class="p">,</span> <span class="n">avg_kD</span> <span class="o">=</span> <span class="n">parse_results</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="n">cut</span><span class="p">)</span>
+
+        <span class="n">beta2</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">lambdaD_target</span><span class="p">)</span><span class="o">/</span><span class="n">k2</span>
+        <span class="n">real_lambdaD</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">*</span><span class="p">(</span><span class="n">beta2</span><span class="o">*</span><span class="n">avg_kD</span><span class="p">)</span><span class="o">/</span><span class="n">mu</span>
+        
+        <span class="c1">#fixing for lD=0:</span>
+        <span class="k">if</span> <span class="n">real_lambdaD</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="n">real_lambdaD</span> <span class="o">=</span> <span class="mf">0.0000001</span>
+
+        <span class="n">MF_y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xx</span><span class="p">:</span> <span class="n">get_rho_MF</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">real_lambdaD</span><span class="p">),</span> <span class="n">MF_x</span><span class="p">))</span>
+        <span class="n">MF_y_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MF_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lordgrilo/Dropbox (ISI Foundation)/Teaching/Complexity/complexity-book-repo/4-social-contagion/utils_simplagion_on_RSC.py:286: RuntimeWarning: invalid value encountered in sqrt
+  rho1 = (lD-l + np.sqrt((l-lD)**2 - 4.*lD*(1-l)))/(2*lD)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.major.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.major.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.2</span>
+
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">]</span>
+<span class="n">zorders</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">mfcs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;cornflowerblue&#39;</span><span class="p">]</span>
+<span class="n">lables</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\lambda_\Delta=2.5$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\lambda_\Delta=0.8$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\lambda_\Delta=0$&#39;</span><span class="p">]</span>
+<span class="n">markersizes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">lambdaD_target</span><span class="p">,</span> <span class="n">I_percentage</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lambdaD_target_list</span><span class="p">,</span> <span class="n">I_percentage_list</span><span class="p">)):</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;result_RSC_&#39;</span><span class="o">+</span><span class="s1">&#39;N&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_k&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_kD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_mu&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_lD&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lambdaD_target</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_seed&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">I_percentage</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.p&#39;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">))</span>
+    <span class="n">avg_rhos</span><span class="p">,</span> <span class="n">avg_k</span><span class="p">,</span> <span class="n">avg_kD</span> <span class="o">=</span> <span class="n">parse_results</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="n">cut</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda1s</span><span class="p">,</span> <span class="n">avg_rhos</span><span class="p">,</span> <span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="n">zorders</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">mfc</span><span class="o">=</span><span class="n">mfcs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">markersize</span><span class="o">=</span><span class="n">markersizes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">lables</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">MF_x</span><span class="p">,</span> <span class="n">MF_y_dict</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;#ff7f0e&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Rescaled infectivity, $\lambda$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Density of infected nodes, $\rho^{*}$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">]);</span>
+
+<span class="n">lgd</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">handletextpad</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">labelspacing</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">borderpad</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>  
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">lgd</span><span class="p">)</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([],[],</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;#ff7f0e&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MF&#39;</span><span class="p">)</span>
+<span class="n">lgd</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.82</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">borderpad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">lgd</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.38</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb13_Simplagion_on_RSC_model_11_0.png" src="../_images/nb13_Simplagion_on_RSC_model_11_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./4-social-contagion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb12_Higher_order_naming_game.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">16. </span>Higher-order Naming Game</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By G. Petri, M. Tizzoni<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

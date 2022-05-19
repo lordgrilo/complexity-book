@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>10. Epidemics on networks &#8212; Complexity in social systems</title>
+    <title>14. Epidemics on networks &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,7 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="8. Epidemic modeling, deterministic and stochastic models" href="nb09_epidemic_processes.html" />
+    <link rel="next" title="15. Axelrod model" href="../4-social-contagion/nb11_axelrod_model.html" />
+    <link rel="prev" title="12. Epidemic modeling, deterministic and stochastic models" href="nb09_epidemic_processes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -156,13 +157,33 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
+   8. Random walks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb09_epidemic_processes.html">
-   8. Epidemic modeling, deterministic and stochastic models
+   12. Epidemic modeling, deterministic and stochastic models
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   10. Epidemics on networks
+   14. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb12_Higher_order_naming_game.html">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb13_Simplagion_on_RSC_model.html">
+   17. Simplagion Model
   </a>
  </li>
 </ul>
@@ -274,36 +295,36 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">
-   10.1. Epidemic threshold for homogeneous networks
+   14.1. Epidemic threshold for homogeneous networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#simulations-of-an-sir-process">
-     10.1.1. Simulations of an SIR process
+     14.1.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">
-   10.2. Epidemic threshold for Barabàsi-Albert model networks
+   14.2. Epidemic threshold for Barabàsi-Albert model networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     10.2.1. Simulations of an SIR process
+     14.2.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">
-   10.3. Epidemic threshold for configuration model networks
+   14.3. Epidemic threshold for configuration model networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     10.3.1. Simulations of an SIR process
+     14.3.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
@@ -330,36 +351,36 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">
-   10.1. Epidemic threshold for homogeneous networks
+   14.1. Epidemic threshold for homogeneous networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#simulations-of-an-sir-process">
-     10.1.1. Simulations of an SIR process
+     14.1.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">
-   10.2. Epidemic threshold for Barabàsi-Albert model networks
+   14.2. Epidemic threshold for Barabàsi-Albert model networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     10.2.1. Simulations of an SIR process
+     14.2.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">
-   10.3. Epidemic threshold for configuration model networks
+   14.3. Epidemic threshold for configuration model networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     10.3.1. Simulations of an SIR process
+     14.3.1. Simulations of an SIR process
     </a>
    </li>
   </ul>
@@ -374,7 +395,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="epidemics-on-networks">
-<h1><span class="section-number">10. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">14. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this headline">¶</a></h1>
 <p>We use the Python library <a class="reference external" href="https://github.com/springer-math/Mathematics-of-Epidemics-on-Networks">“Epidemics on Networks” developed by Kiss, Miller &amp; Simon</a>.</p>
 <p>The library must be installed using pip:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install EoN
@@ -412,7 +433,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="epidemic-threshold-for-homogeneous-networks">
-<h2><span class="section-number">10.1. </span>Epidemic threshold for homogeneous networks<a class="headerlink" href="#epidemic-threshold-for-homogeneous-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.1. </span>Epidemic threshold for homogeneous networks<a class="headerlink" href="#epidemic-threshold-for-homogeneous-networks" title="Permalink to this headline">¶</a></h2>
 <p>We simulate the spread of an SIR on an Erdos-Renyi graph with constant recovery rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -507,7 +528,7 @@ Average degree:  19.9168
 </div>
 </div>
 <div class="section" id="simulations-of-an-sir-process">
-<h3><span class="section-number">10.1.1. </span>Simulations of an SIR process<a class="headerlink" href="#simulations-of-an-sir-process" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.1.1. </span>Simulations of an SIR process<a class="headerlink" href="#simulations-of-an-sir-process" title="Permalink to this headline">¶</a></h3>
 <p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span> using the <a class="reference external" href="https://epidemicsonnetworks.readthedocs.io/en/latest/functions/EoN.fast_SIR.html?highlight=fast_SIR">fast_SIR function of EoN</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1073,7 +1094,7 @@ Average degree:  19.9168
 </div>
 </div>
 <div class="section" id="epidemic-threshold-for-barabasi-albert-model-networks">
-<h2><span class="section-number">10.2. </span>Epidemic threshold for Barabàsi-Albert model networks<a class="headerlink" href="#epidemic-threshold-for-barabasi-albert-model-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.2. </span>Epidemic threshold for Barabàsi-Albert model networks<a class="headerlink" href="#epidemic-threshold-for-barabasi-albert-model-networks" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
@@ -1167,7 +1188,7 @@ Average degree:  19.9800
 </div>
 </div>
 <div class="section" id="id1">
-<h3><span class="section-number">10.2.1. </span>Simulations of an SIR process<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.2.1. </span>Simulations of an SIR process<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1387,7 +1408,7 @@ Average degree:  19.9800
 </div>
 </div>
 <div class="section" id="epidemic-threshold-for-configuration-model-networks">
-<h2><span class="section-number">10.3. </span>Epidemic threshold for configuration model networks<a class="headerlink" href="#epidemic-threshold-for-configuration-model-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.3. </span>Epidemic threshold for configuration model networks<a class="headerlink" href="#epidemic-threshold-for-configuration-model-networks" title="Permalink to this headline">¶</a></h2>
 <p>We can use the configuration model to generate a network with a given power-law degree distribution. By setting <span class="math notranslate nohighlight">\(\gamma=2.1\)</span>, we expect to see more fluctuations in the degree distribution.</p>
 <p>We create a function that samples from a power-law distribution between <span class="math notranslate nohighlight">\(k_{min}\)</span> and <span class="math notranslate nohighlight">\(k_{max}\)</span> with exponent <span class="math notranslate nohighlight">\(\gamma\)</span></p>
 <div class="cell docutils container">
@@ -1552,7 +1573,7 @@ Average degree:  10.8044
 </div>
 </div>
 <div class="section" id="id2">
-<h3><span class="section-number">10.3.1. </span>Simulations of an SIR process<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.3.1. </span>Simulations of an SIR process<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>We simulate 100 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1638,8 +1659,15 @@ Average degree:  10.8044
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8. </span>Epidemic modeling, deterministic and stochastic models</p>
+            <p class="prev-next-title"><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../4-social-contagion/nb11_axelrod_model.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Axelrod model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

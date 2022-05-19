@@ -1,0 +1,1741 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16. Higher-order Naming Game &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="17. Simplagion Model" href="nb13_Simplagion_on_RSC_model.html" />
+    <link rel="prev" title="15. Axelrod model" href="nb11_axelrod_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Network analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">
+   4. How to fit a power law distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb05_network_analysis.html">
+   5. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb06_network_assortativity.html">
+   6. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb07_network_robustness.html">
+   7. Network robustness
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamical processes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
+   8. Random walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb09_epidemic_processes.html">
+   12. Epidemic modeling, deterministic and stochastic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb10_epidemics_on_networks.html">
+   14. Epidemics on networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb13_Simplagion_on_RSC_model.html">
+   17. Simplagion Model
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/4-social-contagion/nb12_Higher_order_naming_game.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F4-social-contagion/nb12_Higher_order_naming_game.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/4-social-contagion/nb12_Higher_order_naming_game.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-construction">
+   16.1. Model construction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-it-on-a-small-toy-hypergraph">
+   16.2. Testing it on a small toy hypergraph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-on-an-homogeneous-mixing-2-hypergraph">
+   16.3. Running on an homogeneous mixing 2-hypergraph
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Higher-order Naming Game</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-construction">
+   16.1. Model construction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-it-on-a-small-toy-hypergraph">
+   16.2. Testing it on a small toy hypergraph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-on-an-homogeneous-mixing-2-hypergraph">
+   16.3. Running on an homogeneous mixing 2-hypergraph
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="higher-order-naming-game">
+<h1><span class="section-number">16. </span>Higher-order Naming Game<a class="headerlink" href="#higher-order-naming-game" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="model-construction">
+<h2><span class="section-number">16.1. </span>Model construction<a class="headerlink" href="#model-construction" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Model constructor</span>
+<span class="k">class</span> <span class="nc">HigherOrderNamingGame</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simplices</span><span class="p">,</span> <span class="n">rule</span><span class="p">):</span>
+        
+        <span class="c1">#Structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simplices</span> <span class="o">=</span> <span class="n">simplices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">({</span><span class="n">node</span> <span class="k">for</span> <span class="n">simplex</span> <span class="ow">in</span> <span class="n">simplices</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">simplex</span><span class="p">})</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+        
+        <span class="c1">#Time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1">#Rule</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rule</span> <span class="o">=</span> <span class="n">rule</span>
+
+    <span class="k">def</span> <span class="nf">SetInitialConditions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n_A</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        
+        <span class="c1">#Game parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+    
+        <span class="c1">#Opinions of the nodes (vocabularies)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1">#Generating committed agents</span>
+        <span class="n">N_p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="c1">#number of committed agents</span>
+        <span class="c1">#Randomly picking N_p committed agents</span>
+        <span class="n">committed</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="n">N_p</span><span class="p">)</span>
+        <span class="c1">#Setting up a committed dictionary</span>
+        <span class="c1">#self.is_committed = {n:False for n in self.nodes}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">committed</span><span class="p">:</span>
+                <span class="c1">#self.is_committed[n]=True</span>
+                <span class="c1">#Assigning opinion &quot;A&quot; to committed agents</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">])</span>
+        
+        <span class="c1">#Calculating the number of agents holding n_A (not committed) from the density in input</span>
+        <span class="n">N_A</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">*</span><span class="n">n_A</span><span class="p">)</span>
+        <span class="n">N_B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="n">N_A</span><span class="o">-</span><span class="n">N_p</span>
+        <span class="c1">#Creating a list of opinions to assign</span>
+        <span class="n">opinions_to_assign</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">N_A</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">N_B</span>
+        <span class="c1">#Shuffling them</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">opinions_to_assign</span><span class="p">)</span>
+        <span class="c1">#Agents left to be matched with opinions</span>
+        <span class="n">noncommitted</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">committed</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">noncommitted</span><span class="p">,</span> <span class="n">opinions_to_assign</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Setup Done.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="s1">&#39;nodes,&#39;</span><span class="p">,</span> <span class="s2">&quot;N_A:&quot;</span><span class="p">,</span> <span class="n">N_A</span><span class="p">,</span> <span class="s2">&quot;N_B:&quot;</span><span class="p">,</span> <span class="n">N_B</span><span class="p">,</span> <span class="s2">&quot;N_p:&quot;</span><span class="p">,</span> <span class="n">N_p</span><span class="p">)</span> 
+    
+    <span class="k">def</span> <span class="nf">AgreeOnSimplex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simplex</span><span class="p">,</span> <span class="n">said_word</span><span class="p">):</span>
+        
+        <span class="c1">#Updating the simplex on the agreed word </span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">simplex</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span> <span class="c1">#There are also committed minorities which have frozensets!</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">said_word</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c1">#It was committed</span>
+                <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">ListenersLearnWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listeners</span><span class="p">,</span> <span class="n">said_word</span><span class="p">):</span>
+        
+        <span class="c1">#Looping through the listeners</span>
+        <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span> <span class="c1">#Trying to learn...</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">listener</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">said_word</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c1">#It was committed</span>
+                <span class="k">pass</span>
+                
+    <span class="k">def</span> <span class="nf">play_on_simplex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simplex</span><span class="p">):</span>
+        
+        <span class="c1">#Selecting speaker and listeners at random</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span>
+        <span class="n">speaker</span> <span class="o">=</span> <span class="n">simplex</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">listeners</span> <span class="o">=</span> <span class="n">simplex</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        
+        <span class="c1">#Selecting a random word to be said</span>
+        <span class="n">said_word</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">speaker</span><span class="p">]))</span>
+        <span class="n">words_of_listeners</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="p">[</span><span class="n">listener</span><span class="p">]</span> <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">]</span>
+        
+        <span class="c1">#Using the rule to get the words of listeners to be used for the agreement</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">==</span><span class="s1">&#39;union&#39;</span><span class="p">:</span> 
+            <span class="n">words_of_listeners_by_rule</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words_of_listeners</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">==</span><span class="s1">&#39;intersection&#39;</span><span class="p">:</span>    <span class="n">s</span>
+            <span class="n">words_of_listeners_by_rule</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words_of_listeners</span><span class="p">])</span>
+        
+        <span class="c1">#Trying to agree based on the rule and the communication efficiency beta</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">said_word</span> <span class="ow">in</span> <span class="n">words_of_listeners_by_rule</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">AgreeOnSimplex</span><span class="p">(</span><span class="n">simplex</span><span class="p">,</span> <span class="n">said_word</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#No agreement, but the said word is learned by the listeners</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ListenersLearnWord</span><span class="p">(</span><span class="n">listeners</span><span class="p">,</span> <span class="n">said_word</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">get_densities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">single_opinion_counter</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">opinions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">opinions</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">opinions</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">opinions</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">n_Ap</span> <span class="o">=</span> <span class="n">single_opinion_counter</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">n_B</span> <span class="o">=</span> <span class="n">single_opinion_counter</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">n_AB</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">n_Ap</span><span class="o">-</span><span class="n">n_B</span>
+        <span class="k">return</span> <span class="n">n_Ap</span><span class="p">,</span> <span class="n">n_B</span><span class="p">,</span> <span class="n">n_AB</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">t_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">check_every</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">print_every</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_max</span> <span class="o">=</span> <span class="n">t_max</span>
+        
+        <span class="c1">#Opening file to save densities results</span>
+        <span class="n">densities_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;HONG_densities_N</span><span class="si">%i</span><span class="s1">_beta</span><span class="si">%.4f</span><span class="s1">_p</span><span class="si">%.2f</span><span class="s1">.csv&#39;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">densities_path</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;time,n_A+p,n_B,n_AB</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_max</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">%</span><span class="k">print_every</span>==0: print(&#39;t=%i&#39;%self.t)
+                
+            <span class="c1">######### THIS IS FOR PLAYING ALWAYS ON ALL SIMPLICES AT EACH TIME #########</span>
+            <span class="c1">#Reshuffling the sequence of simplices</span>
+            <span class="c1">#random.shuffle(self.simplices)</span>
+            
+            <span class="c1">#Looping over each simplex and playing</span>
+            <span class="c1">#for simplex in self.simplices:</span>
+                <span class="c1">#self.play_on_simplex(simplex)</span>
+            <span class="c1">############################################################################</span>
+            
+            <span class="c1">#Playing on a random simplex </span>
+            <span class="n">simplex</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simplices</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play_on_simplex</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span>
+                
+            <span class="c1">#Storing the values every check_every time steps:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">%</span><span class="k">check_every</span>==0:
+                <span class="n">n_Ap</span><span class="p">,</span> <span class="n">n_B</span><span class="p">,</span> <span class="n">n_AB</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_densities</span><span class="p">()</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%i</span><span class="s2">,</span><span class="si">%.3f</span><span class="s2">,</span><span class="si">%.3f</span><span class="s2">,</span><span class="si">%.3f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">n_Ap</span><span class="p">,</span> <span class="n">n_B</span><span class="p">,</span> <span class="n">n_AB</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                
+                <span class="c1">#Also checking if we reached the absorbing state:</span>
+                <span class="k">if</span> <span class="n">n_Ap</span><span class="o">==</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">n_B</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>   
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DONE! Reached the absorbing state.&#39;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+                
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DONE! Run out of time...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-it-on-a-small-toy-hypergraph">
+<h2><span class="section-number">16.2. </span>Testing it on a small toy hypergraph<a class="headerlink" href="#testing-it-on-a-small-toy-hypergraph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simplices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span>
+<span class="n">rule</span> <span class="o">=</span> <span class="s1">&#39;union&#39;</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">n_A</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">output_path</span> <span class="o">=</span> <span class="s1">&#39;results/&#39;</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">check_every</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">HONG</span> <span class="o">=</span> <span class="n">HigherOrderNamingGame</span><span class="p">(</span><span class="n">simplices</span><span class="p">,</span> <span class="n">rule</span><span class="p">)</span>
+<span class="n">HONG</span><span class="o">.</span><span class="n">SetInitialConditions</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">n_A</span><span class="o">=</span><span class="n">n_A</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">HONG</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">t_max</span><span class="p">,</span> <span class="n">check_every</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setup Done. 6 nodes, N_A: 0 N_B: 4 N_p: 2
+t=1
+t=2
+t=3
+t=4
+t=5
+t=6
+t=7
+t=8
+t=9
+t=10
+t=11
+t=12
+t=13
+t=14
+t=15
+t=16
+t=17
+t=18
+t=19
+t=20
+t=21
+t=22
+t=23
+t=24
+t=25
+t=26
+t=27
+t=28
+t=29
+t=30
+t=31
+t=32
+t=33
+t=34
+t=35
+t=36
+t=37
+t=38
+t=39
+t=40
+t=41
+DONE! Reached the absorbing state.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;results/HONG_densities_N6_beta0.3000_p0.40.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb12_Higher_order_naming_game_6_1.png" src="../_images/nb12_Higher_order_naming_game_6_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="running-on-an-homogeneous-mixing-2-hypergraph">
+<h2><span class="section-number">16.3. </span>Running on an homogeneous mixing 2-hypergraph<a class="headerlink" href="#running-on-an-homogeneous-mixing-2-hypergraph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">def</span> <span class="nf">HomMix2HG</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">simplices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1">#These are tuples, so I&#39;ll convert them to lists</span>
+    <span class="n">simplices</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="k">for</span> <span class="n">simplex</span> <span class="ow">in</span> <span class="n">simplices</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">simplices</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">simplices</span> <span class="o">=</span> <span class="n">HomMix2HG</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span> <span class="o">=</span> <span class="s1">&#39;union&#39;</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="n">n_A</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">output_path</span> <span class="o">=</span> <span class="s1">&#39;results/</span><span class="si">%s</span><span class="s1">_&#39;</span><span class="o">%</span><span class="k">rule</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mf">1e5</span>
+<span class="n">check_every</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">print_every</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="n">HONG</span> <span class="o">=</span> <span class="n">HigherOrderNamingGame</span><span class="p">(</span><span class="n">simplices</span><span class="p">,</span> <span class="n">rule</span><span class="p">)</span>
+<span class="n">HONG</span><span class="o">.</span><span class="n">SetInitialConditions</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">n_A</span><span class="o">=</span><span class="n">n_A</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">HONG</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">t_max</span><span class="p">,</span> <span class="n">check_every</span><span class="p">,</span> <span class="n">print_every</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setup Done. 500 nodes, N_A: 0 N_B: 460 N_p: 40
+t=100
+t=200
+t=300
+t=400
+t=500
+t=600
+t=700
+t=800
+t=900
+t=1000
+t=1100
+t=1200
+t=1300
+t=1400
+t=1500
+t=1600
+t=1700
+t=1800
+t=1900
+t=2000
+t=2100
+t=2200
+t=2300
+t=2400
+t=2500
+t=2600
+t=2700
+t=2800
+t=2900
+t=3000
+t=3100
+t=3200
+t=3300
+t=3400
+t=3500
+t=3600
+t=3700
+t=3800
+t=3900
+t=4000
+t=4100
+t=4200
+t=4300
+t=4400
+t=4500
+t=4600
+t=4700
+t=4800
+t=4900
+t=5000
+t=5100
+t=5200
+t=5300
+t=5400
+t=5500
+t=5600
+t=5700
+t=5800
+t=5900
+t=6000
+t=6100
+t=6200
+t=6300
+t=6400
+t=6500
+t=6600
+t=6700
+t=6800
+t=6900
+t=7000
+t=7100
+t=7200
+t=7300
+t=7400
+t=7500
+t=7600
+t=7700
+t=7800
+t=7900
+t=8000
+t=8100
+t=8200
+t=8300
+t=8400
+t=8500
+t=8600
+t=8700
+t=8800
+t=8900
+t=9000
+t=9100
+t=9200
+t=9300
+t=9400
+t=9500
+t=9600
+t=9700
+t=9800
+t=9900
+t=10000
+t=10100
+t=10200
+t=10300
+t=10400
+t=10500
+t=10600
+t=10700
+t=10800
+t=10900
+t=11000
+t=11100
+t=11200
+t=11300
+t=11400
+t=11500
+t=11600
+t=11700
+t=11800
+t=11900
+t=12000
+t=12100
+t=12200
+t=12300
+t=12400
+t=12500
+t=12600
+t=12700
+t=12800
+t=12900
+t=13000
+t=13100
+t=13200
+t=13300
+t=13400
+t=13500
+t=13600
+t=13700
+t=13800
+t=13900
+t=14000
+t=14100
+t=14200
+t=14300
+t=14400
+t=14500
+t=14600
+t=14700
+t=14800
+t=14900
+t=15000
+t=15100
+t=15200
+t=15300
+t=15400
+t=15500
+t=15600
+t=15700
+t=15800
+t=15900
+t=16000
+t=16100
+t=16200
+t=16300
+t=16400
+t=16500
+t=16600
+t=16700
+t=16800
+t=16900
+t=17000
+t=17100
+t=17200
+t=17300
+t=17400
+t=17500
+t=17600
+t=17700
+t=17800
+t=17900
+t=18000
+t=18100
+t=18200
+t=18300
+t=18400
+t=18500
+t=18600
+t=18700
+t=18800
+t=18900
+t=19000
+t=19100
+t=19200
+t=19300
+t=19400
+t=19500
+t=19600
+t=19700
+t=19800
+t=19900
+t=20000
+t=20100
+t=20200
+t=20300
+t=20400
+t=20500
+t=20600
+t=20700
+t=20800
+t=20900
+t=21000
+t=21100
+t=21200
+t=21300
+t=21400
+t=21500
+t=21600
+t=21700
+t=21800
+t=21900
+t=22000
+t=22100
+t=22200
+t=22300
+t=22400
+t=22500
+t=22600
+t=22700
+t=22800
+t=22900
+t=23000
+t=23100
+t=23200
+t=23300
+t=23400
+t=23500
+t=23600
+t=23700
+t=23800
+t=23900
+t=24000
+t=24100
+t=24200
+t=24300
+t=24400
+t=24500
+t=24600
+t=24700
+t=24800
+t=24900
+t=25000
+t=25100
+t=25200
+t=25300
+t=25400
+t=25500
+t=25600
+t=25700
+t=25800
+t=25900
+t=26000
+t=26100
+t=26200
+t=26300
+t=26400
+t=26500
+t=26600
+t=26700
+t=26800
+t=26900
+t=27000
+t=27100
+t=27200
+t=27300
+t=27400
+t=27500
+t=27600
+t=27700
+t=27800
+t=27900
+t=28000
+t=28100
+t=28200
+t=28300
+t=28400
+t=28500
+t=28600
+t=28700
+t=28800
+t=28900
+t=29000
+t=29100
+t=29200
+t=29300
+t=29400
+t=29500
+t=29600
+t=29700
+t=29800
+t=29900
+t=30000
+t=30100
+t=30200
+t=30300
+t=30400
+t=30500
+t=30600
+t=30700
+t=30800
+t=30900
+t=31000
+t=31100
+t=31200
+t=31300
+t=31400
+t=31500
+t=31600
+t=31700
+t=31800
+t=31900
+t=32000
+t=32100
+t=32200
+t=32300
+t=32400
+t=32500
+t=32600
+t=32700
+t=32800
+t=32900
+t=33000
+t=33100
+t=33200
+t=33300
+t=33400
+t=33500
+t=33600
+t=33700
+t=33800
+t=33900
+t=34000
+t=34100
+t=34200
+t=34300
+t=34400
+t=34500
+t=34600
+t=34700
+t=34800
+t=34900
+t=35000
+t=35100
+t=35200
+t=35300
+t=35400
+t=35500
+t=35600
+t=35700
+t=35800
+t=35900
+t=36000
+t=36100
+t=36200
+t=36300
+t=36400
+t=36500
+t=36600
+t=36700
+t=36800
+t=36900
+t=37000
+t=37100
+t=37200
+t=37300
+t=37400
+t=37500
+t=37600
+t=37700
+t=37800
+t=37900
+t=38000
+t=38100
+t=38200
+t=38300
+t=38400
+t=38500
+t=38600
+t=38700
+t=38800
+t=38900
+t=39000
+t=39100
+t=39200
+t=39300
+t=39400
+t=39500
+t=39600
+t=39700
+t=39800
+t=39900
+t=40000
+t=40100
+t=40200
+t=40300
+t=40400
+t=40500
+t=40600
+t=40700
+t=40800
+t=40900
+t=41000
+t=41100
+t=41200
+t=41300
+t=41400
+t=41500
+t=41600
+t=41700
+t=41800
+t=41900
+t=42000
+t=42100
+t=42200
+t=42300
+t=42400
+t=42500
+t=42600
+t=42700
+t=42800
+t=42900
+t=43000
+t=43100
+t=43200
+t=43300
+t=43400
+t=43500
+t=43600
+t=43700
+t=43800
+t=43900
+t=44000
+t=44100
+t=44200
+t=44300
+t=44400
+t=44500
+t=44600
+t=44700
+t=44800
+t=44900
+t=45000
+t=45100
+t=45200
+t=45300
+t=45400
+t=45500
+t=45600
+t=45700
+t=45800
+t=45900
+t=46000
+t=46100
+t=46200
+t=46300
+t=46400
+t=46500
+t=46600
+t=46700
+t=46800
+t=46900
+t=47000
+t=47100
+t=47200
+t=47300
+t=47400
+t=47500
+t=47600
+t=47700
+t=47800
+t=47900
+t=48000
+t=48100
+t=48200
+t=48300
+t=48400
+t=48500
+t=48600
+t=48700
+t=48800
+t=48900
+t=49000
+t=49100
+t=49200
+t=49300
+t=49400
+t=49500
+t=49600
+t=49700
+t=49800
+t=49900
+t=50000
+t=50100
+t=50200
+t=50300
+t=50400
+t=50500
+t=50600
+t=50700
+t=50800
+t=50900
+t=51000
+t=51100
+t=51200
+t=51300
+t=51400
+t=51500
+t=51600
+t=51700
+t=51800
+t=51900
+t=52000
+t=52100
+t=52200
+t=52300
+t=52400
+t=52500
+t=52600
+t=52700
+t=52800
+t=52900
+t=53000
+t=53100
+t=53200
+t=53300
+t=53400
+t=53500
+t=53600
+t=53700
+t=53800
+t=53900
+t=54000
+t=54100
+t=54200
+t=54300
+t=54400
+t=54500
+t=54600
+t=54700
+t=54800
+t=54900
+t=55000
+t=55100
+t=55200
+t=55300
+t=55400
+t=55500
+t=55600
+t=55700
+t=55800
+t=55900
+t=56000
+t=56100
+t=56200
+t=56300
+t=56400
+t=56500
+t=56600
+t=56700
+t=56800
+t=56900
+t=57000
+t=57100
+t=57200
+t=57300
+t=57400
+t=57500
+t=57600
+t=57700
+t=57800
+t=57900
+t=58000
+t=58100
+t=58200
+t=58300
+t=58400
+t=58500
+t=58600
+t=58700
+t=58800
+t=58900
+t=59000
+t=59100
+t=59200
+t=59300
+t=59400
+t=59500
+t=59600
+t=59700
+t=59800
+t=59900
+t=60000
+t=60100
+t=60200
+t=60300
+t=60400
+t=60500
+t=60600
+t=60700
+t=60800
+t=60900
+t=61000
+t=61100
+t=61200
+t=61300
+t=61400
+t=61500
+t=61600
+t=61700
+t=61800
+t=61900
+t=62000
+t=62100
+t=62200
+t=62300
+t=62400
+t=62500
+t=62600
+t=62700
+t=62800
+t=62900
+t=63000
+t=63100
+t=63200
+t=63300
+t=63400
+t=63500
+t=63600
+t=63700
+t=63800
+t=63900
+t=64000
+t=64100
+t=64200
+t=64300
+t=64400
+t=64500
+t=64600
+t=64700
+t=64800
+t=64900
+t=65000
+t=65100
+t=65200
+t=65300
+t=65400
+t=65500
+t=65600
+t=65700
+t=65800
+t=65900
+t=66000
+t=66100
+t=66200
+t=66300
+t=66400
+t=66500
+t=66600
+t=66700
+t=66800
+t=66900
+t=67000
+t=67100
+t=67200
+t=67300
+t=67400
+t=67500
+t=67600
+t=67700
+t=67800
+t=67900
+t=68000
+t=68100
+t=68200
+t=68300
+t=68400
+t=68500
+t=68600
+t=68700
+t=68800
+t=68900
+t=69000
+t=69100
+t=69200
+t=69300
+t=69400
+t=69500
+t=69600
+t=69700
+t=69800
+t=69900
+t=70000
+t=70100
+t=70200
+t=70300
+t=70400
+t=70500
+t=70600
+t=70700
+t=70800
+t=70900
+t=71000
+t=71100
+t=71200
+t=71300
+t=71400
+t=71500
+t=71600
+t=71700
+t=71800
+t=71900
+t=72000
+t=72100
+t=72200
+t=72300
+t=72400
+t=72500
+t=72600
+t=72700
+t=72800
+t=72900
+t=73000
+t=73100
+t=73200
+t=73300
+t=73400
+t=73500
+t=73600
+t=73700
+t=73800
+t=73900
+t=74000
+t=74100
+t=74200
+t=74300
+t=74400
+t=74500
+t=74600
+t=74700
+t=74800
+t=74900
+t=75000
+t=75100
+t=75200
+t=75300
+t=75400
+t=75500
+t=75600
+t=75700
+t=75800
+t=75900
+t=76000
+t=76100
+t=76200
+t=76300
+t=76400
+t=76500
+t=76600
+t=76700
+t=76800
+t=76900
+t=77000
+t=77100
+t=77200
+t=77300
+t=77400
+t=77500
+t=77600
+t=77700
+t=77800
+t=77900
+t=78000
+t=78100
+t=78200
+t=78300
+t=78400
+t=78500
+t=78600
+t=78700
+t=78800
+t=78900
+t=79000
+t=79100
+t=79200
+t=79300
+t=79400
+t=79500
+t=79600
+t=79700
+t=79800
+t=79900
+t=80000
+t=80100
+t=80200
+t=80300
+t=80400
+t=80500
+t=80600
+t=80700
+t=80800
+t=80900
+t=81000
+t=81100
+t=81200
+t=81300
+t=81400
+t=81500
+t=81600
+t=81700
+t=81800
+t=81900
+t=82000
+t=82100
+t=82200
+t=82300
+t=82400
+t=82500
+t=82600
+t=82700
+t=82800
+t=82900
+t=83000
+t=83100
+t=83200
+t=83300
+t=83400
+t=83500
+t=83600
+t=83700
+t=83800
+t=83900
+t=84000
+t=84100
+t=84200
+t=84300
+t=84400
+t=84500
+t=84600
+t=84700
+t=84800
+t=84900
+t=85000
+t=85100
+t=85200
+t=85300
+t=85400
+t=85500
+t=85600
+t=85700
+t=85800
+t=85900
+t=86000
+t=86100
+t=86200
+t=86300
+t=86400
+t=86500
+t=86600
+t=86700
+t=86800
+t=86900
+t=87000
+t=87100
+t=87200
+t=87300
+t=87400
+t=87500
+t=87600
+t=87700
+t=87800
+t=87900
+t=88000
+t=88100
+t=88200
+t=88300
+t=88400
+t=88500
+t=88600
+t=88700
+t=88800
+t=88900
+t=89000
+t=89100
+t=89200
+t=89300
+t=89400
+t=89500
+t=89600
+t=89700
+t=89800
+t=89900
+t=90000
+t=90100
+t=90200
+t=90300
+t=90400
+t=90500
+t=90600
+t=90700
+t=90800
+t=90900
+t=91000
+t=91100
+t=91200
+t=91300
+t=91400
+t=91500
+t=91600
+t=91700
+t=91800
+t=91900
+t=92000
+t=92100
+t=92200
+t=92300
+t=92400
+t=92500
+t=92600
+t=92700
+t=92800
+t=92900
+t=93000
+t=93100
+t=93200
+t=93300
+t=93400
+t=93500
+t=93600
+t=93700
+t=93800
+t=93900
+t=94000
+t=94100
+t=94200
+t=94300
+t=94400
+t=94500
+t=94600
+t=94700
+t=94800
+t=94900
+t=95000
+t=95100
+t=95200
+t=95300
+t=95400
+t=95500
+t=95600
+t=95700
+t=95800
+t=95900
+t=96000
+t=96100
+t=96200
+t=96300
+t=96400
+t=96500
+t=96600
+t=96700
+t=96800
+t=96900
+t=97000
+t=97100
+t=97200
+t=97300
+t=97400
+t=97500
+t=97600
+t=97700
+t=97800
+t=97900
+t=98000
+t=98100
+t=98200
+t=98300
+t=98400
+t=98500
+t=98600
+t=98700
+t=98800
+t=98900
+t=99000
+t=99100
+t=99200
+t=99300
+t=99400
+t=99500
+t=99600
+t=99700
+t=99800
+t=99900
+t=100000
+DONE! Run out of time...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">rule</span> <span class="o">=</span> <span class="s1">&#39;union&#39;</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.08</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;results/</span><span class="si">%s</span><span class="s1">_HONG_densities_N</span><span class="si">%i</span><span class="s1">_beta</span><span class="si">%.4f</span><span class="s1">_p</span><span class="si">%.2f</span><span class="s1">.csv&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span><span class="n">N</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb12_Higher_order_naming_game_11_1.png" src="../_images/nb12_Higher_order_naming_game_11_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## full code is available here: https://github.com/iaciac/higher-order-NG</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "stenv"
+        },
+        kernelOptions: {
+            kernelName: "stenv",
+            path: "./4-social-contagion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'stenv'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb11_axelrod_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">15. </span>Axelrod model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="nb13_Simplagion_on_RSC_model.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Simplagion Model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By G. Petri, M. Tizzoni<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
