@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>19. Temporal networks libraries &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="18. Epidemics on temporal networks" href="nb14_epidemics_temporal_networks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Network analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">
+   4. How to fit a power law distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb05_network_analysis.html">
+   5. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb06_network_assortativity.html">
+   6. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb07_network_robustness.html">
+   7. Network robustness
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamical processes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
+   8. Random walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb09_epidemic_processes.html">
+   12. Epidemic modeling, deterministic and stochastic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-epidemic-spreading/nb10_epidemics_on_networks.html">
+   14. Epidemics on networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb11_axelrod_model.html">
+   15. Axelrod model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb12_Higher_order_naming_game.html">
+   16. Higher-order Naming Game
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-social-contagion/nb13_Simplagion_on_RSC_model.html">
+   17. Simplagion Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb14_epidemics_temporal_networks.html">
+   18. Epidemics on temporal networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   19. Temporal networks libraries
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/5-temporal-networks/nb15_temporal_networks_part2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F5-temporal-networks/nb15_temporal_networks_part2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/5-temporal-networks/nb15_temporal_networks_part2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tacoma">
+   19.1. Tacoma
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teneto-example">
+   19.2. Teneto example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generation-of-random-network">
+   19.3. Generation of random network
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Temporal networks libraries</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tacoma">
+   19.1. Tacoma
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teneto-example">
+   19.2. Teneto example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generation-of-random-network">
+   19.3. Generation of random network
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="temporal-networks-libraries">
+<h1><span class="section-number">19. </span>Temporal networks libraries<a class="headerlink" href="#temporal-networks-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tacoma">
+<h2><span class="section-number">19.1. </span>Tacoma<a class="headerlink" href="#tacoma" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tacoma</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">from</span> <span class="nn">tacoma.interactive</span> <span class="kn">import</span> <span class="n">visualize</span>
+<span class="n">temporal_network</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">download_and_convert_sociopatterns_hypertext_2009</span><span class="p">()</span>
+<span class="n">visualize</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">,</span> <span class="n">frame_dt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tacoma</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">from</span> <span class="nn">tacoma.interactive</span> <span class="kn">import</span> <span class="n">visualize</span>
+
+<span class="c1"># define temporal network as a list of edge changes</span>
+<span class="n">temporal_network</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">edge_changes</span><span class="p">()</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">edges_initial</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">]</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">2.4</span> <span class="p">]</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">tmax</span> <span class="o">=</span> <span class="mf">3.1</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">edges_in</span> <span class="o">=</span> <span class="p">[</span> 
+                              <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="p">],</span> 
+                              <span class="p">[</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="p">],</span>
+                            <span class="p">]</span>
+<span class="n">temporal_network</span><span class="o">.</span><span class="n">edges_out</span> <span class="o">=</span> <span class="p">[</span> 
+                                <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">],</span>
+                                <span class="p">[</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="p">],</span>
+                             <span class="p">]</span>
+
+<span class="n">visualize</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">,</span> <span class="n">frame_dt</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>changing directory to /Users/lordgrilo/.tacoma/web
+starting server here ... /Users/lordgrilo/.tacoma/web
+preparing network 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>127.0.0.1 - - [20/May/2022 16:50:13] &quot;GET /?data=tmp_180e1f29783 HTTP/1.1&quot; 200 -
+127.0.0.1 - - [20/May/2022 16:50:13] &quot;GET /tmp_180e1f29783_config.json HTTP/1.1&quot; 200 -
+127.0.0.1 - - [20/May/2022 16:50:13] &quot;GET /tmp_180e1f29783/tmp_180e1f29783_0.taco HTTP/1.1&quot; 200 -
+127.0.0.1 - - [20/May/2022 16:50:13] &quot;GET /tmp_180e1f29783/tmp_180e1f29783_0.json HTTP/1.1&quot; 200 -
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stopping server ...
+was asked to stop the server
+deleted all files
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/tacoma/interactive.py:368,</span> in <span class="ni">visualize</span><span class="nt">(temporal_networks, frame_dt, time_normalization_factor, time_unit, titles, config, port, export_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">368</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span> <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>     <span class="c1"># thread.join()</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [45],</span> in <span class="ni">&lt;cell line: 20&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">temporal_network</span><span class="o">.</span><span class="n">edges_in</span> <span class="o">=</span> <span class="p">[</span> 
+<span class="g g-Whitespace">     </span><span class="mi">12</span>                               <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="p">],</span> 
+<span class="g g-Whitespace">     </span><span class="mi">13</span>                               <span class="p">[</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="p">],</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>                             <span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">temporal_network</span><span class="o">.</span><span class="n">edges_out</span> <span class="o">=</span> <span class="p">[</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span>                                 <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">],</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>                                 <span class="p">[</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="p">],</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>                              <span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">visualize</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">,</span> <span class="n">frame_dt</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/tacoma/interactive.py:373,</span> in <span class="ni">visualize</span><span class="nt">(temporal_networks, frame_dt, time_normalization_factor, time_unit, titles, config, port, export_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stopping server ...&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="n">server</span><span class="o">.</span><span class="n">stop_this</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">373</span>     <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>        
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="c1"># time.sleep(1)</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;changing directory back to&#39;</span><span class="p">,</span> <span class="n">cwd</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Cellar/python@3.9/3.9.12_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py:1053,</span> in <span class="ni">Thread.join</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;cannot join current thread&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span> <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1053</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_tstate_lock</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span>     <span class="c1"># the behavior of a negative timeout isn&#39;t documented, but</span>
+<span class="g g-Whitespace">   </span><span class="mi">1056</span>     <span class="c1"># historically .join(timeout=x) for x&lt;0 has acted as if timeout=0</span>
+<span class="g g-Whitespace">   </span><span class="mi">1057</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_tstate_lock</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">timeout</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="nn">File /opt/homebrew/Cellar/python@3.9/3.9.12_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py:1073,</span> in <span class="ni">Thread._wait_for_tstate_lock</span><span class="nt">(self, block, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1070</span>     <span class="k">return</span>
+<span class="g g-Whitespace">   </span><span class="mi">1072</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1073</span>     <span class="k">if</span> <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1074</span>         <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1075</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">()</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tacoma</span> <span class="k">as</span> <span class="nn">tc</span>
+
+<span class="c1"># Structural parameters</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Temporal parameters</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">tau</span>
+<span class="n">t_run_total</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Simulate</span>
+<span class="n">temporal_network</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">activity_model</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">t_run_total</span><span class="p">)</span>
+
+<span class="c1"># Draw</span>
+<span class="kn">from</span> <span class="nn">tacoma.drawing</span> <span class="kn">import</span> <span class="n">edge_activity_plot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="n">edge_activity_plot</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 1 Axes&gt;,
+ &lt;AxesSubplot:xlabel=&#39;time&#39;, ylabel=&#39;edge id&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_5_1.png" src="../_images/nb15_temporal_networks_part2_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temporal_network</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">download_and_convert_sociopatterns_hypertext_2009</span><span class="p">()</span>
+<span class="n">edge_activity_plot</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100% [..............................................................................] 67463 / 67463
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 432x288 with 1 Axes&gt;,
+ &lt;AxesSubplot:xlabel=&#39;time&#39;, ylabel=&#39;edge id&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_6_2.png" src="../_images/nb15_temporal_networks_part2_6_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tacoma.epidemics</span> <span class="kn">import</span> <span class="n">simulate_and_measure_i_inf</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">1.6</span>
+<span class="n">recovery_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">t_run_total</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">AM</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">EdgeActivityModel</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+                       <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span>
+                       <span class="n">omega</span><span class="p">,</span>
+                       <span class="n">t0</span> <span class="o">=</span> <span class="mi">2000</span>
+                      <span class="p">)</span>
+<span class="n">infection_rate</span> <span class="o">=</span> <span class="n">R0</span> <span class="o">/</span> <span class="n">k</span> <span class="o">*</span> <span class="n">recovery_rate</span>
+
+
+<span class="n">SIS</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SIS</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">t_run_total</span><span class="p">,</span><span class="n">infection_rate</span><span class="p">,</span><span class="n">recovery_rate</span><span class="p">,</span>
+        <span class="n">number_of_initially_infected</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+        <span class="n">sampling_dt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">simulate_and_measure_i_inf</span><span class="p">(</span><span class="n">AM</span><span class="p">,</span> <span class="n">SIS</span><span class="p">,</span><span class="n">t_equilibrate</span><span class="o">=</span><span class="mi">900</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.8734105907795323, 0.013266475479201883, 9.135279494291652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tacoma.analysis</span> <span class="kn">import</span> <span class="n">temporal_network_group_analysis</span>
+<span class="n">temporal_network_group_analysis</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">measure_group_sizes_and_durations</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nb15_temporal_networks_part2_8_0.png" src="../_images/nb15_temporal_networks_part2_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="teneto-example">
+<h2><span class="section-number">19.2. </span>Teneto example<a class="headerlink" href="#teneto-example" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[1.09462638e-01, 2.32660456e-01, 8.85576466e-01, 2.97439117e-01,
+         9.19689603e-01, 6.37597082e-01, 8.63043532e-01, 4.78466423e-01,
+         6.83107640e-01, 6.01414841e-02],
+        [1.14938479e-01, 8.22579204e-01, 8.97003135e-01, 1.96089320e-01,
+         2.91936894e-01, 3.44885682e-01, 3.84050875e-01, 1.20792340e-02,
+         8.82667921e-01, 1.61480636e-01],
+        [9.00333540e-01, 3.71093073e-01, 7.63999774e-01, 2.00814414e-01,
+         5.87306515e-01, 8.08772020e-01, 8.59592321e-04, 7.12701013e-01,
+         9.28358518e-01, 3.63305788e-01],
+        [1.18208004e-01, 4.41450816e-01, 7.29859850e-01, 1.19999964e-01,
+         3.82990944e-01, 6.36804725e-01, 5.84734280e-01, 8.64296139e-01,
+         4.07067015e-01, 2.65524985e-01],
+        [6.07657315e-01, 9.17624200e-01, 1.36736673e-01, 7.91379473e-01,
+         4.74019739e-01, 3.15016262e-01, 9.07300303e-01, 7.20575051e-01,
+         5.34644750e-02, 7.08153333e-01]],
+
+       [[4.81754677e-01, 1.97816953e-01, 6.88762722e-01, 5.46447529e-02,
+         9.17968614e-01, 2.86539136e-01, 7.96711509e-01, 4.41140045e-02,
+         1.97557978e-01, 1.73915994e-01],
+        [4.59060378e-01, 3.46414986e-01, 1.04555642e-01, 7.92256813e-01,
+         4.13798680e-01, 6.40601296e-03, 8.56300469e-01, 5.97602236e-01,
+         7.84190138e-02, 6.41453569e-01],
+        [7.26457838e-01, 3.25787982e-01, 4.58764588e-01, 1.41705914e-01,
+         7.34925841e-01, 5.02730869e-01, 1.83780779e-01, 7.17729792e-01,
+         1.39779037e-01, 5.52534016e-01],
+        [5.35723705e-01, 4.73321665e-01, 7.98614619e-02, 6.01768104e-03,
+         7.60886865e-01, 4.44202541e-01, 7.67722498e-01, 4.80437405e-01,
+         2.57090392e-01, 4.85060477e-01],
+        [2.09668344e-01, 5.03034208e-01, 1.28434564e-01, 8.22251141e-01,
+         9.64004860e-01, 5.66099683e-01, 5.08696040e-01, 9.46456107e-01,
+         6.89602291e-02, 9.99629234e-01]],
+
+       [[8.90962635e-02, 8.15204853e-01, 5.30557098e-01, 2.93234262e-01,
+         5.79712951e-01, 3.89973199e-01, 3.27384720e-01, 8.47366012e-01,
+         7.96583376e-01, 7.52263710e-01],
+        [7.37042418e-01, 8.17452144e-01, 1.66575774e-01, 1.71990135e-01,
+         6.52978045e-01, 7.09754797e-01, 6.38808578e-01, 1.58067615e-01,
+         4.22148554e-01, 1.66436759e-01],
+        [2.50024452e-01, 1.76844854e-01, 9.57055274e-02, 5.73330897e-03,
+         3.32986395e-01, 1.07850683e-01, 9.16372909e-01, 9.25113072e-01,
+         4.72627465e-01, 7.99114138e-01],
+        [3.34896049e-01, 7.78045260e-01, 3.40196917e-01, 7.53408819e-02,
+         3.00435699e-01, 9.73596973e-01, 9.78096301e-01, 6.87870365e-01,
+         6.98955972e-01, 2.29129255e-01],
+        [1.87107807e-01, 3.09009125e-01, 3.43719653e-01, 4.02102351e-01,
+         5.08969038e-01, 8.19714617e-01, 4.62392682e-01, 2.91980429e-01,
+         3.01935385e-05, 3.35226983e-02]],
+
+       [[7.99488101e-01, 4.70765728e-02, 8.10628740e-02, 7.71197389e-01,
+         8.99321120e-01, 5.66064577e-01, 6.93562004e-01, 1.64364608e-01,
+         3.22001844e-01, 6.66496697e-01],
+        [2.97879255e-01, 1.55858382e-01, 4.17568674e-01, 2.43498114e-01,
+         8.40053478e-01, 9.60631265e-01, 5.85251323e-01, 5.08589108e-02,
+         1.46570450e-01, 8.77810492e-03],
+        [8.69621693e-01, 7.42569317e-01, 4.64528596e-01, 9.95083465e-01,
+         2.46571359e-01, 7.56639044e-01, 3.95051728e-01, 4.40171546e-01,
+         3.18481825e-01, 4.12332860e-01],
+        [1.30945938e-01, 3.42307023e-01, 8.92827260e-01, 6.71955665e-01,
+         5.45587730e-01, 6.10803979e-01, 9.74948987e-01, 6.52736347e-02,
+         2.05186338e-01, 4.09220894e-01],
+        [7.98970181e-01, 6.16878816e-01, 8.91440184e-01, 7.47902806e-01,
+         4.72858283e-01, 3.45176789e-01, 3.45212072e-01, 1.81419859e-01,
+         3.24394900e-01, 5.01436111e-01]],
+
+       [[7.05907470e-01, 6.42459155e-01, 6.57181645e-02, 3.31569479e-01,
+         8.38057179e-01, 9.58225411e-01, 7.95909475e-01, 8.99374645e-01,
+         2.51245360e-01, 9.40907590e-01],
+        [9.21570865e-01, 1.96121905e-01, 6.46443580e-01, 1.68170124e-01,
+         8.67619146e-01, 4.08816537e-01, 9.08067486e-01, 1.11632504e-01,
+         6.15807516e-01, 9.89572785e-01],
+        [7.38919284e-01, 9.90403106e-01, 1.01689060e-02, 8.03516333e-01,
+         9.83881579e-01, 5.60224479e-01, 6.59064278e-01, 8.85253307e-01,
+         5.80438151e-01, 1.22614508e-01],
+        [1.39963001e-01, 6.44714096e-01, 4.47088770e-01, 2.80098585e-01,
+         2.93072979e-01, 4.34742703e-01, 5.35310322e-01, 8.24789084e-01,
+         2.67420908e-01, 2.16477482e-01],
+        [2.20320588e-01, 9.72083355e-02, 3.50681369e-01, 4.08338979e-01,
+         5.61696526e-02, 5.80623602e-01, 2.56675049e-01, 6.14024560e-01,
+         4.89346846e-01, 7.64670006e-01]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="p">[</span><span class="n">G</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">G</span><span class="p">[</span><span class="n">G</span><span class="o">&gt;</span><span class="mf">0.8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teneto</span> <span class="kn">import</span> <span class="n">TemporalNetwork</span>
+<span class="n">tnet</span> <span class="o">=</span> <span class="n">TemporalNetwork</span><span class="p">(</span><span class="n">from_array</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">nettype</span><span class="o">=</span><span class="s1">&#39;bu&#39;</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tnet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;slice_plot&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Set2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_14_1.png" src="../_images/nb15_temporal_networks_part2_14_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">teneto</span> <span class="k">as</span> <span class="nn">te</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_periodic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">ts_periodic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">G_periodic</span><span class="p">[:,:,</span><span class="n">ts_periodic</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">G_periodic</span> <span class="o">=</span> <span class="n">TemporalNetwork</span><span class="p">(</span><span class="n">from_array</span><span class="o">=</span><span class="n">G_periodic</span><span class="p">,</span> <span class="n">nettype</span><span class="o">=</span><span class="s1">&#39;bu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G_periodic = TemporalNetwork(from_array=G_periodic)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">G_periodic</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;slice_plot&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_17_1.png" src="../_images/nb15_temporal_networks_part2_17_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_bursty</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="n">G_bursty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">G_bursty</span><span class="p">[:,:,</span><span class="n">ts_bursty</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">G_bursty</span> <span class="o">=</span> <span class="n">TemporalNetwork</span><span class="p">(</span><span class="n">from_array</span><span class="o">=</span><span class="n">G_bursty</span><span class="p">,</span> <span class="n">nettype</span><span class="o">=</span><span class="s1">&#39;bu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">G_bursty</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;slice_plot&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_19_1.png" src="../_images/nb15_temporal_networks_part2_19_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_bursty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ts_bursty</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_bursty2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">G_bursty2</span><span class="p">[:,:,</span><span class="n">ts_bursty</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">G_bursty2</span> <span class="o">=</span> <span class="n">TemporalNetwork</span><span class="p">(</span><span class="n">from_array</span><span class="o">=</span><span class="n">G_bursty2</span><span class="p">,</span> <span class="n">nettype</span><span class="o">=</span><span class="s1">&#39;bu&#39;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">G_bursty2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;slice_plot&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_21_1.png" src="../_images/nb15_temporal_networks_part2_21_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">networkmeasures</span><span class="o">.</span><span class="n">reachability_latency</span><span class="p">(</span><span class="n">G_bursty</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">networkmeasures</span><span class="o">.</span><span class="n">reachability_latency</span><span class="p">(</span><span class="n">G_bursty2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.85
+2.55
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">networkmeasures</span><span class="o">.</span><span class="n">temporal_efficiency</span><span class="p">(</span><span class="n">G_bursty</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">networkmeasures</span><span class="o">.</span><span class="n">temporal_efficiency</span><span class="p">(</span><span class="n">G_bursty2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5405405405405405
+0.3921568627450981
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generation-of-random-network">
+<h2><span class="section-number">19.3. </span>Generation of random network<a class="headerlink" href="#generation-of-random-network" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">TemporalNetwork</span><span class="p">(</span><span class="n">from_array</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">generatenetwork</span><span class="o">.</span><span class="n">rand_poisson</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">.8</span><span class="p">))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;slice_plot&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/nb15_temporal_networks_part2_25_1.png" src="../_images/nb15_temporal_networks_part2_25_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "stenv"
+        },
+        kernelOptions: {
+            kernelName: "stenv",
+            path: "./5-temporal-networks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'stenv'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb14_epidemics_temporal_networks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">18. </span>Epidemics on temporal networks</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By G. Petri, M. Tizzoni<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

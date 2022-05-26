@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
   Dynamical processes
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
    8. Random walks
@@ -169,6 +169,13 @@ const thebe_selector_output = ".output, .cell_output"
    14. Epidemics on networks
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nb11_axelrod_model.html">
    15. Axelrod model
@@ -182,6 +189,23 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="nb13_Simplagion_on_RSC_model.html">
    17. Simplagion Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html">
+   18. Epidemics on temporal networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-temporal-networks/nb15_temporal_networks_part2.html">
+   19. Temporal networks libraries
   </a>
  </li>
 </ul>
@@ -454,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="c1">#Using the rule to get the words of listeners to be used for the agreement</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">==</span><span class="s1">&#39;union&#39;</span><span class="p">:</span> 
             <span class="n">words_of_listeners_by_rule</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words_of_listeners</span><span class="p">])</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">==</span><span class="s1">&#39;intersection&#39;</span><span class="p">:</span>    <span class="n">s</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">==</span><span class="s1">&#39;intersection&#39;</span><span class="p">:</span>    
             <span class="n">words_of_listeners_by_rule</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words_of_listeners</span><span class="p">])</span>
         
         <span class="c1">#Trying to agree based on the rule and the communication efficiency beta</span>
@@ -523,7 +547,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">rule</span> <span class="o">=</span> <span class="s1">&#39;union&#39;</span>
 
 <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">n_A</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="n">output_path</span> <span class="o">=</span> <span class="s1">&#39;results/&#39;</span>
@@ -537,48 +561,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setup Done. 6 nodes, N_A: 0 N_B: 4 N_p: 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setup Done. 6 nodes, N_A: 0 N_B: 6 N_p: 0
 t=1
-t=2
-t=3
-t=4
-t=5
-t=6
-t=7
-t=8
-t=9
-t=10
-t=11
-t=12
-t=13
-t=14
-t=15
-t=16
-t=17
-t=18
-t=19
-t=20
-t=21
-t=22
-t=23
-t=24
-t=25
-t=26
-t=27
-t=28
-t=29
-t=30
-t=31
-t=32
-t=33
-t=34
-t=35
-t=36
-t=37
-t=38
-t=39
-t=40
-t=41
 DONE! Reached the absorbing state.
 </pre></div>
 </div>

@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18. Epidemics on temporal networks" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html" />
     <link rel="prev" title="16. Higher-order Naming Game" href="nb12_Higher_order_naming_game.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -152,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
   Dynamical processes
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../2-networkx/nb08_random_walks.html">
    8. Random walks
@@ -168,6 +169,13 @@ const thebe_selector_output = ".output, .cell_output"
    14. Epidemics on networks
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nb11_axelrod_model.html">
    15. Axelrod model
@@ -181,6 +189,23 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    17. Simplagion Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Social contagion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html">
+   18. Epidemics on temporal networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-temporal-networks/nb15_temporal_networks_part2.html">
+   19. Temporal networks libraries
   </a>
  </li>
 </ul>
@@ -365,8 +390,11 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
+
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
 <span class="kn">from</span> <span class="nn">utils_simplagion_on_RSC</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -380,9 +408,11 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">it_num</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+
 <span class="n">k1</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">k2</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span>  <span class="n">get_p1_and_p2</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> 
+
 <span class="n">lambda1s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>     
 <span class="n">lambdaD_target</span> <span class="o">=</span> <span class="mf">2.5</span>
 
@@ -394,7 +424,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It 1 initialized
-It 1, created SC with k1=20.3 and k2=6.2
+It 1, created SC with k1=19.7 and k2=5.9
 It 1, simulation has finished
 </pre></div>
 </div>
@@ -407,7 +437,7 @@ It 1, simulation has finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12a8d6970&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12ab63d30&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb13_Simplagion_on_RSC_model_4_1.png" src="../_images/nb13_Simplagion_on_RSC_model_4_1.png" />
@@ -1873,6 +1903,13 @@ It 115, simulation has finished
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">16. </span>Higher-order Naming Game</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Epidemics on temporal networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
