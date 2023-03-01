@@ -14,31 +14,31 @@ parts:
   - file: 1-intro/nb01_Python_Jupyter_notebook
   - file: 1-intro/nb02_data_import_and_networks
 
-- caption: Network analysis
-  chapters:
-    - file: 2-networkx/nb03_NetworkX_visualization
-    - file: 2-networkx/nb04_powerlaw_fitting
-    - file: 2-networkx/nb05_network_analysis
-    - file: 2-networkx/nb06_network_assortativity
-    - file: 2-networkx/nb07_network_robustness
+#- caption: Network analysis
+#  chapters:
+#    - file: 2-networkx/nb03_NetworkX_visualization
+#    - file: 2-networkx/nb04_powerlaw_fitting
+#    - file: 2-networkx/nb05_network_analysis
+#    - file: 2-networkx/nb06_network_assortativity
+#    - file: 2-networkx/nb07_network_robustness
 
-- caption: Dynamical processes
-  chapters:
-    - file: 2-networkx/nb08_random_walks
-    - file: 3-epidemic-spreading/nb09_epidemic_processes
-    - file: 3-epidemic-spreading/nb10_epidemics_on_networks
+#- caption: Dynamical processes
+#  chapters:
+#    - file: 2-networkx/nb08_random_walks
+#    - file: 3-epidemic-spreading/nb09_epidemic_processes
+#    - file: 3-epidemic-spreading/nb10_epidemics_on_networks
 
-- caption: Social contagion
-  chapters:
-    - file: 4-social-contagion/nb11_axelrod_model
-    - file: 4-social-contagion/nb12_Higher_order_naming_game
-    - file: 4-social-contagion/nb13_Simplagion_on_RSC_model
+#- caption: Social contagion
+#  chapters:
+#    - file: 4-social-contagion/nb11_axelrod_model
+#    - file: 4-social-contagion/nb12_Higher_order_naming_game
+#    - file: 4-social-contagion/nb13_Simplagion_on_RSC_model
 
-- caption: Temporal Networks
-  chapters:
-    - file: 5-temporal-networks/nb14_epidemics_temporal_networks
-    - file: 5-temporal-networks/nb15_temporal_networks_part2
+#- caption: Temporal Networks
+#  chapters:
+#    - file: 5-temporal-networks/nb14_epidemics_temporal_networks
+#    - file: 5-temporal-networks/nb15_temporal_networks_part2
 
-- caption: Community detection 
-  chapters:
-    - file: 6-community-detection/nb16_community_detection
+#- caption: Community detection 
+#  chapters:
+#    - file: 6-community-detection/nb16_community_detection
