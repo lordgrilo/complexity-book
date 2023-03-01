@@ -5,7 +5,7 @@
 
 **Laurea Magistrale in Fisica Dei Sistemi Complessi A.A. 2022/23**
 
-**Lecturers: Maxime Lucas, Giovanni Petri**
+**Lecturers: Giovanni Petri, Maxime Lucas**
 
 ## Course overview 
 
