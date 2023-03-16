@@ -169,6 +169,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb03_NetworkX_visualization.html">3. Introduction to NetworkX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">4. How to fit a power law distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb05_network_analysis.html">5. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb06_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb07_network_robustness.html">7. Network robustness</a></li>
 </ul>
 
     </div>
@@ -508,12 +510,12 @@ nb01_Python_Jupyter_notebook.ipynb
 </div>
 </div>
 </div>
-<p>We can also import only some symbols in the namespace</p>
+<p>Or assign a module to a different symbol</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">mth</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">mth</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mth</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -525,12 +527,12 @@ nb01_Python_Jupyter_notebook.ipynb
 </div>
 </div>
 </div>
-<p>Or assign a module to a different symbol</p>
+<p>We can also import only some symbols in the namespace</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">mth</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">mth</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -553,6 +555,15 @@ nb01_Python_Jupyter_notebook.ipynb
 
 NAME
     math
+
+MODULE REFERENCE
+    https://docs.python.org/3.9/library/math
+    
+    The following documentation is automatically generated from the Python
+    source files.  It may be incomplete, incorrect or include features that
+    are considered implementation detail and may vary between Python
+    implementations.  When in doubt, consult the module reference at the
+    location listed above.
 
 DESCRIPTION
     This module provides access to the mathematical functions
@@ -827,7 +838,7 @@ DATA
     tau = 6.283185307179586
 
 FILE
-    /usr/local/Cellar/python@3.9/3.9.12/Frameworks/Python.framework/Versions/3.9/lib/python3.9/lib-dynload/math.cpython-39-darwin.so
+    /Users/maxime/.pyenv/versions/3.9.13/lib/python3.9/lib-dynload/math.cpython-39-darwin.so
 </pre></div>
 </div>
 </div>
@@ -842,12 +853,14 @@ FILE
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function RandomState.multinomial&gt;
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span>
 </pre></div>
 </div>
 </div>
@@ -856,29 +869,51 @@ FILE
 <p>Adding ? opens the docstring in the pager below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>numpy.random<span class="o">?</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>numpy.random<span class="o">??</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Exceptions are formatted nicely:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">d93e730d8440</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">z</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-
-<span class="ne">ZeroDivisionError</span>: division by zero
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span> <span class="n">x</span>
+                 <span class="o">^</span>
+<span class="ne">SyntaxError</span>: unexpected EOF while parsing
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">3</span> <span class="o">+*</span> <span class="mi">4</span>
+       <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
@@ -971,12 +1006,12 @@ FILE
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;my st&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; st&#39;
 </pre></div>
 </div>
 </div>
@@ -1068,6 +1103,22 @@ FILE
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+9
+</pre></div>
+</div>
+</div>
+</div>
 <section id="tuples">
 <h4><span class="section-number">1.2.3.1. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading">#</a></h4>
 <p><strong>Tuples</strong> are like lists, except that they cannot be modified once created, that is they are <em>immutable</em>.</p>
@@ -1094,7 +1145,7 @@ FILE
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="mi">9734</span><span class="n">b1daa940</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">39</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
@@ -1142,6 +1193,18 @@ FILE
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;parameter1&#39;, &#39;parameter2&#39;, &#39;parameter3&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([1.0, 2.0, 3.0])
 </pre></div>
 </div>
 </div>
@@ -1271,6 +1334,11 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 }
 </pre></div>
 </div>
+<p>un po di testo</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">x</span> <span class="o">+</span><span class="mi">3</span> 
+</pre></div>
+</div>
 <p>Because Markdown is a superset of HTML you can even add things like HTML tables:</p>
 <table>
 <tr>
@@ -1317,6 +1385,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
             src="https://www.youtube.com/embed/26wgEsg9Mcc"
             frameborder="0"
             allowfullscreen
+            
         ></iframe>
         </div></div>
 </div>
@@ -1338,6 +1407,7 @@ Namespaces are one honking great idea – let’s do more of those!</p>
             src="http://en.m.wikipedia.org/wiki/Main_Page"
             frameborder="0"
             allowfullscreen
+            
         ></iframe>
         </div></div>
 </div>
@@ -1672,10 +1742,11 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>%pylab is deprecated, use %matplotlib inline and import the required libraries.
+Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/IPython/core/magics/pylab.py:159: UserWarning: pylab import has clobbered these variables: [&#39;pi&#39;, &#39;step&#39;, &#39;cos&#39;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maxime/.pyenv/versions/venv_xgi/lib/python3.9/site-packages/IPython/core/magics/pylab.py:162: UserWarning: pylab import has clobbered these variables: [&#39;cos&#39;, &#39;step&#39;, &#39;pi&#39;]
 `%matplotlib` prevents importing * from pylab and numpy
   warn(&quot;pylab import has clobbered these variables: %s&quot;  % clobbered +
 </pre></div>
@@ -1689,10 +1760,10 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/f3e38b9e84280d9f6c9543baa3e2081afb8babcfadd3e891c10e0934b3394014.png" src="../_images/f3e38b9e84280d9f6c9543baa3e2081afb8babcfadd3e891c10e0934b3394014.png" />
+<img alt="../_images/2c7d990f18efbdb9145c311ceb885b42422bda775a7dcdb06489e5f43c7b41ed.png" src="../_images/2c7d990f18efbdb9145c311ceb885b42422bda775a7dcdb06489e5f43c7b41ed.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1719,18 +1790,17 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$y = x^2$&quot;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;$y = x^2$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/ecc66fa3fad877ac0f93959ece53dcc3bf82c32dffd15a4bfd43b70138831b07.png" src="../_images/ecc66fa3fad877ac0f93959ece53dcc3bf82c32dffd15a4bfd43b70138831b07.png" />
+<img alt="../_images/a4e9afcdfd7fe5a063204d3dc286e43263e24ecd7d4d60b460f17a80a2437e67.png" src="../_images/a4e9afcdfd7fe5a063204d3dc286e43263e24ecd7d4d60b460f17a80a2437e67.png" />
 </div>
 </div>
 <p>Great documentation and basic tutorial available from the lectures of <a class="reference external" href="http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-4-Matplotlib.ipynb">Robert Johansson</a></p>
@@ -1752,10 +1822,10 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/c2d9e10f1f6492444060d6a16bb934d7c0b7e6d0dea20ba464d00e7aa9bb7d5e.png" src="../_images/c2d9e10f1f6492444060d6a16bb934d7c0b7e6d0dea20ba464d00e7aa9bb7d5e.png" />
+<img alt="../_images/856fb0ba67010f5511249a31bb871eed9b3aeb8c8fae3479b1130534b7d02645.png" src="../_images/856fb0ba67010f5511249a31bb871eed9b3aeb8c8fae3479b1130534b7d02645.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1765,10 +1835,10 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/ec56f2d60f5149565576fab8bb5ca429e61ef8031d34a35806011c78dc511ad9.png" src="../_images/ec56f2d60f5149565576fab8bb5ca429e61ef8031d34a35806011c78dc511ad9.png" />
+<img alt="../_images/f669c632315ab5b485b56490b6b49143708e070a6ffe23ec0dc5b9509f880459.png" src="../_images/f669c632315ab5b485b56490b6b49143708e070a6ffe23ec0dc5b9509f880459.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1778,14 +1848,26 @@ Namespaces are one honking great idea – let’s do more of those!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/seaborn/distributions.py:1659: FutureWarning: The `bw` parameter is deprecated in favor of `bw_method` and `bw_adjust`. Using 10 for `bw_method`, but please see the docs for the new parameters and update your code.
-  warnings.warn(msg, FutureWarning)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wm/5gv37br900l73y63tjf8sr1r0000gn/T/ipykernel_13285/1765152266.py:1: UserWarning: 
+
+The `bw` parameter is deprecated in favor of `bw_method` and `bw_adjust`.
+Setting `bw_method=10`, but please see the docs for the new parameters
+and update your code. This will become an error in seaborn v0.13.0.
+
+  sns.kdeplot(df.High, bw=10)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;High&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/b2577356a4f1d90516a0a5c9a0d48f1fdb1a7adc92827a9e86e125a33c213829.png" src="../_images/b2577356a4f1d90516a0a5c9a0d48f1fdb1a7adc92827a9e86e125a33c213829.png" />
+<img alt="../_images/8ec7dc139af8a598118aab67d5807dd289812da6068afd050189ffd019dd4366.png" src="../_images/8ec7dc139af8a598118aab67d5807dd289812da6068afd050189ffd019dd4366.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">loop</span> 
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1801,16 +1883,16 @@ Namespaces are one honking great idea – let’s do more of those!</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "venv_xgi"
         },
         kernelOptions: {
-            name: "python3",
+            name: "venv_xgi",
             path: "./1-intro"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'venv_xgi'</script>
 
                 </article>
               

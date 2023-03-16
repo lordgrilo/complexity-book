@@ -167,6 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Introduction to NetworkX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nb04_powerlaw_fitting.html">4. How to fit a power law distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nb05_network_analysis.html">5. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb06_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb07_network_robustness.html">7. Network robustness</a></li>
 </ul>
 
     </div>
@@ -466,8 +468,7 @@ More documentation is available here: <a class="reference external" href="https:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>%pylab is deprecated, use %matplotlib inline and import the required libraries.
-Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
@@ -487,28 +488,26 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python implementation: CPython
-Python version       : 3.9.16
-IPython version      : 8.3.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>watermark        2.0.2
+re               2.2.1
+numpy            1.20.3
+matplotlib       3.1.3
+seaborn          0.11.2
+matplotlib.pylab 1.20.3
+networkx         2.3
+logging          0.5.1.2
+Fri Apr 01 2022 
 
-Compiler    : Clang 14.0.0 (clang-1400.0.29.202)
-OS          : Darwin
-Release     : 22.3.0
-Machine     : arm64
-Processor   : arm
-CPU cores   : 10
-Architecture: 64bit
+CPython 3.7.1
+IPython 5.8.0
 
-matplotlib: 3.5.2
-logging   : 0.5.1.2
-seaborn   : 0.11.2
-re        : 2.2.1
-networkx  : 2.8
-sys       : 3.9.16 (main, Dec  7 2022, 10:06:04) 
-[Clang 14.0.0 (clang-1400.0.29.202)]
-watermark : 2.3.1
-json      : 2.0.9
-numpy     : 1.23.5
+compiler   : Clang 4.0.1 (tags/RELEASE_401/final)
+system     : Darwin
+release    : 19.6.0
+machine    : x86_64
+processor  : i386
+CPU cores  : 8
+interpreter: 64bit
 </pre></div>
 </div>
 </div>
@@ -813,10 +812,10 @@ Lucia 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0, 10000.0, 1e-05, 1.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 10000, 1e-05, 1.0]
 </pre></div>
 </div>
-<img alt="../_images/5b703866ff070048820eae2fd7f2ada74a904f133edec34cd0ac16eb13e24c70.png" src="../_images/5b703866ff070048820eae2fd7f2ada74a904f133edec34cd0ac16eb13e24c70.png" />
+<img alt="../_images/7f11a089cc452754022c2ecb4cafb2c660254c74e490b86717df957419bd1694.png" src="../_images/7f11a089cc452754022c2ecb4cafb2c660254c74e490b86717df957419bd1694.png" />
 </div>
 </div>
 <p>Let’s plot the degree out distribution</p>
@@ -852,10 +851,10 @@ Lucia 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0, 10000.0, 1e-05, 1.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 10000, 1e-05, 1.0]
 </pre></div>
 </div>
-<img alt="../_images/87c6cb2479b7eb7e1a806376a502ecff222b802e61c332de10d81b05edfe13be.png" src="../_images/87c6cb2479b7eb7e1a806376a502ecff222b802e61c332de10d81b05edfe13be.png" />
+<img alt="../_images/aae135d0d3345deafb3a32cd71e513ffac891b0a6c7ad78908ac912d8678064f.png" src="../_images/aae135d0d3345deafb3a32cd71e513ffac891b0a6c7ad78908ac912d8678064f.png" />
 </div>
 </div>
 </section>
@@ -906,13 +905,18 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0092078905120048,
- 0.8669129585035107,
- -1.0085592907725252,
- 1.1908585751412808)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
 </pre></div>
 </div>
-<img alt="../_images/2b280763424a8e88b485a079a0a62451faa1ab0a8359efdc8d76bf697b26080d.png" src="../_images/2b280763424a8e88b485a079a0a62451faa1ab0a8359efdc8d76bf697b26080d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.9953043476435216,
+ 0.8720359272588877,
+ -1.1050508369443799,
+ 0.8555790018206133)
+</pre></div>
+</div>
+<img alt="../_images/c3dae201fd7176430781ee2b39007f25cc7a3979cb493d757bf32b6a61b3ee49.png" src="../_images/c3dae201fd7176430781ee2b39007f25cc7a3979cb493d757bf32b6a61b3ee49.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -923,7 +927,12 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/caa74bce4e9e294764aac42184fb85a15c03f3a2e3c31dc9809a08197c1191db.png" src="../_images/caa74bce4e9e294764aac42184fb85a15c03f3a2e3c31dc9809a08197c1191db.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
+</pre></div>
+</div>
+<img alt="../_images/2e0b3ed97c0493258bd5ef2d6f723590693683b28b017de0828f1965f4c8e313.png" src="../_images/2e0b3ed97c0493258bd5ef2d6f723590693683b28b017de0828f1965f4c8e313.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -934,7 +943,12 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/be85cb9a928858445615d9c1a06d9acddb59d143dec46bcbe8d738a0ca6a9d2a.png" src="../_images/be85cb9a928858445615d9c1a06d9acddb59d143dec46bcbe8d738a0ca6a9d2a.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
+</pre></div>
+</div>
+<img alt="../_images/0e8d94cecdb075bc2ffacea503542c8452bae879dfa45965934b1fcca508ada6.png" src="../_images/0e8d94cecdb075bc2ffacea503542c8452bae879dfa45965934b1fcca508ada6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -945,7 +959,12 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/789bfe03bece79875107f391063a7d720efdd6ebb36bb0a26d90d589c1f984cb.png" src="../_images/789bfe03bece79875107f391063a7d720efdd6ebb36bb0a26d90d589c1f984cb.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
+</pre></div>
+</div>
+<img alt="../_images/b58b53ef26fb0d8a245ec2034d6ed8ada33995ef98ec81884253f3073cbffe91.png" src="../_images/b58b53ef26fb0d8a245ec2034d6ed8ada33995ef98ec81884253f3073cbffe91.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -956,106 +975,106 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: array([ 0.30401554, -0.60188488]),
- 1: array([-0.72598444, -0.21680932]),
- 2: array([-0.40230882, -0.73408337]),
- 3: array([ 0.44036733, -0.11676448]),
- 4: array([-0.41854671,  0.16704483]),
- 5: array([-0.17906002, -0.73062923]),
- 6: array([ 0.51865416, -0.23181316]),
- 7: array([0.06647034, 0.30054874]),
- 8: array([0.55965014, 0.4785758 ]),
- 9: array([-0.29466661,  0.53949087]),
- 10: array([ 0.3692526 , -0.23799764]),
- 11: array([ 0.17046896, -0.61487437]),
- 12: array([ 0.23153589, -0.23277895]),
- 13: array([0.28169931, 0.36378713]),
- 14: array([-0.53077704,  0.23943723]),
- 15: array([0.53832194, 0.10622155]),
- 16: array([ 0.0587624 , -0.54353683]),
- 17: array([-0.52527308, -0.53653465]),
- 18: array([-0.15239069, -0.61889862]),
- 19: array([-0.30166413, -0.07074861]),
- 20: array([ 0.29051498, -0.34752972]),
- 21: array([-0.61858295,  0.08618502]),
- 22: array([-0.46258314,  0.03034275]),
- 23: array([-0.04742784, -0.80519579]),
- 24: array([-0.04864873,  0.11062981]),
- 25: array([-0.21524852, -0.15838445]),
- 26: array([ 0.5105788 , -0.66467887]),
- 27: array([-0.63199033, -0.01282107]),
- 28: array([-0.19625183,  0.21489367]),
- 29: array([ 0.00866408, -0.30527426]),
- 30: array([ 0.73187564, -0.29451471]),
- 31: array([-0.14422458, -0.32988883]),
- 32: array([0.66053031, 0.43054035]),
- 33: array([-0.05624532, -0.23226676]),
- 34: array([-0.05539823,  0.43318387]),
- 35: array([-0.3795521,  0.469651 ]),
- 36: array([-0.33926512,  0.04674839]),
- 37: array([ 0.39205175, -0.31788381]),
- 38: array([-0.12859531,  1.        ]),
- 39: array([0.63737192, 0.31363685]),
- 40: array([0.14690939, 0.6677066 ]),
- 41: array([-0.23197357, -0.4689165 ]),
- 42: array([ 0.19082333, -0.12008679]),
- 43: array([-0.11907733, -0.2418349 ]),
- 44: array([ 0.10930354, -0.28803929]),
- 45: array([-0.66766309, -0.39763891]),
- 46: array([0.00307477, 0.16206965]),
- 47: array([-0.58139366,  0.238584  ]),
- 48: array([-0.37344258, -0.31704914]),
- 49: array([ 0.18302362, -0.44673595]),
- 50: array([0.32112602, 0.18309605]),
- 51: array([-0.52007406,  0.43130062]),
- 52: array([0.03469107, 0.51561203]),
- 53: array([-0.06487765,  0.18499722]),
- 54: array([0.05811898, 0.59127549]),
- 55: array([0.19394045, 0.01855037]),
- 56: array([-0.20564122, -0.30167483]),
- 57: array([ 0.48253326, -0.01576748]),
- 58: array([ 0.23344703, -0.41317552]),
- 59: array([0.39278567, 0.03306113]),
- 60: array([0.05164084, 0.07629791]),
- 61: array([ 0.57931425, -0.23336439]),
- 62: array([-0.74984238,  0.45095112]),
- 63: array([-0.10623889,  0.18086786]),
- 64: array([-0.40713457,  0.32704881]),
- 65: array([ 0.12598696, -0.21273147]),
- 66: array([-0.49675924, -0.10075201]),
- 67: array([-0.11649294,  0.73565883]),
- 68: array([-0.11547075,  0.39537219]),
- 69: array([-0.25449997,  0.13490553]),
- 70: array([ 0.38932531, -0.79885052]),
- 71: array([-0.00142927, -0.66987415]),
- 72: array([-0.05867275,  0.29692385]),
- 73: array([0.08306466, 0.00595235]),
- 74: array([0.14936122, 0.11704071]),
- 75: array([-0.51615931, -0.33430602]),
- 76: array([0.32999596, 0.58926124]),
- 77: array([0.13895947, 0.20588659]),
- 78: array([-0.54236719,  0.54173555]),
- 79: array([-0.02011847,  0.00041568]),
- 80: array([ 0.64399637, -0.01567446]),
- 81: array([-0.2748013 ,  0.32778904]),
- 82: array([ 0.29258024, -0.15040422]),
- 83: array([-0.09105961,  0.57156037]),
- 84: array([0.4648795 , 0.13272511]),
- 85: array([-0.46741177, -0.24930839]),
- 86: array([0.28610183, 0.47059782]),
- 87: array([0.52897461, 0.2232618 ]),
- 88: array([ 0.11974323, -0.35784478]),
- 89: array([0.09304176, 0.23763195]),
- 90: array([-0.14204565, -0.07449091]),
- 91: array([-0.2546827 ,  0.76796169]),
- 92: array([-0.30585549, -0.20436997]),
- 93: array([0.48518023, 0.32029277]),
- 94: array([-0.36911147, -0.40602702]),
- 95: array([ 0.01884472, -0.1358477 ]),
- 96: array([ 0.59784007, -0.39707599]),
- 97: array([-0.26457568, -0.25615569]),
- 98: array([0.42100045, 0.90945823]),
- 99: array([0.25316321, 0.18702136])}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: array([-0.35586895,  0.37100536]),
+ 1: array([-0.73807419,  0.2442224 ]),
+ 2: array([ 0.18743948, -0.52354262]),
+ 3: array([ 0.12083755, -0.29566904]),
+ 4: array([-0.33053194,  0.15841373]),
+ 5: array([-0.07083   , -0.37833818]),
+ 6: array([ 0.08900052, -0.41197666]),
+ 7: array([ 0.1959074 , -0.15837123]),
+ 8: array([-0.06348377,  0.31605059]),
+ 9: array([-0.25595859,  0.08616082]),
+ 10: array([0.06598654, 0.56854944]),
+ 11: array([0.2181844 , 0.10990653]),
+ 12: array([ 0.52012317, -0.1687851 ]),
+ 13: array([-0.15588965, -0.76869646]),
+ 14: array([-0.00347682,  0.42857409]),
+ 15: array([-0.03848325,  0.54912745]),
+ 16: array([-0.42989889, -0.48084612]),
+ 17: array([-0.18842191, -0.84641495]),
+ 18: array([-0.16234101,  0.50984356]),
+ 19: array([-0.23884508, -0.29126009]),
+ 20: array([-0.32335897,  0.26331037]),
+ 21: array([ 0.22223539, -0.22685252]),
+ 22: array([-0.14098168,  0.84021266]),
+ 23: array([-0.5333254 ,  0.32383041]),
+ 24: array([-0.54389553,  0.12949113]),
+ 25: array([-0.15789808,  0.72978943]),
+ 26: array([-0.5565716 ,  0.77888981]),
+ 27: array([0.89509087, 0.03631352]),
+ 28: array([-0.220069  , -0.55081472]),
+ 29: array([0.64917535, 0.22901171]),
+ 30: array([ 0.76674386, -0.29578769]),
+ 31: array([0.21354925, 0.04054124]),
+ 32: array([-0.02493246, -0.17880648]),
+ 33: array([-0.11586854, -0.12652334]),
+ 34: array([0.13083429, 0.37875044]),
+ 35: array([0.38888481, 0.1660103 ]),
+ 36: array([-0.90355986, -0.06294386]),
+ 37: array([0.52830161, 0.19434504]),
+ 38: array([-0.45451672, -0.18497861]),
+ 39: array([-0.23522408, -0.14309463]),
+ 40: array([0.20654226, 0.23250939]),
+ 41: array([ 0.53824415, -0.09330346]),
+ 42: array([-0.44759436, -0.25953765]),
+ 43: array([-0.2964854 , -0.22689793]),
+ 44: array([ 0.5013085, -0.3126701]),
+ 45: array([-0.44790916, -0.58158983]),
+ 46: array([-0.29015384, -0.70457538]),
+ 47: array([-0.27988041,  0.67208906]),
+ 48: array([-0.1949367 ,  0.33041427]),
+ 49: array([0.08884443, 0.94758354]),
+ 50: array([-0.44612229, -0.07819714]),
+ 51: array([-0.05418373, -0.0681661 ]),
+ 52: array([-0.08444542, -0.24583725]),
+ 53: array([0.33621107, 0.04297796]),
+ 54: array([-0.18904208, -0.62199403]),
+ 55: array([-0.94241971,  0.26549767]),
+ 56: array([0.94372548, 0.3121947 ]),
+ 57: array([0.26090293, 0.29293587]),
+ 58: array([ 0.26871222, -0.64430145]),
+ 59: array([-0.00527864, -0.44159012]),
+ 60: array([-0.40434546,  0.53466287]),
+ 61: array([-0.0444586 ,  0.06348847]),
+ 62: array([ 0.26671355, -0.10819039]),
+ 63: array([0.0767051 , 0.06176777]),
+ 64: array([0.48124098, 0.46085826]),
+ 65: array([-0.66667796, -0.38387508]),
+ 66: array([0.55185664, 0.03465627]),
+ 67: array([ 0.49596939, -0.57698244]),
+ 68: array([ 0.04239096, -0.35692257]),
+ 69: array([-0.49110827, -0.02123321]),
+ 70: array([-0.17142626,  0.14318846]),
+ 71: array([ 0.12440289, -0.06567806]),
+ 72: array([ 0.09292502, -0.15055783]),
+ 73: array([-0.43641029,  0.03715602]),
+ 74: array([ 0.62120684, -0.78853617]),
+ 75: array([0.29982395, 0.47038797]),
+ 76: array([-0.66743167, -0.26771461]),
+ 77: array([0.18051146, 0.49172087]),
+ 78: array([ 0.35572638, -0.14065717]),
+ 79: array([ 0.20014641, -0.39919925]),
+ 80: array([-0.11730721,  0.12842549]),
+ 81: array([-0.3754887 , -0.41578983]),
+ 82: array([0.0924001 , 0.22372337]),
+ 83: array([0.572276  , 0.37873838]),
+ 84: array([-0.2900663 , -0.53960318]),
+ 85: array([-0.16210612, -0.04338881]),
+ 86: array([-0.24565476,  0.17881519]),
+ 87: array([0.40619517, 0.35316997]),
+ 88: array([-0.2408618 , -0.39609621]),
+ 89: array([ 0.04281368, -0.65829111]),
+ 90: array([1.        , 0.08474038]),
+ 91: array([0.35409105, 0.62897432]),
+ 92: array([0.00349014, 0.84932114]),
+ 93: array([ 0.69079113, -0.13529681]),
+ 94: array([ 0.39423643, -0.4073228 ]),
+ 95: array([-0.72382344,  0.57174106]),
+ 96: array([ 0.27240526, -0.02676023]),
+ 97: array([ 0.08693096, -0.78586749]),
+ 98: array([-0.36422309,  0.05425584]),
+ 99: array([0.28011261, 0.74198145])}
 </pre></div>
 </div>
 </div>
@@ -1070,13 +1089,13 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.8239282801405875,
- 0.8059615375397167,
- -0.8954555796859713,
- 1.0902597895088557)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0608809320752874,
+ 1.118461217455089,
+ -0.9653222576452914,
+ 1.0664908495799543)
 </pre></div>
 </div>
-<img alt="../_images/c2f72426d1c52dd80758e389584b26c6f3060485a953ac2a759db7196c041bff.png" src="../_images/c2f72426d1c52dd80758e389584b26c6f3060485a953ac2a759db7196c041bff.png" />
+<img alt="../_images/de99ca21daf0cc70b4c56670f610de55b6f4261ae86db3af101bdc5d77e9c199.png" src="../_images/de99ca21daf0cc70b4c56670f610de55b6f4261ae86db3af101bdc5d77e9c199.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1103,7 +1122,12 @@ In the future, graph visualization functionality may be removed from NetworkX or
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bf25bd156e718a6209764174b1fa6931069535c86f559e3e7a26f09f8df513f6.png" src="../_images/bf25bd156e718a6209764174b1fa6931069535c86f559e3e7a26f09f8df513f6.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
+</pre></div>
+</div>
+<img alt="../_images/2f55ffc9f3594cbeab94bfa97843235cd38fd94b8338e5c68b06362dddc66c86.png" src="../_images/2f55ffc9f3594cbeab94bfa97843235cd38fd94b8338e5c68b06362dddc66c86.png" />
 </div>
 </div>
 </section>
@@ -1222,10 +1246,10 @@ The network is available from the <a class="reference external" href="https://to
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-127.04962499999999, -65.237875, 23.3436116, 50.0063884)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-127.0525636795403, -65.23493632045967, 23.337955614957576, 50.01204438504242)
 </pre></div>
 </div>
-<img alt="../_images/077c91c238ccd5226e93034c5c52d8609f6525307986d672bbc623f2eda85e45.png" src="../_images/077c91c238ccd5226e93034c5c52d8609f6525307986d672bbc623f2eda85e45.png" />
+<img alt="../_images/c557d73dedab8cc7abffb496f2cc4b468df64ccea516f0c78bd71067320b4d9a.png" src="../_images/c557d73dedab8cc7abffb496f2cc4b468df64ccea516f0c78bd71067320b4d9a.png" />
 </div>
 </div>
 <p>We would like to draw the edges but there are too many of them.</p>
@@ -1324,10 +1348,15 @@ The network is available from the <a class="reference external" href="https://to
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-128.0307916725, -65.1911527775, 23.3436116, 50.0063884)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+  if not cb.iterable(width):
 </pre></div>
 </div>
-<img alt="../_images/607bd2993b84bc858f9d012831e90b33f5ca820c372aac0e9be37b68e80cdc69.png" src="../_images/607bd2993b84bc858f9d012831e90b33f5ca820c372aac0e9be37b68e80cdc69.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-127.05322413269565, -65.2342758673043, 23.336684461326623, 50.01331553867337)
+</pre></div>
+</div>
+<img alt="../_images/ae38ce3552aaf034bc517e19c1c1b1c9f481508f4ee36a03961495bd8628fb15.png" src="../_images/ae38ce3552aaf034bc517e19c1c1b1c9f481508f4ee36a03961495bd8628fb15.png" />
 </div>
 </div>
 <p>What is the node with the largest degree?</p>

@@ -169,6 +169,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="nb03_NetworkX_visualization.html">3. Introduction to NetworkX</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. How to fit a power law distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nb05_network_analysis.html">5. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb06_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb07_network_robustness.html">7. Network robustness</a></li>
 </ul>
 
     </div>
@@ -456,8 +458,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>%pylab is deprecated, use %matplotlib inline and import the required libraries.
-Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
@@ -475,35 +476,6 @@ Several examples and a detailed description of the library has been published in
 <blockquote>
 <div><p>In practice, we can rarely, if ever, be certain that an observed quantity is drawn from a power-law distribution. The most we can say is that our observations are consistent with the hypothesis that <span class="math notranslate nohighlight">\(x\)</span> is drawn from a distribution of the form of <span class="math notranslate nohighlight">\(p(x) \propto x^{-\alpha}\)</span>. In some cases we may also be able to rule out some other competing hypotheses.</p>
 </div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>powerlaw
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting powerlaw
-  Downloading powerlaw-1.5-py3-none-any.whl (24 kB)
-Requirement already satisfied: scipy in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from powerlaw) (1.8.0)
-Requirement already satisfied: numpy in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from powerlaw) (1.23.5)
-Requirement already satisfied: matplotlib in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from powerlaw) (3.5.2)
-Collecting mpmath
-  Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">536.2/536.2 kB</span> <span class=" -Color -Color-Red">10.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:01
-?25hRequirement already satisfied: cycler&gt;=0.10 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (0.11.0)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (3.0.8)
-Requirement already satisfied: pillow&gt;=6.2.0 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (9.1.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (1.4.2)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (2.8.2)
-Requirement already satisfied: packaging&gt;=20.0 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (23.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from matplotlib-&gt;powerlaw) (4.33.3)
-Requirement already satisfied: six&gt;=1.5 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;powerlaw) (1.16.0)
-Installing collected packages: mpmath, powerlaw
-Successfully installed mpmath-1.3.0 powerlaw-1.5
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">powerlaw</span> <span class="k">as</span> <span class="nn">pwl</span>
@@ -590,7 +562,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2c2608edfbd1cfa280ac045c33fe5319b2104903df3bc41be67781df8fcff023.png" src="../_images/2c2608edfbd1cfa280ac045c33fe5319b2104903df3bc41be67781df8fcff023.png" />
+<img alt="../_images/283e473fd843c6ca990b5800328757102e86001ed6ca156fa3e498a5c2a037cb.png" src="../_images/283e473fd843c6ca990b5800328757102e86001ed6ca156fa3e498a5c2a037cb.png" />
 </div>
 </div>
 <p>Using the ‘hist()’ function of matplotlib we can plot the probability density distribution, choosing the number of bins.</p>
@@ -614,7 +586,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/9d63867d64314193ee36f5628fee07d66d1d78abe0beb889fac33a2a0642e314.png" src="../_images/9d63867d64314193ee36f5628fee07d66d1d78abe0beb889fac33a2a0642e314.png" />
+<img alt="../_images/abaf1a36b129dfd5c15cbfc37841d7e16951627b7d42f25f6eb98c99eda01594.png" src="../_images/abaf1a36b129dfd5c15cbfc37841d7e16951627b7d42f25f6eb98c99eda01594.png" />
 </div>
 </div>
 <p>The <em>powerlaw</em> package provides direct access to the probability density function.</p>
@@ -711,7 +683,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/43d0ce42b79eebbe13653e1435e0db3f1b5ee862417be4831abfe79bab726a29.png" src="../_images/43d0ce42b79eebbe13653e1435e0db3f1b5ee862417be4831abfe79bab726a29.png" />
+<img alt="../_images/ae34a54a98ce9dcf13b748274158e8498a6b925e7090490632d3ec6834351426.png" src="../_images/ae34a54a98ce9dcf13b748274158e8498a6b925e7090490632d3ec6834351426.png" />
 </div>
 </div>
 </section>
@@ -738,7 +710,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/aa4615293fa164843c46fea867e49cc9eaca516e3a9ca7dbdc1641a15b6b4e7f.png" src="../_images/aa4615293fa164843c46fea867e49cc9eaca516e3a9ca7dbdc1641a15b6b4e7f.png" />
+<img alt="../_images/455ed14c0043e0b4d5db61958a6080d23fdcb7a39b670e9db1e5b6b0ebead453.png" src="../_images/455ed14c0043e0b4d5db61958a6080d23fdcb7a39b670e9db1e5b6b0ebead453.png" />
 </div>
 </div>
 </section>
@@ -1765,240 +1737,9 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculating best minimal value for power law fit
-xmin progress: 00%
-xmin progress: 00%
-xmin progress: 00%
-xmin progress: 01%
-xmin progress: 01%
-xmin progress: 02%
-xmin progress: 02%
-xmin progress: 03%
-xmin progress: 03%
-xmin progress: 03%
-xmin progress: 04%
-xmin progress: 04%
-xmin progress: 05%
-xmin progress: 05%
-xmin progress: 06%
-xmin progress: 06%
-xmin progress: 06%
-xmin progress: 07%
-xmin progress: 07%
-xmin progress: 08%
-xmin progress: 08%
-xmin progress: 09%
-xmin progress: 09%
-xmin progress: 09%
-xmin progress: 10%
-xmin progress: 10%
-xmin progress: 11%
-xmin progress: 11%
-xmin progress: 12%
-xmin progress: 12%
-xmin progress: 12%
-xmin progress: 13%
-xmin progress: 13%
-xmin progress: 14%
-xmin progress: 14%
-xmin progress: 15%
-xmin progress: 15%
-xmin progress: 15%
-xmin progress: 16%
-xmin progress: 16%
-xmin progress: 17%
-xmin progress: 17%
-xmin progress: 18%
-xmin progress: 18%
-xmin progress: 18%
-xmin progress: 19%
-xmin progress: 19%
-xmin progress: 20%
-xmin progress: 20%
-xmin progress: 21%
-xmin progress: 21%
-xmin progress: 21%
-xmin progress: 22%
-xmin progress: 22%
-xmin progress: 23%
-xmin progress: 23%
-xmin progress: 24%
-xmin progress: 24%
-xmin progress: 24%
-xmin progress: 25%
-xmin progress: 25%
-xmin progress: 26%
-xmin progress: 26%
-xmin progress: 27%
-xmin progress: 27%
-xmin progress: 27%
-xmin progress: 28%
-xmin progress: 28%
-xmin progress: 29%
-xmin progress: 29%
-xmin progress: 30%
-xmin progress: 30%
-xmin progress: 30%
-xmin progress: 31%
-xmin progress: 31%
-xmin progress: 32%
-xmin progress: 32%
-xmin progress: 33%
-xmin progress: 33%
-xmin progress: 33%
-xmin progress: 34%
-xmin progress: 34%
-xmin progress: 35%
-xmin progress: 35%
-xmin progress: 36%
-xmin progress: 36%
-xmin progress: 36%
-xmin progress: 37%
-xmin progress: 37%
-xmin progress: 38%
-xmin progress: 38%
-xmin progress: 39%
-xmin progress: 39%
-xmin progress: 39%
-xmin progress: 40%
-xmin progress: 40%
-xmin progress: 41%
-xmin progress: 41%
-xmin progress: 42%
-xmin progress: 42%
-xmin progress: 42%
-xmin progress: 43%
-xmin progress: 43%
-xmin progress: 44%
-xmin progress: 44%
-xmin progress: 45%
-xmin progress: 45%
-xmin progress: 45%
-xmin progress: 46%
-xmin progress: 46%
-xmin progress: 47%
-xmin progress: 47%
-xmin progress: 48%
-xmin progress: 48%
-xmin progress: 48%
-xmin progress: 49%
-xmin progress: 49%
-xmin progress: 50%
-xmin progress: 50%
-xmin progress: 51%
-xmin progress: 51%
-xmin progress: 51%
-xmin progress: 52%
-xmin progress: 52%
-xmin progress: 53%
-xmin progress: 53%
-xmin progress: 54%
-xmin progress: 54%
-xmin progress: 54%
-xmin progress: 55%
-xmin progress: 55%
-xmin progress: 56%
-xmin progress: 56%
-xmin progress: 57%
-xmin progress: 57%
-xmin progress: 57%
-xmin progress: 58%
-xmin progress: 58%
-xmin progress: 59%
-xmin progress: 59%
-xmin progress: 60%
-xmin progress: 60%
-xmin progress: 60%
-xmin progress: 61%
-xmin progress: 61%
-xmin progress: 62%
-xmin progress: 62%
-xmin progress: 63%
-xmin progress: 63%
-xmin progress: 63%
-xmin progress: 64%
-xmin progress: 64%
-xmin progress: 65%
-xmin progress: 65%
-xmin progress: 66%
-xmin progress: 66%
-xmin progress: 66%
-xmin progress: 67%
-xmin progress: 67%
-xmin progress: 68%
-xmin progress: 68%
-xmin progress: 69%
-xmin progress: 69%
-xmin progress: 69%
-xmin progress: 70%
-xmin progress: 70%
-xmin progress: 71%
-xmin progress: 71%
-xmin progress: 72%
-xmin progress: 72%
-xmin progress: 72%
-xmin progress: 73%
-xmin progress: 73%
-xmin progress: 74%
-xmin progress: 74%
-xmin progress: 75%
-xmin progress: 75%
-xmin progress: 75%
-xmin progress: 76%
-xmin progress: 76%
-xmin progress: 77%
-xmin progress: 77%
-xmin progress: 78%
-xmin progress: 78%
-xmin progress: 78%
-xmin progress: 79%
-xmin progress: 79%
-xmin progress: 80%
-xmin progress: 80%
-xmin progress: 81%
-xmin progress: 81%
-xmin progress: 81%
-xmin progress: 82%
-xmin progress: 82%
-xmin progress: 83%
-xmin progress: 83%
-xmin progress: 84%
-xmin progress: 84%
-xmin progress: 84%
-xmin progress: 85%
-xmin progress: 85%
-xmin progress: 86%
-xmin progress: 86%
-xmin progress: 87%
-xmin progress: 87%
-xmin progress: 87%
-xmin progress: 88%
-xmin progress: 88%
-xmin progress: 89%
-xmin progress: 89%
-xmin progress: 90%
-xmin progress: 90%
-xmin progress: 90%
-xmin progress: 91%
-xmin progress: 91%
-xmin progress: 92%
-xmin progress: 92%
-xmin progress: 93%
-xmin progress: 93%
-xmin progress: 93%
-xmin progress: 94%
-xmin progress: 94%
-xmin progress: 95%
-xmin progress: 95%
-xmin progress: 96%
-xmin progress: 96%
-xmin progress: 96%
-xmin progress: 97%
-xmin progress: 97%
-xmin progress: 98%
-xmin progress: 98%
-xmin progress: 99%
-xmin progress: 99%
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculating best minimal value for power law fit
+/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 </div>
@@ -2010,7 +1751,7 @@ xmin progress: 99%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Fit at 0x13f3a9c70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Fit at 0x7fbfcdbabb38&gt;
 </pre></div>
 </div>
 </div>
@@ -2022,7 +1763,11 @@ xmin progress: 99%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Power_Law at 0x13f273ac0&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Power_Law at 0x7fbfcdbab780&gt;
 </pre></div>
 </div>
 </div>
@@ -2070,6 +1815,12 @@ xmin progress: 99%
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2090,6 +1841,10 @@ xmin progress: 99%
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9475409247436344
 </pre></div>
 </div>
@@ -2158,7 +1913,7 @@ xmin progress: 99%
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3357d06b6d6716d4309e6772f2e7c23b9a8def52dac54101e1186ab2d17a8fe7.png" src="../_images/3357d06b6d6716d4309e6772f2e7c23b9a8def52dac54101e1186ab2d17a8fe7.png" />
+<img alt="../_images/82cfbb26c24d00b6e461890174ab8b4856b8b19cbe95ecbd89aa109af0da3c90.png" src="../_images/82cfbb26c24d00b6e461890174ab8b4856b8b19cbe95ecbd89aa109af0da3c90.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2183,7 +1938,7 @@ xmin progress: 99%
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3d222c62dcd58df10e756b0587e5ec8e52a5f52ad26cff9c7023bbc12829a880.png" src="../_images/3d222c62dcd58df10e756b0587e5ec8e52a5f52ad26cff9c7023bbc12829a880.png" />
+<img alt="../_images/96e8e03ddeff024f955df599c3c9cedde9a8cf7f75587419c27df5b5dbe72082.png" src="../_images/96e8e03ddeff024f955df599c3c9cedde9a8cf7f75587419c27df5b5dbe72082.png" />
 </div>
 </div>
 </section>
@@ -2213,6 +1968,12 @@ xmin progress: 99%
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2230,6 +1991,12 @@ xmin progress: 99%
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R2</span><span class="p">,</span><span class="n">p2</span> <span class="o">=</span> <span class="n">fit_function</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;lognormal_positive&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 </div>
@@ -2254,6 +2021,8 @@ xmin progress: 99%
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Assuming nested distributions
+/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 </div>
@@ -2276,6 +2045,12 @@ xmin progress: 99%
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2284,7 +2059,7 @@ xmin progress: 99%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.4423707978689595, 0.6582209069980287)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.43974656259335, 0.6601206746049643)
 </pre></div>
 </div>
 </div>
@@ -2294,6 +2069,12 @@ xmin progress: 99%
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 </div>
@@ -2331,7 +2112,7 @@ xmin progress: 99%
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/4ffc08af1e4d53a97e8e58e308db2d9969cc6c8150a0498ac47806851c8f19b0.png" src="../_images/4ffc08af1e4d53a97e8e58e308db2d9969cc6c8150a0498ac47806851c8f19b0.png" />
+<img alt="../_images/9ed6c0bfd52316694dcf80da2a56bd144b032db5c7a8ad52858edb82a8e98576.png" src="../_images/9ed6c0bfd52316694dcf80da2a56bd144b032db5c7a8ad52858edb82a8e98576.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2343,6 +2124,8 @@ xmin progress: 99%
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Assuming nested distributions
+/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-28.906628686152743, 0.0)
@@ -2370,7 +2153,7 @@ xmin progress: 99%
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/bbd1a04afc0f639d7e31d9771d320814de7355ddd0cd0ac96d80d346fc7f99ff.png" src="../_images/bbd1a04afc0f639d7e31d9771d320814de7355ddd0cd0ac96d80d346fc7f99ff.png" />
+<img alt="../_images/f4167b8a8ea263bd63513252878c0ab8a1699e294162cab0cf71aa47867264bd.png" src="../_images/f4167b8a8ea263bd63513252878c0ab8a1699e294162cab0cf71aa47867264bd.png" />
 </div>
 </div>
 </section>
