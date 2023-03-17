@@ -19,8 +19,9 @@ parts:
    - file: 2-networkx/nb03_NetworkX_visualization
    - file: 2-networkx/nb04_powerlaw_fitting
    - file: 2-networkx/nb05_network_analysis
-   - file: 2-networkx/nb06_network_assortativity
-   - file: 2-networkx/nb07_network_robustness
+   - file: 2-networkx/nb06_random_graphs
+   #- file: 2-networkx/nb07_network_assortativity
+   #- file: 2-networkx/nb08_network_robustness
 
 #- caption: Dynamical processes
 #  chapters:
