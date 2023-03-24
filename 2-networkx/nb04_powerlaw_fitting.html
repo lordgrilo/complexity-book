@@ -1,2163 +1,259 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&lt;no title&gt; &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
-    <title>4. How to fit a power law distribution &#8212; Complexity in social systems</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+      
 
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '2-networkx/nb04_powerlaw_fitting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Basics of network analysis" href="nb05_network_analysis.html" />
-    <link rel="prev" title="3. Introduction to NetworkX" href="nb03_NetworkX_visualization.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <link rel="next" title="3. Basics of network analysis" href="nb05_network_analysis.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="nb03_NetworkX_visualization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Coursebook for “Complessita’ nei Sistemi Sociali”
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">1. Python is easy :)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">2. Basic network import and representation</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network analysis</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="nb03_NetworkX_visualization.html">3. Introduction to NetworkX</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. How to fit a power law distribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb05_network_analysis.html">5. Basics of network analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb06_random_graphs.html">6. Erdos-Renyi random networks</a></li>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Network analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb05_network_analysis.html">
+   3. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb06_random_graphs.html">
+   4. Erdos-Renyi random networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb07_network_assortativity.html">
+   5. Network assortativity
+  </a>
+ </li>
 </ul>
 
     </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
 
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/2-networkx/nb04_powerlaw_fitting.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
 </div>
 
 
+          
 
 
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/lordgrilo/complexity-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/lordgrilo/complexity-book/issues/new?title=Issue%20on%20page%20%2F2-networkx/nb04_powerlaw_fitting.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/2-networkx/nb04_powerlaw_fitting.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>How to fit a power law distribution</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div>
-                <h2> Contents </h2>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/2-networkx/nb04_powerlaw_fitting.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F2-networkx/nb04_powerlaw_fitting.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-powerlaw-package">4.1. The Powerlaw package</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-ca-astroph">4.2. Analysis of ca-AstroPh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distribution">4.2.1. Degree distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-binning">4.2.2. Linear binning</a></li>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">4.3. Parameter estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-distributions-and-fit">4.4. Visualize distributions and fit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-candidate-distributions">4.5. Comparing Candidate Distributions</a></li>
-</ul>
+
             </nav>
         </div>
     </div>
 </div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
 
-              
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
-  <section class="tex2jax_ignore mathjax_ignore" id="how-to-fit-a-power-law-distribution">
-<h1><span class="section-number">4. </span>How to fit a power law distribution<a class="headerlink" href="#how-to-fit-a-power-law-distribution" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
-</pre></div>
-</div>
-</div>
-</div>
-<section id="the-powerlaw-package">
-<h2><span class="section-number">4.1. </span>The Powerlaw package<a class="headerlink" href="#the-powerlaw-package" title="Permalink to this heading">#</a></h2>
-<p>We use the Python toolbox <a class="reference external" href="https://github.com/jeffalstott/powerlaw">powerlaw</a> that implements a method proposed by Aaron Clauset and collaborators in <a class="reference external" href="https://arxiv.org/abs/0706.1062">this paper</a>.
-The paper explains why fitting a power law distribution using a linear regression of logarthim is not correct.
-A more sound approach is based on a Maximum Likelihood Estimator.</p>
-<p>The package can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">powerlaw</span></code>.
-Full documentation is available <a class="reference external" href="http://pythonhosted.org/powerlaw/">here</a>.
-Several examples and a detailed description of the library has been published in a paper on <a class="reference external" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0085777">PLOS ONE
-</a>.</p>
-<p>As stated by Clauset, Shalizi and Newman:</p>
-<blockquote>
-<div><p>In practice, we can rarely, if ever, be certain that an observed quantity is drawn from a power-law distribution. The most we can say is that our observations are consistent with the hypothesis that <span class="math notranslate nohighlight">\(x\)</span> is drawn from a distribution of the form of <span class="math notranslate nohighlight">\(p(x) \propto x^{-\alpha}\)</span>. In some cases we may also be able to rule out some other competing hypotheses.</p>
-</div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">powerlaw</span> <span class="k">as</span> <span class="nn">pwl</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="analysis-of-ca-astroph">
-<h2><span class="section-number">4.2. </span>Analysis of ca-AstroPh<a class="headerlink" href="#analysis-of-ca-astroph" title="Permalink to this heading">#</a></h2>
-<p>We analyze the network file ‘ca-AstroPh’ from the SNAP repository.
-This is a co-authorhip network, thus, it is undirected.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;./../datasets/ca-AstroPh.txt&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-
-<span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;#&#39;</span><span class="p">:</span>
-        <span class="n">origin</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">dest</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span><span class="n">dest</span><span class="p">)</span>
-<span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The network has&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;nodes and&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()),</span> <span class="s1">&#39;links.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The network has 18772 nodes and 198110 links.
-</pre></div>
-</div>
-</div>
-</div>
-<section id="degree-distribution">
-<h3><span class="section-number">4.2.1. </span>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this heading">#</a></h3>
-<p>Let’s plot the degree distribution of the network.</p>
-<p>It’s important to keep in mind the difference between <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability density function</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probablity mass function</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span> 
-<span class="n">deg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-<span class="n">deg_distri</span><span class="o">=</span><span class="n">Counter</span><span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We plot the degree probability mass function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">deg_distri</span><span class="p">):</span>   
-    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deg_distri</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>    
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mf">0.00001</span><span class="p">,</span><span class="mf">0.2</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/283e473fd843c6ca990b5800328757102e86001ed6ca156fa3e498a5c2a037cb.png" src="../_images/283e473fd843c6ca990b5800328757102e86001ed6ca156fa3e498a5c2a037cb.png" />
-</div>
-</div>
-<p>Using the ‘hist()’ function of matplotlib we can plot the probability density distribution, choosing the number of bins.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/abaf1a36b129dfd5c15cbfc37841d7e16951627b7d42f25f6eb98c99eda01594.png" src="../_images/abaf1a36b129dfd5c15cbfc37841d7e16951627b7d42f25f6eb98c99eda01594.png" />
-</div>
-</div>
-<p>The <em>powerlaw</em> package provides direct access to the probability density function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwl_distri</span><span class="o">=</span><span class="n">pwl</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwl_distri</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([  1.        ,   6.58888889,  12.17777778,  17.76666667,
-         23.35555556,  28.94444444,  34.53333333,  40.12222222,
-         45.71111111,  51.3       ,  56.88888889,  62.47777778,
-         68.06666667,  73.65555556,  79.24444444,  84.83333333,
-         90.42222222,  96.01111111, 101.6       , 107.18888889,
-        112.77777778, 118.36666667, 123.95555556, 129.54444444,
-        135.13333333, 140.72222222, 146.31111111, 151.9       ,
-        157.48888889, 163.07777778, 168.66666667, 174.25555556,
-        179.84444444, 185.43333333, 191.02222222, 196.61111111,
-        202.2       , 207.78888889, 213.37777778, 218.96666667,
-        224.55555556, 230.14444444, 235.73333333, 241.32222222,
-        246.91111111, 252.5       , 258.08888889, 263.67777778,
-        269.26666667, 274.85555556, 280.44444444, 286.03333333,
-        291.62222222, 297.21111111, 302.8       , 308.38888889,
-        313.97777778, 319.56666667, 325.15555556, 330.74444444,
-        336.33333333, 341.92222222, 347.51111111, 353.1       ,
-        358.68888889, 364.27777778, 369.86666667, 375.45555556,
-        381.04444444, 386.63333333, 392.22222222, 397.81111111,
-        403.4       , 408.98888889, 414.57777778, 420.16666667,
-        425.75555556, 431.34444444, 436.93333333, 442.52222222,
-        448.11111111, 453.7       , 459.28888889, 464.87777778,
-        470.46666667, 476.05555556, 481.64444444, 487.23333333,
-        492.82222222, 498.41111111, 504.        ]),
- array([7.30022168e-02, 2.97289351e-02, 1.38874827e-02, 1.29915161e-02,
-        7.35836420e-03, 7.44414824e-03, 6.11926142e-03, 4.47983313e-03,
-        4.63233808e-03, 2.83087327e-03, 2.41148464e-03, 2.14460096e-03,
-        1.61083361e-03, 1.57270737e-03, 1.25816590e-03, 1.07706626e-03,
-        9.91282224e-04, 4.76577992e-04, 6.38614509e-04, 5.43298911e-04,
-        4.76577992e-04, 3.33604594e-04, 4.00325513e-04, 3.62199274e-04,
-        2.76415235e-04, 2.66883676e-04, 1.90631197e-04, 2.09694317e-04,
-        1.52504957e-04, 7.62524787e-05, 1.62036517e-04, 6.67209189e-05,
-        5.71893591e-05, 3.81262394e-05, 8.57840386e-05, 2.85946795e-05,
-        0.00000000e+00, 8.57840386e-05, 3.81262394e-05, 6.67209189e-05,
-        1.90631197e-05, 2.85946795e-05, 9.53155984e-06, 0.00000000e+00,
-        1.90631197e-05, 3.81262394e-05, 0.00000000e+00, 9.53155984e-06,
-        3.81262394e-05, 0.00000000e+00, 9.53155984e-06, 0.00000000e+00,
-        1.90631197e-05, 0.00000000e+00, 0.00000000e+00, 9.53155984e-06,
-        0.00000000e+00, 1.90631197e-05, 1.90631197e-05, 1.90631197e-05,
-        0.00000000e+00, 0.00000000e+00, 1.90631197e-05, 0.00000000e+00,
-        9.53155984e-06, 9.53155984e-06, 0.00000000e+00, 0.00000000e+00,
-        9.53155984e-06, 9.53155984e-06, 0.00000000e+00, 0.00000000e+00,
-        0.00000000e+00, 0.00000000e+00, 1.90631197e-05, 0.00000000e+00,
-        9.53155984e-06, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-        0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-        0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-        0.00000000e+00, 9.53155984e-06]))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
-
-<span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/ae34a54a98ce9dcf13b748274158e8498a6b925e7090490632d3ec6834351426.png" src="../_images/ae34a54a98ce9dcf13b748274158e8498a6b925e7090490632d3ec6834351426.png" />
-</div>
-</div>
-</section>
-<section id="linear-binning">
-<h3><span class="section-number">4.2.2. </span>Linear binning<a class="headerlink" href="#linear-binning" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
-
-<span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">linear_bins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/455ed14c0043e0b4d5db61958a6080d23fdcb7a39b670e9db1e5b6b0ebead453.png" src="../_images/455ed14c0043e0b4d5db61958a6080d23fdcb7a39b670e9db1e5b6b0ebead453.png" />
-</div>
-</div>
-</section>
-</section>
-<section id="parameter-estimation">
-<h2><span class="section-number">4.3. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this heading">#</a></h2>
-<p>The library powerlaw allows to estimate the exponent <span class="math notranslate nohighlight">\(\alpha\)</span> and the minimum value for the scaling <span class="math notranslate nohighlight">\(x_{min}\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[75,
- 31,
- 43,
- 2,
- 90,
- 42,
- 118,
- 30,
- 113,
- 3,
- 28,
- 8,
- 158,
- 3,
- 13,
- 77,
- 36,
- 257,
- 12,
- 134,
- 55,
- 171,
- 28,
- 86,
- 15,
- 274,
- 47,
- 91,
- 22,
- 150,
- 2,
- 12,
- 14,
- 6,
- 52,
- 67,
- 108,
- 27,
- 142,
- 30,
- 62,
- 7,
- 86,
- 47,
- 61,
- 8,
- 49,
- 132,
- 41,
- 12,
- 5,
- 32,
- 20,
- 50,
- 56,
- 18,
- 44,
- 81,
- 28,
- 9,
- 61,
- 27,
- 22,
- 84,
- 123,
- 120,
- 82,
- 59,
- 10,
- 109,
- 21,
- 32,
- 30,
- 2,
- 28,
- 132,
- 6,
- 15,
- 72,
- 3,
- 33,
- 2,
- 20,
- 20,
- 13,
- 103,
- 77,
- 18,
- 10,
- 12,
- 12,
- 93,
- 19,
- 93,
- 10,
- 19,
- 60,
- 21,
- 9,
- 8,
- 48,
- 222,
- 40,
- 10,
- 12,
- 8,
- 103,
- 5,
- 18,
- 154,
- 27,
- 66,
- 220,
- 24,
- 9,
- 152,
- 323,
- 115,
- 34,
- 271,
- 53,
- 4,
- 12,
- 336,
- 30,
- 297,
- 1,
- 89,
- 9,
- 108,
- 25,
- 175,
- 162,
- 1,
- 16,
- 99,
- 75,
- 46,
- 19,
- 73,
- 25,
- 28,
- 99,
- 9,
- 68,
- 39,
- 52,
- 292,
- 138,
- 22,
- 10,
- 26,
- 118,
- 63,
- 30,
- 169,
- 16,
- 66,
- 49,
- 67,
- 1,
- 86,
- 19,
- 8,
- 333,
- 143,
- 26,
- 32,
- 13,
- 1,
- 13,
- 100,
- 66,
- 16,
- 43,
- 31,
- 30,
- 27,
- 2,
- 19,
- 28,
- 1,
- 8,
- 18,
- 29,
- 20,
- 9,
- 30,
- 8,
- 2,
- 132,
- 8,
- 6,
- 4,
- 11,
- 88,
- 33,
- 128,
- 15,
- 9,
- 24,
- 178,
- 21,
- 16,
- 55,
- 12,
- 30,
- 57,
- 10,
- 31,
- 156,
- 66,
- 76,
- 25,
- 113,
- 6,
- 105,
- 19,
- 3,
- 73,
- 27,
- 16,
- 128,
- 58,
- 24,
- 53,
- 25,
- 21,
- 88,
- 30,
- 3,
- 41,
- 39,
- 8,
- 63,
- 136,
- 104,
- 14,
- 91,
- 85,
- 97,
- 8,
- 109,
- 45,
- 41,
- 47,
- 14,
- 62,
- 111,
- 22,
- 38,
- 28,
- 3,
- 185,
- 57,
- 362,
- 115,
- 9,
- 174,
- 17,
- 58,
- 66,
- 50,
- 22,
- 52,
- 51,
- 121,
- 117,
- 117,
- 44,
- 54,
- 55,
- 118,
- 46,
- 27,
- 74,
- 65,
- 9,
- 31,
- 80,
- 13,
- 112,
- 100,
- 73,
- 369,
- 60,
- 19,
- 74,
- 188,
- 166,
- 99,
- 152,
- 8,
- 73,
- 64,
- 74,
- 9,
- 71,
- 427,
- 14,
- 18,
- 98,
- 88,
- 420,
- 42,
- 213,
- 163,
- 38,
- 31,
- 107,
- 64,
- 102,
- 173,
- 9,
- 139,
- 60,
- 82,
- 95,
- 52,
- 54,
- 123,
- 23,
- 70,
- 281,
- 32,
- 504,
- 28,
- 64,
- 126,
- 38,
- 48,
- 80,
- 149,
- 16,
- 45,
- 57,
- 175,
- 24,
- 140,
- 153,
- 85,
- 96,
- 85,
- 40,
- 43,
- 18,
- 56,
- 149,
- 126,
- 133,
- 83,
- 117,
- 26,
- 71,
- 35,
- 41,
- 58,
- 59,
- 155,
- 222,
- 144,
- 65,
- 92,
- 43,
- 98,
- 122,
- 35,
- 153,
- 24,
- 229,
- 11,
- 87,
- 44,
- 19,
- 120,
- 93,
- 151,
- 52,
- 41,
- 52,
- 125,
- 92,
- 153,
- 109,
- 88,
- 41,
- 23,
- 213,
- 61,
- 128,
- 141,
- 112,
- 108,
- 49,
- 95,
- 102,
- 150,
- 31,
- 235,
- 43,
- 7,
- 81,
- 108,
- 9,
- 135,
- 109,
- 120,
- 52,
- 92,
- 45,
- 75,
- 93,
- 108,
- 51,
- 85,
- 28,
- 39,
- 46,
- 28,
- 61,
- 80,
- 93,
- 85,
- 52,
- 65,
- 41,
- 8,
- 69,
- 9,
- 123,
- 14,
- 37,
- 17,
- 15,
- 74,
- 65,
- 39,
- 74,
- 18,
- 118,
- 60,
- 42,
- 54,
- 29,
- 96,
- 42,
- 15,
- 69,
- 17,
- 39,
- 129,
- 35,
- 6,
- 18,
- 87,
- 59,
- 29,
- 39,
- 65,
- 25,
- 75,
- 55,
- 110,
- 28,
- 86,
- 12,
- 33,
- 43,
- 60,
- 25,
- 24,
- 41,
- 15,
- 14,
- 30,
- 72,
- 99,
- 41,
- 15,
- 16,
- 20,
- 13,
- 149,
- 27,
- 18,
- 13,
- 21,
- 13,
- 38,
- 29,
- 52,
- 30,
- 32,
- 26,
- 42,
- 60,
- 6,
- 64,
- 31,
- 25,
- 44,
- 4,
- 68,
- 5,
- 81,
- 31,
- 24,
- 88,
- 52,
- 19,
- 24,
- 42,
- 1,
- 4,
- 1,
- 8,
- 3,
- 2,
- 12,
- 2,
- 15,
- 1,
- 2,
- 2,
- 7,
- 2,
- 10,
- 12,
- 2,
- 16,
- 74,
- 6,
- 1,
- 2,
- 34,
- 2,
- 29,
- 3,
- 38,
- 36,
- 12,
- 2,
- 5,
- 13,
- 34,
- 3,
- 61,
- 3,
- 96,
- 3,
- 7,
- 26,
- 38,
- 44,
- 49,
- 18,
- 18,
- 58,
- 18,
- 5,
- 18,
- 7,
- 3,
- 43,
- 44,
- 4,
- 3,
- 23,
- 23,
- 104,
- 41,
- 34,
- 6,
- 5,
- 22,
- 30,
- 23,
- 10,
- 63,
- 32,
- 57,
- 123,
- 52,
- 79,
- 61,
- 89,
- 56,
- 49,
- 107,
- 78,
- 81,
- 53,
- 40,
- 69,
- 47,
- 108,
- 21,
- 142,
- 71,
- 39,
- 119,
- 19,
- 51,
- 108,
- 67,
- 7,
- 13,
- 47,
- 64,
- 80,
- 55,
- 23,
- 40,
- 39,
- 79,
- 58,
- 133,
- 41,
- 39,
- 108,
- 38,
- 29,
- 95,
- 54,
- 25,
- 75,
- 43,
- 54,
- 75,
- 46,
- 79,
- 86,
- 22,
- 93,
- 25,
- 117,
- 60,
- 83,
- 147,
- 77,
- 7,
- 2,
- 7,
- 4,
- 22,
- 11,
- 4,
- 16,
- 9,
- 39,
- 5,
- 16,
- 30,
- 67,
- 25,
- 4,
- 13,
- 1,
- 4,
- 56,
- 5,
- 17,
- 7,
- 12,
- 114,
- 22,
- 21,
- 5,
- 3,
- 11,
- 22,
- 13,
- 16,
- 4,
- 2,
- 2,
- 12,
- 3,
- 2,
- 15,
- 2,
- 5,
- 13,
- 33,
- 5,
- 5,
- 38,
- 3,
- 3,
- 42,
- 3,
- 2,
- 3,
- 5,
- 8,
- 21,
- 4,
- 17,
- 11,
- 18,
- 49,
- 41,
- 5,
- 37,
- 11,
- 3,
- 5,
- 7,
- 4,
- 112,
- 6,
- 4,
- 4,
- 4,
- 3,
- 22,
- 5,
- 3,
- 3,
- 3,
- 11,
- 7,
- 5,
- 3,
- 19,
- 19,
- 99,
- 8,
- 39,
- 31,
- 11,
- 41,
- 10,
- 14,
- 29,
- 11,
- 45,
- 14,
- 27,
- 24,
- 25,
- 29,
- 9,
- 34,
- 3,
- 139,
- 16,
- 30,
- 15,
- 10,
- 60,
- 76,
- 2,
- 3,
- 10,
- 31,
- 41,
- 15,
- 12,
- 1,
- 46,
- 34,
- 112,
- 21,
- 21,
- 73,
- 7,
- 74,
- 15,
- 2,
- 7,
- 17,
- 82,
- 5,
- 5,
- 38,
- 80,
- 96,
- 22,
- 8,
- 8,
- 70,
- 5,
- 13,
- 17,
- 3,
- 64,
- 7,
- 18,
- 6,
- 20,
- 52,
- 32,
- 16,
- 7,
- 1,
- 28,
- 6,
- 22,
- 36,
- 151,
- 74,
- 52,
- 52,
- 53,
- 26,
- 36,
- 11,
- 85,
- 10,
- 26,
- 65,
- 18,
- 14,
- 40,
- 1,
- 20,
- 13,
- 8,
- 27,
- 44,
- 2,
- 77,
- 116,
- 120,
- 105,
- 157,
- 2,
- 26,
- 42,
- 29,
- 65,
- 8,
- 136,
- 153,
- 11,
- 57,
- 166,
- 23,
- 176,
- 124,
- 111,
- 85,
- 36,
- 109,
- 52,
- 141,
- 61,
- 269,
- 36,
- 189,
- 4,
- 149,
- 33,
- 61,
- 3,
- 214,
- 83,
- 144,
- 188,
- 55,
- 54,
- 47,
- 84,
- 11,
- 202,
- 88,
- 110,
- 30,
- 20,
- 10,
- 61,
- 45,
- 62,
- 51,
- 47,
- 350,
- 52,
- 84,
- 9,
- 23,
- 6,
- 224,
- 106,
- 125,
- 26,
- 13,
- 65,
- 258,
- 134,
- 122,
- 34,
- 56,
- 126,
- 126,
- 66,
- 22,
- 28,
- 73,
- 139,
- 174,
- 148,
- 20,
- 49,
- 83,
- 200,
- 165,
- 129,
- 55,
- 50,
- 19,
- 37,
- 91,
- 69,
- 81,
- 45,
- 110,
- 68,
- 224,
- 57,
- 73,
- 180,
- 153,
- 110,
- 63,
- 173,
- 124,
- 141,
- 38,
- 93,
- 91,
- 131,
- 61,
- 64,
- 86,
- 64,
- 90,
- 145,
- 173,
- 24,
- 91,
- 107,
- 91,
- 56,
- 30,
- 56,
- 80,
- 32,
- 76,
- 162,
- 23,
- 72,
- 56,
- 135,
- 163,
- 230,
- 39,
- 161,
- 19,
- 44,
- 58,
- 1,
- 175,
- 96,
- 137,
- 64,
- 385,
- 76,
- 124,
- 61,
- 195,
- 135,
- 122,
- 15,
- 69,
- 77,
- 3,
- 81,
- 142,
- 26,
- 36,
- 73,
- 162,
- 104,
- 71,
- 159,
- 80,
- 196,
- 152,
- 18,
- 211,
- 114,
- 20,
- 111,
- 102,
- 22,
- 119,
- 105,
- 105,
- 85,
- ...]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span> <span class="o">=</span> <span class="n">pwl</span><span class="o">.</span><span class="n">Fit</span><span class="p">(</span><span class="n">degree</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculating best minimal value for power law fit
-/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Fit at 0x7fbfcdbabb38&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;powerlaw.Power_Law at 0x7fbfcdbab780&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">alpha</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.543577046506554
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">sigma</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1993417830511849
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">xmin</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123.0
-</pre></div>
-</div>
-</div>
-</div>
-<p>We fix the minimum value for the scaling <span class="math notranslate nohighlight">\(x_{min}=10\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function_fixmin</span> <span class="o">=</span> <span class="n">pwl</span><span class="o">.</span><span class="n">Fit</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">xmin</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">alpha</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9475409247436344
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">sigma</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.009808681018591505
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can look at the values of the <a class="reference external" href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">Kolgomorov-Sminorv distance</a> of the two fits to compare them. Smaller distances correspond to better fits.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">D</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.028347190083988588
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">D</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12754011660628156
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="visualize-distributions-and-fit">
-<h2><span class="section-number">4.4. </span>Visualize distributions and fit<a class="headerlink" href="#visualize-distributions-and-fit" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">=</span><span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">degree</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">123</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-
-<span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/82cfbb26c24d00b6e461890174ab8b4856b8b19cbe95ecbd89aa109af0da3c90.png" src="../_images/82cfbb26c24d00b6e461890174ab8b4856b8b19cbe95ecbd89aa109af0da3c90.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">=</span><span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">degree</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-
-<span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/96e8e03ddeff024f955df599c3c9cedde9a8cf7f75587419c27df5b5dbe72082.png" src="../_images/96e8e03ddeff024f955df599c3c9cedde9a8cf7f75587419c27df5b5dbe72082.png" />
-</div>
-</div>
-</section>
-<section id="comparing-candidate-distributions">
-<h2><span class="section-number">4.5. </span>Comparing Candidate Distributions<a class="headerlink" href="#comparing-candidate-distributions" title="Permalink to this heading">#</a></h2>
-<p>We can compare the goodness of fit of several distributions. Distributions other than a power-law can provide a better fit to the data.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">supported_distributions</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;power_law&#39;: powerlaw.Power_Law,
- &#39;lognormal&#39;: powerlaw.Lognormal,
- &#39;exponential&#39;: powerlaw.Exponential,
- &#39;truncated_power_law&#39;: powerlaw.Truncated_Power_Law,
- &#39;stretched_exponential&#39;: powerlaw.Stretched_Exponential,
- &#39;lognormal_positive&#39;: powerlaw.Lognormal_Positive}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">fit_function</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span><span class="n">p</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.4450468427863137, 0.014483332945893693)
-</pre></div>
-</div>
-</div>
-</div>
-<p>R is the loglikelihood ratio between the two candidate distributions. This number will be positive if the data is more likely in the first distribution, and negative if the data is more likely in the second distribution. The significance value for that direction is p.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R2</span><span class="p">,</span><span class="n">p2</span> <span class="o">=</span> <span class="n">fit_function</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;lognormal_positive&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R2</span><span class="p">,</span><span class="n">p2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.26521294560765446, 0.7908454227344833)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R3</span><span class="p">,</span><span class="n">p3</span> <span class="o">=</span> <span class="n">fit_function</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;truncated_power_law&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Assuming nested distributions
-/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R3</span><span class="p">,</span><span class="n">p3</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.46891429705144816, 0.5781526627750692)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R4</span><span class="p">,</span><span class="n">p4</span> <span class="o">=</span> <span class="n">fit_function</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;stretched_exponential&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R4</span><span class="p">,</span><span class="n">p4</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.43974656259335, 0.6601206746049643)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Analyze the power law with <span class="math notranslate nohighlight">\(x_{min}=10\)</span>.</p>
-<p>Here, the truncated power law is the best fit that explains the data. Even an exponential is a better fit to the data.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span><span class="n">p</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-9.83422144673739, 8.018539959420145e-23)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">fig</span><span class="o">=</span><span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">degree</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-
-<span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">exponential</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/9ed6c0bfd52316694dcf80da2a56bd144b032db5c7a8ad52858edb82a8e98576.png" src="../_images/9ed6c0bfd52316694dcf80da2a56bd144b032db5c7a8ad52858edb82a8e98576.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R3</span><span class="p">,</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">distribution_compare</span><span class="p">(</span><span class="s1">&#39;power_law&#39;</span><span class="p">,</span> <span class="s1">&#39;truncated_power_law&#39;</span><span class="p">,</span> <span class="n">normalized_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">R3</span><span class="p">,</span> <span class="n">p3</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Assuming nested distributions
-/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-28.906628686152743, 0.0)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-
-<span class="n">fig</span><span class="o">=</span><span class="n">pwl</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">degree</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-
-<span class="n">fit_function_fixmin</span><span class="o">.</span><span class="n">truncated_power_law</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(k)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(k)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/f4167b8a8ea263bd63513252878c0ab8a1699e294162cab0cf71aa47867264bd.png" src="../_images/f4167b8a8ea263bd63513252878c0ab8a1699e294162cab0cf71aa47867264bd.png" />
-</div>
-</div>
-</section>
-</section>
-
+  
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -2170,7 +266,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./2-networkx"
         },
         predefinedOutput: true
@@ -2178,107 +274,44 @@ This is a co-authorhip network, thus, it is undirected.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="nb03_NetworkX_visualization.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Introduction to NetworkX</p>
-      </div>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb03_NetworkX_visualization.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">&lt;no title&gt;</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="nb05_network_analysis.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="nb05_network_analysis.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Basics of network analysis</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+        <p class="prev-next-title"><span class="section-number">3. </span>Basics of network analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
             
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-powerlaw-package">4.1. The Powerlaw package</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-ca-astroph">4.2. Analysis of ca-AstroPh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distribution">4.2.1. Degree distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-binning">4.2.2. Linear binning</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">4.3. Parameter estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-distributions-and-fit">4.4. Visualize distributions and fit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-candidate-distributions">4.5. Comparing Candidate Distributions</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By G. Petri, M. Lucas
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div></div>
-          </footer>
-        
-
-      </main>
+        </div>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+    <footer class="footer">
+  <p>
+    
+      By G. Petri, M. Lucas<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
-  <footer class="bd-footer">
-  </footer>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
   </body>
 </html>

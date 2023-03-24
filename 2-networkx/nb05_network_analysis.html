@@ -1,61 +1,51 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Basics of network analysis &#8212; Complexity in social systems</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
-    <title>5. Basics of network analysis &#8212; Complexity in social systems</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+      
 
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,382 +54,347 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '2-networkx/nb05_network_analysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
-    <link rel="prev" title="4. How to fit a power law distribution" href="nb04_powerlaw_fitting.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <link rel="next" title="4. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="nb04_powerlaw_fitting.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Coursebook for “Complessita’ nei Sistemi Sociali”
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Complexity in social systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Coursebook for “Complessita’ nei Sistemi Sociali”
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">1. Python is easy :)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">2. Basic network import and representation</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">
+   1. Python is easy :)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">
+   2. Basic network import and representation
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network analysis</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Network analysis
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="nb03_NetworkX_visualization.html">3. Introduction to NetworkX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb04_powerlaw_fitting.html">4. How to fit a power law distribution</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Basics of network analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb06_random_graphs.html">6. Erdos-Renyi random networks</a></li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Basics of network analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb06_random_graphs.html">
+   4. Erdos-Renyi random networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb07_network_assortativity.html">
+   5. Network assortativity
+  </a>
+ </li>
 </ul>
 
     </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
 
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/2-networkx/nb05_network_analysis.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
 </div>
 
 
+          
 
 
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/lordgrilo/complexity-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/lordgrilo/complexity-book/issues/new?title=Issue%20on%20page%20%2F2-networkx/nb05_network_analysis.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/2-networkx/nb05_network_analysis.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basics of network analysis</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div>
-                <h2> Contents </h2>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/2-networkx/nb05_network_analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lordgrilo/complexity-book/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lordgrilo/complexity-book//issues/new?title=Issue%20on%20page%20%2F2-networkx/nb05_network_analysis.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/2-networkx/nb05_network_analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            <nav aria-label="Page">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">5.1. Connectivity and clustering of a graph</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-the-components-of-the-graph">5.1.1. Show the components of the graph</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">5.1.2. Extract the largest Connected Component as a subgraph</a></li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">
+   3.1. Connectivity and clustering of a graph
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#show-the-components-of-the-graph">
+     3.1.1. Show the components of the graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">
+     3.1.2. Extract the largest Connected Component as a subgraph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-clustering-coefficient">
+   3.2. Global clustering coefficient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-clustering-coefficient">
+   3.3. Average clustering coefficient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-sorthest-path-length">
+   3.4. Average sorthest path length
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">
+     3.4.1. Warning! Calculating the shortest paths is intensive!!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">
+     3.4.2. Compare the results with a random ER network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">
+     3.4.3. Compare the results with a random AB network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">
+     3.4.4. Compare the results with a random WS network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#closeness-centrality">
+   3.5. Closeness Centrality
+  </a>
+ </li>
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-clustering-coefficient">5.2. Global clustering coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-clustering-coefficient">5.3. Average clustering coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-sorthest-path-length">5.4. Average sorthest path length</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">5.4.1. Warning! Calculating the shortest paths is intensive!!</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">5.4.2. Compare the results with a random ER network</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">5.4.3. Compare the results with a random AB network</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">5.4.4. Compare the results with a random WS network</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">5.5. Closeness Centrality</a></li>
-</ul>
+
             </nav>
         </div>
     </div>
 </div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Basics of network analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">
+   3.1. Connectivity and clustering of a graph
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#show-the-components-of-the-graph">
+     3.1.1. Show the components of the graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">
+     3.1.2. Extract the largest Connected Component as a subgraph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-clustering-coefficient">
+   3.2. Global clustering coefficient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-clustering-coefficient">
+   3.3. Average clustering coefficient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-sorthest-path-length">
+   3.4. Average sorthest path length
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">
+     3.4.1. Warning! Calculating the shortest paths is intensive!!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">
+     3.4.2. Compare the results with a random ER network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">
+     3.4.3. Compare the results with a random AB network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">
+     3.4.4. Compare the results with a random WS network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#closeness-centrality">
+   3.5. Closeness Centrality
+  </a>
+ </li>
+</ul>
 
-              
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
-  <section class="tex2jax_ignore mathjax_ignore" id="basics-of-network-analysis">
-<h1><span class="section-number">5. </span>Basics of network analysis<a class="headerlink" href="#basics-of-network-analysis" title="Permalink to this heading">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="basics-of-network-analysis">
+<h1><span class="section-number">3. </span>Basics of network analysis<a class="headerlink" href="#basics-of-network-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -455,17 +410,52 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>%pylab is deprecated, use %matplotlib inline and import the required libraries.
+Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
 </div>
-<section id="connectivity-and-clustering-of-a-graph">
-<h2><span class="section-number">5.1. </span>Connectivity and clustering of a graph<a class="headerlink" href="#connectivity-and-clustering-of-a-graph" title="Permalink to this heading">#</a></h2>
+<div class="section" id="connectivity-and-clustering-of-a-graph">
+<h2><span class="section-number">3.1. </span>Connectivity and clustering of a graph<a class="headerlink" href="#connectivity-and-clustering-of-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>We study the network of coauthorships of Astro-Ph, from the SNAP database.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;./../datasets/ca-AstroPh.txt&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>more ./../datasets/cma-AstroPh.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Directed graph (each unordered pair of nodes is saved once): CA-AstroPh.txt 
+# Collaboration network of Arxiv Astro Physics category (there is an edge if authors coauthored at least one paper)
+# Nodes: 18772 Edges: 396160
+# FromNodeId    ToNodeId
+84424   276
+84424   1662
+84424   5089
+84424   6058
+84424   6229
+84424   10639
+84424   16442
+84424   19325
+84424   19834
+84424   20113
+84424   21937
+84424   25452
+84424   26902
+84424   29829
+84424   30222
+84424   32432
+84424   33040
+84424   39238
+[K[?1l&gt;atasets/ca-AstroPh.txt[m[K
 </pre></div>
 </div>
 </div>
@@ -505,6 +495,18 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.graph.Graph at 0x14ab90880&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is the graph simply connected?&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -515,8 +517,8 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="show-the-components-of-the-graph">
-<h3><span class="section-number">5.1.1. </span>Show the components of the graph<a class="headerlink" href="#show-the-components-of-the-graph" title="Permalink to this heading">#</a></h3>
+<div class="section" id="show-the-components-of-the-graph">
+<h3><span class="section-number">3.1.1. </span>Show the components of the graph<a class="headerlink" href="#show-the-components-of-the-graph" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The graph has&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s2">&quot;connected components&quot;</span><span class="p">)</span>
@@ -831,9 +833,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="extract-the-largest-connected-component-as-a-subgraph">
-<h3><span class="section-number">5.1.2. </span>Extract the largest Connected Component as a subgraph<a class="headerlink" href="#extract-the-largest-connected-component-as-a-subgraph" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="extract-the-largest-connected-component-as-a-subgraph">
+<h3><span class="section-number">3.1.2. </span>Extract the largest Connected Component as a subgraph<a class="headerlink" href="#extract-the-largest-connected-component-as-a-subgraph" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -841,7 +843,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object connected_components at 0x7fa1ffd936d8&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object connected_components at 0x14ac04190&gt;
 </pre></div>
 </div>
 </div>
@@ -900,10 +902,10 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="global-clustering-coefficient">
-<h2><span class="section-number">5.2. </span>Global clustering coefficient<a class="headerlink" href="#global-clustering-coefficient" title="Permalink to this heading">#</a></h2>
+</div>
+</div>
+<div class="section" id="global-clustering-coefficient">
+<h2><span class="section-number">3.2. </span>Global clustering coefficient<a class="headerlink" href="#global-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
 <p>The global clustering coefficient measures the number of triangles in the network and it’s defined as:</p>
 <center>
 $C_\Delta = \frac{3 \times \text{triangles}}{\text{triplets}}$
@@ -1952,9 +1954,9 @@ $C_\Delta = \frac{3 \times \text{triangles}}{\text{triplets}}$
 </div>
 </div>
 </div>
-</section>
-<section id="average-clustering-coefficient">
-<h2><span class="section-number">5.3. </span>Average clustering coefficient<a class="headerlink" href="#average-clustering-coefficient" title="Permalink to this heading">#</a></h2>
+</div>
+<div class="section" id="average-clustering-coefficient">
+<h2><span class="section-number">3.3. </span>Average clustering coefficient<a class="headerlink" href="#average-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
 <p>As an alternative to the global clustering coefficient, the overall level of clustering in a network is measured by Watts and Strogatz as the average of the local clustering coefficients of all the vertices <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <center>
 $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
@@ -1976,11 +1978,11 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 </div>
-</section>
-<section id="average-sorthest-path-length">
-<h2><span class="section-number">5.4. </span>Average sorthest path length<a class="headerlink" href="#average-sorthest-path-length" title="Permalink to this heading">#</a></h2>
-<section id="warning-calculating-the-shortest-paths-is-intensive">
-<h3><span class="section-number">5.4.1. </span>Warning! Calculating the shortest paths is intensive!!<a class="headerlink" href="#warning-calculating-the-shortest-paths-is-intensive" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="average-sorthest-path-length">
+<h2><span class="section-number">3.4. </span>Average sorthest path length<a class="headerlink" href="#average-sorthest-path-length" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="warning-calculating-the-shortest-paths-is-intensive">
+<h3><span class="section-number">3.4.1. </span>Warning! Calculating the shortest paths is intensive!!<a class="headerlink" href="#warning-calculating-the-shortest-paths-is-intensive" title="Permalink to this headline">¶</a></h3>
 <p>The graph is small world.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1989,7 +1991,57 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.194011768617203
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [32],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/algorithms/shortest_paths/generic.py:417,</span> in <span class="ni">average_shortest_path_length</span><span class="nt">(G, weight, method)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="k">return</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_bellman_ford_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span> <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">single_source_methods</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>     <span class="c1"># Sum the distances for each (ordered) pair of source and target node.</span>
+<span class="nn">--&gt; 417     s = sum(l for u in G for l</span> in <span class="ni">path_length(u).values</span><span class="nt">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;floyd-warshall&quot;</span><span class="p">:</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/algorithms/shortest_paths/generic.py:417,</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="k">return</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_bellman_ford_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span> <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">single_source_methods</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>     <span class="c1"># Sum the distances for each (ordered) pair of source and target node.</span>
+<span class="nn">--&gt; 417     s = sum(l for u in G for l</span> in <span class="ni">path_length(u).values</span><span class="nt">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;floyd-warshall&quot;</span><span class="p">:</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/algorithms/shortest_paths/generic.py:409,</span> in <span class="ni">average_shortest_path_length.&lt;locals&gt;.path_length</span><span class="nt">(v)</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="k">def</span> <span class="nf">path_length</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;unweighted&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">409</span>         <span class="k">return</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;dijkstra&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="k">return</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_dijkstra_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/algorithms/shortest_paths/unweighted.py:59,</span> in <span class="ni">single_source_shortest_path_length</span><span class="nt">(G, source, cutoff)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="n">cutoff</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">nextlevel</span> <span class="o">=</span> <span class="p">{</span><span class="n">source</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="ne">---&gt; </span><span class="mi">59</span> <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_single_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">adj</span><span class="p">,</span> <span class="n">nextlevel</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">))</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/algorithms/shortest_paths/unweighted.py:91,</span> in <span class="ni">_single_shortest_path_length</span><span class="nt">(adj, firstlevel, cutoff)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="k">return</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">91</span>         <span class="n">nextlevel</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">adj</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> <span class="k">del</span> <span class="n">seen</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/classes/coreviews.py:82,</span> in <span class="ni">AdjacencyView.__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">82</span>     <span class="k">return</span> <span class="n">AtlasView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_atlas</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+<span class="nn">File ~/.virtualenvs/stenv/lib/python3.9/site-packages/networkx/classes/coreviews.py:334,</span> in <span class="ni">FilterAdjacency.__getitem__</span><span class="nt">(self, node)</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">334</span>     <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atlas</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">NODE_OK</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span>         <span class="k">def</span> <span class="nf">new_node_ok</span><span class="p">(</span><span class="n">nbr</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">NODE_OK</span><span class="p">(</span><span class="n">nbr</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">EDGE_OK</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nbr</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2006,14 +2058,14 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 </div>
-</section>
-<section id="compare-the-results-with-a-random-er-network">
-<h3><span class="section-number">5.4.2. </span>Compare the results with a random ER network<a class="headerlink" href="#compare-the-results-with-a-random-er-network" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="compare-the-results-with-a-random-er-network">
+<h3><span class="section-number">3.4.2. </span>Compare the results with a random ER network<a class="headerlink" href="#compare-the-results-with-a-random-er-network" title="Permalink to this headline">¶</a></h3>
 <p>We generate a random Erdos-Renyi graph with same average connectivity of H, i.e. same number of nodes and edges.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nnodes</span> <span class="o">=</span> <span class="mi">18000</span>
-<span class="n">plink</span> <span class="o">=</span> <span class="mf">0.00122</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nnodes</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">plink</span> <span class="o">=</span> <span class="mf">0.0122</span>
 
 <span class="n">ER</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="n">nnodes</span><span class="p">,</span> <span class="n">plink</span><span class="p">)</span>
 </pre></div>
@@ -2040,8 +2092,8 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The ER graph has 18000 nodes
-and 197301 edges
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The ER graph has 2000 nodes
+and 24377 edges
 </pre></div>
 </div>
 </div>
@@ -2057,7 +2109,7 @@ and 197301 edges
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average clustering coefficient of ER is
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0012141988199032558
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.012613883478746453
 </pre></div>
 </div>
 </div>
@@ -2069,7 +2121,7 @@ and 197301 edges
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1770.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2477.0
 </pre></div>
 </div>
 </div>
@@ -2083,7 +2135,7 @@ and 197301 edges
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.5193996580056917
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.724698349174587
 </pre></div>
 </div>
 </div>
@@ -2095,14 +2147,14 @@ and 197301 edges
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.255272505103306
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.301029995663981
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="compare-the-results-with-a-random-ab-network">
-<h3><span class="section-number">5.4.3. </span>Compare the results with a random AB network<a class="headerlink" href="#compare-the-results-with-a-random-ab-network" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="compare-the-results-with-a-random-ab-network">
+<h3><span class="section-number">3.4.3. </span>Compare the results with a random AB network<a class="headerlink" href="#compare-the-results-with-a-random-ab-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AB</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="mi">18000</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
@@ -2114,12 +2166,6 @@ and 197301 edges
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The AB graph has&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">AB</span><span class="p">),</span> <span class="s2">&quot;nodes&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">AB</span><span class="o">.</span><span class="n">edges</span><span class="p">()),</span> <span class="s2">&quot;edges&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The AB graph has 18000 nodes
-and 197879 edges
 </pre></div>
 </div>
 </div>
@@ -2165,19 +2211,10 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/c57acd72279f7b3ee5be8ea330c260af4b54f86952b4d24e070987b740a23fed.png" src="../_images/c57acd72279f7b3ee5be8ea330c260af4b54f86952b4d24e070987b740a23fed.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span> <span class="o">=</span> <span class="n">pwl</span><span class="o">.</span><span class="n">Fit</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">degrees</span><span class="p">),</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
 </pre></div>
 </div>
 </div>
@@ -2188,15 +2225,6 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Michele/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
-  (Theoretical_CDF * (1 - Theoretical_CDF))
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0529058123106254
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2204,20 +2232,10 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01530145649243661
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_function</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">xmin</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.0
 </pre></div>
 </div>
 </div>
@@ -2229,23 +2247,10 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average clustering coefficient of AB is
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.007591474716662366
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of triangles is &quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of triangles is  24610.0
 </pre></div>
 </div>
 </div>
@@ -2257,11 +2262,6 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.13362370131674
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2269,15 +2269,10 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.255272505103306
-</pre></div>
 </div>
 </div>
-</div>
-</section>
-<section id="compare-the-results-with-a-random-ws-network">
-<h3><span class="section-number">5.4.4. </span>Compare the results with a random WS network<a class="headerlink" href="#compare-the-results-with-a-random-ws-network" title="Permalink to this heading">#</a></h3>
+<div class="section" id="compare-the-results-with-a-random-ws-network">
+<h3><span class="section-number">3.4.4. </span>Compare the results with a random WS network<a class="headerlink" href="#compare-the-results-with-a-random-ws-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WS</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_watts_strogatz_graph</span><span class="p">(</span><span class="mi">18000</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -2292,21 +2287,10 @@ and 197879 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The WS graph has 18000 nodes
-and 198000 edges
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">WS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -2329,26 +2313,11 @@ and 198000 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([   0., 1000., 2000., 3000., 4000., 5000., 6000.]),
- &lt;a list of 7 Text yticklabel objects&gt;)
-</pre></div>
-</div>
-<img alt="../_images/a592c3926cfdc2a0a2cd0bd53352d66bf082027c4f1f6e750eabcc2bcde59a16.png" src="../_images/a592c3926cfdc2a0a2cd0bd53352d66bf082027c4f1f6e750eabcc2bcde59a16.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average clustering coefficient of WS is&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">WS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average clustering coefficient of WS is
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.37085505769824445
 </pre></div>
 </div>
 </div>
@@ -2360,11 +2329,6 @@ and 198000 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.032931736948349
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2372,16 +2336,11 @@ and 198000 edges
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.255272505103306
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="closeness-centrality">
-<h2><span class="section-number">5.5. </span>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this heading">#</a></h2>
+<div class="section" id="closeness-centrality">
+<h2><span class="section-number">3.5. </span>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h2>
 <p>In connected graphs there is a natural distance metric between all pairs of nodes, defined by the length of their shortest paths.
 The ‘’’farness’’’ of a node ‘’x’’ is defined as the sum of its distances from all other nodes, and its closeness was defined by Bavelas as the reciprocal of the farness that is:</p>
 <center>
@@ -2402,14 +2361,9 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.30557831489826576
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2420,124 +2374,55 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "pyenv3.8"
+            mode: "stenv"
         },
         kernelOptions: {
-            name: "pyenv3.8",
+            kernelName: "stenv",
             path: "./2-networkx"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'pyenv3.8'</script>
+    <script>kernelName = 'stenv'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="nb04_powerlaw_fitting.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>How to fit a power law distribution</p>
-      </div>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nb04_powerlaw_fitting.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">&lt;no title&gt;</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="nb06_random_graphs.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="nb06_random_graphs.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Erdos-Renyi random networks</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
+        <p class="prev-next-title"><span class="section-number">4. </span>Erdos-Renyi random networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
-                </footer>
-              
-            </div>
             
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">5.1. Connectivity and clustering of a graph</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-the-components-of-the-graph">5.1.1. Show the components of the graph</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">5.1.2. Extract the largest Connected Component as a subgraph</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-clustering-coefficient">5.2. Global clustering coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-clustering-coefficient">5.3. Average clustering coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-sorthest-path-length">5.4. Average sorthest path length</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">5.4.1. Warning! Calculating the shortest paths is intensive!!</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">5.4.2. Compare the results with a random ER network</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">5.4.3. Compare the results with a random AB network</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">5.4.4. Compare the results with a random WS network</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">5.5. Closeness Centrality</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By G. Petri, M. Lucas
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div></div>
-          </footer>
-        
-
-      </main>
+        </div>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+    <footer class="footer">
+  <p>
+    
+      By G. Petri, M. Lucas<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
-  <footer class="bd-footer">
-  </footer>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
   </body>
 </html>
