@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Network assortativity &#8212; Complexity in social systems</title>
+    <title>6. Network assortativity &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="4. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
+    <link rel="prev" title="5. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,18 +122,23 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="nb04_powerlaw_fitting.html">
+   3. How to fit a power law distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb05_network_analysis.html">
-   3. Basics of network analysis
+   4. Basics of network analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb06_random_graphs.html">
-   4. Erdos-Renyi random networks
+   5. Erdos-Renyi random networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Network assortativity
+   6. Network assortativity
   </a>
  </li>
 </ul>
@@ -245,27 +250,27 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-import">
-   5.1. Data import
+   6.1. Data import
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#degree-assortativity-of-a-network">
-   5.2. Degree assortativity of a network
+   6.2. Degree assortativity of a network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparisong-with-cm">
-   5.3. Comparisong with CM
+   6.3. Comparisong with CM
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structural-correlations">
-   5.4. structural correlations
+   6.4. structural correlations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#homework-implement-the-different-randomization-algorithms">
-     5.4.1. Homework: Implement the different randomization algorithms?
+     6.4.1. Homework: Implement the different randomization algorithms?
     </a>
    </li>
   </ul>
@@ -292,27 +297,27 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-import">
-   5.1. Data import
+   6.1. Data import
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#degree-assortativity-of-a-network">
-   5.2. Degree assortativity of a network
+   6.2. Degree assortativity of a network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparisong-with-cm">
-   5.3. Comparisong with CM
+   6.3. Comparisong with CM
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structural-correlations">
-   5.4. structural correlations
+   6.4. structural correlations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#homework-implement-the-different-randomization-algorithms">
-     5.4.1. Homework: Implement the different randomization algorithms?
+     6.4.1. Homework: Implement the different randomization algorithms?
     </a>
    </li>
   </ul>
@@ -327,9 +332,9 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="network-assortativity">
-<h1><span class="section-number">5. </span>Network assortativity<a class="headerlink" href="#network-assortativity" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Network assortativity<a class="headerlink" href="#network-assortativity" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-import">
-<h2><span class="section-number">5.1. </span>Data import<a class="headerlink" href="#data-import" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Data import<a class="headerlink" href="#data-import" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -392,7 +397,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="degree-assortativity-of-a-network">
-<h2><span class="section-number">5.2. </span>Degree assortativity of a network<a class="headerlink" href="#degree-assortativity-of-a-network" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Degree assortativity of a network<a class="headerlink" href="#degree-assortativity-of-a-network" title="Permalink to this headline">¶</a></h2>
 <p>Assortativity can be measured in different ways. A simple approach is measuring the average nearest neighbor degree to assess the level of degree-assortativity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -594,7 +599,7 @@ Use `average_degree_connectivity` instead.
 </div>
 </div>
 <div class="section" id="comparisong-with-cm">
-<h2><span class="section-number">5.3. </span>Comparisong with CM<a class="headerlink" href="#comparisong-with-cm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Comparisong with CM<a class="headerlink" href="#comparisong-with-cm" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deg_seq</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -680,7 +685,7 @@ Use `average_degree_connectivity` instead.
 </div>
 </div>
 <div class="section" id="structural-correlations">
-<h2><span class="section-number">5.4. </span>structural correlations<a class="headerlink" href="#structural-correlations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>structural correlations<a class="headerlink" href="#structural-correlations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">zipf</span>
@@ -738,7 +743,7 @@ Use `average_degree_connectivity` instead.
 </div>
 </div>
 <div class="section" id="homework-implement-the-different-randomization-algorithms">
-<h3><span class="section-number">5.4.1. </span>Homework: Implement the different randomization algorithms?<a class="headerlink" href="#homework-implement-the-different-randomization-algorithms" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1. </span>Homework: Implement the different randomization algorithms?<a class="headerlink" href="#homework-implement-the-different-randomization-algorithms" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -772,7 +777,7 @@ Use `average_degree_connectivity` instead.
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Erdos-Renyi random networks</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Erdos-Renyi random networks</p>
         </div>
     </a>
 </div>
