@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. How to fit a power law distribution &#8212; Complexity in social systems</title>
+    <title>4. How to fit a power law distribution &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Basics of network analysis" href="nb05_network_analysis.html" />
-    <link rel="prev" title="2. Basic network import and representation" href="../1-intro/nb02_data_import_and_networks.html" />
+    <link rel="next" title="5. Basics of network analysis" href="nb05_network_analysis.html" />
+    <link rel="prev" title="3. Introduction to NetworkX" href="nb03_networkx_visualization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,24 +124,34 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb03_networkx_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. How to fit a power law distribution
+   4. How to fit a power law distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb05_network_analysis.html">
-   4. Basics of network analysis
+   5. Basics of network analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb06_random_graphs.html">
-   5. Erdos-Renyi random networks
+   6. Erdos-Renyi random networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb07_network_assortativity.html">
-   6. Network assortativity
+   7. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb08_network_robustness.html">
+   8. Network robustness
   </a>
  </li>
 </ul>
@@ -253,39 +263,39 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-powerlaw-package">
-   3.1. The Powerlaw package
+   4.1. The Powerlaw package
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analysis-of-ca-astroph">
-   3.2. Analysis of ca-AstroPh
+   4.2. Analysis of ca-AstroPh
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#degree-distribution">
-     3.2.1. Degree distribution
+     4.2.1. Degree distribution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linear-binning">
-     3.2.2. Linear binning
+     4.2.2. Linear binning
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameter-estimation">
-   3.3. Parameter estimation
+   4.3. Parameter estimation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualize-distributions-and-fit">
-   3.4. Visualize distributions and fit
+   4.4. Visualize distributions and fit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparing-candidate-distributions">
-   3.5. Comparing Candidate Distributions
+   4.5. Comparing Candidate Distributions
   </a>
  </li>
 </ul>
@@ -310,39 +320,39 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-powerlaw-package">
-   3.1. The Powerlaw package
+   4.1. The Powerlaw package
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analysis-of-ca-astroph">
-   3.2. Analysis of ca-AstroPh
+   4.2. Analysis of ca-AstroPh
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#degree-distribution">
-     3.2.1. Degree distribution
+     4.2.1. Degree distribution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linear-binning">
-     3.2.2. Linear binning
+     4.2.2. Linear binning
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameter-estimation">
-   3.3. Parameter estimation
+   4.3. Parameter estimation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualize-distributions-and-fit">
-   3.4. Visualize distributions and fit
+   4.4. Visualize distributions and fit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparing-candidate-distributions">
-   3.5. Comparing Candidate Distributions
+   4.5. Comparing Candidate Distributions
   </a>
  </li>
 </ul>
@@ -355,7 +365,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="how-to-fit-a-power-law-distribution">
-<h1><span class="section-number">3. </span>How to fit a power law distribution<a class="headerlink" href="#how-to-fit-a-power-law-distribution" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>How to fit a power law distribution<a class="headerlink" href="#how-to-fit-a-power-law-distribution" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -385,7 +395,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="the-powerlaw-package">
-<h2><span class="section-number">3.1. </span>The Powerlaw package<a class="headerlink" href="#the-powerlaw-package" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>The Powerlaw package<a class="headerlink" href="#the-powerlaw-package" title="Permalink to this headline">¶</a></h2>
 <p>We use the Python toolbox <a class="reference external" href="https://github.com/jeffalstott/powerlaw">powerlaw</a> that implements a method proposed by Aaron Clauset and collaborators in <a class="reference external" href="https://arxiv.org/abs/0706.1062">this paper</a>.
 The paper explains why fitting a power law distribution using a linear regression of logarthim is not correct.
 A more sound approach is based on a Maximum Likelihood Estimator.</p>
@@ -406,7 +416,7 @@ Several examples and a detailed description of the library has been published in
 </div>
 </div>
 <div class="section" id="analysis-of-ca-astroph">
-<h2><span class="section-number">3.2. </span>Analysis of ca-AstroPh<a class="headerlink" href="#analysis-of-ca-astroph" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Analysis of ca-AstroPh<a class="headerlink" href="#analysis-of-ca-astroph" title="Permalink to this headline">¶</a></h2>
 <p>We analyze the network file ‘ca-AstroPh’ from the SNAP repository.
 This is a co-authorhip network, thus, it is undirected.</p>
 <div class="cell docutils container">
@@ -445,7 +455,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="section" id="degree-distribution">
-<h3><span class="section-number">3.2.1. </span>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.1. </span>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">¶</a></h3>
 <p>Let’s plot the degree distribution of the network.</p>
 <p>It’s important to keep in mind the difference between <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability density function</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probablity mass function</a>.</p>
 <div class="cell docutils container">
@@ -609,7 +619,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="section" id="linear-binning">
-<h3><span class="section-number">3.2.2. </span>Linear binning<a class="headerlink" href="#linear-binning" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.2. </span>Linear binning<a class="headerlink" href="#linear-binning" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
@@ -637,7 +647,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="section" id="parameter-estimation">
-<h2><span class="section-number">3.3. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Parameter estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">¶</a></h2>
 <p>The library powerlaw allows to estimate the exponent <span class="math notranslate nohighlight">\(\alpha\)</span> and the minimum value for the scaling <span class="math notranslate nohighlight">\(x_{min}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1810,7 +1820,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="section" id="visualize-distributions-and-fit">
-<h2><span class="section-number">3.4. </span>Visualize distributions and fit<a class="headerlink" href="#visualize-distributions-and-fit" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Visualize distributions and fit<a class="headerlink" href="#visualize-distributions-and-fit" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
@@ -1864,7 +1874,7 @@ This is a co-authorhip network, thus, it is undirected.</p>
 </div>
 </div>
 <div class="section" id="comparing-candidate-distributions">
-<h2><span class="section-number">3.5. </span>Comparing Candidate Distributions<a class="headerlink" href="#comparing-candidate-distributions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.5. </span>Comparing Candidate Distributions<a class="headerlink" href="#comparing-candidate-distributions" title="Permalink to this headline">¶</a></h2>
 <p>We can compare the goodness of fit of several distributions. Distributions other than a power-law can provide a better fit to the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2105,17 +2115,17 @@ This is a co-authorhip network, thus, it is undirected.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../1-intro/nb02_data_import_and_networks.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="nb03_networkx_visualization.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Basic network import and representation</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Introduction to NetworkX</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nb05_network_analysis.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Basics of network analysis</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Basics of network analysis</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

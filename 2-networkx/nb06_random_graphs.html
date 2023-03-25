@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Erdos-Renyi random networks &#8212; Complexity in social systems</title>
+    <title>6. Erdos-Renyi random networks &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Network assortativity" href="nb07_network_assortativity.html" />
-    <link rel="prev" title="4. Basics of network analysis" href="nb05_network_analysis.html" />
+    <link rel="next" title="7. Network assortativity" href="nb07_network_assortativity.html" />
+    <link rel="prev" title="5. Basics of network analysis" href="nb05_network_analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -123,23 +123,33 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="nb03_networkx_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb04_powerlaw_fitting.html">
-   3. How to fit a power law distribution
+   4. How to fit a power law distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb05_network_analysis.html">
-   4. Basics of network analysis
+   5. Basics of network analysis
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Erdos-Renyi random networks
+   6. Erdos-Renyi random networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb07_network_assortativity.html">
-   6. Network assortativity
+   7. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb08_network_robustness.html">
+   8. Network robustness
   </a>
  </li>
 </ul>
@@ -251,22 +261,22 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#write-a-random-graph-generator">
-   5.1. Write a random graph generator
+   6.1. Write a random graph generator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analyse-characteristics">
-   5.2. Analyse characteristics
+   6.2. Analyse characteristics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vary-the-degree-k">
-   5.3. Vary the degree k
+   6.3. Vary the degree k
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configuration-model">
-   5.4. Configuration model
+   6.4. Configuration model
   </a>
  </li>
 </ul>
@@ -291,22 +301,22 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#write-a-random-graph-generator">
-   5.1. Write a random graph generator
+   6.1. Write a random graph generator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analyse-characteristics">
-   5.2. Analyse characteristics
+   6.2. Analyse characteristics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vary-the-degree-k">
-   5.3. Vary the degree k
+   6.3. Vary the degree k
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configuration-model">
-   5.4. Configuration model
+   6.4. Configuration model
   </a>
  </li>
 </ul>
@@ -319,7 +329,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="erdos-renyi-random-networks">
-<h1><span class="section-number">5. </span>Erdos-Renyi random networks<a class="headerlink" href="#erdos-renyi-random-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Erdos-Renyi random networks<a class="headerlink" href="#erdos-renyi-random-networks" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -335,7 +345,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="write-a-random-graph-generator">
-<h2><span class="section-number">5.1. </span>Write a random graph generator<a class="headerlink" href="#write-a-random-graph-generator" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Write a random graph generator<a class="headerlink" href="#write-a-random-graph-generator" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
@@ -388,7 +398,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="analyse-characteristics">
-<h2><span class="section-number">5.2. </span>Analyse characteristics<a class="headerlink" href="#analyse-characteristics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Analyse characteristics<a class="headerlink" href="#analyse-characteristics" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>
@@ -486,7 +496,7 @@ Clustering coefficient: 0.0
 </div>
 </div>
 <div class="section" id="vary-the-degree-k">
-<h2><span class="section-number">5.3. </span>Vary the degree k<a class="headerlink" href="#vary-the-degree-k" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Vary the degree k<a class="headerlink" href="#vary-the-degree-k" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># number of nodes</span>
@@ -535,7 +545,7 @@ Clustering coefficient: 0.0
 </div>
 </div>
 <div class="section" id="configuration-model">
-<h2><span class="section-number">5.4. </span>Configuration model<a class="headerlink" href="#configuration-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Configuration model<a class="headerlink" href="#configuration-model" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
@@ -682,13 +692,13 @@ Graph with 20 nodes and 63 edges
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Basics of network analysis</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Basics of network analysis</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nb07_network_assortativity.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Network assortativity</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Network assortativity</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

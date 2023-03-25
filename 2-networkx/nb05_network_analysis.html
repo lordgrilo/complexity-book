@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Basics of network analysis &#8212; Complexity in social systems</title>
+    <title>5. Basics of network analysis &#8212; Complexity in social systems</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
-    <link rel="prev" title="3. How to fit a power law distribution" href="nb04_powerlaw_fitting.html" />
+    <link rel="next" title="6. Erdos-Renyi random networks" href="nb06_random_graphs.html" />
+    <link rel="prev" title="4. How to fit a power law distribution" href="nb04_powerlaw_fitting.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -125,23 +125,33 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="nb03_networkx_visualization.html">
+   3. Introduction to NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb04_powerlaw_fitting.html">
-   3. How to fit a power law distribution
+   4. How to fit a power law distribution
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Basics of network analysis
+   5. Basics of network analysis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb06_random_graphs.html">
-   5. Erdos-Renyi random networks
+   6. Erdos-Renyi random networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nb07_network_assortativity.html">
-   6. Network assortativity
+   7. Network assortativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb08_network_robustness.html">
+   8. Network robustness
   </a>
  </li>
 </ul>
@@ -253,61 +263,61 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">
-   4.1. Connectivity and clustering of a graph
+   5.1. Connectivity and clustering of a graph
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#show-the-components-of-the-graph">
-     4.1.1. Show the components of the graph
+     5.1.1. Show the components of the graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">
-     4.1.2. Extract the largest Connected Component as a subgraph
+     5.1.2. Extract the largest Connected Component as a subgraph
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#global-clustering-coefficient">
-   4.2. Global clustering coefficient
+   5.2. Global clustering coefficient
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#average-clustering-coefficient">
-   4.3. Average clustering coefficient
+   5.3. Average clustering coefficient
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#average-sorthest-path-length">
-   4.4. Average sorthest path length
+   5.4. Average sorthest path length
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">
-     4.4.1. Warning! Calculating the shortest paths is intensive!!
+     5.4.1. Warning! Calculating the shortest paths is intensive!!
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">
-     4.4.2. Compare the results with a random ER network
+     5.4.2. Compare the results with a random ER network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">
-     4.4.3. Compare the results with a random AB network
+     5.4.3. Compare the results with a random AB network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">
-     4.4.4. Compare the results with a random WS network
+     5.4.4. Compare the results with a random WS network
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#closeness-centrality">
-   4.5. Closeness Centrality
+   5.5. Closeness Centrality
   </a>
  </li>
 </ul>
@@ -332,61 +342,61 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#connectivity-and-clustering-of-a-graph">
-   4.1. Connectivity and clustering of a graph
+   5.1. Connectivity and clustering of a graph
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#show-the-components-of-the-graph">
-     4.1.1. Show the components of the graph
+     5.1.1. Show the components of the graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#extract-the-largest-connected-component-as-a-subgraph">
-     4.1.2. Extract the largest Connected Component as a subgraph
+     5.1.2. Extract the largest Connected Component as a subgraph
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#global-clustering-coefficient">
-   4.2. Global clustering coefficient
+   5.2. Global clustering coefficient
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#average-clustering-coefficient">
-   4.3. Average clustering coefficient
+   5.3. Average clustering coefficient
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#average-sorthest-path-length">
-   4.4. Average sorthest path length
+   5.4. Average sorthest path length
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#warning-calculating-the-shortest-paths-is-intensive">
-     4.4.1. Warning! Calculating the shortest paths is intensive!!
+     5.4.1. Warning! Calculating the shortest paths is intensive!!
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-er-network">
-     4.4.2. Compare the results with a random ER network
+     5.4.2. Compare the results with a random ER network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ab-network">
-     4.4.3. Compare the results with a random AB network
+     5.4.3. Compare the results with a random AB network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compare-the-results-with-a-random-ws-network">
-     4.4.4. Compare the results with a random WS network
+     5.4.4. Compare the results with a random WS network
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#closeness-centrality">
-   4.5. Closeness Centrality
+   5.5. Closeness Centrality
   </a>
  </li>
 </ul>
@@ -399,7 +409,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="basics-of-network-analysis">
-<h1><span class="section-number">4. </span>Basics of network analysis<a class="headerlink" href="#basics-of-network-analysis" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Basics of network analysis<a class="headerlink" href="#basics-of-network-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -422,7 +432,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <div class="section" id="connectivity-and-clustering-of-a-graph">
-<h2><span class="section-number">4.1. </span>Connectivity and clustering of a graph<a class="headerlink" href="#connectivity-and-clustering-of-a-graph" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Connectivity and clustering of a graph<a class="headerlink" href="#connectivity-and-clustering-of-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>We study the network of coauthorships of Astro-Ph, from the SNAP database.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -523,7 +533,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <div class="section" id="show-the-components-of-the-graph">
-<h3><span class="section-number">4.1.1. </span>Show the components of the graph<a class="headerlink" href="#show-the-components-of-the-graph" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.1. </span>Show the components of the graph<a class="headerlink" href="#show-the-components-of-the-graph" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The graph has&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">number_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s2">&quot;connected components&quot;</span><span class="p">)</span>
@@ -840,7 +850,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <div class="section" id="extract-the-largest-connected-component-as-a-subgraph">
-<h3><span class="section-number">4.1.2. </span>Extract the largest Connected Component as a subgraph<a class="headerlink" href="#extract-the-largest-connected-component-as-a-subgraph" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.2. </span>Extract the largest Connected Component as a subgraph<a class="headerlink" href="#extract-the-largest-connected-component-as-a-subgraph" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -910,7 +920,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <div class="section" id="global-clustering-coefficient">
-<h2><span class="section-number">4.2. </span>Global clustering coefficient<a class="headerlink" href="#global-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Global clustering coefficient<a class="headerlink" href="#global-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
 <p>The global clustering coefficient measures the number of triangles in the network and it’s defined as:</p>
 <center>
 $C_\Delta = \frac{3 \times \text{triangles}}{\text{triplets}}$
@@ -1961,7 +1971,7 @@ $C_\Delta = \frac{3 \times \text{triangles}}{\text{triplets}}$
 </div>
 </div>
 <div class="section" id="average-clustering-coefficient">
-<h2><span class="section-number">4.3. </span>Average clustering coefficient<a class="headerlink" href="#average-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Average clustering coefficient<a class="headerlink" href="#average-clustering-coefficient" title="Permalink to this headline">¶</a></h2>
 <p>As an alternative to the global clustering coefficient, the overall level of clustering in a network is measured by Watts and Strogatz as the average of the local clustering coefficients of all the vertices <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <center>
 $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
@@ -1985,9 +1995,9 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 <div class="section" id="average-sorthest-path-length">
-<h2><span class="section-number">4.4. </span>Average sorthest path length<a class="headerlink" href="#average-sorthest-path-length" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Average sorthest path length<a class="headerlink" href="#average-sorthest-path-length" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="warning-calculating-the-shortest-paths-is-intensive">
-<h3><span class="section-number">4.4.1. </span>Warning! Calculating the shortest paths is intensive!!<a class="headerlink" href="#warning-calculating-the-shortest-paths-is-intensive" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.1. </span>Warning! Calculating the shortest paths is intensive!!<a class="headerlink" href="#warning-calculating-the-shortest-paths-is-intensive" title="Permalink to this headline">¶</a></h3>
 <p>The graph is small world.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2065,7 +2075,7 @@ $\bar{C} = \frac{1}{n}\sum_{i=1}^{n} C_i.$
 </div>
 </div>
 <div class="section" id="compare-the-results-with-a-random-er-network">
-<h3><span class="section-number">4.4.2. </span>Compare the results with a random ER network<a class="headerlink" href="#compare-the-results-with-a-random-er-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.2. </span>Compare the results with a random ER network<a class="headerlink" href="#compare-the-results-with-a-random-er-network" title="Permalink to this headline">¶</a></h3>
 <p>We generate a random Erdos-Renyi graph with same average connectivity of H, i.e. same number of nodes and edges.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2159,7 +2169,7 @@ and 24377 edges
 </div>
 </div>
 <div class="section" id="compare-the-results-with-a-random-ab-network">
-<h3><span class="section-number">4.4.3. </span>Compare the results with a random AB network<a class="headerlink" href="#compare-the-results-with-a-random-ab-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.3. </span>Compare the results with a random AB network<a class="headerlink" href="#compare-the-results-with-a-random-ab-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AB</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="mi">18000</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
@@ -2277,7 +2287,7 @@ and 24377 edges
 </div>
 </div>
 <div class="section" id="compare-the-results-with-a-random-ws-network">
-<h3><span class="section-number">4.4.4. </span>Compare the results with a random WS network<a class="headerlink" href="#compare-the-results-with-a-random-ws-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.4.4. </span>Compare the results with a random WS network<a class="headerlink" href="#compare-the-results-with-a-random-ws-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">WS</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_watts_strogatz_graph</span><span class="p">(</span><span class="mi">18000</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -2345,7 +2355,7 @@ and 24377 edges
 </div>
 </div>
 <div class="section" id="closeness-centrality">
-<h2><span class="section-number">4.5. </span>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.5. </span>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h2>
 <p>In connected graphs there is a natural distance metric between all pairs of nodes, defined by the length of their shortest paths.
 The ‘’’farness’’’ of a node ‘’x’’ is defined as the sum of its distances from all other nodes, and its closeness was defined by Bavelas as the reciprocal of the farness that is:</p>
 <center>
@@ -2399,13 +2409,13 @@ $C(x)= \frac{1}{\sum_y d(y,x)}.$
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>How to fit a power law distribution</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>How to fit a power law distribution</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nb06_random_graphs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Erdos-Renyi random networks</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Erdos-Renyi random networks</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
