@@ -25,7 +25,7 @@ parts:
 
 - caption: Dynamical processes
   chapters:
-    - file: 2-networkx/nb08_random_walks
+    - file: 2-networkx/nb09_random_walks
 #    - file: 3-epidemic-spreading/nb09_epidemic_processes
 #    - file: 3-epidemic-spreading/nb10_epidemics_on_networks
 
