@@ -1,0 +1,1807 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>14. Epidemics on networks &#8212; Complexity in social systems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3-epidemic-spreading/nb11_epidemics_on_networks';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="12. Epidemic modeling, deterministic and stochastic models" href="nb10_epidemic_processes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Coursebook for “Complessita’ nei Sistemi Sociali”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">1. Python is easy :)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">2. Basic network import and representation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">3. How to fit a power law distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb05_network_analysis.html">4. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb06_random_graphs.html">5. Erdos-Renyi random networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb07_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb08_network_robustness.html">7. Network robustness</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical processes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nb09_random_walks.html">8. Random walks</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="nb10_epidemic_processes.html">12. Epidemic modeling, deterministic and stochastic models</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Epidemics on networks</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/3-epidemic-spreading/nb11_epidemics_on_networks.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book/issues/new?title=Issue%20on%20page%20%2F3-epidemic-spreading/nb11_epidemics_on_networks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/3-epidemic-spreading/nb11_epidemics_on_networks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Epidemics on networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">14.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">14.1.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">14.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.2.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">14.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="epidemics-on-networks">
+<h1><span class="section-number">14. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this heading">#</a></h1>
+<p>We use the Python library <a class="reference external" href="https://github.com/springer-math/Mathematics-of-Epidemics-on-Networks">“Epidemics on Networks” developed by Kiss, Miller &amp; Simon</a>.</p>
+<p>The library must be installed using pip:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install EoN
+</pre></div>
+</div>
+<p>The library documentation is <a class="reference external" href="http://epidemicsonnetworks.readthedocs.io/en/latest/">available here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">EoN</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<section id="epidemic-threshold-for-homogeneous-networks">
+<h2><span class="section-number">14.1. </span>Epidemic threshold for homogeneous networks<a class="headerlink" href="#epidemic-threshold-for-homogeneous-networks" title="Permalink to this heading">#</a></h2>
+<p>We simulate the spread of an SIR on an Erdos-Renyi graph with constant recovery rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
+<span class="n">p</span><span class="o">=</span><span class="mf">0.002</span>
+<span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 99584
+Average degree:  19.9168
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>For this network the epidemic threshold can be approximated as <span class="math notranslate nohighlight">\(\lambda_c = \frac{\mu}{\langle k \rangle}\)</span></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<span class="n">lc</span><span class="o">=</span><span class="n">mu</span><span class="o">/</span><span class="n">avg_deg1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01004177377892031
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>As expected for this network, we have <span class="math notranslate nohighlight">\(\langle k^2 \rangle \sim \langle k \rangle^2 + \langle k \rangle\)</span></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    
+    <span class="n">k</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
+
+<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>416.0806
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">avg_deg1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>416.59572224
+</pre></div>
+</div>
+</div>
+</div>
+<section id="simulations-of-an-sir-process">
+<h3><span class="section-number">14.1.1. </span>Simulations of an SIR process<a class="headerlink" href="#simulations-of-an-sir-process" title="Permalink to this heading">#</a></h3>
+<p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span> using the <a class="reference external" href="https://epidemicsonnetworks.readthedocs.io/en/latest/functions/EoN.fast_SIR.html?highlight=fast_SIR">fast_SIR function of EoN</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+        
+        <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+        
+        <span class="n">final_size</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homo_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homo_net_size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0.000100</th>
+      <th>0.000162</th>
+      <th>0.000264</th>
+      <th>0.000428</th>
+      <th>0.000695</th>
+      <th>0.001129</th>
+      <th>0.001833</th>
+      <th>0.002976</th>
+      <th>0.004833</th>
+      <th>0.007848</th>
+      <th>0.012743</th>
+      <th>0.020691</th>
+      <th>0.033598</th>
+      <th>0.054556</th>
+      <th>0.088587</th>
+      <th>0.143845</th>
+      <th>0.233572</th>
+      <th>0.379269</th>
+      <th>0.615848</th>
+      <th>1.000000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0506</td>
+      <td>0.0514</td>
+      <td>0.0516</td>
+      <td>0.0515</td>
+      <td>0.0524</td>
+      <td>0.0572</td>
+      <td>0.0608</td>
+      <td>0.0700</td>
+      <td>0.0835</td>
+      <td>0.1400</td>
+      <td>0.4589</td>
+      <td>0.7949</td>
+      <td>0.9320</td>
+      <td>0.9829</td>
+      <td>0.9971</td>
+      <td>0.9997</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0501</td>
+      <td>0.0506</td>
+      <td>0.0514</td>
+      <td>0.0523</td>
+      <td>0.0541</td>
+      <td>0.0548</td>
+      <td>0.0602</td>
+      <td>0.0684</td>
+      <td>0.0938</td>
+      <td>0.1752</td>
+      <td>0.4232</td>
+      <td>0.7858</td>
+      <td>0.9344</td>
+      <td>0.9848</td>
+      <td>0.9981</td>
+      <td>0.9996</td>
+      <td>0.9998</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0506</td>
+      <td>0.0506</td>
+      <td>0.0514</td>
+      <td>0.0521</td>
+      <td>0.0548</td>
+      <td>0.0552</td>
+      <td>0.0614</td>
+      <td>0.0706</td>
+      <td>0.0855</td>
+      <td>0.1488</td>
+      <td>0.3979</td>
+      <td>0.7824</td>
+      <td>0.9336</td>
+      <td>0.9858</td>
+      <td>0.9986</td>
+      <td>0.9999</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0506</td>
+      <td>0.0507</td>
+      <td>0.0506</td>
+      <td>0.0523</td>
+      <td>0.0537</td>
+      <td>0.0569</td>
+      <td>0.0601</td>
+      <td>0.0684</td>
+      <td>0.0861</td>
+      <td>0.1429</td>
+      <td>0.4395</td>
+      <td>0.7813</td>
+      <td>0.9360</td>
+      <td>0.9852</td>
+      <td>0.9982</td>
+      <td>0.9999</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0502</td>
+      <td>0.0510</td>
+      <td>0.0518</td>
+      <td>0.0526</td>
+      <td>0.0536</td>
+      <td>0.0557</td>
+      <td>0.0609</td>
+      <td>0.0654</td>
+      <td>0.0922</td>
+      <td>0.1438</td>
+      <td>0.4822</td>
+      <td>0.7811</td>
+      <td>0.9369</td>
+      <td>0.9870</td>
+      <td>0.9981</td>
+      <td>0.9997</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0507</td>
+      <td>0.0512</td>
+      <td>0.0508</td>
+      <td>0.0516</td>
+      <td>0.0532</td>
+      <td>0.0562</td>
+      <td>0.0593</td>
+      <td>0.0718</td>
+      <td>0.0867</td>
+      <td>0.1415</td>
+      <td>0.4270</td>
+      <td>0.7792</td>
+      <td>0.9354</td>
+      <td>0.9873</td>
+      <td>0.9978</td>
+      <td>0.9999</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0505</td>
+      <td>0.0507</td>
+      <td>0.0514</td>
+      <td>0.0522</td>
+      <td>0.0538</td>
+      <td>0.0563</td>
+      <td>0.0604</td>
+      <td>0.0672</td>
+      <td>0.0921</td>
+      <td>0.1496</td>
+      <td>0.3933</td>
+      <td>0.7787</td>
+      <td>0.9303</td>
+      <td>0.9867</td>
+      <td>0.9977</td>
+      <td>0.9998</td>
+      <td>0.9999</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.0508</td>
+      <td>0.0507</td>
+      <td>0.0513</td>
+      <td>0.0523</td>
+      <td>0.0535</td>
+      <td>0.0561</td>
+      <td>0.0593</td>
+      <td>0.0700</td>
+      <td>0.0932</td>
+      <td>0.1549</td>
+      <td>0.4483</td>
+      <td>0.7800</td>
+      <td>0.9315</td>
+      <td>0.9858</td>
+      <td>0.9982</td>
+      <td>0.9998</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0506</td>
+      <td>0.0506</td>
+      <td>0.0516</td>
+      <td>0.0516</td>
+      <td>0.0542</td>
+      <td>0.0554</td>
+      <td>0.0613</td>
+      <td>0.0690</td>
+      <td>0.0890</td>
+      <td>0.1517</td>
+      <td>0.4168</td>
+      <td>0.7916</td>
+      <td>0.9378</td>
+      <td>0.9857</td>
+      <td>0.9983</td>
+      <td>1.0000</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.0501</td>
+      <td>0.0504</td>
+      <td>0.0508</td>
+      <td>0.0519</td>
+      <td>0.0537</td>
+      <td>0.0551</td>
+      <td>0.0608</td>
+      <td>0.0674</td>
+      <td>0.1011</td>
+      <td>0.1304</td>
+      <td>0.4228</td>
+      <td>0.7800</td>
+      <td>0.9312</td>
+      <td>0.9867</td>
+      <td>0.9980</td>
+      <td>0.9999</td>
+      <td>0.9999</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.0506</td>
+      <td>0.0508</td>
+      <td>0.0511</td>
+      <td>0.0511</td>
+      <td>0.0538</td>
+      <td>0.0568</td>
+      <td>0.0608</td>
+      <td>0.0692</td>
+      <td>0.0893</td>
+      <td>0.1460</td>
+      <td>0.4395</td>
+      <td>0.7839</td>
+      <td>0.9300</td>
+      <td>0.9846</td>
+      <td>0.9976</td>
+      <td>0.9998</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.0510</td>
+      <td>0.0506</td>
+      <td>0.0514</td>
+      <td>0.0515</td>
+      <td>0.0537</td>
+      <td>0.0558</td>
+      <td>0.0593</td>
+      <td>0.0673</td>
+      <td>0.0869</td>
+      <td>0.1531</td>
+      <td>0.4438</td>
+      <td>0.7776</td>
+      <td>0.9413</td>
+      <td>0.9843</td>
+      <td>0.9977</td>
+      <td>0.9996</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.0503</td>
+      <td>0.0503</td>
+      <td>0.0511</td>
+      <td>0.0522</td>
+      <td>0.0541</td>
+      <td>0.0562</td>
+      <td>0.0616</td>
+      <td>0.0685</td>
+      <td>0.0913</td>
+      <td>0.1496</td>
+      <td>0.4670</td>
+      <td>0.7850</td>
+      <td>0.9379</td>
+      <td>0.9842</td>
+      <td>0.9972</td>
+      <td>0.9998</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.0501</td>
+      <td>0.0508</td>
+      <td>0.0511</td>
+      <td>0.0517</td>
+      <td>0.0537</td>
+      <td>0.0544</td>
+      <td>0.0612</td>
+      <td>0.0688</td>
+      <td>0.0858</td>
+      <td>0.1660</td>
+      <td>0.4371</td>
+      <td>0.7954</td>
+      <td>0.9359</td>
+      <td>0.9874</td>
+      <td>0.9981</td>
+      <td>0.9995</td>
+      <td>0.9999</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.0503</td>
+      <td>0.0507</td>
+      <td>0.0509</td>
+      <td>0.0523</td>
+      <td>0.0549</td>
+      <td>0.0560</td>
+      <td>0.0587</td>
+      <td>0.0712</td>
+      <td>0.0856</td>
+      <td>0.1583</td>
+      <td>0.4135</td>
+      <td>0.7881</td>
+      <td>0.9309</td>
+      <td>0.9842</td>
+      <td>0.9983</td>
+      <td>0.9996</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.0505</td>
+      <td>0.0505</td>
+      <td>0.0517</td>
+      <td>0.0517</td>
+      <td>0.0544</td>
+      <td>0.0567</td>
+      <td>0.0619</td>
+      <td>0.0701</td>
+      <td>0.0880</td>
+      <td>0.1548</td>
+      <td>0.4127</td>
+      <td>0.7682</td>
+      <td>0.9292</td>
+      <td>0.9872</td>
+      <td>0.9977</td>
+      <td>0.9999</td>
+      <td>0.9999</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.0506</td>
+      <td>0.0506</td>
+      <td>0.0509</td>
+      <td>0.0519</td>
+      <td>0.0539</td>
+      <td>0.0569</td>
+      <td>0.0589</td>
+      <td>0.0660</td>
+      <td>0.0886</td>
+      <td>0.1670</td>
+      <td>0.4257</td>
+      <td>0.7781</td>
+      <td>0.9356</td>
+      <td>0.9859</td>
+      <td>0.9981</td>
+      <td>0.9998</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.0500</td>
+      <td>0.0507</td>
+      <td>0.0514</td>
+      <td>0.0525</td>
+      <td>0.0519</td>
+      <td>0.0572</td>
+      <td>0.0613</td>
+      <td>0.0689</td>
+      <td>0.0939</td>
+      <td>0.1540</td>
+      <td>0.4175</td>
+      <td>0.7905</td>
+      <td>0.9329</td>
+      <td>0.9841</td>
+      <td>0.9975</td>
+      <td>0.9995</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.0503</td>
+      <td>0.0506</td>
+      <td>0.0507</td>
+      <td>0.0525</td>
+      <td>0.0525</td>
+      <td>0.0572</td>
+      <td>0.0597</td>
+      <td>0.0689</td>
+      <td>0.0831</td>
+      <td>0.1522</td>
+      <td>0.4397</td>
+      <td>0.7770</td>
+      <td>0.9420</td>
+      <td>0.9841</td>
+      <td>0.9971</td>
+      <td>0.9997</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.0506</td>
+      <td>0.0516</td>
+      <td>0.0508</td>
+      <td>0.0518</td>
+      <td>0.0529</td>
+      <td>0.0564</td>
+      <td>0.0604</td>
+      <td>0.0703</td>
+      <td>0.0853</td>
+      <td>0.1463</td>
+      <td>0.4229</td>
+      <td>0.7737</td>
+      <td>0.9395</td>
+      <td>0.9861</td>
+      <td>0.9986</td>
+      <td>0.9998</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> 
+                      <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lc</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$\\lambda$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/39394e1ab60358f79f93daf709f8fa3dd65339b2fc7ca175885538f229864800.png" src="../_images/39394e1ab60358f79f93daf709f8fa3dd65339b2fc7ca175885538f229864800.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="epidemic-threshold-for-barabasi-albert-model-networks">
+<h2><span class="section-number">14.2. </span>Epidemic threshold for Barabàsi-Albert model networks<a class="headerlink" href="#epidemic-threshold-for-barabasi-albert-model-networks" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
+<span class="n">AB</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">AB</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 99900
+Average degree:  19.9800
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">AB</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">AB</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
+<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>940.6206
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">AB</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_deg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.98
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>The threshold can be approximated as <span class="math notranslate nohighlight">\(\lambda_c \sim \mu \frac{\langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}\)</span></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">avg_deg</span><span class="o">/</span><span class="p">(</span><span class="n">avg_k2</span><span class="o">-</span><span class="n">avg_deg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda_c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0043404559824974055
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span><span class="o">/</span><span class="n">lc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.43223996856102154
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3><span class="section-number">14.2.1. </span>Simulations of an SIR process<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_AB</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+        
+        <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+        
+        <span class="n">final_size_AB</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_AB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0.000100</th>
+      <th>0.000162</th>
+      <th>0.000264</th>
+      <th>0.000428</th>
+      <th>0.000695</th>
+      <th>0.001129</th>
+      <th>0.001833</th>
+      <th>0.002976</th>
+      <th>0.004833</th>
+      <th>0.007848</th>
+      <th>0.012743</th>
+      <th>0.020691</th>
+      <th>0.033598</th>
+      <th>0.054556</th>
+      <th>0.088587</th>
+      <th>0.143845</th>
+      <th>0.233572</th>
+      <th>0.379269</th>
+      <th>0.615848</th>
+      <th>1.000000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>0.0505</td>
+      <td>0.0507</td>
+      <td>0.0515</td>
+      <td>0.0528</td>
+      <td>0.0533</td>
+      <td>0.0570</td>
+      <td>0.0596</td>
+      <td>0.0824</td>
+      <td>0.1225</td>
+      <td>0.2423</td>
+      <td>0.4803</td>
+      <td>0.7067</td>
+      <td>0.8738</td>
+      <td>0.9585</td>
+      <td>0.9909</td>
+      <td>0.9986</td>
+      <td>0.9999</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.0507</td>
+      <td>0.0507</td>
+      <td>0.0514</td>
+      <td>0.0526</td>
+      <td>0.0539</td>
+      <td>0.0585</td>
+      <td>0.0647</td>
+      <td>0.0796</td>
+      <td>0.1165</td>
+      <td>0.2618</td>
+      <td>0.4837</td>
+      <td>0.7169</td>
+      <td>0.8759</td>
+      <td>0.9585</td>
+      <td>0.9923</td>
+      <td>0.9988</td>
+      <td>0.9998</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.0507</td>
+      <td>0.0506</td>
+      <td>0.0511</td>
+      <td>0.0519</td>
+      <td>0.0541</td>
+      <td>0.0572</td>
+      <td>0.0654</td>
+      <td>0.0877</td>
+      <td>0.1462</td>
+      <td>0.2727</td>
+      <td>0.4790</td>
+      <td>0.7197</td>
+      <td>0.8774</td>
+      <td>0.9599</td>
+      <td>0.9919</td>
+      <td>0.9987</td>
+      <td>0.9996</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.0508</td>
+      <td>0.0505</td>
+      <td>0.0510</td>
+      <td>0.0519</td>
+      <td>0.0539</td>
+      <td>0.0552</td>
+      <td>0.0641</td>
+      <td>0.0813</td>
+      <td>0.1444</td>
+      <td>0.2636</td>
+      <td>0.5012</td>
+      <td>0.7044</td>
+      <td>0.8731</td>
+      <td>0.9540</td>
+      <td>0.9919</td>
+      <td>0.9991</td>
+      <td>1.0000</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.0502</td>
+      <td>0.0510</td>
+      <td>0.0508</td>
+      <td>0.0525</td>
+      <td>0.0537</td>
+      <td>0.0555</td>
+      <td>0.0579</td>
+      <td>0.0779</td>
+      <td>0.1541</td>
+      <td>0.2538</td>
+      <td>0.5092</td>
+      <td>0.7004</td>
+      <td>0.8743</td>
+      <td>0.9579</td>
+      <td>0.9923</td>
+      <td>0.9991</td>
+      <td>0.9996</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lambda_c</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">sf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$\\lambda$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/712f276b896154567dec47d7a7178de11343c6c43cbf8dd972f562bdd60aeec6.png" src="../_images/712f276b896154567dec47d7a7178de11343c6c43cbf8dd972f562bdd60aeec6.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="epidemic-threshold-for-configuration-model-networks">
+<h2><span class="section-number">14.3. </span>Epidemic threshold for configuration model networks<a class="headerlink" href="#epidemic-threshold-for-configuration-model-networks" title="Permalink to this heading">#</a></h2>
+<p>We can use the configuration model to generate a network with a given power-law degree distribution. By setting <span class="math notranslate nohighlight">\(\gamma=2.1\)</span>, we expect to see more fluctuations in the degree distribution.</p>
+<p>We create a function that samples from a power-law distribution between <span class="math notranslate nohighlight">\(k_{min}\)</span> and <span class="math notranslate nohighlight">\(k_{max}\)</span> with exponent <span class="math notranslate nohighlight">\(\gamma\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_activity</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
+    
+    <span class="n">y</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">e</span><span class="o">=</span><span class="n">g</span><span class="o">+</span><span class="mf">1.</span>
+    
+    <span class="n">a</span><span class="o">=</span><span class="p">((</span><span class="n">x1</span><span class="o">**</span><span class="n">e</span><span class="o">-</span><span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">e</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
+<span class="n">kmin</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">kmax</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">act</span><span class="o">=</span><span class="n">get_activity</span><span class="p">(</span><span class="n">kmin</span><span class="p">,</span><span class="n">kmax</span><span class="p">,</span><span class="o">-</span><span class="mf">2.1</span><span class="p">)</span>
+    
+    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">act</span><span class="p">)))</span>
+
+<span class="c1">#we need the sum of the degree sequence to be even to properly run the configuration model</span>
+<span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="k">2</span>==0:
+    <span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: 
+Type: MultiGraph
+Number of nodes: 10000
+Number of edges: 65624
+Average degree:  13.1248
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">selfloop_edges</span><span class="p">(</span><span class="n">G1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 54022
+Average degree:  10.8044
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G1</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">G1</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
+<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2428.7296
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G1</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_deg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.8044
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c1</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">avg_deg</span><span class="o">/</span><span class="p">(</span><span class="n">avg_k2</span><span class="o">-</span><span class="n">avg_deg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda_c1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.000893691831327123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lc</span><span class="o">/</span><span class="n">lambda_c1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.236282381599462
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3><span class="section-number">14.3.1. </span>Simulations of an SIR process<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>We simulate 100 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_conf</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+        
+        <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+        
+        <span class="n">final_size_conf</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_conf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">boxprops1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">conf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="n">boxprops1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lambda_c1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;ER&#39;</span><span class="p">,</span><span class="s1">&#39;CM&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$\\lambda$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/14ae98dcf5591adb3a147330f2e554a152fe61f9981370406c40867aaa8e7f8c.png" src="../_images/14ae98dcf5591adb3a147330f2e554a152fe61f9981370406c40867aaa8e7f8c.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./3-epidemic-spreading"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nb10_epidemic_processes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">14.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">14.1.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">14.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.2.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">14.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3.1. Simulations of an SIR process</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By G. Petri, M. Lucas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
