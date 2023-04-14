@@ -26,8 +26,8 @@ parts:
 - caption: Dynamical processes
   chapters:
     - file: 3-epidemic-spreading/nb09_random_walks
-#    - file: 3-epidemic-spreading/nb09_epidemic_processes
-#    - file: 3-epidemic-spreading/nb10_epidemics_on_networks
+   - file: 3-epidemic-spreading/nb09_epidemic_processes
+   - file: 3-epidemic-spreading/nb10_epidemics_on_networks
 
 #- caption: Social contagion
 #  chapters:
