@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '3-epidemic-spreading/nb09_random_walks';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Epidemic modeling, deterministic and stochastic models" href="nb10_epidemic_processes.html" />
+    <link rel="next" title="9. Epidemic modeling, deterministic and stochastic models" href="nb10_epidemic_processes.html" />
     <link rel="prev" title="7. Network robustness" href="../2-networkx/nb08_network_robustness.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,12 +175,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical processes</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Random walks</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="nb10_epidemic_processes.html">12. Epidemic modeling, deterministic and stochastic models</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="nb11_epidemics_on_networks.html">14. Epidemics on networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb10_epidemic_processes.html">9. Epidemic modeling, deterministic and stochastic models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb11_epidemics_on_networks.html">10. Epidemics on networks</a></li>
 </ul>
 
     </div>
@@ -423,29 +419,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. Random walks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-of-pagerank">8.1. prediction of pagerank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#er-graph">8.2. ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-graph">8.3. real world graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">8.1. Pagerank</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-of-pagerank">8.1.1. prediction of pagerank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#er-graph">8.1.2. ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-graph">8.1.3. real world graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-walks">9. Explicit walks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-walks-on-er-graph">9.1. Example of walks on ER graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-walks">8.2. Explicit walks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-walks-on-er-graph">8.2.1. Example of walks on ER graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times">10. Return times</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times-on-er-graph">10.1. Return times on ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returns-times-on-scale-free-graph">10.2. returns times on scale-free graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times-on-ws-graph">10.3. Return times on WS graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times">8.3. Return times</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-er-graph">8.3.1. On ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-scale-free-graph">8.3.2. On scale-free graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-ws-graph">8.3.3. On WS graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-coverage">11. Graph Coverage</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.1. ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ws-model">11.2. WS model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-coverage">8.4. Graph Coverage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.4.1. ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ws-model">8.4.2. WS model</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -470,6 +465,8 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="pagerank">
+<h2><span class="section-number">8.1. </span>Pagerank<a class="headerlink" href="#pagerank" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select random graph using gnp_random_graph() function of networkx</span>
@@ -608,7 +605,7 @@ document.write(`
 </div>
 </div>
 <section id="prediction-of-pagerank">
-<h2><span class="section-number">8.1. </span>prediction of pagerank<a class="headerlink" href="#prediction-of-pagerank" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.1.1. </span>prediction of pagerank<a class="headerlink" href="#prediction-of-pagerank" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predicted_rank</span><span class="p">(</span><span class="n">in_degrees</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.85</span><span class="p">):</span>
@@ -621,7 +618,7 @@ document.write(`
 </div>
 </section>
 <section id="er-graph">
-<h2><span class="section-number">8.2. </span>ER graph<a class="headerlink" href="#er-graph" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.1.2. </span>ER graph<a class="headerlink" href="#er-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">gnm_random_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -660,7 +657,7 @@ document.write(`
 </div>
 </section>
 <section id="real-world-graph">
-<h2><span class="section-number">8.3. </span>real world graph<a class="headerlink" href="#real-world-graph" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.1.3. </span>real world graph<a class="headerlink" href="#real-world-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filepath  = &quot;./../datasets/USairport_2010.txt&quot;</span>
@@ -1789,8 +1786,8 @@ document.write(`
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="explicit-walks">
-<h1><span class="section-number">9. </span>Explicit walks<a class="headerlink" href="#explicit-walks" title="Permalink to this heading">#</a></h1>
+<section id="explicit-walks">
+<h2><span class="section-number">8.2. </span>Explicit walks<a class="headerlink" href="#explicit-walks" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Code imported from https://github.com/kerighan/graph-walker</span>
@@ -1821,7 +1818,7 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/maxime/.pyenv/v
 </div>
 </div>
 <section id="example-of-walks-on-er-graph">
-<h2><span class="section-number">9.1. </span>Example of walks on ER graph<a class="headerlink" href="#example-of-walks-on-er-graph" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.2.1. </span>Example of walks on ER graph<a class="headerlink" href="#example-of-walks-on-er-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1833,217 +1830,6 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/maxime/.pyenv/v
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random walks - T=0.00s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">walker</span><span class="o">.</span><span class="n">__version__</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">74</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">walker</span><span class="o">.</span><span class="n">__version__</span>
-
-<span class="ne">AttributeError</span>: module &#39;walker&#39; has no attribute &#39;__version__&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="nb">list</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Package                           Version     Editable project location
---------------------------------- ----------- -------------------------------------------------------
-alabaster                         0.7.12
-appdirs                           1.4.4
-appnope                           0.1.3
-argon2-cffi                       21.3.0
-argon2-cffi-bindings              21.2.0
-astroid                           2.12.10
-asttokens                         2.0.8
-asv                               0.5.1
-attrs                             22.1.0
-Babel                             2.10.3
-backcall                          0.2.0
-beautifulsoup4                    4.11.1
-black                             22.3.0
-bleach                            5.0.1
-celluloid                         0.2.0
-certifi                           2022.9.24
-cffi                              1.15.1
-cfgv                              3.3.1
-charset-normalizer                2.1.1
-click                             8.1.3
-codecov                           2.1.12
-commonmark                        0.9.1
-contourpy                         1.0.5
-coverage                          6.4.4
-cycler                            0.11.0
-debugpy                           1.6.3
-decorator                         5.1.1
-defusedxml                        0.7.1
-dill                              0.3.5.1
-distlib                           0.3.6
-docutils                          0.17.1
-entrypoints                       0.4
-exceptiongroup                    1.1.1
-executing                         1.1.0
-fastjsonschema                    2.16.2
-filelock                          3.8.0
-fonttools                         4.37.3
-git-filter-repo                   2.38.0
-github-changelog                  1.5.0
-graph-walker                      1.0.6
-hypernetx                         1.2.5
-identify                          2.5.5
-idna                              3.4
-igraph                            0.10.1
-imagesize                         1.4.1
-importlib-metadata                4.12.0
-importlib-resources               5.10.2
-iniconfig                         1.1.1
-ipykernel                         6.16.0
-ipython                           8.6.0
-ipython-genutils                  0.2.0
-ipywidgets                        8.0.2
-isort                             5.10.1
-jaraco.classes                    3.2.3
-jedi                              0.18.1
-Jinja2                            3.1.2
-joblib                            1.2.0
-jsonschema                        4.16.0
-jupyter                           1.0.0
-jupyter_client                    7.3.5
-jupyter-console                   6.4.4
-jupyter-contrib-core              0.4.0
-jupyter-contrib-nbextensions      0.5.1
-jupyter-core                      4.11.1
-jupyter-highlight-selected-word   0.2.0
-jupyter-latex-envs                1.4.6
-jupyter-nbextensions-configurator 0.5.0
-jupyterlab-pygments               0.2.2
-jupyterlab-widgets                3.0.3
-keyring                           23.9.3
-kiwisolver                        1.4.4
-lazy-object-proxy                 1.7.1
-line-profiler                     3.5.1
-llvmlite                          0.39.1
-lxml                              4.9.1
-MarkupSafe                        2.1.1
-matplotlib                        3.7.0
-matplotlib-inline                 0.1.6
-matplotlib-label-lines            0.5.1
-mccabe                            0.7.0
-mistune                           2.0.4
-more-itertools                    8.14.0
-mpmath                            1.3.0
-mypy-extensions                   0.4.3
-nbclient                          0.6.8
-nbconvert                         7.0.0
-nbformat                          5.6.1
-nest-asyncio                      1.5.5
-networkx                          2.8.6
-nodeenv                           1.7.0
-notebook                          6.4.12
-numba                             0.56.4
-numpy                             1.23.3
-numpydoc                          1.4.0
-packaging                         21.3
-pandas                            1.5.0
-pandocfilters                     1.5.0
-parso                             0.8.3
-pathspec                          0.10.1
-pexpect                           4.8.0
-pickleshare                       0.7.5
-Pillow                            9.2.0
-pip                               22.3
-pkginfo                           1.8.3
-platformdirs                      2.5.2
-pluggy                            1.0.0
-powerlaw                          1.5
-pre-commit                        2.20.0
-prometheus-client                 0.14.1
-prompt-toolkit                    3.0.31
-psutil                            5.9.2
-ptyprocess                        0.7.0
-pure-eval                         0.2.2
-py                                1.11.0
-pybind11                          2.10.4
-pycparser                         2.21
-pyexpokit                         0.0.1
-Pygments                          2.13.0
-pylint                            2.15.3
-pyparsing                         3.0.9
-pyrsistent                        0.18.1
-pytest                            7.2.2
-pytest-cov                        4.0.0
-python-dateutil                   2.8.2
-python-igraph                     0.10.1
-pytz                              2022.2.1
-PyYAML                            6.0
-pyzmq                             24.0.1
-qtconsole                         5.3.2
-QtPy                              2.2.0
-readme-renderer                   37.2
-regex                             2022.9.13
-requests                          2.28.1
-requests-toolbelt                 0.9.1
-rfc3986                           2.0.0
-rich                              12.5.1
-rise                              5.7.1
-scikit-learn                      1.1.2
-scipy                             1.9.1
-seaborn                           0.12.0
-Send2Trash                        1.8.0
-setuptools                        58.1.0
-six                               1.16.0
-snowballstemmer                   2.2.0
-soupsieve                         2.3.2.post1
-Sphinx                            4.5.0
-sphinx-copybutton                 0.5.0
-sphinx-rtd-theme                  1.0.0
-sphinxcontrib-applehelp           1.0.2
-sphinxcontrib-devhelp             1.0.2
-sphinxcontrib-htmlhelp            2.0.0
-sphinxcontrib-jsmath              1.0.1
-sphinxcontrib-qthelp              1.0.3
-sphinxcontrib-serializinghtml     1.1.5
-stack-data                        0.5.1
-terminado                         0.15.0
-texttable                         1.6.4
-threadpoolctl                     3.1.0
-tinycss2                          1.1.1
-tokenize-rt                       5.0.0
-toml                              0.10.2
-tomli                             2.0.1
-tomlkit                           0.11.4
-tornado                           6.2
-tqdm                              4.64.1
-traitlets                         5.4.0
-twine                             4.0.1
-typing_extensions                 4.3.0
-urllib3                           1.26.12
-virtualenv                        20.16.5
-wcwidth                           0.2.5
-webencodings                      0.5.1
-wheel                             0.37.1
-widgetsnbextension                4.0.3
-wrapt                             1.14.1
-xgi                               0.5.5       /Users/maxime/Dropbox (ISI Foundation)/WORK/SCIENCE/xgi
-zipp                              3.8.1
-
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3</span> -&gt; <span class=" -Color -Color-Green">23.0.1</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/Users/maxime/.pyenv/versions/venv_xgi/bin/python -m pip install --upgrade pip</span>
-Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -2146,10 +1932,10 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="return-times">
-<h1><span class="section-number">10. </span>Return times<a class="headerlink" href="#return-times" title="Permalink to this heading">#</a></h1>
-<section id="return-times-on-er-graph">
-<h2><span class="section-number">10.1. </span>Return times on ER graph<a class="headerlink" href="#return-times-on-er-graph" title="Permalink to this heading">#</a></h2>
+<section id="return-times">
+<h2><span class="section-number">8.3. </span>Return times<a class="headerlink" href="#return-times" title="Permalink to this heading">#</a></h2>
+<section id="on-er-graph">
+<h3><span class="section-number">8.3.1. </span>On ER graph<a class="headerlink" href="#on-er-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">return_time</span><span class="p">(</span><span class="n">walk</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -2288,8 +2074,8 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </section>
-<section id="returns-times-on-scale-free-graph">
-<h2><span class="section-number">10.2. </span>returns times on scale-free graph<a class="headerlink" href="#returns-times-on-scale-free-graph" title="Permalink to this heading">#</a></h2>
+<section id="on-scale-free-graph">
+<h3><span class="section-number">8.3.2. </span>On scale-free graph<a class="headerlink" href="#on-scale-free-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">zipf</span>
@@ -2419,8 +2205,8 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </section>
-<section id="return-times-on-ws-graph">
-<h2><span class="section-number">10.3. </span>Return times on WS graph<a class="headerlink" href="#return-times-on-ws-graph" title="Permalink to this heading">#</a></h2>
+<section id="on-ws-graph">
+<h3><span class="section-number">8.3.3. </span>On WS graph<a class="headerlink" href="#on-ws-graph" title="Permalink to this heading">#</a></h3>
 <p>Theory predicts</p>
 <div class="math notranslate nohighlight">
 \[p_0(t) \sim t^{-D/2} \quad t\ll t_1\]</div>
@@ -2525,8 +2311,8 @@ Note: you may need to restart the kernel to use updated packages.
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="graph-coverage">
-<h1><span class="section-number">11. </span>Graph Coverage<a class="headerlink" href="#graph-coverage" title="Permalink to this heading">#</a></h1>
+<section id="graph-coverage">
+<h2><span class="section-number">8.4. </span>Graph Coverage<a class="headerlink" href="#graph-coverage" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">discovered_nodes</span><span class="p">(</span><span class="n">walk</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -2541,7 +2327,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <section id="id1">
-<h2><span class="section-number">11.1. </span>ER graph<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.4.1. </span>ER graph<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
@@ -2582,7 +2368,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </section>
 <section id="ws-model">
-<h2><span class="section-number">11.2. </span>WS model<a class="headerlink" href="#ws-model" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">8.4.2. </span>WS model<a class="headerlink" href="#ws-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n_exp</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]):</span>
@@ -2643,6 +2429,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2689,7 +2476,7 @@ Note: you may need to restart the kernel to use updated packages.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Epidemic modeling, deterministic and stochastic models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2711,29 +2498,28 @@ Note: you may need to restart the kernel to use updated packages.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. Random walks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-of-pagerank">8.1. prediction of pagerank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#er-graph">8.2. ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-graph">8.3. real world graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">8.1. Pagerank</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-of-pagerank">8.1.1. prediction of pagerank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#er-graph">8.1.2. ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-graph">8.1.3. real world graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-walks">9. Explicit walks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-walks-on-er-graph">9.1. Example of walks on ER graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-walks">8.2. Explicit walks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-walks-on-er-graph">8.2.1. Example of walks on ER graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times">10. Return times</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times-on-er-graph">10.1. Return times on ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returns-times-on-scale-free-graph">10.2. returns times on scale-free graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times-on-ws-graph">10.3. Return times on WS graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-times">8.3. Return times</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-er-graph">8.3.1. On ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-scale-free-graph">8.3.2. On scale-free graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-ws-graph">8.3.3. On WS graph</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-coverage">11. Graph Coverage</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.1. ER graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ws-model">11.2. WS model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-coverage">8.4. Graph Coverage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.4.1. ER graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ws-model">8.4.2. WS model</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

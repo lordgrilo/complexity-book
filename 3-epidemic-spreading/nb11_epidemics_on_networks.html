@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>14. Epidemics on networks &#8212; Complexity in social systems</title>
+    <title>10. Epidemics on networks &#8212; Complexity in social systems</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '3-epidemic-spreading/nb11_epidemics_on_networks';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="12. Epidemic modeling, deterministic and stochastic models" href="nb10_epidemic_processes.html" />
+    <link rel="prev" title="9. Epidemic modeling, deterministic and stochastic models" href="nb10_epidemic_processes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,12 +174,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical processes</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="nb09_random_walks.html">8. Random walks</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="nb10_epidemic_processes.html">12. Epidemic modeling, deterministic and stochastic models</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Epidemics on networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb10_epidemic_processes.html">9. Epidemic modeling, deterministic and stochastic models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Epidemics on networks</a></li>
 </ul>
 
     </div>
@@ -422,16 +418,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">14.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">14.1.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">10.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">10.1.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">14.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.2.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">10.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.2.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">14.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">10.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10.3.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
 </ul>
@@ -446,7 +442,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="epidemics-on-networks">
-<h1><span class="section-number">14. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">10. </span>Epidemics on networks<a class="headerlink" href="#epidemics-on-networks" title="Permalink to this heading">#</a></h1>
 <p>We use the Python library <a class="reference external" href="https://github.com/springer-math/Mathematics-of-Epidemics-on-Networks">“Epidemics on Networks” developed by Kiss, Miller &amp; Simon</a>.</p>
 <p>The library must be installed using pip:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install EoN
@@ -484,13 +480,13 @@ document.write(`
 </div>
 </div>
 <section id="epidemic-threshold-for-homogeneous-networks">
-<h2><span class="section-number">14.1. </span>Epidemic threshold for homogeneous networks<a class="headerlink" href="#epidemic-threshold-for-homogeneous-networks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.1. </span>Epidemic threshold for homogeneous networks<a class="headerlink" href="#epidemic-threshold-for-homogeneous-networks" title="Permalink to this heading">#</a></h2>
 <p>We simulate the spread of an SIR on an Erdos-Renyi graph with constant recovery rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
-<span class="n">p</span><span class="o">=</span><span class="mf">0.002</span>
-<span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fast_gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -527,15 +523,15 @@ Average degree:  19.9168
 <p><strong>For this network the epidemic threshold can be approximated as <span class="math notranslate nohighlight">\(\lambda_c = \frac{\mu}{\langle k \rangle}\)</span></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="o">=</span><span class="mf">0.2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
-<span class="n">lc</span><span class="o">=</span><span class="n">mu</span><span class="o">/</span><span class="n">avg_deg1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">/</span> <span class="n">avg_deg1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -549,13 +545,13 @@ Average degree:  19.9168
 <p><strong>As expected for this network, we have <span class="math notranslate nohighlight">\(\langle k^2 \rangle \sim \langle k \rangle^2 + \langle k \rangle\)</span></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    
-    <span class="n">k</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
 
-<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span> <span class="o">+=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span>
+
+<span class="n">avg_k2</span> <span class="o">=</span> <span class="n">sum_k2</span> <span class="o">/</span> <span class="n">N</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -579,26 +575,26 @@ Average degree:  19.9168
 </div>
 </div>
 <section id="simulations-of-an-sir-process">
-<h3><span class="section-number">14.1.1. </span>Simulations of an SIR process<a class="headerlink" href="#simulations-of-an-sir-process" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.1.1. </span>Simulations of an SIR process<a class="headerlink" href="#simulations-of-an-sir-process" title="Permalink to this heading">#</a></h3>
 <p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span> using the <a class="reference external" href="https://epidemicsonnetworks.readthedocs.io/en/latest/functions/EoN.fast_SIR.html?highlight=fast_SIR">fast_SIR function of EoN</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-    
+
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-        
+
         <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-        
-        <span class="n">final_size</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="n">final_size</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homo_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homo_net_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1117,21 +1113,23 @@ Average degree:  19.9168
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> 
-                      <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+    <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lc</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;final epidemic size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1145,11 +1143,11 @@ Average degree:  19.9168
 </section>
 </section>
 <section id="epidemic-threshold-for-barabasi-albert-model-networks">
-<h2><span class="section-number">14.2. </span>Epidemic threshold for Barabàsi-Albert model networks<a class="headerlink" href="#epidemic-threshold-for-barabasi-albert-model-networks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.2. </span>Epidemic threshold for Barabàsi-Albert model networks<a class="headerlink" href="#epidemic-threshold-for-barabasi-albert-model-networks" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
-<span class="n">AB</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">AB</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1184,12 +1182,12 @@ Average degree:  19.9800
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">AB</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    <span class="n">k</span><span class="o">=</span><span class="n">AB</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
-<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>    
+    <span class="n">k</span> <span class="o">=</span> <span class="n">AB</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span> <span class="o">+=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span>
+<span class="n">avg_k2</span> <span class="o">=</span> <span class="n">sum_k2</span> <span class="o">/</span> <span class="n">N</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1201,7 +1199,7 @@ Average degree:  19.9800
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">AB</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">AB</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">avg_deg</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1215,7 +1213,7 @@ Average degree:  19.9800
 <p><strong>The threshold can be approximated as <span class="math notranslate nohighlight">\(\lambda_c \sim \mu \frac{\langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}\)</span></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">avg_deg</span><span class="o">/</span><span class="p">(</span><span class="n">avg_k2</span><span class="o">-</span><span class="n">avg_deg</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">avg_deg</span> <span class="o">/</span> <span class="p">(</span><span class="n">avg_k2</span> <span class="o">-</span> <span class="n">avg_deg</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lambda_c</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1228,7 +1226,7 @@ Average degree:  19.9800
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span><span class="o">/</span><span class="n">lc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c</span> <span class="o">/</span> <span class="n">lc</span>
 </pre></div>
 </div>
 </div>
@@ -1239,25 +1237,25 @@ Average degree:  19.9800
 </div>
 </div>
 <section id="id1">
-<h3><span class="section-number">14.2.1. </span>Simulations of an SIR process<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.2.1. </span>Simulations of an SIR process<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>We simulate 20 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_AB</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_AB</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-        
+
         <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-        
-        <span class="n">final_size_AB</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="n">final_size_AB</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_AB</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_net_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_AB</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1431,21 +1429,27 @@ Average degree:  19.9800
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span> <span class="p">)</span>
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+    <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lambda_c</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
-<span class="n">sf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">sf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;final epidemic size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1459,19 +1463,19 @@ Average degree:  19.9800
 </section>
 </section>
 <section id="epidemic-threshold-for-configuration-model-networks">
-<h2><span class="section-number">14.3. </span>Epidemic threshold for configuration model networks<a class="headerlink" href="#epidemic-threshold-for-configuration-model-networks" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.3. </span>Epidemic threshold for configuration model networks<a class="headerlink" href="#epidemic-threshold-for-configuration-model-networks" title="Permalink to this heading">#</a></h2>
 <p>We can use the configuration model to generate a network with a given power-law degree distribution. By setting <span class="math notranslate nohighlight">\(\gamma=2.1\)</span>, we expect to see more fluctuations in the degree distribution.</p>
 <p>We create a function that samples from a power-law distribution between <span class="math notranslate nohighlight">\(k_{min}\)</span> and <span class="math notranslate nohighlight">\(k_{max}\)</span> with exponent <span class="math notranslate nohighlight">\(\gamma\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_activity</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
-    
-    <span class="n">y</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    
-    <span class="n">e</span><span class="o">=</span><span class="n">g</span><span class="o">+</span><span class="mf">1.</span>
-    
-    <span class="n">a</span><span class="o">=</span><span class="p">((</span><span class="n">x1</span><span class="o">**</span><span class="n">e</span><span class="o">-</span><span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">e</span><span class="p">)</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_activity</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">e</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="mf">1.0</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="o">**</span><span class="n">e</span> <span class="o">-</span> <span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x0</span><span class="o">**</span><span class="n">e</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">e</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">a</span>
 </pre></div>
 </div>
@@ -1479,21 +1483,21 @@ Average degree:  19.9800
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span>
-<span class="n">kmin</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">kmax</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">kmin</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">kmax</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">act</span><span class="o">=</span><span class="n">get_activity</span><span class="p">(</span><span class="n">kmin</span><span class="p">,</span><span class="n">kmax</span><span class="p">,</span><span class="o">-</span><span class="mf">2.1</span><span class="p">)</span>
-    
+    <span class="n">act</span> <span class="o">=</span> <span class="n">get_activity</span><span class="p">(</span><span class="n">kmin</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.1</span><span class="p">)</span>
+
     <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">act</span><span class="p">)))</span>
 
-<span class="c1">#we need the sum of the degree sequence to be even to properly run the configuration model</span>
-<span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="k">2</span>==0:
-    <span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># we need the sum of the degree sequence to be even to properly run the configuration model</span>
+<span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1528,7 +1532,7 @@ Average degree:  13.1248
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1570,11 +1574,11 @@ Average degree:  10.8044
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_k2</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G1</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    <span class="n">k</span><span class="o">=</span><span class="n">G1</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">sum_k2</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span class="n">k</span>
-<span class="n">avg_k2</span><span class="o">=</span><span class="n">sum_k2</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">G1</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sum_k2</span> <span class="o">+=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span>
+<span class="n">avg_k2</span> <span class="o">=</span> <span class="n">sum_k2</span> <span class="o">/</span> <span class="n">N</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">avg_k2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1587,7 +1591,7 @@ Average degree:  10.8044
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G1</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_deg</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">G1</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">avg_deg</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1600,7 +1604,7 @@ Average degree:  10.8044
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c1</span><span class="o">=</span><span class="n">mu</span><span class="o">*</span><span class="n">avg_deg</span><span class="o">/</span><span class="p">(</span><span class="n">avg_k2</span><span class="o">-</span><span class="n">avg_deg</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_c1</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">avg_deg</span> <span class="o">/</span> <span class="p">(</span><span class="n">avg_k2</span> <span class="o">-</span> <span class="n">avg_deg</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lambda_c1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1613,7 +1617,7 @@ Average degree:  10.8044
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lc</span><span class="o">/</span><span class="n">lambda_c1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lc</span> <span class="o">/</span> <span class="n">lambda_c1</span>
 </pre></div>
 </div>
 </div>
@@ -1624,49 +1628,56 @@ Average degree:  10.8044
 </div>
 </div>
 <section id="id2">
-<h3><span class="section-number">14.3.1. </span>Simulations of an SIR process<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.3.1. </span>Simulations of an SIR process<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>We simulate 100 realizations of a SIR model for increasing values of <span class="math notranslate nohighlight">\(\lambda\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_conf</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_size_conf</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">lambd</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-        
+
         <span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">EoN</span><span class="o">.</span><span class="n">fast_SIR</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">lambd</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-        
-        <span class="n">final_size_conf</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="n">final_size_conf</span><span class="p">[</span><span class="n">lambd</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf_net_size</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_conf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf_net_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">final_size_conf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">boxprops1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">boxprops1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
 
-<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">homo_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+    <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">homo_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="n">conf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="n">boxprops1</span><span class="p">)</span>
+<span class="n">conf_net_size</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">positions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+    <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">conf_net_size</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">boxprops</span><span class="o">=</span><span class="n">boxprops1</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lambda_c1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;ER&#39;</span><span class="p">,</span><span class="s1">&#39;CM&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;ER&quot;</span><span class="p">,</span> <span class="s2">&quot;CM&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;final epidemic size&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;final epidemic size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1690,16 +1701,16 @@ Average degree:  10.8044
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "venv_xgi"
         },
         kernelOptions: {
-            name: "python3",
+            name: "venv_xgi",
             path: "./3-epidemic-spreading"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'venv_xgi'</script>
 
                 </article>
               
@@ -1718,7 +1729,7 @@ Average degree:  10.8044
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Epidemic modeling, deterministic and stochastic models</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Epidemic modeling, deterministic and stochastic models</p>
       </div>
     </a>
 </div></div>
@@ -1739,16 +1750,16 @@ Average degree:  10.8044
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">14.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">14.1.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-homogeneous-networks">10.1. Epidemic threshold for homogeneous networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulations-of-an-sir-process">10.1.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">14.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.2.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-barabasi-albert-model-networks">10.2. Epidemic threshold for Barabàsi-Albert model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.2.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">14.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3.1. Simulations of an SIR process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemic-threshold-for-configuration-model-networks">10.3. Epidemic threshold for configuration model networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10.3.1. Simulations of an SIR process</a></li>
 </ul>
 </li>
 </ul>
