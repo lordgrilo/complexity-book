@@ -28,6 +28,7 @@ parts:
     - file: 3-epidemic-spreading/nb09_random_walks
     - file: 3-epidemic-spreading/nb10_epidemic_processes
     - file: 3-epidemic-spreading/nb11_epidemics_on_networks
+    - file: 3-epidemic-spreading/nb12_synchronization
 
 #- caption: Social contagion
 #  chapters:
