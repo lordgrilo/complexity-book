@@ -31,10 +31,10 @@ parts:
     - file: 3-epidemic-spreading/nb12_synchronization
 
 - caption: Social contagion
- chapters:
-   - file: 4-social-contagion/nb11_axelrod_model
-   - file: 4-social-contagion/nb12_Higher_order_naming_game
-   - file: 4-social-contagion/nb13_Simplagion_on_RSC_model
+  chapters:
+    - file: 4-social-contagion/nb11_axelrod_model
+    - file: 4-social-contagion/nb12_Higher_order_naming_game
+    - file: 4-social-contagion/nb13_Simplagion_on_RSC_model
 
 #- caption: Temporal Networks
 #  chapters:
