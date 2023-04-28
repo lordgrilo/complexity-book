@@ -32,9 +32,9 @@ parts:
 
 - caption: Social contagion
   chapters:
-    - file: 4-social-contagion/nb11_axelrod_model
-    - file: 4-social-contagion/nb12_Higher_order_naming_game
-    - file: 4-social-contagion/nb13_Simplagion_on_RSC_model
+    - file: 4-social-contagion/nb13_axelrod_model
+    - file: 4-social-contagion/nb14_Higher_order_naming_game
+    - file: 4-social-contagion/nb15_Simplagion_on_RSC_model
 
 #- caption: Temporal Networks
 #  chapters:
