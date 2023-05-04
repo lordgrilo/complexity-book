@@ -183,6 +183,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb14_Higher_order_naming_game.html">13. Higher-order Naming Game</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb15_Simplagion_on_RSC_model.html">14. Simplagion Model</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Temporal Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html">15. Epidemics on temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb15_temporal_networks_part2.html">16. Temporal networks libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb16_infer_phases_temporal_networks.html">17. Inferring biological phases by clustering snapshots</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -479,7 +485,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/85719b99b082d9397fb2156895e5979662b36ebeb6bb64f077e0310c125540eb.png" src="../_images/85719b99b082d9397fb2156895e5979662b36ebeb6bb64f077e0310c125540eb.png" />
+<img alt="../_images/7246c7a3fb274f06c0842df2cc2bc0598351c6604787716b8b044087ec05e98c.png" src="../_images/7246c7a3fb274f06c0842df2cc2bc0598351c6604787716b8b044087ec05e98c.png" />
 </div>
 </div>
 <p>The more the frequencies are spread out, the more difficult it is to sync.<br />
@@ -503,16 +509,16 @@ Play with the parameter values!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a705ae509e808c895cb1eb00d70c741ea6476c860d8ab4dcaa59573bcb998f2.png" src="../_images/7a705ae509e808c895cb1eb00d70c741ea6476c860d8ab4dcaa59573bcb998f2.png" />
+<img alt="../_images/7659b590f193124870d3df85d8867e2a8d5276f8e26bb1dcf4231f323495c801.png" src="../_images/7659b590f193124870d3df85d8867e2a8d5276f8e26bb1dcf4231f323495c801.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate model with parameters</span>
-<span class="n">K</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span> 
 <span class="n">T</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Kuramoto</span><span class="p">(</span><span class="n">coupling</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">n_nodes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">),</span> <span class="n">natfreqs</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Kuramoto</span><span class="p">(</span><span class="n">coupling</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">n_nodes</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">natfreqs</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span>
 
 <span class="c1"># Run simulation - output is time series for all nodes (node vs time)</span>
 <span class="n">phases</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">adj_mat</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span>
@@ -522,18 +528,46 @@ Play with the parameter values!</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_activity</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
-<span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phases</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5829acef5509bbcf914f1397c659f670d10e43e18c34f30aafac5f96bb723a88.png" src="../_images/5829acef5509bbcf914f1397c659f670d10e43e18c34f30aafac5f96bb723a88.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 20000)
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1300</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_activity(phases)</span>
+<span class="c1">#sb.despine()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phases</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\sin \theta_i$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5cab5e439d7df9364201b23093480892074d83ac860af767d122907728dae8b9.png" src="../_images/5cab5e439d7df9364201b23093480892074d83ac860af767d122907728dae8b9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">2600</span><span class="p">]</span>
 
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -541,7 +575,7 @@ Play with the parameter values!</p>
 
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">act_mat</span><span class="p">[:,</span> <span class="n">time</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">act_mat</span><span class="p">[:,</span> <span class="n">time</span><span class="p">]),</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phases</span><span class="p">[:,</span> <span class="n">time</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phases</span><span class="p">[:,</span> <span class="n">time</span><span class="p">]),</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time = </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
 <span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
@@ -549,20 +583,14 @@ Play with the parameter values!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4d6880a6f2ef67b7cf6644b0733a0f72c4efacf9e80b4993ae7d0776d11f48bd.png" src="../_images/4d6880a6f2ef67b7cf6644b0733a0f72c4efacf9e80b4993ae7d0776d11f48bd.png" />
+<img alt="../_images/736d88abe1df5516ee1326102af8006828d795d8e9dde0ae7adec2e0d9c0210d.png" src="../_images/736d88abe1df5516ee1326102af8006828d795d8e9dde0ae7adec2e0d9c0210d.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_phase_coherence</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_phase_coherence(phases)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Time&#39;, ylabel=&#39;Order parameter&#39;&gt;
-</pre></div>
-</div>
-<img alt="../_images/66206ea290fdff151ede2571c3cabaf30e04b6d76f2f3d02f5d32ce78f3ffe0c.png" src="../_images/66206ea290fdff151ede2571c3cabaf30e04b6d76f2f3d02f5d32ce78f3ffe0c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -575,9 +603,73 @@ Play with the parameter values!</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">order_parameter</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Order parameter, R&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5aee910621b814b63f4c144cf4bd8438a01b08217dbb36a88a2e1ebd0f43c976.png" src="../_images/5aee910621b814b63f4c144cf4bd8438a01b08217dbb36a88a2e1ebd0f43c976.png" />
+</div>
+</div>
 </section>
 <section id="onset-of-sync-phase-transition">
 <h2><span class="section-number">11.2. </span>Onset of sync: phase transition<a class="headerlink" href="#onset-of-sync-phase-transition" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">t_transient</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">50</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="n">order_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Ks</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">K</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Ks</span><span class="p">):</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Kuramoto</span><span class="p">(</span><span class="n">coupling</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">n_nodes</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">natfreqs</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span>
+    
+    <span class="n">phases</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">adj_mat</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span>
+    
+    <span class="n">phases_stationary</span> <span class="o">=</span> <span class="n">phases</span><span class="p">[:,</span> <span class="n">t_transient</span><span class="p">:]</span>
+    
+    <span class="n">R</span> <span class="o">=</span> <span class="n">order_parameter</span><span class="p">(</span><span class="n">phases_stationary</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="n">order_avg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">order_avg</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;R, order parameter&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;K, coupling strength&quot;</span><span class="p">)</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee0a9c62e79863ebeab90c48c82db962996378771775102cb42b425ee0a38c6b.png" src="../_images/ee0a9c62e79863ebeab90c48c82db962996378771775102cb42b425ee0a38c6b.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate model with parameters</span>
@@ -614,9 +706,6 @@ Play with the parameter values!</p>
 <span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/186534a559f84f02d4aefd04c332f021650c000fa576f3fb1a2ceacad952314e.png" src="../_images/186534a559f84f02d4aefd04c332f021650c000fa576f3fb1a2ceacad952314e.png" />
 </div>
 </div>
 </section>
