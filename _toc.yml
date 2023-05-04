@@ -36,10 +36,11 @@ parts:
     - file: 4-social-contagion/nb14_Higher_order_naming_game
     - file: 4-social-contagion/nb15_Simplagion_on_RSC_model
 
-#- caption: Temporal Networks
-#  chapters:
-#    - file: 5-temporal-networks/nb14_epidemics_temporal_networks
-#    - file: 5-temporal-networks/nb15_temporal_networks_part2
+- caption: Temporal Networks
+  chapters:
+    - file: 5-temporal-networks/nb14_epidemics_temporal_networks
+    - file: 5-temporal-networks/nb15_temporal_networks_part2
+    - file: 5-temporal-networks/nb16_infer_phases_temporal_networks
 
 #- caption: Community detection 
 #  chapters:
