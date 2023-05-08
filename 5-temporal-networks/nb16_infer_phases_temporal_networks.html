@@ -433,7 +433,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infer-biological-phases-with-hierarchical-clustering">17.2. 2. Infer biological phases with hierarchical clustering</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-number-of-clusters">17.2.1. 2.1 Single number of clusters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-of-number-of-clusters-exploring-timescales">17.2.2. 2.2 Range of number of clusters: exploring timescales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-of-clustering-for-each-snapshot-over-all-range-of-number-of-clusters">17.2.3. 2.3 Quality of clustering for each snapshot, over all range of number of clusters</a></li>
 </ul>
 </li>
 </ul>
@@ -449,6 +448,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="inferring-biological-phases-by-clustering-snapshots">
 <h1><span class="section-number">17. </span>Inferring biological phases by clustering snapshots<a class="headerlink" href="#inferring-biological-phases-by-clustering-snapshots" title="Permalink to this heading">#</a></h1>
+<p>This notebook is based on the analysis performed in</p>
+<p>“Inferring cell cycle phases from a partially temporal network of protein interactions”<br />
+by Lucas et al. in Cell Reports Methods (2023)<br />
+<a class="reference external" href="https://doi.org/10.1016/j.crmeth.2023.100397">https://doi.org/10.1016/j.crmeth.2023.100397</a></p>
 <p>Here, we infer biological phases of the cell cycle by clustering the snapshot of the temporal network.<br />
 First, we compute a fixed number of clusters. Then, we compute a range of numbers of clusters, to explore a range of timescales.</p>
 <div class="cell docutils container">
@@ -463,6 +466,7 @@ First, we compute a fixed number of clusters. Then, we compute a range of number
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
 
 <span class="kn">import</span> <span class="nn">phasik</span> <span class="k">as</span> <span class="nn">pk</span> <span class="c1"># pip install phasik (requires pandas &lt; 2.0)</span>
+<span class="c1"># https://gitlab.com/habermann_lab/phasik</span>
 
 <span class="n">sb</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">)</span>
 </pre></div>
@@ -638,32 +642,13 @@ Number of temporal edges: 34
     <span class="p">)</span>
 
 
-
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wm/5gv37br900l73y63tjf8sr1r0000gn/T/ipykernel_46378/1972830732.py:31: UserWarning: FixedFormatter should only be used together with FixedLocator
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wm/5gv37br900l73y63tjf8sr1r0000gn/T/ipykernel_46378/2812442001.py:31: UserWarning: FixedFormatter should only be used together with FixedLocator
   ax2.set_xticklabels(range(0, 101, 20))
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">65</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span>     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>         <span class="mf">1.1</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>         <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="c1"># Save</span>
-<span class="ne">---&gt; </span><span class="mi">65</span> <span class="k">if</span> <span class="n">output_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory</span><span class="si">}</span><span class="s2">/distmat_</span><span class="si">{</span><span class="n">cluster_set</span><span class="o">.</span><span class="n">n_clusters</span><span class="si">}</span><span class="s2">_clusters_method_</span><span class="si">{</span><span class="n">clustering_method</span><span class="si">}</span><span class="s2">_dist_</span><span class="si">{</span><span class="n">distance_metric</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">temporal_network_name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="c1">#     plt.savefig(f&quot;{filename}_rev.png&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1">#     plt.savefig(f&quot;{filename}_rev.svg&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
-
-<span class="ne">NameError</span>: name &#39;output_directory&#39; is not defined
 </pre></div>
 </div>
 <img alt="../_images/1c93e05d2573a9cdf0cc10ab5a7c8d52a8ca2c5e1f5ed0d84a3732a994d1c16e.png" src="../_images/1c93e05d2573a9cdf0cc10ab5a7c8d52a8ca2c5e1f5ed0d84a3732a994d1c16e.png" />
@@ -686,19 +671,12 @@ Number of temporal edges: 34
 <span class="c1"># label subplots</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;(c)&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
 
-
-<span class="c1"># Save</span>
-<span class="k">if</span> <span class="n">output_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory</span><span class="si">}</span><span class="s2">dendrogram_</span><span class="si">{</span><span class="n">cluster_set</span><span class="o">.</span><span class="n">n_clusters</span><span class="si">}</span><span class="s2">_clusters_method_</span><span class="si">{</span><span class="n">clustering_method</span><span class="si">}</span><span class="s2">_dist_</span><span class="si">{</span><span class="n">distance_metric</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">temporal_network_name</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.svg&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f1c3e06ea4db42b7b232f96e5ecafa3cf14b91eb03b7853499a01f3ebc0c542c.png" src="../_images/f1c3e06ea4db42b7b232f96e5ecafa3cf14b91eb03b7853499a01f3ebc0c542c.png" />
+<img alt="../_images/73a9d23b5adf6956db411e16443d137221925725198b7ffdc696bf61175e83c6.png" src="../_images/73a9d23b5adf6956db411e16443d137221925725198b7ffdc696bf61175e83c6.png" />
 </div>
 </div>
 </section>
@@ -753,70 +731,12 @@ Number of temporal edges: 34
         <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-<span class="c1"># Save</span>
-<span class="k">if</span> <span class="n">output_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">pass</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory</span><span class="si">}</span><span class="s2">/phase_clusters_all_clusters_method_</span><span class="si">{</span><span class="n">clustering_method</span><span class="si">}</span><span class="s2">_dist_</span><span class="si">{</span><span class="n">distance_metric</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">temporal_network_name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="c1">#     plt.savefig(f&quot;{filename}.png&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
-<span class="c1">#     plt.savefig(f&quot;{filename}.svg&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/098147c983113d3b7e1529a843006db0c57004f55e6f9b3ddbc35234d8c9ba86.png" src="../_images/098147c983113d3b7e1529a843006db0c57004f55e6f9b3ddbc35234d8c9ba86.png" />
-</div>
-</div>
-</section>
-<section id="quality-of-clustering-for-each-snapshot-over-all-range-of-number-of-clusters">
-<h3><span class="section-number">17.2.3. </span>2.3 Quality of clustering for each snapshot, over all range of number of clusters<a class="headerlink" href="#quality-of-clustering-for-each-snapshot-over-all-range-of-number-of-clusters" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">total_subplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_sets</span><span class="p">)</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_subplots</span> <span class="o">//</span> <span class="n">columns</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">total_subplots</span> <span class="o">%</span> <span class="n">columns</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
-    <span class="n">nrows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span>
-    <span class="n">ncols</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
-    <span class="n">sharex</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
-    <span class="n">sharey</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
-    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">rows</span><span class="p">),</span>
-<span class="p">)</span>
-
-<span class="c1"># Plot</span>
-<span class="n">flat_axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="n">cluster_sets</span><span class="o">.</span><span class="n">plot_silhouette_samples</span><span class="p">(</span><span class="n">axs</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
-
-<span class="c1"># Format</span>
-<span class="n">flat_axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="n">distance_matrix</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">adjust_margin</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">flat_axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cluster_set</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cluster_sets</span><span class="p">):</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pk</span><span class="o">.</span><span class="n">display_name</span><span class="p">(</span><span class="n">cluster_set</span><span class="o">.</span><span class="n">n_max_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">cluster_set</span><span class="o">.</span><span class="n">n_max</span><span class="si">}</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cluster_set</span><span class="o">.</span><span class="n">n_clusters</span><span class="p">)</span><span class="si">}</span><span class="s2"> clusters)&quot;</span>
-    <span class="n">flat_axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">sb</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">flat_axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-
-<span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s2">&quot;Silhouette score&quot;</span><span class="p">,</span> <span class="s2">&quot;Ordered time points&quot;</span>
-<span class="n">pk</span><span class="o">.</span><span class="n">label_subplot_grid_with_shared_axes</span><span class="p">(</span>
-    <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">total_subplots</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Sample silhouette, method: &#39;</span><span class="si">{</span><span class="n">clustering_method</span><span class="si">}</span><span class="s2">&#39; (</span><span class="si">{</span><span class="n">temporal_network_name</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
-    <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="c1"># Save</span>
-<span class="k">if</span> <span class="n">output_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">pass</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory</span><span class="si">}</span><span class="s2">/sample_silhouettes_method_</span><span class="si">{</span><span class="n">clustering_method</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">temporal_network_name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="c1">#     plt.savefig(f&quot;{filename}.png&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
-<span class="c1">#     plt.savefig(f&quot;{filename}.svg&quot;, dpi=250, bbox_inches=&quot;tight&quot;)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/81389099431fd030e5d60fb816e4cec7e3818f2b02af2122f765e5df455d3273.png" src="../_images/81389099431fd030e5d60fb816e4cec7e3818f2b02af2122f765e5df455d3273.png" />
+<img alt="../_images/6168496e0cc4cfd9d60e3d5319d44a63f782cc92ebbc7c616465db287464c785.png" src="../_images/6168496e0cc4cfd9d60e3d5319d44a63f782cc92ebbc7c616465db287464c785.png" />
 </div>
 </div>
 </section>
@@ -885,7 +805,6 @@ Number of temporal edges: 34
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infer-biological-phases-with-hierarchical-clustering">17.2. 2. Infer biological phases with hierarchical clustering</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-number-of-clusters">17.2.1. 2.1 Single number of clusters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-of-number-of-clusters-exploring-timescales">17.2.2. 2.2 Range of number of clusters: exploring timescales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-of-clustering-for-each-snapshot-over-all-range-of-number-of-clusters">17.2.3. 2.3 Quality of clustering for each snapshot, over all range of number of clusters</a></li>
 </ul>
 </li>
 </ul>
