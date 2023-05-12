@@ -42,6 +42,6 @@ parts:
     - file: 5-temporal-networks/nb15_temporal_networks_part2
     - file: 5-temporal-networks/nb16_infer_phases_temporal_networks
 
-#- caption: Community detection 
-#  chapters:
-#    - file: 6-community-detection/nb16_community_detection
+- caption: Community detection 
+  chapters:
+    - file: 6-community-detection/nb17_community_detection
