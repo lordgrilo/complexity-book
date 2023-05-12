@@ -475,7 +475,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">it_num</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
 
 <span class="n">k1</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">k2</span> <span class="o">=</span> <span class="mi">6</span>
@@ -492,8 +492,8 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It 1 initialized
-not connected, but GC has order 1999 ans size 8058
-It 1, created SC with k1=19.8 and k2=5.9
+not connected, but GC has order 999 ans size 4022
+It 1, created SC with k1=19.6 and k2=5.9
 It 1, simulation has finished
 </pre></div>
 </div>
@@ -506,10 +506,10 @@ It 1, simulation has finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15e09e190&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10e662910&gt;]
 </pre></div>
 </div>
-<img alt="../_images/e3764bc8ccbc6eaf8ebd1a185f33393530348db97d8a29dc8a299f2595065a45.png" src="../_images/e3764bc8ccbc6eaf8ebd1a185f33393530348db97d8a29dc8a299f2595065a45.png" />
+<img alt="../_images/8f04f059020dfd419ce7d8b3e2f103e3ebb5698ee6a1db0f39ae09a58908d506.png" src="../_images/8f04f059020dfd419ce7d8b3e2f103e3ebb5698ee6a1db0f39ae09a58908d506.png" />
 </div>
 </div>
 </section>
@@ -575,7 +575,7 @@ It 1, simulation has finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0b64de326eb34020b4fbd548507ae762", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambdaD 0 seed 1
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3e64559f8e374901b0cbb4052503dc1b", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambdaD 0 seed 1
 </pre></div>
 </div>
 </div>
@@ -614,6 +614,12 @@ It 1, simulation has finished
 
         <span class="n">MF_y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xx</span><span class="p">:</span> <span class="n">get_rho_MF</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">real_lambdaD</span><span class="p">),</span> <span class="n">MF_x</span><span class="p">))</span>
         <span class="n">MF_y_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MF_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lordgrilo/Dropbox (ISI Foundation)/teaching/Complexity/complexity-book-repo/4-social-contagion/utils_simplagion_on_RSC.py:286: RuntimeWarning: invalid value encountered in sqrt
+  rho1 = (lD-l + np.sqrt((l-lD)**2 - 4.*lD*(1-l)))/(2*lD)
 </pre></div>
 </div>
 </div>
@@ -664,6 +670,9 @@ It 1, simulation has finished
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e70688d7f2483b8f7ece3a607829390b169c19b11f4a39c91868008dcd2680bb.png" src="../_images/e70688d7f2483b8f7ece3a607829390b169c19b11f4a39c91868008dcd2680bb.png" />
 </div>
 </div>
 </section>
