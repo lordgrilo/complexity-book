@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>18. The Karate Club is so important that NetworkX has a function to import it &#8212; Complexity in social systems</title>
+    <title>18. Community detection &#8212; Complexity in social systems</title>
   
   
   
@@ -190,10 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. The Karate Club is so important that NetworkX has a function to import it</a></li>
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Community detection</a></li>
 </ul>
 
     </div>
@@ -426,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The Karate Club is so important that NetworkX has a function to import it</h1>
+    <h1>Community detection</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -436,12 +433,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">18. The Karate Club is so important that NetworkX has a function to import it</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-clustering-function">19. First clustering function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-clustering-function">20. Second clustering function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-partition-into-two-communities">21. Find the partition into two communities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-karate-club-is-so-important-that-networkx-has-a-function-to-import-it">18.1. The Karate Club is so important that NetworkX has a function to import it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-clustering-function">18.2. First clustering function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-clustering-function">18.3. Second clustering function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-partition-into-two-communities">18.4. Find the partition into two communities</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -452,26 +448,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <center>
-<hr>
-<h1>Complessità nei sistemi sociali</h1>
-<h2>Laurea Magistrale in Fisica Dei Sistemi Complessi</h2>
-<h2>A.A. 2020/21</h2>
-<h2>Daniela Paolotti & Michele Tizzoni</h2>
-<h3>Community detection in networks</h3>
-<hr>
-</center><ol>
-<li><h4>Write a Python function implementing the Girvan-Newman algorithm to find the community structure of a graph (see: https://arxiv.org/abs/cond-mat/0112110)</h4>
-<li><h4>Test your function on the famous Zachary Karate Club network.</h4>
-<li><h4>Display the network with color-coded nodes according to the communities found by the algorithm</h4>
-</ol><div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="community-detection">
+<h1><span class="section-number">18. </span>Community detection<a class="headerlink" href="#community-detection" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Write a Python function implementing the Girvan-Newman algorithm to find the community structure of a graph (see: <a class="reference external" href="https://arxiv.org/abs/cond-mat/0112110">https://arxiv.org/abs/cond-mat/0112110</a>)</p></li>
+<li><p>Test your function on the famous Zachary Karate Club network.</p></li>
+<li><p>Display the network with color-coded nodes according to the communities found by the algorithm</p></li>
+</ul>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -498,10 +485,10 @@ document.write(`
 </div>
 </div>
 <section id="the-karate-club-is-so-important-that-networkx-has-a-function-to-import-it">
-<h1><span class="section-number">18. </span>The Karate Club is so important that NetworkX has a function to import it<a class="headerlink" href="#the-karate-club-is-so-important-that-networkx-has-a-function-to-import-it" title="Permalink to this heading">#</a></h1>
+<h2><span class="section-number">18.1. </span>The Karate Club is so important that NetworkX has a function to import it<a class="headerlink" href="#the-karate-club-is-so-important-that-networkx-has-a-function-to-import-it" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -509,7 +496,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eNum</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
-<span class="n">nnodes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">nnodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -547,7 +534,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c467259cfe29584e005a4ea940379d4fe03fc3ea2034b26b24bbf6d1472bdb8b.png" src="../_images/c467259cfe29584e005a4ea940379d4fe03fc3ea2034b26b24bbf6d1472bdb8b.png" />
+<img alt="../_images/557fd3dc7f55491d1270bd8a67e117d368ff01187e4983bd00e135ac0a425663.png" src="../_images/557fd3dc7f55491d1270bd8a67e117d368ff01187e4983bd00e135ac0a425663.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -653,49 +640,49 @@ document.write(`
 </div>
 </section>
 <section id="first-clustering-function">
-<h1><span class="section-number">19. </span>First clustering function<a class="headerlink" href="#first-clustering-function" title="Permalink to this heading">#</a></h1>
+<h2><span class="section-number">18.2. </span>First clustering function<a class="headerlink" href="#first-clustering-function" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">updateGraph1</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
-    
+
     <span class="n">ebw</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">edge_betweenness</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
     <span class="n">maxs</span> <span class="o">=</span> <span class="mi">0</span>
-    
+
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ebw</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">maxs</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
             <span class="n">medge</span><span class="p">,</span> <span class="n">maxs</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>
-            
-    <span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">medge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">medge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">medge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">medge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="second-clustering-function">
-<h1><span class="section-number">20. </span>Second clustering function<a class="headerlink" href="#second-clustering-function" title="Permalink to this heading">#</a></h1>
+<h2><span class="section-number">18.3. </span>Second clustering function<a class="headerlink" href="#second-clustering-function" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">updateGraph2</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
-    
+
     <span class="n">ebw</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">edge_betweenness</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-    
-    <span class="n">edge_list</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ebw</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    
-    <span class="n">medge</span><span class="o">=</span><span class="n">edge_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            
-    <span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">medge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">medge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">edge_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ebw</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">medge</span> <span class="o">=</span> <span class="n">edge_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">medge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">medge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="find-the-partition-into-two-communities">
-<h1><span class="section-number">21. </span>Find the partition into two communities<a class="headerlink" href="#find-the-partition-into-two-communities" title="Permalink to this heading">#</a></h1>
+<h2><span class="section-number">18.4. </span>Find the partition into two communities<a class="headerlink" href="#find-the-partition-into-two-communities" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
-    
-    <span class="c1">#we remove links until the graph is connected </span>
+
+    <span class="c1"># we remove links until the graph is connected</span>
     <span class="n">updateGraph1</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -703,7 +690,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">communities</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">communities</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)]</span>
 <span class="n">communities</span>
 </pre></div>
 </div>
@@ -717,14 +704,13 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_community</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_community</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)):</span>
-    
+
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">communities</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
         <span class="n">color_community</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">color_community</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        
 </pre></div>
 </div>
 </div>
@@ -739,24 +725,32 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_GN</span><span class="o">=</span><span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_GN</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">H</span><span class="p">:</span>
-    <span class="n">labels_GN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">labels_GN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels_GN</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">color_community</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ocean</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">H</span><span class="p">,</span>
+    <span class="n">pos</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">labels_GN</span><span class="p">,</span>
+    <span class="n">node_color</span><span class="o">=</span><span class="n">color_community</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ocean</span><span class="p">,</span>
+    <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/959aec91756b3d4f83970de72eea5f0980542e01c8561c6e2c4bed3533dafe05.png" src="../_images/959aec91756b3d4f83970de72eea5f0980542e01c8561c6e2c4bed3533dafe05.png" />
+<img alt="../_images/0dab465153a3d9e84e3418d2bd47522efbcc42ce2f0f653c54ab1bac2a8b90ad.png" src="../_images/0dab465153a3d9e84e3418d2bd47522efbcc42ce2f0f653c54ab1bac2a8b90ad.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -768,16 +762,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "stenv"
         },
         kernelOptions: {
-            name: "python3",
+            name: "stenv",
             path: "./6-community-detection"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'stenv'</script>
 
                 </article>
               
@@ -817,12 +811,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">18. The Karate Club is so important that NetworkX has a function to import it</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-clustering-function">19. First clustering function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-clustering-function">20. Second clustering function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-partition-into-two-communities">21. Find the partition into two communities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-karate-club-is-so-important-that-networkx-has-a-function-to-import-it">18.1. The Karate Club is so important that NetworkX has a function to import it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-clustering-function">18.2. First clustering function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-clustering-function">18.3. Second clustering function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-partition-into-two-communities">18.4. Find the partition into two communities</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
