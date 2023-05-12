@@ -1,0 +1,1064 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>19. Comparing Partitions &#8212; Complexity in social systems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6-community-detection/nb18_partition_comparison';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="18. Community detection" href="nb17_community_detection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Coursebook for “Complessita’ nei Sistemi Sociali”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">1. Python is easy :)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">2. Basic network import and representation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">3. How to fit a power law distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb05_network_analysis.html">4. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb06_random_graphs.html">5. Erdos-Renyi random networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb07_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb08_network_robustness.html">7. Network robustness</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical processes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb09_random_walks.html">8. Random walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb10_epidemic_processes.html">9. Epidemic modeling, deterministic and stochastic models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb11_epidemics_on_networks.html">10. Epidemics on networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb12_synchronization.html">11. Synchronization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Social contagion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb13_axelrod_model.html">12. Axelrod model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb14_Higher_order_naming_game.html">13. Higher-order Naming Game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb15_Simplagion_on_RSC_model.html">14. Simplagion Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Temporal Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html">15. Epidemics on temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb15_temporal_networks_part2.html">16. Temporal networks libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb16_infer_phases_temporal_networks.html">17. Inferring biological phases by clustering snapshots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community detection</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nb17_community_detection.html">18. Community detection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Comparing Partitions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/6-community-detection/nb18_partition_comparison.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book/issues/new?title=Issue%20on%20page%20%2F6-community-detection/nb18_partition_comparison.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/6-community-detection/nb18_partition_comparison.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comparing Partitions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-library-of-partitions">19.1. Build a library of partitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-partitions">19.2. comparison of partitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-partitions-example">19.2.1. Random partitions example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-comparison">19.3. bulk comparison</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comparing-partitions">
+<h1><span class="section-number">19. </span>Comparing Partitions<a class="headerlink" href="#comparing-partitions" title="Permalink to this heading">#</a></h1>
+<section id="build-a-library-of-partitions">
+<h2><span class="section-number">19.1. </span>Build a library of partitions<a class="headerlink" href="#build-a-library-of-partitions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>cdlib<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">les_miserables_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cdlib</span> <span class="kn">import</span> <span class="n">algorithms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>wurlitzer
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wurlitzer in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (3.0.3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>infomap<span class="w"> </span>leidenalg
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: infomap in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (2.7.1)
+Requirement already satisfied: leidenalg in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (0.9.1)
+Collecting igraph&lt;0.11,&gt;=0.10.0 (from leidenalg)
+  Using cached igraph-0.10.4-cp39-abi3-macosx_11_0_arm64.whl (1.7 MB)
+Requirement already satisfied: texttable&gt;=1.6.2 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from igraph&lt;0.11,&gt;=0.10.0-&gt;leidenalg) (1.6.4)
+Installing collected packages: igraph
+  Attempting uninstall: igraph
+    Found existing installation: igraph 0.9.10
+    Uninstalling igraph-0.9.10:
+      Successfully uninstalled igraph-0.9.10
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">python-igraph 0.9.10 requires igraph==0.9.10, but you have igraph 0.10.4 which is incompatible.</span>
+Successfully installed igraph-0.10.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cdlib</span> <span class="kn">import</span> <span class="n">algorithms</span>
+
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">label_propagation</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">louvain</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">walktrap</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">surprise_communities</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">label_propagation</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">rb_pots</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">spinglass</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">markov_clustering</span><span class="p">,</span>
+    <span class="c1">#     algorithms.lswl,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">infomap</span><span class="p">,</span>
+    <span class="c1">#     algorithms.async_fluid,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">significance_communities</span><span class="p">,</span>
+    <span class="n">algorithms</span><span class="o">.</span><span class="n">eigenvector</span>
+    <span class="c1">#     algorithms.sbm_dl_nested</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partitions</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">partitions</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label_propagation
+louvain
+walktrap
+surprise_communities
+label_propagation
+rb_pots
+spinglass
+markov_clustering
+infomap
+significance_communities
+eigenvector
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partitions</span><span class="p">[</span><span class="s2">&quot;label_propagation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">communities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Marguerite&#39;,
+  &#39;Javert&#39;,
+  &#39;Isabeau&#39;,
+  &#39;Champmathieu&#39;,
+  &#39;Judge&#39;,
+  &#39;Woman1&#39;,
+  &#39;Toussaint&#39;,
+  &#39;MmeDeR&#39;,
+  &#39;Perpetue&#39;,
+  &#39;Fauchelevent&#39;,
+  &#39;MlleBaptistine&#39;,
+  &#39;MmeMagloire&#39;,
+  &#39;Labarre&#39;,
+  &#39;MotherInnocent&#39;,
+  &#39;Gribier&#39;,
+  &#39;Brevet&#39;,
+  &#39;Gervais&#39;,
+  &#39;Cochepaille&#39;,
+  &#39;Bamatabois&#39;,
+  &#39;Chenildieu&#39;,
+  &#39;Valjean&#39;,
+  &#39;Woman2&#39;,
+  &#39;Scaufflaire&#39;,
+  &#39;Simplice&#39;],
+ [&#39;Dahlia&#39;,
+  &#39;Pontmercy&#39;,
+  &#39;Blacheville&#39;,
+  &#39;Fameuil&#39;,
+  &#39;Fantine&#39;,
+  &#39;Gillenormand&#39;,
+  &#39;Listolier&#39;,
+  &#39;MlleVaubois&#39;,
+  &#39;Favourite&#39;,
+  &#39;MlleGillenormand&#39;,
+  &#39;MmePontmercy&#39;,
+  &#39;Zephine&#39;,
+  &#39;LtGillenormand&#39;,
+  &#39;Tholomyes&#39;,
+  &#39;Cosette&#39;,
+  &#39;BaronessT&#39;],
+ [&#39;Gavroche&#39;,
+  &#39;Grantaire&#39;,
+  &#39;MotherPlutarch&#39;,
+  &#39;Bossuet&#39;,
+  &#39;Mabeuf&#39;,
+  &#39;MmeHucheloup&#39;,
+  &#39;Combeferre&#39;,
+  &#39;Courfeyrac&#39;,
+  &#39;Enjolras&#39;,
+  &#39;Marius&#39;,
+  &#39;Prouvaire&#39;,
+  &#39;Joly&#39;,
+  &#39;Feuilly&#39;,
+  &#39;Bahorel&#39;],
+ [&#39;Magnon&#39;,
+  &#39;Babet&#39;,
+  &#39;Boulatruelle&#39;,
+  &#39;Eponine&#39;,
+  &#39;Anzelma&#39;,
+  &#39;Gueulemer&#39;,
+  &#39;Montparnasse&#39;,
+  &#39;Claquesous&#39;,
+  &#39;MmeThenardier&#39;,
+  &#39;Brujon&#39;,
+  &#39;Thenardier&#39;],
+ [&#39;Cravatte&#39;,
+  &#39;Geborand&#39;,
+  &#39;Count&#39;,
+  &#39;Myriel&#39;,
+  &#39;OldMan&#39;,
+  &#39;CountessDeLo&#39;,
+  &#39;Napoleon&#39;,
+  &#39;Champtercier&#39;],
+ [&#39;MmeBurgon&#39;, &#39;Jondrette&#39;],
+ [&#39;Child2&#39;, &#39;Child1&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparison-of-partitions">
+<h2><span class="section-number">19.2. </span>comparison of partitions<a class="headerlink" href="#comparison-of-partitions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>clusim
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: clusim in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (0.4)
+Requirement already satisfied: numpy in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from clusim) (1.23.5)
+Requirement already satisfied: scipy in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from clusim) (1.8.0)
+Requirement already satisfied: networkx in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from clusim) (2.8)
+Requirement already satisfied: mpmath in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from clusim) (1.3.0)
+Requirement already satisfied: python-igraph in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from clusim) (0.9.10)
+Collecting igraph==0.9.10 (from python-igraph-&gt;clusim)
+  Using cached igraph-0.9.10-cp39-cp39-macosx_11_0_arm64.whl (1.5 MB)
+Requirement already satisfied: texttable&gt;=1.6.2 in /Users/lordgrilo/.virtualenvs/stenv/lib/python3.9/site-packages (from igraph==0.9.10-&gt;python-igraph-&gt;clusim) (1.6.4)
+Installing collected packages: igraph
+  Attempting uninstall: igraph
+    Found existing installation: igraph 0.10.4
+    Uninstalling igraph-0.10.4:
+      Successfully uninstalled igraph-0.10.4
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">leidenalg 0.9.1 requires igraph&lt;0.11,&gt;=0.10.0, but you have igraph 0.9.10 which is incompatible.</span>
+Successfully installed igraph-0.9.10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">clusim.clustering</span> <span class="kn">import</span> <span class="n">Clustering</span><span class="p">,</span> <span class="n">print_clustering</span>
+<span class="kn">import</span> <span class="nn">clusim.sim</span> <span class="k">as</span> <span class="nn">sim</span>
+<span class="kn">import</span> <span class="nn">clusim.clugen</span> <span class="k">as</span> <span class="nn">clugen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="random-partitions-example">
+<h3><span class="section-number">19.2.1. </span>Random partitions example<a class="headerlink" href="#random-partitions-example" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="n">clugen</span><span class="o">.</span><span class="n">make_random_clustering</span><span class="p">(</span><span class="n">n_elements</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">clugen</span><span class="o">.</span><span class="n">make_random_clustering</span><span class="p">(</span><span class="n">n_elements</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">print_clustering</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="n">print_clustering</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+
+<span class="n">row_format2</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:&gt;25}</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">simfunc</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">available_similarity_measures</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row_format2</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">simfunc</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;sim.&quot;</span> <span class="o">+</span> <span class="n">simfunc</span> <span class="o">+</span> <span class="s2">&quot;(c1, c2)&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>097|12|346|85
+0|15|26|3|84|97
+            jaccard_index      0.09090909090909091
+               rand_index       0.7777777777777778
+            adjrand_index      0.05462184873949519
+    fowlkes_mallows_index      0.17677669529663687
+                 fmeasure      0.16666666666666666
+             purity_index                      0.5
+     classification_error                      0.5
+        czekanowski_index      0.16666666666666666
+               dice_index      0.16666666666666666
+           sorensen_index      0.16666666666666666
+    rogers_tanimoto_index       0.6363636363636364
+          southwood_index                      0.1
+      pearson_correlation   0.00026779828609096903
+         corrected_chance     0.023772442658020327
+      sample_expected_sim      0.09090909090909091
+                      nmi       0.6102771471247717
+                       mi       1.3709505944546692
+                   adj_mi      0.06190919318831636
+                      rmi    -0.007308980940285537
+                       vi       1.7509775004326937
+       geometric_accuracy       0.5916079783099616
+          overlap_quality                     -0.0
+                     onmi       0.3485540456517314
+              omega_index      0.05462184873949564
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bulk-comparison">
+<h2><span class="section-number">19.3. </span>bulk comparison<a class="headerlink" href="#bulk-comparison" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_partitions</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">partitions</span><span class="p">:</span>
+    <span class="n">sim_partitions</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Clustering</span><span class="p">()</span><span class="o">.</span><span class="n">from_cluster_list</span><span class="p">(</span><span class="n">partitions</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">communities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">comparison_matrix</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="n">simfunc</span><span class="p">):</span>
+    <span class="n">ks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parts</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+    <span class="n">mat</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">mat</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">simfunc</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="n">kk</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp_df</span> <span class="o">=</span> <span class="n">comparison_matrix</span><span class="p">(</span><span class="n">sim_partitions</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">nmi</span><span class="p">)</span>
+
+<span class="n">comp_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label_propagation</th>
+      <th>louvain</th>
+      <th>walktrap</th>
+      <th>surprise_communities</th>
+      <th>rb_pots</th>
+      <th>spinglass</th>
+      <th>markov_clustering</th>
+      <th>infomap</th>
+      <th>significance_communities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>louvain</th>
+      <td>0.699764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>walktrap</th>
+      <td>0.693632</td>
+      <td>0.658128</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>surprise_communities</th>
+      <td>0.678990</td>
+      <td>0.638797</td>
+      <td>0.740572</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>rb_pots</th>
+      <td>0.691415</td>
+      <td>0.871015</td>
+      <td>0.728346</td>
+      <td>0.721737</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>spinglass</th>
+      <td>0.732612</td>
+      <td>0.822512</td>
+      <td>0.759390</td>
+      <td>0.741746</td>
+      <td>0.952185</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>markov_clustering</th>
+      <td>0.618237</td>
+      <td>0.708461</td>
+      <td>0.652796</td>
+      <td>0.474659</td>
+      <td>0.644010</td>
+      <td>0.684033</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>infomap</th>
+      <td>0.732466</td>
+      <td>0.848967</td>
+      <td>0.729392</td>
+      <td>0.735313</td>
+      <td>0.781273</td>
+      <td>0.742333</td>
+      <td>0.626293</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>significance_communities</th>
+      <td>0.691633</td>
+      <td>0.630627</td>
+      <td>0.709464</td>
+      <td>0.963308</td>
+      <td>0.718422</td>
+      <td>0.737896</td>
+      <td>0.457690</td>
+      <td>0.709643</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>eigenvector</th>
+      <td>0.668923</td>
+      <td>0.759628</td>
+      <td>0.711227</td>
+      <td>0.716290</td>
+      <td>0.808435</td>
+      <td>0.764878</td>
+      <td>0.516090</td>
+      <td>0.749298</td>
+      <td>0.706902</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">heatmap</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">heatmap</span><span class="p">(</span><span class="n">comp_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/6ea43f38fb17a000c891288d0f305f657a72985633e3384d8d870e306ca7f86a.png" src="../_images/6ea43f38fb17a000c891288d0f305f657a72985633e3384d8d870e306ca7f86a.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "stenv"
+        },
+        kernelOptions: {
+            name: "stenv",
+            path: "./6-community-detection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'stenv'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nb17_community_detection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Community detection</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-library-of-partitions">19.1. Build a library of partitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-partitions">19.2. comparison of partitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-partitions-example">19.2.1. Random partitions example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-comparison">19.3. bulk comparison</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By G. Petri, M. Lucas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
