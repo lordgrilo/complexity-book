@@ -45,3 +45,4 @@ parts:
 - caption: Community detection 
   chapters:
     - file: 6-community-detection/nb17_community_detection
+    - file: 6-community-detection/nb18_partition_comparison
