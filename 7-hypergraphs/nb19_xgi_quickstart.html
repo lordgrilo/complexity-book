@@ -1,0 +1,1449 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>20. Getting started with XGI &#8212; Complexity in social systems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7-hypergraphs/nb19_xgi_quickstart';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="22. Generative Models" href="nb20_Generative_Models.html" />
+    <link rel="prev" title="19. Comparing Partitions" href="../6-community-detection/nb18_partition_comparison.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Coursebook for “Complessita’ nei Sistemi Sociali”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb01_Python_Jupyter_notebook.html">1. Python is easy :)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-intro/nb02_data_import_and_networks.html">2. Basic network import and representation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb04_powerlaw_fitting.html">3. How to fit a power law distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb05_network_analysis.html">4. Basics of network analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb06_random_graphs.html">5. Erdos-Renyi random networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb07_network_assortativity.html">6. Network assortativity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2-networkx/nb08_network_robustness.html">7. Network robustness</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical processes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb09_random_walks.html">8. Random walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb10_epidemic_processes.html">9. Epidemic modeling, deterministic and stochastic models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb11_epidemics_on_networks.html">10. Epidemics on networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3-epidemic-spreading/nb12_synchronization.html">11. Synchronization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Social contagion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb13_axelrod_model.html">12. Axelrod model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb14_Higher_order_naming_game.html">13. Higher-order Naming Game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4-social-contagion/nb15_Simplagion_on_RSC_model.html">14. Simplagion Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Temporal Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb14_epidemics_temporal_networks.html">15. Epidemics on temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb15_temporal_networks_part2.html">16. Temporal networks libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5-temporal-networks/nb16_infer_phases_temporal_networks.html">17. Inferring biological phases by clustering snapshots</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community detection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6-community-detection/nb17_community_detection.html">18. Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6-community-detection/nb18_partition_comparison.html">19. Comparing Partitions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hypergraphs</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Getting started with XGI</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="nb20_Generative_Models.html">22. Generative Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb21_Plotting.html">23. Visualizing hypergraphs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="nb22_case_study_zhang2022.html">26. Case study 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb23_simplicial_kuramoto_example.html">27. Simulating the simplicial Kuramoto model</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/lordgrilo/complexity-book/main?urlpath=tree/7-hypergraphs/nb19_xgi_quickstart.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lordgrilo/complexity-book/issues/new?title=Issue%20on%20page%20%2F7-hypergraphs/nb19_xgi_quickstart.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7-hypergraphs/nb19_xgi_quickstart.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting started with XGI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">20. Getting started with XGI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-hypergraph">20.1. Creating a hypergraph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-hypergraph">20.1.1. Building a hypergraph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-datasets">20.1.2. Loading datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-null-models">20.1.3. Random null models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-between-different-representations">20.2. Converting between different representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">20.2.1. Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-network">20.2.2. Bipartite network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">20.2.3. Adjacency matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-graph">20.2.4. Line graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dual">20.2.5. The dual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">20.3. Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-note">20.3.1. Technical note</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-note">20.3.2. Visual note</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stats-package">20.4. The stats package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">20.5. An example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">20.5.1. Dynamics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-more-details-visit-https-xgi-readthedocs-io">21. For more details, visit https://xgi.readthedocs.io</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-xgi">
+<h1><span class="section-number">20. </span>Getting started with XGI<a class="headerlink" href="#getting-started-with-xgi" title="Permalink to this heading">#</a></h1>
+<div>
+<img src="../logo/logo.svg" width="200"/>
+</div>
+<p>XGI is a Python library to make working with and analyzing complex systems with higher-order interactions easy. We have collected a lot of useful functions, algorithms, and tools for working with hypergraphs and simplicial complexes to make life easier.</p>
+<p>We will</p>
+<ol class="arabic simple">
+<li><p>Create and load hypergraphs</p></li>
+<li><p>Visualize hypergraphs and simplicial complexes</p></li>
+<li><p>Show how to use the stats interface</p></li>
+<li><p>Give an example of how to compare an empirical dataset to a null model.</p></li>
+</ol>
+<p>We start off by loading the XGI library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can easily check the version of XGI that you have installed by using the <code class="docutils literal notranslate"><span class="pre">__version__</span></code> property:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgi</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.5.7&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="creating-a-hypergraph">
+<h2><span class="section-number">20.1. </span>Creating a hypergraph<a class="headerlink" href="#creating-a-hypergraph" title="Permalink to this heading">#</a></h2>
+<p>We want to start with a hypergraph, and this can be done in several ways:</p>
+<ol class="arabic simple">
+<li><p>Build a hypergraph node-by-node and edge-by-edge (less common, but can be helpful in writing your own generative models)</p></li>
+<li><p>Load an existing dataset</p></li>
+<li><p>Sample from a random generative model</p></li>
+</ol>
+<p>Let’s start with the first method.</p>
+<section id="building-a-hypergraph">
+<h3><span class="section-number">20.1.1. </span>Building a hypergraph<a class="headerlink" href="#building-a-hypergraph" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_build</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">Hypergraph</span><span class="p">()</span>
+<span class="n">H_build</span><span class="o">.</span><span class="n">add_edge</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">H_build</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">H_build</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">H_build</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>XGI automatically assigns unique edge IDs (if a user doesn’t specify the ID)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_build</span><span class="o">.</span><span class="n">edges</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EdgeView((&#39;a&#39;, 0, 1))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why NodeViews and EdgeViews? These allow users to access many different properties and data structures from nodes and edges in a much simpler way. We will cover this more in depth later. For now, we can get the edges of which each node is a part and the nodes in each edge as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">H_build</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">memberships</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_build</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">members</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_build</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">memberships</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_build</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">members</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: {&#39;a&#39;}, 2: {1, &#39;a&#39;}, 0: {1}, 3: {0, 1}, 4: {0}, 9: set(), 10: set()}
+[{1, 2}, {3, 4}, {0, 2, 3}]
+{1, &#39;a&#39;}
+{1, 2}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-datasets">
+<h3><span class="section-number">20.1.2. </span>Loading datasets<a class="headerlink" href="#loading-datasets" title="Permalink to this heading">#</a></h3>
+<p>Moving on to method 2, one can load datasets in several different ways. First, we provide a companion data repository, <a class="reference external" href="https://gitlab.com/complexgroupinteractions/xgi-data">xgi-data</a>, where users can easily load several datasets in standard format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_enron</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">load_xgi_data</span><span class="p">(</span><span class="s2">&quot;email-enron&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This dataset, for example, has a corresponding <a class="reference external" href="https://gitlab.com/complexgroupinteractions/xgi-data-email-enron/-/blob/main/README.md">datasheet</a> explaining its characteristics. The nodes (individuals) in this dataset contain associated email addresses and the edges (emails) contain associated timestamps. These attributes can be accessed by simply typing <code class="docutils literal notranslate"><span class="pre">H.nodes[id]</span></code> or <code class="docutils literal notranslate"><span class="pre">H.edges[id]</span></code> respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The hypergraph has </span><span class="si">{</span><span class="n">H_enron</span><span class="o">.</span><span class="n">num_nodes</span><span class="si">}</span><span class="s2"> nodes and </span><span class="si">{</span><span class="n">H_enron</span><span class="o">.</span><span class="n">num_edges</span><span class="si">}</span><span class="s2"> edges&quot;</span><span class="p">)</span>
+
+<span class="c1"># We can also print a summary of the hypergraph</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_enron</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The hypergraph has 148 nodes and 10885 edges
+Hypergraph named email-Enron with 148 nodes and 10885 hyperedges
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first 10 node IDs are:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">H_enron</span><span class="o">.</span><span class="n">nodes</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The first 10 edge IDs are:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">H_enron</span><span class="o">.</span><span class="n">edges</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The attributes of node &#39;4&#39; are&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_enron</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="s2">&quot;4&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The attributes of edge &#39;6&#39; are&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_enron</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="s2">&quot;6&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The first 10 node IDs are:
+[&#39;4&#39;, &#39;1&#39;, &#39;117&#39;, &#39;129&#39;, &#39;51&#39;, &#39;41&#39;, &#39;65&#39;, &#39;107&#39;, &#39;122&#39;, &#39;29&#39;]
+
+The first 10 edge IDs are:
+[&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]
+
+The attributes of node &#39;4&#39; are
+{&#39;name&#39;: &#39;robert.badeer@enron.com&#39;}
+
+The attributes of edge &#39;6&#39; are
+{&#39;timestamp&#39;: &#39;2000-02-22T08:07:00&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can clean up this dataset to remove isolates, multi-edges, singletons, and to replace all IDs with integer IDs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_enron_cleaned</span> <span class="o">=</span> <span class="n">H_enron</span><span class="o">.</span><span class="n">cleanup</span><span class="p">(</span>
+    <span class="n">multiedges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">singletons</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">relabel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">in_place</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first 10 node IDs are:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="o">.</span><span class="n">nodes</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hypergraph named email-Enron with 143 nodes and 1514 hyperedges
+The first 10 node IDs are:
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="random-null-models">
+<h3><span class="section-number">20.1.3. </span>Random null models<a class="headerlink" href="#random-null-models" title="Permalink to this heading">#</a></h3>
+<p>Lastly, we can create  synthetic hypergraphs using random generative models. For example, we can extract the degree and edge size sequence from this dataset and wire them together at random (according to the Chung-Lu model) to create a random null model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">H_enron_cleaned</span><span class="o">.</span><span class="n">dual</span><span class="p">()</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">H_enron_cleaned</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">H_enron_cleaned</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+
+<span class="n">H_random</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">chung_lu_hypergraph</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We check whether this new hypergraph is connected and if not, the sizes of the connected components:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connected</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">H_random</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">connected</span><span class="p">:</span>
+    <span class="n">size</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+        <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span> <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="n">xgi</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">H_random</span><span class="p">)],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The connected components:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">size</span><span class="p">,</span> <span class="n">num</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Component size&quot;</span><span class="p">,</span> <span class="s2">&quot;Number&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="converting-between-different-representations">
+<h2><span class="section-number">20.2. </span>Converting between different representations<a class="headerlink" href="#converting-between-different-representations" title="Permalink to this heading">#</a></h2>
+<section id="incidence-matrix">
+<h3><span class="section-number">20.2.1. </span>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this heading">#</a></h3>
+<p>Any hypergraph can be expressed as an <span class="math notranslate nohighlight">\(N \times M\)</span> incidence matrix, <span class="math notranslate nohighlight">\(I\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of nodes and <span class="math notranslate nohighlight">\(M\)</span> is the number of edges. Rows indicate the node ID and the columns indicate the edge ID. <span class="math notranslate nohighlight">\(I_{i,j}=1\)</span> if node <span class="math notranslate nohighlight">\(i\)</span> is a member of edge <span class="math notranslate nohighlight">\(j\)</span> and zero otherwise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">incidence_matrix</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Hyperedges&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Nodes&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/88116c4f73932bd734d9d74367e29c3f405756733ce1a11ad33812a7ccf68e85.png" src="../_images/88116c4f73932bd734d9d74367e29c3f405756733ce1a11ad33812a7ccf68e85.png" />
+</div>
+</div>
+</section>
+<section id="bipartite-network">
+<h3><span class="section-number">20.2.2. </span>Bipartite network<a class="headerlink" href="#bipartite-network" title="Permalink to this heading">#</a></h3>
+<p>Any hypergraph can be mapped to an equivalent bipartite network, <span class="math notranslate nohighlight">\(G\)</span>, where nodes become nodes of the first type and edges become nodes of the second type. A bipartite link <span class="math notranslate nohighlight">\((i, j)\)</span> of <span class="math notranslate nohighlight">\(G\)</span> indicates that node <span class="math notranslate nohighlight">\(i\)</span> is a member of edge <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">to_bipartite_graph</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fe62703a794bddc4ac0d7e245689cc51f554385cc880932e7d0922f1559799b9.png" src="../_images/fe62703a794bddc4ac0d7e245689cc51f554385cc880932e7d0922f1559799b9.png" />
+</div>
+</div>
+</section>
+<section id="adjacency-matrix">
+<h3><span class="section-number">20.2.3. </span>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this heading">#</a></h3>
+<p>We can represent a hypergraph with an <span class="math notranslate nohighlight">\(N\times N\)</span> adjacency matrix, <span class="math notranslate nohighlight">\(A\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of nodes. The adjacency matrix is a lossy format; different hypergraphs can create the same adjacency matrix. <span class="math notranslate nohighlight">\(A_{i,j} = 1\)</span> if there is at least one hyperedge containing both nodes <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x16d5d4340&gt;
+</pre></div>
+</div>
+<img alt="../_images/a109c66fea2bff0e85ef23c227375f1761ecbf02b19790a2e5268d4493746f32.png" src="../_images/a109c66fea2bff0e85ef23c227375f1761ecbf02b19790a2e5268d4493746f32.png" />
+</div>
+</div>
+</section>
+<section id="line-graph">
+<h3><span class="section-number">20.2.4. </span>Line graph<a class="headerlink" href="#line-graph" title="Permalink to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(s\)</span>-line graph is a network where nodes are hyperedges and a link is formed between two edges if they share at least <span class="math notranslate nohighlight">\(s\)</span> nodes in common.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">to_line_graph</span><span class="p">(</span><span class="n">H_enron_cleaned</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7a404928b96855ccd10640bf70a87b81451427e7679ebc88f96208aa41e1fcb6.png" src="../_images/7a404928b96855ccd10640bf70a87b81451427e7679ebc88f96208aa41e1fcb6.png" />
+</div>
+</div>
+</section>
+<section id="the-dual">
+<h3><span class="section-number">20.2.5. </span>The dual<a class="headerlink" href="#the-dual" title="Permalink to this heading">#</a></h3>
+<p>The dual is a hypergraph whose vertices and edges are interchanged. This can be pictured by swapping the nodes of the first and second types in the bipartite representation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">H_enron_cleaned</span><span class="o">.</span><span class="n">dual</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hypergraph named email-Enron with 1514 nodes and 143 hyperedges
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can do much more such as computing different properties, reading/writing, converting to/from different data structures, hypergraph null models and much more!</p>
+<p>See the Read The Docs for more information: <a class="reference external" href="https://xgi.readthedocs.io">https://xgi.readthedocs.io</a></p>
+</section>
+</section>
+<section id="visualization">
+<h2><span class="section-number">20.3. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h2>
+<p>The first step for drawing a hypergraph is to choose a layout for the nodes. At the moment the available layouts are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">random_layout</span></code>: positions nodes uniformly at random in the unit square.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pairwise_spring_layout</span></code>: positions the nodes using the Fruchterman-Reingold force-directed algorithm on the projected graph.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">barycenter_spring_layout</span></code> and <code class="docutils literal notranslate"><span class="pre">weighted_barycenter_spring_layout</span></code>: slight modification of <code class="docutils literal notranslate"><span class="pre">pairwise_spring_layout</span></code></p></li>
+</ul>
+<p>Each layout returns a dictionary that maps nodes ID into (x, y) coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">H_viz</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">random_hypergraph</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">pos1</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">random_layout</span><span class="p">(</span><span class="n">H_viz</span><span class="p">)</span>
+<span class="n">pos2</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">pairwise_spring_layout</span><span class="p">(</span><span class="n">H_viz</span><span class="p">)</span>
+<span class="n">pos3</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">barycenter_spring_layout</span><span class="p">(</span><span class="n">H_viz</span><span class="p">)</span>
+<span class="n">pos4</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">weighted_barycenter_spring_layout</span><span class="p">(</span><span class="n">H_viz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H_viz</span><span class="p">,</span> <span class="n">pos1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/87d23f158393150701c453118377a8d3cf45ee44300178811844db29d581aba2.png" src="../_images/87d23f158393150701c453118377a8d3cf45ee44300178811844db29d581aba2.png" />
+</div>
+</div>
+<p>We can easily add labels to the nodes to more easily compare the visualization to the hypergraph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H_build</span><span class="p">,</span> <span class="n">node_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hyperedge_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/02060a8d1734c5f71b2421f17b78d187f5ef0795c12bdcde58d586ea920ed894.png" src="../_images/02060a8d1734c5f71b2421f17b78d187f5ef0795c12bdcde58d586ea920ed894.png" />
+</div>
+</div>
+<p><strong>Colors of the hyperedges</strong> are designed to match the hyperedge size, but the colormap can be tweaked:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sequential colormap</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Paired</span>
+
+<span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H_viz</span><span class="p">,</span> <span class="n">pos4</span><span class="p">,</span> <span class="n">edge_fc_cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/4d29cdaca39c9efd6b57b960c3aa68b708cb82bb5cc953c22cce90383bf0d121.png" src="../_images/4d29cdaca39c9efd6b57b960c3aa68b708cb82bb5cc953c22cce90383bf0d121.png" />
+</div>
+</div>
+<p>Other parameters can be changed as well:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Reds</span>
+<span class="n">dyad_lc</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span>
+<span class="n">dyad_lw</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">node_fc</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+<span class="n">node_ec</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+<span class="n">node_lw</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">node_size</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">H_viz</span><span class="p">,</span>
+    <span class="n">pos4</span><span class="p">,</span>
+    <span class="n">edge_fc_cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">dyad_lc</span><span class="o">=</span><span class="n">dyad_lc</span><span class="p">,</span>
+    <span class="n">dyad_lw</span><span class="o">=</span><span class="n">dyad_lw</span><span class="p">,</span>
+    <span class="n">node_fc</span><span class="o">=</span><span class="n">node_fc</span><span class="p">,</span>
+    <span class="n">node_ec</span><span class="o">=</span><span class="n">node_ec</span><span class="p">,</span>
+    <span class="n">node_lw</span><span class="o">=</span><span class="n">node_lw</span><span class="p">,</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="n">node_size</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/44f37f6448b3d9031590de24b8496475075c4ff2a3632f67a05347efa7e89116.png" src="../_images/44f37f6448b3d9031590de24b8496475075c4ff2a3632f67a05347efa7e89116.png" />
+</div>
+</div>
+<p>Simplicial complexes can be visualized using the same functions for node layout and drawing.</p>
+<section id="technical-note">
+<h3><span class="section-number">20.3.1. </span>Technical note<a class="headerlink" href="#technical-note" title="Permalink to this heading">#</a></h3>
+<p>By definition, a simplicial complex object contains all sub-simplices. This would make the visualization heavy since all sub-simplices contained in a maximal simplex would overlap. The automatic solution for this, implemented by default in all the layouts, is to convert the simplicial complex into a hypergraph composed by solely by its maximal simplices.</p>
+</section>
+<section id="visual-note">
+<h3><span class="section-number">20.3.2. </span>Visual note<a class="headerlink" href="#visual-note" title="Permalink to this heading">#</a></h3>
+<p>To visually distinguish simplicial complexes from hypergraphs, the <code class="docutils literal notranslate"><span class="pre">draw</span></code> function will also show all links contained in each maximal simplices (while omitting simplices of intermediate orders).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SC</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">SimplicialComplex</span><span class="p">()</span>
+<span class="n">SC</span><span class="o">.</span><span class="n">add_simplices_from</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">pairwise_spring_layout</span><span class="p">(</span><span class="n">SC</span><span class="p">)</span>
+<span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">SC</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/58b724d3339d9ecdacb99455d887a95335b061f5955876d90f8aa29bbbe72676.png" src="../_images/58b724d3339d9ecdacb99455d887a95335b061f5955876d90f8aa29bbbe72676.png" />
+</div>
+</div>
+<p>We can even color/draw the nodes and edges based on statistics!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">is_connected</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">is_connected</span><span class="p">:</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">random_hypergraph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="mf">0.00001</span><span class="p">])</span>
+    <span class="n">is_connected</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">barycenter_spring_layout</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">xgi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">H</span><span class="p">,</span>
+    <span class="n">pos</span><span class="p">,</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span>
+    <span class="n">node_lw</span><span class="o">=</span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">average_neighbor_degree</span><span class="p">,</span>
+    <span class="n">node_fc</span><span class="o">=</span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/b3d3bb9d4f33ad08c13e18529d659a4c640b69dc7862c10b758da1039dbc931a.png" src="../_images/b3d3bb9d4f33ad08c13e18529d659a4c640b69dc7862c10b758da1039dbc931a.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="the-stats-package">
+<h2><span class="section-number">20.4. </span>The stats package<a class="headerlink" href="#the-stats-package" title="Permalink to this heading">#</a></h2>
+<p>The stats package is one of the features that sets <code class="docutils literal notranslate"><span class="pre">xgi</span></code> apart from other libraries.  It
+provides a common interface to all statistics that can be computed from a network, its
+nodes, or edges.</p>
+<p>Consider the degree of the nodes of a hypergraph <code class="docutils literal notranslate"><span class="pre">H</span></code>.  After computing the values of the
+degrees, one may wish to store them in a dict, a list, an array, a dataframe, etc.
+Through the stats package, <code class="docutils literal notranslate"><span class="pre">xgi</span></code> provides a simple interface that seamlessly allows for
+this type conversion.  This is done via the <code class="docutils literal notranslate"><span class="pre">NodeStat</span></code> class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">H_stats</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">Hypergraph</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="n">H_stats</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 1, 2: 2, 3: 3, 4: 2, 5: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NodeStat(&#39;degree&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">NodeStat</span></code> object allows us to choose the datatype, specify keywords, and get basic statistics from these properties</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;As a dictionary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">asdict</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">As a list:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">aslist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">As a numpy array:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">As a pandas dataframe:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">aspandas</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>As a dictionary:
+{1: 1, 2: 2, 3: 3, 4: 2, 5: 2}
+
+As a list:
+[1, 2, 3, 2, 2]
+
+As a numpy array:
+[1 2 3 2 2]
+
+As a pandas dataframe:
+1    1
+2    2
+3    3
+4    2
+5    2
+Name: degree, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">aspandas</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../_images/0c73a1e3ea3022d2abd0133d0542402b5e510dec70f7d153361b1c5998b6c05a.png" src="../_images/0c73a1e3ea3022d2abd0133d0542402b5e510dec70f7d153361b1c5998b6c05a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">asdict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 1, 2: 1, 3: 2, 4: 1, 5: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span> <span class="o">=</span> <span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="n">st</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">std</span><span class="p">()],</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.   , 1.   , 2.   , 2.   , 0.4  , 0.632])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Likewise, for edges,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span> <span class="o">=</span> <span class="n">H_stats</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">size</span>
+<span class="n">st</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EdgeStat(&#39;size&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="n">st</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span> <span class="n">st</span><span class="o">.</span><span class="n">std</span><span class="p">()],</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.   , 3.   , 3.333, 3.   , 0.222, 0.471])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The interface for attributes is very similar. If we add nodal attributes, for example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_stats</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;horse&quot;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pony&quot;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;zebra&quot;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;orangutan&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}),</span>
+        <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fish&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">attrs</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">asdict</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: &#39;red&#39;, 2: &#39;blue&#39;, 3: &#39;yellow&#39;, 4: &#39;red&#39;, 5: &#39;blue&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;color&#39;: &#39;red&#39;, &#39;name&#39;: &#39;horse&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>One can also filter nodes and edges by their attributes as well as any associated statistic. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">filterby</span><span class="p">(</span><span class="s2">&quot;degree&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">filterby_attr</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 4, 5]
+[2, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_stats</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">filterby</span><span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">members</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{1, 2, 3}, {3, 4, 5}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">multi</span><span class="p">([</span><span class="s2">&quot;degree&quot;</span><span class="p">,</span> <span class="s2">&quot;clustering_coefficient&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">aspandas</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+    <span class="s2">&quot;degree&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>clustering_coefficient</th>
+    </tr>
+    <tr>
+      <th>degree</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.888889</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">H_stats</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">multi</span><span class="p">([</span><span class="s2">&quot;degree&quot;</span><span class="p">,</span> <span class="s2">&quot;clustering_coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;average_neighbor_degree&quot;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">aspandas</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;degree&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;degree&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/5186b20c2ae1d6fb4179c03ab79f040dc60caf37ab6c67d1da26e2c920398258.png" src="../_images/5186b20c2ae1d6fb4179c03ab79f040dc60caf37ab6c67d1da26e2c920398258.png" />
+</div>
+</div>
+<p>For even more functionality, see the Read The Docs: <a class="reference external" href="https://xgi.readthedocs.io">https://xgi.readthedocs.io</a></p>
+</section>
+<section id="an-example">
+<h2><span class="section-number">20.5. </span>An example<a class="headerlink" href="#an-example" title="Permalink to this heading">#</a></h2>
+<p>Let’s compare the assortativity of an empirical dataset (Let’s choose the <code class="docutils literal notranslate"><span class="pre">email-enron</span></code> dataset) to a random null model. We start by loading the Enron dataset and constructing a Chung-Lu hypergraph using the dataset’s degree sequence and edge size sequence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">H_enron</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+
+<span class="n">H_null</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">chung_lu_hypergraph</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use the definitions of assortativity in “Configuration models of random hypergraphs” by Phil Chodrow to compare the assortativity of the random null model to the original dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="s2">&quot;top-2&quot;</span><span class="p">,</span> <span class="s2">&quot;top-bottom&quot;</span><span class="p">]</span>
+
+<span class="n">assort_orig</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">assort_null</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+    <span class="n">assort_orig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xgi</span><span class="o">.</span><span class="n">degree_assortativity</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">l</span><span class="p">))</span>
+    <span class="n">assort_null</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xgi</span><span class="o">.</span><span class="n">degree_assortativity</span><span class="p">(</span><span class="n">H_null</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">l</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">assort_orig</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">assort_null</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Null model&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Assortativity&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c2bb75b14adb1285860aad9ec0c8b80574a83df973f77fdbc4456bb0f69991f9.png" src="../_images/c2bb75b14adb1285860aad9ec0c8b80574a83df973f77fdbc4456bb0f69991f9.png" />
+</div>
+</div>
+<p>From this plot we can see that the original dataset is more assortative than the random null model.</p>
+<section id="dynamics">
+<h3><span class="section-number">20.5.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h3>
+<p>We can also simulate the order parameter of the Kuramoto model for hypergraphs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">random_hypergraph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">timesteps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">theta</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">simulate_kuramoto</span><span class="p">(</span>
+    <span class="n">H</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="n">omega</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="n">timesteps</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span>
+<span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">xgi</span><span class="o">.</span><span class="n">compute_kuramoto_order_parameter</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Kuramoto order parameter&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b662ee590516b18a0409ba2527a2883b57ba6cb45f038d3e72f054ce4e33478a.png" src="../_images/b662ee590516b18a0409ba2527a2883b57ba6cb45f038d3e72f054ce4e33478a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="for-more-details-visit-https-xgi-readthedocs-io">
+<h1><span class="section-number">21. </span>For more details, visit <a class="reference external" href="https://xgi.readthedocs.io">https://xgi.readthedocs.io</a><a class="headerlink" href="#for-more-details-visit-https-xgi-readthedocs-io" title="Permalink to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "lordgrilo/complexity-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./7-hypergraphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../6-community-detection/nb18_partition_comparison.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Comparing Partitions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nb20_Generative_Models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Generative Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">20. Getting started with XGI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-hypergraph">20.1. Creating a hypergraph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-hypergraph">20.1.1. Building a hypergraph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-datasets">20.1.2. Loading datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-null-models">20.1.3. Random null models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-between-different-representations">20.2. Converting between different representations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">20.2.1. Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-network">20.2.2. Bipartite network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">20.2.3. Adjacency matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-graph">20.2.4. Line graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dual">20.2.5. The dual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">20.3. Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-note">20.3.1. Technical note</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-note">20.3.2. Visual note</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stats-package">20.4. The stats package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">20.5. An example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">20.5.1. Dynamics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-more-details-visit-https-xgi-readthedocs-io">21. For more details, visit https://xgi.readthedocs.io</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By G. Petri, M. Lucas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
