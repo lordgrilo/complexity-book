@@ -46,3 +46,12 @@ parts:
   chapters:
     - file: 6-community-detection/nb17_community_detection
     - file: 6-community-detection/nb18_partition_comparison
+
+- caption: Hypergraphs 
+  chapters:
+    - file: 7-hypergraphs/nb19_xgi_quickstart
+    - file: 7-hypergraphs/nb20_Generative_Models
+    - file: 7-hypergraphs/nb21_Plotting
+    - file: 7-hypergraphs/nb22_case_study_zhang2022
+    - file: 7-hypergraphs/nb23_simplicial_kuramoto_example
+    
