@@ -50,9 +50,6 @@ parts:
 - caption: Hypergraphs 
   chapters:
     - file: 7-hypergraphs/nb19_xgi_quickstart
-    - file: 7-hypergraphs/nb20_Plotting
-    - file: 7-hypergraphs/nb21_Generative_Models
-    - file: 7-hypergraphs/nb22_Statistics
-    - file: 7-hypergraphs/nb23_case_study_zhang2022
-    - file: 7-hypergraphs/nb24_simplicial_kuramoto_example
+    - file: 7-hypergraphs/nb20_case_study_zhang2022
+
 
