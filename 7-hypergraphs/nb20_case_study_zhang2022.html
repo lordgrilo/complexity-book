@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>22. Case study: sync &#8212; Complexity in social systems</title>
+    <title>21. Case study: sync &#8212; Complexity in social systems</title>
   
   
   
@@ -196,8 +196,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hypergraphs</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="nb19_xgi_quickstart.html">20. Getting started with XGI</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. Case study: sync</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Case study: sync</a></li>
 </ul>
 
     </div>
@@ -440,15 +439,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-1">22.1. Fig. 1</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures">22.1.1. Generate random structures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-lyapunov-exponents">22.1.2. Compute Lyapunov exponents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">22.1.3. Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-1">21.1. Fig. 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures">21.1.1. Generate random structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-lyapunov-exponents">21.1.2. Compute Lyapunov exponents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">21.1.3. Plot results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-2">22.2. Fig. 2</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures-and-compute-exponents">22.2.1. Generate random structures and compute exponents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">22.2.2. Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-2">21.2. Fig. 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures-and-compute-exponents">21.2.1. Generate random structures and compute exponents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">21.2.2. Plot results</a></li>
 </ul>
 </li>
 </ul>
@@ -463,7 +462,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="case-study-sync">
-<h1><span class="section-number">22. </span>Case study: sync<a class="headerlink" href="#case-study-sync" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">21. </span>Case study: sync<a class="headerlink" href="#case-study-sync" title="Permalink to this heading">#</a></h1>
 <p>Here, using XGI, we reproduce figures 1 and 2 of the paper<br />
 “Higher-order interactions shape collective dynamics differently in hypergraphs and simplicial complexes”<br />
 Yuanzhao Zhang *, Maxime Lucas *, Federico Battiston<br />
@@ -551,9 +550,9 @@ Nature Communications 14.1 (2023): 1605<br />
 </div>
 </div>
 <section id="fig-1">
-<h2><span class="section-number">22.1. </span>Fig. 1<a class="headerlink" href="#fig-1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.1. </span>Fig. 1<a class="headerlink" href="#fig-1" title="Permalink to this heading">#</a></h2>
 <section id="generate-random-structures">
-<h3><span class="section-number">22.1.1. </span>Generate random structures<a class="headerlink" href="#generate-random-structures" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">21.1.1. </span>Generate random structures<a class="headerlink" href="#generate-random-structures" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># number of nodes</span>
@@ -582,7 +581,7 @@ Nature Communications 14.1 (2023): 1605<br />
 </div>
 </section>
 <section id="compute-lyapunov-exponents">
-<h3><span class="section-number">22.1.2. </span>Compute Lyapunov exponents<a class="headerlink" href="#compute-lyapunov-exponents" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">21.1.2. </span>Compute Lyapunov exponents<a class="headerlink" href="#compute-lyapunov-exponents" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
@@ -634,7 +633,7 @@ Nature Communications 14.1 (2023): 1605<br />
 </div>
 </section>
 <section id="plot-results">
-<h3><span class="section-number">22.1.3. </span>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">21.1.3. </span>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">))</span>
@@ -685,9 +684,9 @@ Nature Communications 14.1 (2023): 1605<br />
 </section>
 </section>
 <section id="fig-2">
-<h2><span class="section-number">22.2. </span>Fig. 2<a class="headerlink" href="#fig-2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">21.2. </span>Fig. 2<a class="headerlink" href="#fig-2" title="Permalink to this heading">#</a></h2>
 <section id="generate-random-structures-and-compute-exponents">
-<h3><span class="section-number">22.2.1. </span>Generate random structures and compute exponents<a class="headerlink" href="#generate-random-structures-and-compute-exponents" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">21.2.1. </span>Generate random structures and compute exponents<a class="headerlink" href="#generate-random-structures-and-compute-exponents" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># number of nodes</span>
@@ -763,7 +762,7 @@ Nature Communications 14.1 (2023): 1605<br />
 </div>
 </section>
 <section id="id1">
-<h3><span class="section-number">22.2.2. </span>Plot results<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">21.2.2. </span>Plot results<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">))</span>
@@ -882,15 +881,15 @@ Nature Communications 14.1 (2023): 1605<br />
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-1">22.1. Fig. 1</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures">22.1.1. Generate random structures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-lyapunov-exponents">22.1.2. Compute Lyapunov exponents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">22.1.3. Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-1">21.1. Fig. 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures">21.1.1. Generate random structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-lyapunov-exponents">21.1.2. Compute Lyapunov exponents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">21.1.3. Plot results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-2">22.2. Fig. 2</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures-and-compute-exponents">22.2.1. Generate random structures and compute exponents</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">22.2.2. Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-2">21.2. Fig. 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-structures-and-compute-exponents">21.2.1. Generate random structures and compute exponents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">21.2.2. Plot results</a></li>
 </ul>
 </li>
 </ul>
