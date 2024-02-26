@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Complexity in social systems
-author: M. Lucas, L. Dall'Amico
+author: G. Petri, M. Lucas
 logo: logo.png
 copyright : "2023" # Copyright year to be placed in the footer
 
@@ -24,7 +24,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/maximelucas/complexity-book/  # Online location of your book
+  url: https://github.com/lordgrilo/complexity-book/  # Online location of your book
   # path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
